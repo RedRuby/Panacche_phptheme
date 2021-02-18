@@ -1,0 +1,227 @@
+<style>
+
+  #REGISTER_ulBoxAddress{
+    text-align: left !important;
+    background: #ccc !important;
+    margin-bottom: 20px !important;
+    padding: 10px 5px !important;
+    margin-top: -4px !important;
+    cursor: pointer !important;
+    margin-top: -19px !important;
+  }
+  
+  .REGISTER_itemAddress{
+    border: 1px solid #fff !important;
+    padding: 10px !important;
+    cursor: pointer !important;
+  }
+  
+</style>
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
+
+      <div class="form-vertical">
+
+        <h1 class="text-center">Create designer account</h1>
+
+        {%- assign formId = 'RegisterForm' -%}
+        {% form 'create_customer', id: formId %}
+        {% include 'form-status', form: form, form_id: formId %}
+        
+        <input type="hidden" name="customer[tags]" value="designer" />
+
+        <label for="{{ formId }}-FirstName"><span class="label--error">* </span>{{ 'customer.register.first_name' | t }}</label>
+        <input required type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name">
+
+
+
+        <label for="{{ formId }}-LastName"><span class="label--error">* </span>{{ 'customer.register.last_name' | t }}</label>
+        <input required type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name" minlength="2">
+
+
+
+        <label for="{{ formId }}-email"><span class="label--error">* </span>{{ 'customer.register.email' | t }} (This will be your userid)</label>
+        <input
+               type="email"
+               name="customer[email]"
+               id="{{ formId }}-email"
+               class="{% if form.errors contains 'email' %} input--error{% endif %}"
+               {% if form.email %} value="{{ form.email }}"{% endif %}
+               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
+               autocorrect="off"
+               autocapitalize="off"
+               autocomplete="email"
+               aria-required="true"
+               required
+               {%- if form.errors contains 'email' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-email-error"
+               {%- endif -%}
+               >
+        {%- if form.errors contains 'email' -%}
+        <span id="{{ formId }}-email-error" class="input-error-message">
+          <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+        </span>
+        {%- endif -%}
+        
+        <label for="{{ formId }}-password"><span class="label--error">* </span>{{ 'customer.register.password' | t }}</label>
+        <input
+               type="password"
+               name="customer[password]"
+               minlength="5"
+               required
+               id="{{ formId }}-password"
+               class="{% if form.errors contains 'password' %} input--error{% endif %}"
+               aria-required="true"
+               {%- if form.errors contains 'password' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-password-error"
+               {%- endif -%}
+               >
+        {%- if form.errors contains 'password' -%}
+        <span id="{{ formId}}-password-error" class="input-error-message">
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+        </span>
+        {%- endif -%}
+        
+        
+        
+        <label for="{{ formId }}-BusinessName"><span class="label--error">* </span>Business Name</label>
+        <input required type="text" name="customer[note][business_name]" id="{{ formId }}-BusinessName" {% if form.note.business_name %}value="{{ form.note.business_name }}"{% endif %}>
+
+        <label for="{{ formId }}-BusinessAddress"><span class="label--error">* </span>Business Address</label>
+        <input autocomplete="none" onkeyup="getAddressByGoogle('{{ formId }}')" required type="text" name="customer[note][business_address]" id="{{ formId }}-BusinessAddress" {% if form.note.business_address %}value="{{ form.note.business_address }}"{% endif %} minlength="8">
+		<ul id="REGISTER_ulBoxAddress" style="display: none;"></ul>
+
+
+
+        <label for="{{ formId }}-phone"><span class="label--error">* </span>Phone</label>
+        <input
+               type="phone"
+               name="customer[note][phone]"
+               id="{{ formId }}-phone"
+               class="{% if form.errors contains 'phone' %} input--error{% endif %}"
+               {% if form.note.phone %} value="{{ form.note.phone }}"{% endif %}
+               autocorrect="off"
+               autocapitalize="off"
+               autocomplete="phone"
+               aria-required="true"
+               required
+               {%- if form.errors contains 'phone' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-phone-error"
+               {%- endif -%}
+               minlength="4"
+               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+               onkeypress="validate_phone(event)"
+               placeholder="123-456-7890"
+               style="margin-bottom: 0;">
+        {%- if form.errors contains 'phone' -%}
+        <span id="{{ formId }}-phone-error" class="input-error-message">
+          <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['phone'] | capitalize }} {{ form.errors.messages['phone'] }}.</span>
+        </span>
+        {%- endif -%}
+        <span class="tip">Example: 123-456-7890</span>
+
+        
+        <label for="{{ formId }}-WebSite">Website URL</label>
+        <input type="url" name="customer[note][website]" id="{{ formId }}-WebSite" {% if form.note.website %}value="{{ form.note.website }}"{% endif %} 
+               placeholder="https://www.mywebsite.com" 
+               style="margin-bottom: 0;"
+               pattern="https?://.+"
+               onkeypress="remove_double_dot(event)"
+               onblur="remove_double_dot(event)"
+               onchange="remove_double_dot(event)"
+               >
+        <span class="tip">Example: https://www.mywebsite.com</span>
+
+        <p class="text-center">
+          <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+        </p>
+
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  span.tip{
+    display: block;
+    margin: 5px 0 20px;
+    font-style: italic;
+    color: #888;
+    font-size: 14px;
+  }
+</style>
+<script language="javascript" type="text/javascript">
+  
+  function getAddressByGoogle(idForm){
+   let dataAddress=$("#"+idForm+"-BusinessAddress").val()
+    
+    if(dataAddress==""){
+      $("#REGISTER_ulBoxAddress").html("")
+      $("#REGISTER_ulBoxAddress").hide()
+      return;
+    }
+    
+    dataAddress = dataAddress.replaceAll("  ", " ");
+    dataAddress = dataAddress.replaceAll(" ", "+");
+    
+    let dataz=[]
+    
+    $.get( "https://maps.googleapis.com/maps/api/geocode/json?address="+dataAddress+"&key=AIzaSyDht87uR3ftw7YMyp6hGanpxGpnAYPhQ7M", function( data ) {
+      let data2=data.results
+      data2.forEach(function callback(currentValue, index, array) {
+        dataz+=`
+<li onclick="REGISTER_itemAddress('`+currentValue.formatted_address+`','`+idForm+`')" class="REGISTER_itemAddress">`+currentValue.formatted_address+`</li>
+
+`
+      });
+//       $("#BILLING_address").val("")
+      $("#REGISTER_ulBoxAddress").html(dataz)
+      $("#REGISTER_ulBoxAddress").show()
+    }); 
+  }
+  
+  function REGISTER_itemAddress(itemName,idForm){
+    $("#"+idForm+"-BusinessAddress").val(itemName)
+    
+    $("#REGISTER_ulBoxAddress").html("")
+    $("#REGISTER_ulBoxAddress").hide()
+  }
+  
+  
+  function remove_double_dot(evt) {
+    var s = document.getElementById('RegisterForm-WebSite');
+    var fixed = s.value.replace(/\.{2,}/g, '.');
+    s.value = fixed;
+    //return string.split(' ').join('');
+  }
+  
+  function validate_phone(evt) {
+    var theEvent = evt || window.event;
+
+    // Handle paste
+    if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+    } else {
+      // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+    }
+    var regex = /[0-9]|\-/;
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
+</script>

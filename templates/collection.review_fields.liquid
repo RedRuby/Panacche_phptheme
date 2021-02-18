@@ -1,0 +1,567 @@
+{% if customer %}
+{% if customer.tags contains 'admin' %}
+
+
+{% assign main_product = collection.products[0] %}
+{% for product in collection.products %}
+{% if product.tags contains 'main' %}
+{% assign main_product = product %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% capture new_line %}
+{% endcapture %}
+
+{% assign customer_id = collection.handle | split: '-' | first | plus: 0 %}
+{% if customer_id == 0 %}
+<p>There was an error capturing the designer id.</p>
+{% endif %}
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <!--<h1>{{ main_product.title }}</h1>-->
+      </div>
+      <div class="form-vertical">
+        <form id="edit_form" class="merchandise-form" action="https://api.panacche.com/upload/edit" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="customer_id" id="customer_id" value="">
+          <input type="hidden" name="collection_id" id="collection_id" value="{{collection.id}}">
+          <input type="hidden" name="product_id" id="product_id" value="{{main_product.id}}">
+          <input type="hidden" name="variant_id" id="variant_id" value="{{main_product.variants[0].id}}">
+          {% if main_product.tags contains 'Pending' %}<input type="hidden" name="pending" id="pending" value="pending">{% endif %}
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half">
+              <label for="name">Design name</label>
+              <input type="text" name="name" id="name" value="" autocomplete="off" required>
+            </div>
+            
+            <div class="grid__item medium-up--one-quarter">
+              <label for="price">Price</label>
+              <div class="price_item">
+                <input type="number" name="price" id="price" min="100.00" max="999999" step="0.01" value="0.00" required>
+                <span class="dollar">$</span>
+              </div>
+            </div>
+            
+            <div class="grid__item medium-up--one-quarter">
+              <label for="budget">Room Budget</label>
+              <div class="price_item">
+                <input type="number" name="budget" id="budget" min="100.00" max="999999" step="0.01" value="0.00" required>
+                <span class="dollar">$</span>
+              </div>
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label for="room_type">Room Type</label>
+              <select name="room_type" id="room_type" value="" autocomplete="off" required>
+                <option value="">Select a Room Type</option>
+                {% for link in linklists.room-type.links %}
+                <option value="{{ link.title }}">{{ link.title }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label for="room_style">Room Style</label>
+              <select name="room_style" id="room_style" value="" autocomplete="off" required>
+                <option value="">Select a Room Style</option>
+                {% for link in linklists.room-style.links %}
+                <option value="{{ link.title }}">{{ link.title }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            
+            <div class="grid__item medium-up--one-whole">
+              <label for="description">Description</label>
+              <textarea name="description" id="description" cols="1" rows="5" required></textarea>
+            </div>
+            
+            
+            <div class="grid__item medium-up--one-whole">
+              <p>Images</p>
+              <input type="hidden" name="image_array" id="image_array">
+              
+              {% for image in main_product.images %}
+              <div class="current_images">
+                <img src="{{ image.src | img_url: 'x100' }}" class="thumb">
+                <!--{% if customer.tags contains 'admin' %}<span class="remove_image" data-id="{{ image.id }}">Delete</span>{% endif %}-->
+              </div>
+              {% endfor %}
+              
+              
+
+<!--
+              <div class="image-container" id="list"></div>
+              <label for="files" class="btn full-btn">Select Images</label>-->
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="grid__item medium-up--one-whole">
+              <label for="guide">Implementation guide, tips, options</label>
+              <textarea name="guide" id="guide" cols="1" rows="5" required></textarea>
+            </div>
+            
+            <div class="grid__item medium-up--one-whole">
+              <label for="description">Color Paint</label>
+              <table class="responsive-table color-table">
+                <thead>
+                  <tr>
+                    <th>Options</th>
+                    <th>Color</th>
+                    <th>Vendor</th>
+                    <th>Name</th>
+                    <th>Application</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {%- assign main_product_description = main_product.description | replace: new_line, '' | split: ' ' | join: ' ' -%}
+                {% if main_product_description contains '<!--color-->' %}
+                {%- assign table_color = main_product_description | split: '<!--color-->' | last  | split: '<!--guide-->' | first | split: '<tbody>' | last | split: '</tbody>' | first -%}
+                {%- assign tr_array = table_color | split: '<tr>' -%}
+                {%- for tr in tr_array -%}
+                  {% unless forloop.first %}
+                  <tr>
+                    <td><button type="button" class="control_btn add">+</button> <button type="button" class="control_btn remove">×</button></td>
+                    {%- assign td_array = tr | split: '<td>' -%}
+                    {%- for td in td_array -%}
+                    {% unless forloop.first %}
+                    <td>
+                      {%- assign td_content = td | split: '</td>' | first -%}
+                      {%- if td contains 'style="' -%}
+                      {%- assign bg_img = td_content | split: "url('" | last | split: "'" | first -%}
+                      <label class="btn btn--small full-btn" style="background-color: transparent;{{ td_content | split: 'style="' | last | split: ';"' | first }}">
+                        <i class="info">Click to update</i>
+                        <input type="file" name="tbl_color[]" class="tbl_color" style="width: 1px;height: 1px;opacity: 0;position: absolute;right: 0;bottom: 0;"{% if bg_img == '' %} required{% endif %}>
+                      </label>
+                      <input type="hidden" name="tbl_bg[]" value="{{bg_img}}">
+                      {%- else -%}
+                      <input type="text" name="tbl_{% cycle 'vendor', 'name', 'app' %}[]" value="{{ td_content }}" autocomplete="off" required>
+                      {%- endif -%}
+                    </td>
+                    {% endunless %}
+                  {%- endfor -%}
+                  </tr>
+                  {% endunless %}
+                {%- else -%}
+                  <tr>
+                    <td><button type="button" class="control_btn add">+</button> <button type="button" class="control_btn remove">×</button></td>
+                    <td>
+                      <label class="btn btn--small full-btn"><span>Select a color image</span>
+                        <input type="file" name="tbl_color[]" class="tbl_color" style="width: 1px;height: 1px;opacity: 0;position: absolute;right: 0;bottom: 0;" required>
+                      </label>
+                    </td>
+                    <td><input type="text" name="tbl_vendor[]" autocomplete="off" required></td>
+                    <td><input type="text" name="tbl_name[]" autocomplete="off" required></td>
+                    <td><input type="text" name="tbl_app[]" autocomplete="off" required></td>
+                  </tr>
+                {%- endfor -%}
+                {% else %}
+                  <tr>
+                    <td><button type="button" class="control_btn add">+</button> <button type="button" class="control_btn remove">×</button></td>
+                    <td>
+                      <label class="btn btn--small full-btn"><span>Select a color image</span>
+                        <input type="file" name="tbl_color[]" class="tbl_color" style="width: 1px;height: 1px;opacity: 0;position: absolute;right: 0;bottom: 0;" required>
+                      </label>
+                    </td>
+                    <td><input type="text" name="tbl_vendor[]" autocomplete="off" required></td>
+                    <td><input type="text" name="tbl_name[]" autocomplete="off" required></td>
+                    <td><input type="text" name="tbl_app[]" autocomplete="off" required></td>
+                  </tr>
+                {% endif %}
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="grid__item medium-up--one-whole" id="merchandise_container">
+              <button type="button" id="merchandise_btn" class="btn full-btn">Add Merchandise</button>
+
+              {% assign collection_products = collection.products %}
+              {% for product in collection_products %}
+              {% unless product.tags contains 'main' %}
+              {% assign variant = product.variants[0] %}
+              <div class="merchandise">
+                <div class="grid">
+                  <input type="hidden" name="m_product_id[]" value="{{ product.id }}">
+                  <input type="hidden" name="m_variant_id[]" value="{{ variant.id }}">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="">Merchandise</label>
+                    {% assign col_t = main_product.title | append: ' - ' %}
+                    <input type="text" name="m_name[]" autocomplete="off" maxlength="255" value="" required>
+                  </div>
+
+                  <div class="grid__item medium-up--one-half">
+                    <label for="">Price</label>
+                    <div class="price_item">
+                      <input type="number" name="m_price[]" min="0" max="9999" step="0.01" value="" required>
+                      <span class="dollar">$</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="">Description (Sourcing/vendor)</label>
+                    <textarea name="m_description[]" cols="1" rows="5" maxlength="255" maxlength="255" required></textarea>
+                  </div>
+
+                  <div class="grid__item medium-up--one-half">
+                    <label class="btn btn--small full-btn">Select Image
+                      <input type="file" name="m_file[]" class="m_file"{% if product.images.size == 0 %} required{% endif %}>
+                    </label>
+                    <img src="" class="thumb"><!-- imagen src -->
+                    <input type="hidden" name="m_image[]" value=""><!-- imagen src -->
+                  </div>
+                </div>
+                <div class="grid">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="">Specification (Size)</label>
+                    <input type="text" name="m_size[]" value="" autocomplete="off" maxlength="255" required>
+                  </div>
+
+                  <div class="grid__item medium-up--one-half">
+                    <label for="">URL</label>
+                    <input type="text" name="m_url[]" value="" autocomplete="off" maxlength="255" required>
+                  </div>
+                </div>
+                <div class="grid">
+                  <div class="grid__item medium-up--one-whole text-right">
+                    <label class="btn" type="button">Has been removed</label>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+              {% endunless %}
+              {% endfor %}
+            </div>
+
+            <div class="grid__item medium-up--one-whole">
+              <button type="submit" id="submit" class="btn full-btn">Approve changes</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script id="row_tpl" type="text/template">
+<tr>
+<td><button type="button" class="control_btn add" tabindex="-1">+</button> <button type="button" class="control_btn remove" tabindex="-1">×</button></td>
+<td><label class="btn btn--small full-btn"><span>Select a color image</span><input type="file" name="tbl_color[]" class="tbl_color" required></label><input type="hidden" name="tbl_bg[]" value=""></td>
+<td><input type="text" name="tbl_vendor[]" autocomplete="off" required></td>
+<td><input type="text" name="tbl_name[]" autocomplete="off" required></td>
+<td><input type="text" name="tbl_app[]" autocomplete="off" required></td>
+</tr>
+</script>
+<script id="merchandise_tpl" type="text/template">
+  <div class="merchandise">
+    <div class="grid">
+      <input type="hidden" name="m_product_id[]" value="">
+      <input type="hidden" name="m_variant_id[]" value="">
+      <div class="grid__item medium-up--one-half">
+        <label for="">Merchandise</label>
+        <input type="text" name="m_name[]" value="" autocomplete="off" maxlength="255" required>
+      </div>
+
+      <div class="grid__item medium-up--one-half">
+        <label for="">Price</label>
+        <div class="price_item">
+          <input type="number" name="m_price[]" min="0" max="9999" step="0.01" value="1.00" required>
+          <span class="dollar">$</span>
+        </div>
+      </div>
+	</div>
+    <div class="grid">
+      <div class="grid__item medium-up--one-half">
+        <label for="">Description (Sourcing/vendor)</label>
+        <textarea name="m_description[]" cols="1" rows="5" maxlength="255" maxlength="255" required></textarea>
+      </div>
+      
+      <div class="grid__item medium-up--one-half">
+      	<label class="btn btn--small full-btn">Select Image
+      	<input type="file" name="m_file[]" class="m_file" required>
+        </label>
+        <img src="" class="thumb hide">
+	  </div>
+	</div>
+    <div class="grid">
+      <div class="grid__item medium-up--one-half">
+        <label for="">Specification (Size)</label>
+        <input type="text" name="m_size[]" value="" autocomplete="off" maxlength="255" required>
+      </div>
+
+      <div class="grid__item medium-up--one-half">
+        <label for="">URL</label>
+        <input type="text" name="m_url[]" value="" autocomplete="off" maxlength="255" required>
+      </div>
+	</div>
+    <div class="grid">
+      <div class="grid__item medium-up--one-whole text-right">
+        <button class="btn remove_merchandise" type="button">Remove</button>
+        <hr>
+      </div>
+    </div>
+  </div>
+</script>
+<!--<script src="{{ 'jquery.filer.min.js' | asset_url }}" defer="defer"></script>-->
+<script defer="defer">
+  document.addEventListener("DOMContentLoaded", function(event) {
+    /*
+    $('form.merchandise-form').on('change', 'input, textarea', function(){
+      $('#submit').removeAttr('disabled');
+    });
+    */
+    $('#merchandise_btn').on('click', function(){
+      var html = $('#merchandise_tpl').html();
+      $('#merchandise_btn').after(html);
+    });
+	$('#merchandise_container').on('click', '.btn.remove_merchandise', function(){
+      var $this = $(this);
+      var product_id = parseInt( $this.val() );
+      if( product_id > 0 ){
+        var r = confirm("This action can't be reverted\nPlease confirm to delete this merchandise");
+        if (r) {
+          $this.hide(0).closest('.merchandise').css('opacity', 0.25).find('input, textarea').attr('readonly', true);
+          $.ajax({
+          url: 'https://api.panacche.com/upload/remove_product',
+          method: 'POST',
+          async: true,
+          data: {product_id: product_id },
+          success: function(response){
+            $this.closest('.merchandise').remove();
+          },
+          error: function(XMLHttpRequest) {
+            console.log(XMLHttpRequest);
+            return false;
+          }
+        });
+        }
+      }else{
+        $this.closest('.merchandise').remove();
+      }
+    });
+    $('.merchandise-form').on('click', 'button.control_btn.add', function(){
+      var html = $('#row_tpl').html();
+      $('.color-table tbody').append(html);
+    });
+    $('.merchandise-form').on('click', 'button.control_btn.remove', function(){
+      if ($('.color-table tbody tr').size() > 1 ){
+        $(this).closest('tr').remove();
+      }
+    });
+    
+    $('body').on('change','.m_file',function(){
+      var input = this;
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $(input).closest('.grid__item').find('img').attr('src', e.target.result).removeClass('hide');
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    });
+    
+    $('body').on('change','.tbl_color',function(){
+      var input = this;
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $(input).closest('label.btn').css('background-image', "url(" + e.target.result + ")").css('background-color','transparent').children('span').remove();
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    });
+    
+    $('body').on('click','span.remove_image',function(){
+      var r = confirm("This action can't be reverted\nPlease confirm to remove the image");
+      if (r) {
+        var $this = $(this);
+        $this.hide(0);
+        var product_id = {{ main_product.id }};
+        var image_id = $this.attr('data-id');
+        $.ajax({
+          url: 'https://api.panacche.com/upload/remove_image',
+          method: 'POST',
+          async: true,
+          data: {product_id: product_id, image_id: image_id },
+          success: function(response){
+            $this.closest('.current_images').remove();
+          },
+          error: function(XMLHttpRequest) {
+            console.log(XMLHttpRequest);
+            return false;
+          }
+        });
+      } else {
+        return false;
+      }
+    });
+    
+    $('#edit_form').on('submit', function(e){
+      $('#submit').text('Updating...').attr('disabled', 'disabled');
+    });
+    
+  });
+</script>
+
+<script src="https://transloadit.edgly.net/releases/uppy/v1.20.2/uppy.min.js"></script>
+<script>
+  var image_array = new Array();
+  const uppy = Uppy.Core({
+    debug: false,
+    autoProceed: false,
+    restrictions: {
+      maxFileSize: null,
+      maxNumberOfFiles: 10,
+      minNumberOfFiles: 1,
+      allowedFileTypes: [".jpg", ".jpeg", ".png", ".gif"]
+    }
+  })
+  uppy.use(Uppy.Dashboard, {
+    target: '#choose-files',
+    inline: true
+  })
+
+  uppy.use(Uppy.XHRUpload, {
+    endpoint: 'https://api.panacche.com/upload/ajax_upload_file',
+    formData: true,
+    method: "post",
+    fieldName: 'files[]',
+    bundle: false
+  })
+
+  uppy.on('upload-success', (file, response) => {
+
+    image_array.push(response.body.url);
+    
+    $('#image_array').val( JSON.stringify( image_array ) );
+    $('#submit').removeAttr('disabled');
+	//console.log('upload success');
+  })
+/*
+  uppy.on('complete', (result) => {
+    
+  })
+*/
+</script>
+<style>
+  .full-btn{
+    margin-bottom: 10px;
+    border-radius: 20px;
+    width: 100% !important;
+  }
+  button.control_btn {
+    border-radius: 12px;
+    width: 24px;
+    height: 24px;
+    line-height: 12px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+  }
+  button.control_btn:focus{
+    outline: 0;
+  }
+  button.control_btn.add {
+    border: solid 1px green;
+    color: green;
+    background-color: palegreen;
+  }
+  button.control_btn.remove {
+    border: solid 1px red;
+    color: red;
+    background-color: #ffdddd;
+  }
+  table.color-table input{
+    margin: 0;
+  }
+  label{
+    position: relative;
+  }
+  label[for]{
+    font-weight: 600;
+  }
+  .merchandise img.thumb{
+    max-width: 100%;
+    max-height: 100px;
+  }
+  input[type="number"]{
+    padding-left: 20px;
+  }
+  .price_item{
+    position: relative;
+  }
+  .dollar{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8px;
+  }
+  input.color_picker{
+    text-shadow: 0 0 3px #fff;
+  }
+  input.tbl_color,
+  input.m_file{
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .color-table .full-btn{
+    min-height: 30px;
+    min-width: 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+    display: inline-block;
+  }
+  .current_images{
+    position: relative;
+    display: inline-block;
+  }
+  .current_images span{
+    position: absolute;
+    display: block;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    cursor: pointer;
+    background-color: #f00;
+    color: #fff;
+    text-align: center;
+  }
+  .uppy-Dashboard-poweredBy{
+    display: none !important;
+  }
+  
+  .color-table i.info,
+  .color-table .btn span{
+    font-size: 12px;
+    font-weight: 500;
+    font-family: initial;
+    text-shadow: 0 0 4px black;
+  }
+  .form-vertical [type="submit"], .form-vertical .btn {
+    display: inline-block;
+  }
+  .form-vertical label.btn {
+    margin-bottom: 5px;
+  }
+  
+</style>
+
+{% else %}
+<p>This section is only for admin.</p>
+{% endif %}
+{% else %}
+<p>Please login.</p>
+<a href="/account/login">Login</a>
+{% endif %}

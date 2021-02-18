@@ -1,0 +1,679 @@
+{% if customer.tags contains 'admin' %}
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+
+<div class="page-width">
+  {%- for this_product in collection.products -%}
+  {% if this_product.tags contains 'main' %}
+  {% assign product = this_product %}
+  {% break %}
+  {% endif %}
+  {% endfor %}
+  
+  <a class="btn" href="/account" style="margin-bottom: 20px;">Back to your designs</a>
+  
+  {% assign designer_id = collection.title | split: '-' | first | trim | plus: 0 %}
+
+  <div class="section-header text-center">
+    <!--
+    {% assign exclude_from_title = designer_id | append: ' - ' %}{% assign collection_title = collection.title | remove_first: exclude_from_title %}{{ collection.title }}
+    -->
+    <h1>{{ product.title}}</h1>
+    <h1 id="name" class="edited"></h1>
+    <p id="designer">
+      <b>Your Designer is:</b> <span class="name">{% if customer.tags contains 'admin' %}...{% else %}{{ customer.name }}{% endif %}</span><br>
+      <b>Any questions:</b> <a href="mailto:designs@panacche.com">designs@panacche.com</a><br>
+      
+        {% for tag in product.tags %}
+          {% if tag contains 'budget:' %}
+      		<b>Room Budget:</b> <span id="budget_old">{{ tag | remove: 'budget:' | plus: 0 | times: 100 | money }}</span><br/>
+          {% break %}
+          {% endif %}
+        {% endfor %}
+      <b>Room Budget (Request):</b> <span id="budget"></span><br/>
+      
+      {% for link in linklists.room-style.links %}
+        {% for tag in product.tags %}
+          {% if tag == link.title %}
+      		<b>Room Style: </b> <span id="room_style_old">{{ link.title }}</span><br>
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      <b>Room Style (Request): </b> <span id="room_style" class="edited"></span><br>
+      
+    </p>
+  </div>
+  
+  <div class="grid myaccount">
+    <div class="grid__item">
+      
+      
+      <p class="title">Description</p>
+      <div>
+        <div id="description_old" class="description" style="border-bottom: solid 1px #ddd;margin-bottom: 20px;">{{ product.description | split: '<!--' | first }}</div>
+        <p id="description" class="description edited"></p>
+      </div>
+      
+      
+      <p class="title">Implementation Guide, Tips, Options</p>
+      <div>
+        <p id="guide_old" class="description">{{ product.description | split: '<!--guide-->' | last }}</p>
+        <p id="guide" class="description edited"></p>
+      </div>
+      
+      {% assign order_id = order.id %}
+      
+      <p class="title">Design Images</p>
+      <div>
+        <div class="image_array">
+          {% for image in product.images %}
+          <img src="{{ image.src | img_url: 'x200' }}" >
+          {% endfor %}
+        </div>
+        <div id="image_array"></div>
+      </div>
+      
+      <!-- MERCHANDISE --->
+      <p class="title">Shopping List</p>
+      <div>
+        {{ settings.merchandise_html }}
+        <br>
+        
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th scope="col">Photo</th>
+              <th scope="col">Product Description</th>
+              <th scope="col">Specification</th>
+              <th scope="col">Retail price</th>
+              <th scope="col">Panacche Estimate</th>
+              <th scope="col">Your Estimated savings</th>
+            </tr>
+          </thead>
+          <tbody>
+          {%- assign total_save = 0 -%}
+          {%- assign total_spend = 0 -%}
+          {%- for product in collection.products -%}
+
+            {% unless product.tags contains 'main' %}
+              <tr>
+                <td data-label="photo"><img src="{{ product.images[0] | img_url: 'x100' }}" height="100px" /></td>
+                <td data-label="title">{% assign merchandise_url = '#' %}
+                  <!--<p><a href="products/{{ product.handle }}">{{ product.title | split: '-' | last }}</a></p>-->
+                  {%- for tag in product.tags -%}
+                  {% if tag contains 'url:' %}
+                  {% assign merchandise_url = tag | remove_first: 'url:' | split: '//' | last %}
+                  {% break %}
+                  {% endif %}
+                  {%- endfor -%}
+                  {{ product.description }}
+                  <p><a href="http://{{ merchandise_url  }}" target="_blank">{{ product.title | split: '-' | last }}</a></p>
+                </td>
+                <td data-label="spec">
+                  {% assign product_variant = product.variants[0].title %}{% if product_variant != 'Default Title' %}{{ product_variant }}{% endif %}
+                </td>
+                <td data-label="retail-price">
+                  {% assign discount_percent = settings.merchandise_discount | divided_by: 100.00 %}
+                  {% assign discount_times = discount_percent | plus: 1.00 %}
+                  <s class=".price--on-sale .price-item--regular">{{ product.price | times: discount_times  | money }}</s>
+                </td>
+                <td data-label="retail-price">
+                  <p class="price-item">{{ product.price | money }}</p>
+                </td>
+                <td data-label="saving-money">
+                  {% assign saving_price = product.price | times: discount_percent %}
+                  <p class="price-item">{{ saving_price | money }}</p>
+                  
+                  {% assign total_save = total_save | plus: saving_price %}
+                  {%- if order != blank -%}{%- endif -%}
+                </td>
+              </tr>
+              {% endunless %}
+          {%- endfor -%}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5"><b>Total Estimated Savings</b></td>
+              <td class="price-item">{{ total_save | money }}</td>
+            </tr>
+          </tfoot>
+        </table>
+        
+        <!-- Edited -->
+        
+        <table class="responsive-table" id="merchandise">
+          <thead>
+            <tr>
+              <th scope="col">Photo</th>
+              <th scope="col">Product Description</th>
+              <th scope="col">Specification</th>
+              <th scope="col">Retail price</th>
+              <th scope="col">Panacche Estimate</th>
+              <th scope="col">Your Estimated savings</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5"><b>Total Estimated Savings</b></td>
+              <td class="price-item">{{ total_save | money }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- MERCHANDISE --->
+      
+      
+      {% if product.description contains '<!--color-->' %}
+      <p class="title">Paint color</p>
+      <div>
+      {{ product.description | split: '<!--color-->' | last  | split: '<!--guide-->' | first }}
+      </div>
+      {% endif %}
+      
+      {% if product.description contains '<!--color-->' %}
+      <p class="title">Paint color (Request)</p>
+      <div>
+        <table id="paint_color" class="responsive-table">
+          <thead><tr>
+            <th>Color</th>
+            <th>Vendor</th>
+            <th>Name</th>
+            <th>Application</th>
+            </tr></thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+      
+    </div>
+  </div>
+  <div class="rte text-center">
+    <form id="edit_form" class="merchandise-form" action="https://api.panacche.com/upload/edit" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="json" id="json" value="">
+      <button type="button" class="btn reject btn--secondary" disabled>Reject update request</button> <button type="submit" class="btn submit" disabled>Approve and Update</button>
+      <br><br>
+      
+      <label for="notes" class="text-left">Notes for rejected request:</label>
+      <textarea name="notes" id="notes" rows="5" maxlength="255"></textarea>
+    </form>
+  </div>
+</div>
+
+
+
+
+<style>
+  textarea{
+    width: 100%;
+    min-width: 100%;
+  }
+  #image_array img, .image_array img{
+    width: 100px;
+  }
+  .section-header h1{
+    color: rgb(97,111,197);
+  }
+  p.open_table{
+    cursor: pointer;
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+  }
+  p.open_table a{
+    float: right;
+    line-height: initial;
+  }
+  p.title{
+    color: green;
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  p.title:hover {
+    font-weight: 600;
+    color: lightseagreen;
+  }
+
+  table{transition: all 0.1s ease;}
+
+  p.description{
+    border-bottom: solid 1px #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  table .circle {
+    height: 30px;
+    width: 30px;
+    display: block;
+    border-radius: 50%;
+    margin: 0 auto;
+    background-size: cover;
+  }
+
+  main table > thead > tr{
+    background-color: rgb(71,192,190);
+    background: linear-gradient(90deg, rgba(71,192,190,1) 0%, rgba(97,111,197,1) 100%);
+    color: #fff;
+    font-size: 16px;
+  }
+
+  main table > thead > tr th{
+    font-family: Helvetica,"Helvetica Neue","Arial","Lucida Grande","sans-serif";
+    font-weight: 500;
+  }
+
+
+  #chat_container {
+    /*position: fixed;
+    top: 0;
+    right: 0;
+    */
+    overflow: hidden;
+    width: 100%;
+    /*height: 100%;*/
+    min-height: 320px;
+    position: relative;
+    /*z-index: 11;*/
+    display: block;
+    -moz-transition: background 0.2s linear;
+    -o-transition: background 0.2s linear;
+    -webkit-transition: background 0.2s linear;
+    transition: background 0.2s linear;
+    /*
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    -webkit-opacity: 0;
+    opacity: 0;
+    */
+  }
+
+  #chat_container.container-active {
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+
+  #chat_sidebar {
+    position: relative;
+    /*
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;*/
+    background: #ffffff;
+    /*width: 320px;*/
+    min-width: unset;
+    overflow-y: auto;
+    padding: 20px 30px 10px;
+    /*z-index: 999;*/
+  }
+
+  #chat_header i.close {
+    display: inline-block;
+    font-style: normal;
+    float: right;
+    cursor: pointer;
+  }
+  #chat_history{
+    position: relative;
+  }
+
+  #chat{
+    position: absolute;
+    display: block;
+    height: 50px;
+    margin: 0 10px;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+    background: #fff;
+    padding: 10px 50px 0 0;
+  }
+  #message{
+    /*float: left;*/
+    display: inline-block;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    height: 40px;
+    outline: none;
+  }
+  #chat button.btn{
+    position: absolute;
+    /*float: left;*/
+    display: inline-block;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 40px;
+    height: 40px;
+    right: 10px;
+    bottom: 0;
+  }
+
+  #chat button.btn svg{
+    transform: translateX(-50%);
+  }
+
+
+
+
+
+  .lds-spinner {
+    color: #000;
+    display: block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 50% auto 0;
+  }
+  .lds-spinner div {
+    transform-origin: 40px 40px;
+    animation: lds-spinner 1.2s linear infinite;
+  }
+  .lds-spinner div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 37px;
+    width: 6px;
+    height: 18px;
+    border-radius: 20%;
+    background: #000;
+  }
+  .lds-spinner div:nth-child(1) {
+    transform: rotate(0deg);
+    animation-delay: -1.1s;
+  }
+  .lds-spinner div:nth-child(2) {
+    transform: rotate(30deg);
+    animation-delay: -1s;
+  }
+  .lds-spinner div:nth-child(3) {
+    transform: rotate(60deg);
+    animation-delay: -0.9s;
+  }
+  .lds-spinner div:nth-child(4) {
+    transform: rotate(90deg);
+    animation-delay: -0.8s;
+  }
+  .lds-spinner div:nth-child(5) {
+    transform: rotate(120deg);
+    animation-delay: -0.7s;
+  }
+  .lds-spinner div:nth-child(6) {
+    transform: rotate(150deg);
+    animation-delay: -0.6s;
+  }
+  .lds-spinner div:nth-child(7) {
+    transform: rotate(180deg);
+    animation-delay: -0.5s;
+  }
+  .lds-spinner div:nth-child(8) {
+    transform: rotate(210deg);
+    animation-delay: -0.4s;
+  }
+  .lds-spinner div:nth-child(9) {
+    transform: rotate(240deg);
+    animation-delay: -0.3s;
+  }
+  .lds-spinner div:nth-child(10) {
+    transform: rotate(270deg);
+    animation-delay: -0.2s;
+  }
+  .lds-spinner div:nth-child(11) {
+    transform: rotate(300deg);
+    animation-delay: -0.1s;
+  }
+  .lds-spinner div:nth-child(12) {
+    transform: rotate(330deg);
+    animation-delay: 0s;
+  }
+  @keyframes lds-spinner {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+
+
+  .messages-container{
+    position: relative;
+  }
+
+  .messages {
+    padding: 8px 8px 50px;
+    margin: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: white;
+    overflow: auto;
+    font: 14px/1.3 sans-serif;
+    height: 100%;
+    min-height: 300px;
+    max-height: 480px;
+  }
+
+  .messages li {
+    list-style-type: none;
+    margin: 2px 50px 2px 0;
+    float: left;
+    border-radius: 8px;
+    padding: 8px;
+    color: black;
+    position: relative;
+    z-index: 1;
+    background: #eee;
+  }
+
+  .messages li.mine {
+    margin: 2px 0 2px 50px;
+    align-self: flex-end;
+    z-index: 0;
+    background: #616FC5;
+    color: #fff;
+  }
+
+  .messages li.bold {
+    font-weight: 600;
+  }
+
+  @supports(mix-blend-mode: screen) {
+    .messages-container:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(#47C0BE 0%, #616FC5 100%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .messages li.mine {    
+      background: black;
+    }
+  }
+
+  tfoot, tfoot .price-item{
+    background-color: rgba(97,111,197,1);
+    color: #fff;
+  }
+
+  .ordered_list li{
+    list-style: decimal;
+  }
+  ol.ordered_list{
+    padding-left: 2em;
+  }
+  #designer .name{
+    font-family: 'Great Vibes', cursive;
+    font-size: 24px;
+    font-weight: 500;
+    text-shadow: -4px 3px 3px rgba(97,111,197,0.5);
+    padding-left: 8px;
+  }
+  .highlight {
+    /*background-color: #B4D5FF;*/
+    color: red;
+  }
+</style>
+
+{% assign discount_percent = settings.merchandise_discount | divided_by: 100.00 %}
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $.ajax({
+      url: 'https://api.panacche.com/customers?id={{ designer_id }}',
+      method: 'GET',
+      async: true,
+      success: function(response){
+        var json = JSON.parse(response);
+        $('span.name').text(json.customer.first_name + ' ' + json.customer.last_name);
+      },
+      error: function(XMLHttpRequest) {
+        console.log(XMLHttpRequest);
+        return false;
+      }
+    });
+    $.ajax({
+      url: 'https://api.panacche.com/request/view?id={{ collection.handle }}',
+      method: 'GET',
+      async: true,
+      jsonpCallback: 'dp',
+      dataType : 'jsonp',
+      contentType: 'application/json; charset=utf-8',
+      success: function(response){
+      $('.page-width .btn').removeAttr('disabled');
+      var json = JSON.parse(response);
+      var request = json.request;
+      $('#json').val( response );
+      $('#name').text( request.name );
+      var budget = parseFloat(request.budget);
+      
+      $('#budget').text( '$' + budget.toFixed(2) );
+      $('#room_style').text( request.room_style );
+      $('#guide').text( request.guide );
+      $('#description').text( request.description );
+      
+      highlight($('#budget'), $('#budget_old'));
+      highlight($('#room_style'), $('#room_style_old'));
+      highlight($('#guide'), $('#guide_old'));
+      highlight($('#description'), $('#description_old'));
+      
+      var i;
+      if (request.image_array != ''){
+        var image_array = JSON.parse( request.image_array );
+        for (i = 0; i < image_array.length; i++) {
+          $('#image_array').append('<img src="'+image_array[i]+'">');
+        }
+      }
+      
+      var tr = ''; var m_img_array = json.files.m_file.error; var x = m_img_array.length - request.m_image.length;
+      for (i = 0; i < request.m_name.length; i++) {
+        var m_price = request.m_price[i];
+        var price = parseFloat(m_price).toFixed(2);
+      	var saving = parseFloat( price * {{discount_percent | plus: 0}} ).toFixed(2);
+        var retail = ( parseFloat(price) + parseFloat(saving) ).toFixed(2);
+        var m_description = request.m_description[i].replace('\r\n', '</p><p>');
+        if( request.m_remove[i] == '0' ){
+          tr += '<tr>';
+        }else{
+          tr += '<tr style="opacity: 0.25;">';
+        }
+        
+        var m_image = '';
+        if( m_img_array[i] == 0 ){
+          m_image = 'https://api.panacche.com' + json.files.m_file.tmp_name[i];
+          //console.log( json.files.m_file );
+        }else{
+          m_image = request.m_image[i-x];
+        }
+        
+        tr += '<td data-label="photo"><img src="'+m_image+'" height="100px"></td><td data-label="title"><p>'+m_description+'</p><p><a href="http://'+request.m_url[i]+'" target="_blank"> '+request.m_name[i]+'</a></p></td><td data-label="spec">'+request.m_size[i]+'</td><td data-label="retail-price"><s class=".price--on-sale .price-item--regular">$'+retail+'</s></td><td data-label="retail-price"><p class="price-item">$'+price+'</p></td><td data-label="saving-money"><p class="price-item">$'+saving+'</p></td></tr>';
+      }
+      $('#merchandise tbody').html(tr);
+  	  var tbl_tr = ''; var tbl_bg_img = '';
+      for (i = 0; i < request.tbl_name.length; i++) {
+        if( request.tbl_remove[i] == "1" ){
+          tbl_tr += '<tr style="opacity: 0.25;">';
+        }else{
+          tbl_tr += '<tr>';
+        }
+        if ( json.files.tbl_color.error[i] == 0 ){
+          tbl_bg_img = 'https://api.panacche.com' + json.files.tbl_color.tmp_name[i];
+        }else{
+          tbl_bg_img = request.tbl_bg[i];
+        }
+  		tbl_tr +="<td><div class=\"circle\" style=\"background-image: url('"+tbl_bg_img+"');\"></div></td><td>"+request.tbl_vendor[i]+'</td><td>'+request.tbl_name[i]+'</td><td>'+request.tbl_app[i]+'</td></tr>'
+      }
+  	  $('#paint_color tbody').html(tbl_tr);
+      },
+      error: function(XMLHttpRequest) {
+        console.log(XMLHttpRequest);
+        return false;
+      }
+    });
+
+    $('.btn.reject').on('click', function(e){
+      e.preventDefault();
+      $('.page-width .btn').remove();
+      var notes  = $('#notes').val();
+      $.ajax({
+        url: 'https://api.panacche.com/request/reject?json=' + json,
+        method: 'GET',
+        async: true,
+        data: {"title": "{{product.title}}", "customer_id": {{customer.id}}, "id": "{{ collection.handle }}", "notes": notes},
+        jsonpCallback: 'dp',
+        dataType : 'jsonp',
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+          window.location.href = "https://panacche.com/pages/request";
+        },
+        error: function(XMLHttpRequest) {
+          console.log(XMLHttpRequest);
+          return false;
+        }
+      });
+    });
+  
+  	$('btn.submit').on('click', function(){
+      $('.page-width .btn').remove();
+    });
+  
+    
+
+    function highlight(newElem, oldElem){ 
+      newElem.html(newElem.text().split('').map(function(val, i){
+        return val != oldElem.text().charAt(i) ?
+          "<span class='highlight'>"+val+"</span>" : 
+        val;            
+      }).join('')); 
+    }
+  
+  });
+
+  window.onload = function() {
+    if (typeof jQuery === 'undefined') {
+      return;
+    }
+
+    $('p.title').on('click', function(){
+      $(this).next().slideToggle(500);
+    })
+
+  }
+</script>
+{% endif %}

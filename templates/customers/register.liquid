@@ -1,1 +1,168 @@
-<!-- /templates/customers/register.liquid -->
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
+
+      <div class="form-vertical">
+
+        <h1 class="text-center">Create customer account</h1>
+
+        {%- assign formId = 'RegisterForm' -%}
+        {% form 'create_customer', id: formId %}
+        {% include 'form-status', form: form, form_id: formId %}
+
+        <label for="{{ formId }}-FirstName"><span class="label--error">* </span>{{ 'customer.register.first_name' | t }}</label>
+        <input required type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name">
+
+
+
+        <label for="{{ formId }}-LastName"><span class="label--error">* </span>{{ 'customer.register.last_name' | t }}</label>
+        <input required type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name">
+
+
+
+        <label for="{{ formId }}-email"><span class="label--error">* </span>{{ 'customer.register.email' | t }} (This will be your userid)</label>
+        <input
+               type="email"
+               name="customer[email]"
+               id="{{ formId }}-email"
+               class="{% if form.errors contains 'email' %} input--error{% endif %}"
+               {% if form.email %} value="{{ form.email }}"{% endif %}
+               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
+               autocorrect="off"
+               autocapitalize="off"
+               autocomplete="email"
+               aria-required="true"
+               required
+               {%- if form.errors contains 'email' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-email-error"
+               {%- endif -%}
+               >
+        {%- if form.errors contains 'email' -%}
+        <span id="{{ formId }}-email-error" class="input-error-message">
+          <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+        </span>
+        {%- endif -%}
+
+
+
+        <label for="{{ formId }}-password"><span class="label--error">* </span>{{ 'customer.register.password' | t }}</label>
+        <input
+               type="password"
+               name="customer[password]"
+               minlength="5"
+               required
+               id="{{ formId }}-password"
+               class="{% if form.errors contains 'password' %} input--error{% endif %}"
+               aria-required="true"
+               {%- if form.errors contains 'password' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-password-error"
+               {%- endif -%}
+               >
+        {%- if form.errors contains 'password' -%}
+        <span id="{{ formId}}-password-error" class="input-error-message">
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+        </span>
+        {%- endif -%}
+
+
+
+        <label for="{{ formId }}-phone"><span class="label--error">* </span>Phone</label>
+        <input
+               type="phone"
+               name="customer[note][phone]"
+               id="{{ formId }}-phone"
+               class="{% if form.errors contains 'phone' %} input--error{% endif %}"
+               {% if form.note.phone %} value="{{ form.note.phone }}"{% endif %}
+               autocorrect="off"
+               autocapitalize="off"
+               autocomplete="phone"
+               aria-required="true"
+               required
+               {%- if form.errors contains 'phone' -%}
+               class="input--error"
+               aria-invalid="true"
+               aria-describedby="{{ formId }}-phone-error"
+               {%- endif -%}
+               >
+        {%- if form.errors contains 'phone' -%}
+        <span id="{{ formId }}-phone-error" class="input-error-message">
+          <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['phone'] | capitalize }} {{ form.errors.messages['phone'] }}.</span>
+        </span>
+        {%- endif -%}
+
+
+
+
+        <label for="{{ formId }}-refered"><span class="label--error">* </span>How did you hear about us?</label>
+        <select class="{% if form.errors contains 'refered' %} input--error{% endif %}"
+                name="customer[note][refered]"
+                id="{{ formId }}-refered" required>
+          <option value="">Select</option>
+          <option {% if form.note.refered == 'Facebook' %} selected{% endif %}value="Facebook">Facebook</option>
+          <option {% if form.note.refered == 'Instagram' %} selected{% endif %}value="Instagram">Instagram</option>
+          <option {% if form.note.refered == 'Twitter' %} selected{% endif %}value="Twitter">Twitter</option>
+          <option {% if form.note.refered == 'Google search engine' %} selected{% endif %}value="Google search engine">Google search engine</option>
+          <option {% if form.note.refered == 'Word of mouth' %} selected{% endif %}value="Word of mouth">Word of mouth</option>
+          <option {% if form.note.refered == 'Other' %} selected{% endif %}value="Other">Other</option>
+        </select>
+
+
+
+        <label for="{{ formId }}-refered_other" {% unless form.errors contains 'refered_other' %} style="display: none;"{% endunless %}><span class="label--error">* </span>Please let us know how?</label>
+        <textarea {% unless form.errors contains 'refered_other' %} style="display: none; min-width:100%"{% endunless %}
+                  type="refered"
+                  name="customer[note][refered_other]"
+                  id="{{ formId }}-refered_other"
+                  {% if form.note.refered_other %} value="{{ form.note.refered_other }}"{% endif %}
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="refered_other"
+                  aria-required="true"
+                  {%- if form.errors contains 'refered_other' -%}
+                  class="input--error"
+                  aria-invalid="true"
+                  aria-describedby="{{ formId }}-refered-error"
+                  {%- endif -%}
+                  style="min-width: 100%;"
+                  rows="5" cols="1" maxlength="250"
+                  ></textarea>
+        {%- if form.errors contains 'refered' -%}
+        <span id="{{ formId }}-refered-error" class="input-error-message">
+          <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['refered'] | capitalize }} {{ form.errors.messages['refered'] }}.</span>
+        </span>
+        {%- endif -%}
+
+
+
+
+        <p class="text-center">
+          <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+        </p>
+
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){ 
+    $('#RegisterForm-refered').on('change', function(){
+      if ($(this).val() == 'Other' ){
+        $('#RegisterForm-refered_other').attr('required', true).slideDown(200).prev().show();
+      }else{
+        $('#RegisterForm-refered_other').removeAttr('required').slideUp(200).prev().hide();
+      }
+    });
+  }, false);
+</script>

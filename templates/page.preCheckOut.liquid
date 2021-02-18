@@ -1,0 +1,623 @@
+
+
+<style>
+  .claseDivRadioButton1{
+    text-align: left !important;
+    border: 2px solid #888 !important;
+    padding: 13px 5px 5px 5px !important;
+    width: 50% !important;
+    margin: 0px !important;
+  }
+  
+  #SHIPPING_ulBoxItemAddress, #BILLING_ulBoxItemAddress{
+    text-align: left !important;
+    background: #fff !important;
+    margin-bottom: 20px !important;
+    padding: 10px 5px !important;
+    margin-top: -4px !important;
+    cursor: pointer !important;
+  }
+  
+  .SHIPPING_items{
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+    cursor: pointer !important;
+  }
+  
+  .error{
+    color: red !important;
+    font-size: 18px !important;
+    text-align: left !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .row::after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+  [class*="col-"] {
+    float: left;
+    padding: 5px;
+  }
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+  @media screen and (max-width: 1200px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="header-bg-inner">
+  <div class="page-width">
+<!--     <div class="row">    
+      <div></div>
+    </div> -->
+    
+    {%- assign contador1 = 0 -%}
+    {%- for itm in cart.items -%}
+    <input style="display:none;" type="text" id="variantItem_{{contador1}}" value="{{ itm.variant_id  }}">
+    <input style="display:none;" type="text" id="quantityItem_{{contador1}}" value="{{ itm.quantity  }}">
+    <br>
+    	{%- assign contador1 = contador1 | plus: 1 -%}
+    {%- endfor -%}
+    <input style="display:none;" type="text" id="countForItemCart" value="{{ contador1  }}">
+    
+    <form id="formCheckOut" method="post" action="">
+      
+      {% if customer %}
+      <input readonly type="text" id="USER_SHOPIFY_ID" style="display:none;" value="{{ customer.id }}">
+      {% endif %}
+    
+    <div class="contact-form form-vertical">
+      
+
+       <div class="grid grid--half-gutters" style="width: 70%;margin: auto;">
+            <h1>Shipping Address</h1>
+            <br>
+            <div class="grid__item">
+              <label style="text-align: left;">Email</label>
+              <input autocomplete="none" required type="email" id="SHIPPING_email" style="margin-bottom:5px !important;">
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">First Name</label>
+              <input autocomplete="none" required type="text" id="SHIPPING_firstName" style="margin-bottom:5px !important;">
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">Last Name</label>
+              <input autocomplete="none" required type="text" id="SHIPPING_lastName" style="margin-bottom:5px !important;">
+          	</div>
+            
+            <div class="grid__item">
+              <label style="text-align: left;">Address</label>
+              <input autocomplete="none" required type="text" id="SHIPPING_address" style="margin-bottom:5px !important;">
+              <ul id="SHIPPING_ulBoxItemAddress" style="display: none;">
+                
+              </ul>
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">Apartment</label>
+              <input autocomplete="none" type="text" id="SHIPPING_aparment" style="margin-bottom:5px !important;">
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">City</label>
+              <input autocomplete="none" required type="text" id="SHIPPING_city" style="margin-bottom:5px !important;">
+            </div>
+      
+            <div class="grid__item medium-up--one-third">
+              <label style="text-align: left;">Country</label>
+              <select required onchange="setCountryAndGetCities()" id="SHIPPING_SELECT_COUNTRIES">
+              </select>
+            </div>
+      
+            <div class="grid__item medium-up--one-third">
+              <label style="text-align: left;">State</label>
+              <select required id="SHIPPING_SELECT_REGION">
+              </select>
+            </div>
+            
+            <div class="grid__item medium-up--one-third">
+              <label style="text-align: left;">Zip code</label>
+              <input autocomplete="none" required type="number" value="" id="SHIPPING_postal" style="margin-bottom:5px !important;">
+              <p id="ERROR_zipCode1" style="color:red;display:none;">Enter a valid zip code </p>
+            </div>
+      </div>
+      
+      
+      <div class="grid grid--half-gutters" style="width: 70%;margin: auto;display:none">
+<!--         <br>
+            <h1>Payment</h1>
+            <br>
+            <div class="grid__item">
+              <label style="text-align: left;">Card Number</label>
+              <input autocomplete="none" required type="number" min="1000000000000000" max="9999999999999999" id="PAYMENT_cardNumber" style="margin-bottom:5px !important;">
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">Name on Card</label>
+              <input autocomplete="none" required type="text" id="PAYMENT_nameOnCard" style="margin-bottom:5px !important;">
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">Expiration Date (MM/YY)</label>
+              <input autocomplete="none" required type="number" max="12" id="PAYMENT_textExpirationMonth" style="width: 100px;float: left;">
+              <input autocomplete="none" required type="number" min="2000" max="2200" id="PAYMENT_textExpirationYear" style="width: 100px;float: left;">
+          	</div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">Security Code</label>
+              <input autocomplete="none" required type="password" minlength="0" maxlength="4" id="PAYMENT_securityCode" style="margin-bottom:5px !important;">
+            </div> -->
+        
+      </div>
+      
+      
+      
+      <div class="grid grid--half-gutters" style="width: 70%;margin: auto;">
+<!--         <br>
+         <h1>Billing address</h1>
+         <br>
+        <div>
+          
+          <label onclick="checkBillingAddressType('same')" class="container claseDivRadioButton1" style="">
+            <input type="radio" checked="checked" name="radio">
+            <span class="checkmark"></span>
+            Same as shipping address
+          </label>
+          <label onclick="checkBillingAddressType('different')" class="container claseDivRadioButton1" style="">
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+            Use a different billing address
+          </label>
+        </div> -->
+        	
+<!--         <div id="boxBillingAddressOriginal" style="display:none;">
+        	<div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">First Name</label>
+              <input autocomplete="none" type="text" id="BILLING_firstName" style="">
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">Last Name</label>
+              <input autocomplete="none" type="text" id="BILLING_lastName" style="">
+          	</div>
+            
+            <div class="grid__item">
+              <label style="text-align: left;">Address</label>
+              <input autocomplete="none" type="text" id="BILLING_address" style="">
+              <ul id="BILLING_ulBoxItemAddress" style="display: none;"></ul>
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">Apartment</label>
+              <input autocomplete="none" type="text" id="BILLING_aparment" style="">
+            </div>
+            
+            <div class="grid__item medium-up--one-half">
+              <label style="text-align: left;">City</label>
+              <input autocomplete="none" type="text" id="BILLING_city" style="">
+            </div>
+      
+            <div class="grid__item medium-up--one-third">
+              <label style="text-align: left;">Country</label>
+              <select onchange="setCountryAndGetCitiesForBILLING()" id="BILLING_SELECT_COUNTRIES">
+              </select>
+            </div>
+      
+            <div class="grid__item medium-up--one-third">
+              <label style="text-align: left;">State</label>
+              <select id="BILLING_SELECT_REGION">
+              </select>
+            </div>
+            
+            <div class="grid__item medium-up--one-third" style="margin-bottom: 30px;">
+              <label style="text-align: left;">Zip code</label>
+              <input autocomplete="none" type="number" value="" id="BILLING_postal" style="margin-bottom: 0px;">
+              
+              <p id="ERROR_zipCode2" style="color:red;display:none;">Enter a valid zip code </p>
+            </div>
+        </div> -->
+       
+        <p id="textAfterCheckPlaceOrder" style="display:none;width: 50%;margin-top: 25px;color: red;text-align: left;">
+          Panacche deal hunters will get to work to see if we can beat our own pricing and offer 
+          you a sweeter deal! Stay tuned and we will send you an email with an invoice for your approval.</p>
+        
+        
+        <button id="btnCheckPlaceOrder" type="submit" 
+                style="border: 2px solid #888;background: #666;padding: 10px 20px;
+                       font-size: 20px;float: right;color: #fff;margin-bottom: 10px;">Place order</button>
+        
+<!--         <button id="btnCheckPlaceOrder" onclick="checkDraftOrder()" type="button" 
+                style="border: 2px solid #888;background: #666;padding: 10px 20px;
+                       font-size: 20px;float: right;color: #fff;">Place order</button> -->
+        
+<!--         <button id="btnPlaceOrder" onclick="createDraftOrder()" type="button" 
+                style="display:none;border: 2px solid #888;background: #666;padding: 10px 20px;
+                       font-size: 20px;float: right;color: #fff;">Ok</button> -->
+        <button id="btnPlaceOrder" onclick="checkDraftOrder()" 
+                style="display:none;border: 2px solid #888;background: #666;padding: 10px 20px;
+                       font-size: 20px;float: right;color: #fff;margin-bottom: 0px;">Ok</button>
+        
+        <p style="width: 195px;margin-top: 5px;color: red;text-align: left;float: right;clear: both;">
+          * You will not be charged yet
+        </p>
+      </div>
+    
+    
+  </div>
+      </form>
+    
+    </div>
+</section>
+
+<script src="//code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js" integrity="sha512-bYkaBWaFtfPIMYt9+CX/4DWgfrjcHinjerNYxQmQx1VM76eUsPPKZa5zWV8KksVkBF/DaHSADCwil2J5Uq2ctA==" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+  
+//   $("#BILLING_postal").focusout(function (f){
+    
+//     var zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
+    
+//     if(zipCodePattern.test($("#BILLING_postal").val()))
+//     {
+//       $("#btnCheckPlaceOrder").show();
+//       $("#ERROR_zipCode2").hide();
+//       return true
+//     }else{
+//       $("#btnCheckPlaceOrder").hide();
+//       $("#ERROR_zipCode2").show();
+//       return false
+//     }
+    
+//     console.log($("#BILLING_postal").val())
+//   });
+  
+  $("#SHIPPING_postal").focusout(function (f){
+    
+    var zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
+//     return zipCodePattern.test($("#SHIPPING_postal").val());
+    
+    if(zipCodePattern.test($("#SHIPPING_postal").val()))
+    {
+      $("#btnCheckPlaceOrder").show();
+      $("#ERROR_zipCode1").hide();
+      return true
+    }else{
+      $("#btnCheckPlaceOrder").hide();
+      $("#ERROR_zipCode1").show();
+      return false
+    }
+    
+    console.log($("#SHIPPING_postal").val())
+  });
+  
+  
+  if($("#countForItemCart").val()==0)
+  {
+    window.location.href = "/collections/merchandise";
+  }
+  
+//   $("#BILLING_address").keyup(function(){
+//     let dataAddress=$("#BILLING_address").val()
+    
+//     if(dataAddress==""){
+//       $("#BILLING_ulBoxItemAddress").html("")
+//       $("#BILLING_ulBoxItemAddress").hide()
+//       return;
+//     }
+    
+//     dataAddress = dataAddress.replaceAll("  ", " ");
+//     dataAddress = dataAddress.replaceAll(" ", "+");
+    
+//     let dataz=[]
+    
+//     $.get( "https://maps.googleapis.com/maps/api/geocode/json?address="+dataAddress+"&key=AIzaSyDht87uR3ftw7YMyp6hGanpxGpnAYPhQ7M", function( data ) {
+//       let data2=data.results
+//       data2.forEach(function callback(currentValue, index, array) {
+//         dataz+=`
+// <li onclick="BILLING_item('`+currentValue.formatted_address+`')" class="BILLING_items">`+currentValue.formatted_address+`</li>
+
+// `
+//       });
+// //       $("#BILLING_address").val("")
+//       $("#BILLING_ulBoxItemAddress").html(dataz)
+//       $("#BILLING_ulBoxItemAddress").show()
+//     });
+    
+//   });
+  
+  
+  
+  $("#SHIPPING_address").keyup(function(){
+    let dataAddress=$("#SHIPPING_address").val()
+    
+    if(dataAddress==""){
+      $("#SHIPPING_ulBoxItemAddress").html("")
+      $("#SHIPPING_ulBoxItemAddress").hide()
+      return;
+    }
+    
+    dataAddress = dataAddress.replaceAll("  ", " ");
+    dataAddress = dataAddress.replaceAll(" ", "+");
+    
+    let dataz=[]
+    
+    $.get( "https://maps.googleapis.com/maps/api/geocode/json?address="+dataAddress+"&key=AIzaSyDht87uR3ftw7YMyp6hGanpxGpnAYPhQ7M", function( data ) {
+      let data2=data.results
+      
+      console.log("*************")
+      console.log(data2)
+      
+      console.log("*************")
+      data2.forEach(function callback(currentValue, index, array) {
+        dataz+=`
+<li onclick="SHIPPING_item('`+currentValue.formatted_address+`')" class="SHIPPING_items">`+currentValue.formatted_address+`</li>
+
+`
+      });
+//       $("#SHIPPING_address").val("")
+      $("#SHIPPING_ulBoxItemAddress").html(dataz)
+      $("#SHIPPING_ulBoxItemAddress").show()
+    });
+    
+  });
+  
+  
+  
+
+  $.get( "//restcountries.eu/rest/v2/all", function( data ) {
+
+    html=""
+    data.forEach(function callback(currentValue, index, array) {
+      if(currentValue.name=="United States of America"){
+        
+      html+=`
+		<option class="opcionesCountry" selected value="`+currentValue.alpha2Code+`">`+currentValue.name+`</option>
+`
+      }else{
+        html+=`
+		<option class="opcionesCountry" value="`+currentValue.alpha2Code+`">`+currentValue.name+`</option>
+`
+      }
+      
+      });
+    $("#SHIPPING_SELECT_COUNTRIES").html(html);
+//     $("#BILLING_SELECT_COUNTRIES").html(html);
+    
+    setTimeout(setCountryAndGetCities(),200);
+});
+  
+  
+  
+  function SHIPPING_item(itemName){
+    $("#SHIPPING_address").val(itemName)
+    $("#SHIPPING_ulBoxItemAddress").html("")
+    $("#SHIPPING_ulBoxItemAddress").hide()
+  }
+  
+  
+  
+//   function BILLING_item(itemName){
+//     $("#BILLING_address").val(itemName)
+    
+//     $("#BILLING_ulBoxItemAddress").html("")
+//     $("#BILLING_ulBoxItemAddress").hide()
+//   }
+  
+  
+  
+  $("#formCheckOut").submit(function(){
+    var zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
+    
+    if(zipCodePattern.test($("#SHIPPING_postal").val()))
+    {      
+      $("#btnCheckPlaceOrder").hide()
+      $("#btnPlaceOrder").show()
+
+      $("#textAfterCheckPlaceOrder").show()
+    }
+    
+    
+    return false;
+  })
+  
+  
+  function checkDraftOrder(){
+
+    //     SHIPPING DATA
+    let SHIPPING_email=$("#SHIPPING_email").val();
+    let SHIPPING_firstName=$("#SHIPPING_firstName").val();
+    let SHIPPING_lastName=$("#SHIPPING_lastName").val();
+    let SHIPPING_address=$("#SHIPPING_address").val();
+    let SHIPPING_aparment=$("#SHIPPING_aparment").val();
+    let SHIPPING_city=$("#SHIPPING_city").val();
+    let SHIPPING_SELECT_COUNTRIES=$("#SHIPPING_SELECT_COUNTRIES").val();
+    let SHIPPING_SELECT_REGION=$("#SHIPPING_SELECT_REGION").val();
+    let SHIPPING_postal=$("#SHIPPING_postal").val();
+    
+    //     PAYMENT DATA
+    
+//     let PAYMENT_cardNumber=$("#PAYMENT_cardNumber").val();
+//     let PAYMENT_nameOnCard=$("#PAYMENT_nameOnCard").val();
+//     let PAYMENT_textExpirationMonth=$("#PAYMENT_textExpirationMonth").val();
+//     let PAYMENT_textExpirationYear=$("#PAYMENT_textExpirationYear").val();
+//     let PAYMENT_securityCode=$("#PAYMENT_securityCode").val();
+    
+    //     BILLING DATA
+    
+//     let BILLING_firstName=$("#BILLING_firstName").val();
+//     let BILLING_lastName=$("#BILLING_lastName").val();
+//     let BILLING_address=$("#BILLING_address").val();
+//     let BILLING_aparment=$("#BILLING_aparment").val();
+//     let BILLING_city=$("#BILLING_city").val();
+//     let BILLING_SELECT_COUNTRIES=$("#BILLING_SELECT_COUNTRIES").val();
+//     let BILLING_SELECT_REGION=$("#BILLING_SELECT_REGION").val();
+//     let BILLING_postal=$("#BILLING_postal").val();
+    
+    let USER_SHOPIFY_ID=$("#USER_SHOPIFY_ID").val();
+	
+    let countForItemCart=$("#countForItemCart").val();
+    
+    let dataItem=[]
+    
+    for(var i=0;i<countForItemCart;i++)
+    {
+      dataItem.push({"variant_id":$("#variantItem_"+i).val(),"quantity":$("#quantityItem_"+i).val()})
+     
+    }
+//     console.log(dataItem)
+//     return false;
+    
+    $("#btnPlaceOrder").hide();
+    axios.post('https://api.panacche.com/apiExterno/backend/addDraftOrder', {
+      line_items:dataItem,
+      
+      USER_SHOPIFY_ID: USER_SHOPIFY_ID,
+      
+      SHIPPING_email: SHIPPING_email,
+      SHIPPING_firstName: SHIPPING_firstName,
+      SHIPPING_lastName: SHIPPING_lastName,
+      SHIPPING_address: SHIPPING_address,
+      SHIPPING_aparment: SHIPPING_aparment,
+      SHIPPING_city: SHIPPING_city,
+      SHIPPING_SELECT_COUNTRIES: SHIPPING_SELECT_COUNTRIES,
+      SHIPPING_SELECT_REGION: SHIPPING_SELECT_REGION,
+      SHIPPING_postal: SHIPPING_postal,
+      
+//       PAYMENT_cardNumber: PAYMENT_cardNumber,
+//       PAYMENT_nameOnCard: PAYMENT_nameOnCard,
+//       PAYMENT_textExpirationMonth: PAYMENT_textExpirationMonth,
+//       PAYMENT_textExpirationYear: PAYMENT_textExpirationYear,
+//       PAYMENT_securityCode: PAYMENT_securityCode,
+      
+//       BILLING_firstName: BILLING_firstName,
+//       BILLING_lastName: BILLING_lastName,
+//       BILLING_address: BILLING_address,
+//       BILLING_aparment: BILLING_aparment,
+//       BILLING_city: BILLING_city,
+//       BILLING_SELECT_COUNTRIES: BILLING_SELECT_COUNTRIES,
+//       BILLING_SELECT_REGION: BILLING_SELECT_REGION,
+//       BILLING_postal: BILLING_postal,
+        }).then(response => {
+      
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'success',
+  showConfirmButton: false,
+  timer: 2000
+})
+            console.log(response.data);
+      		$.ajax({type: "POST",url: '/cart/clear.js',success: function()
+              {
+                setTimeout(()=>{window.location.href = "/cart"},1800);
+              },
+              dataType: 'json'
+    		});
+      
+      
+        }).catch(e => {
+            console.log(e);
+        });
+    
+  }
+  
+  function createDraftOrder(){
+   console.log("createDraftOrder") 
+  }
+  
+//   function checkBillingAddressType(tipo){
+//     if(tipo=="different"){
+//       $("#BILLING_firstName").prop('required',true)
+//       $("#BILLING_lastName").prop('required',true)
+//       $("#BILLING_address").prop('required',true)
+//       $("#BILLING_city").prop('required',true)
+//       $("#BILLING_SELECT_COUNTRIES").prop('required',true)
+//       $("#BILLING_SELECT_REGION").prop('required',true)
+//       $("#BILLING_postal").prop('required',true)
+      
+//       $("#boxBillingAddressOriginal").show()
+//     }else if(tipo=="same"){
+//       $("#BILLING_firstName").prop('required',false)
+//       $("#BILLING_lastName").prop('required',false)
+//       $("#BILLING_address").prop('required',false)
+//       $("#BILLING_aparment").prop('required',false)
+//       $("#BILLING_city").prop('required',false)
+//       $("#BILLING_SELECT_COUNTRIES").prop('required',false)
+//       $("#BILLING_SELECT_REGION").prop('required',false)
+//       $("#BILLING_postal").prop('required',false)
+      
+//       $("#boxBillingAddressOriginal").hide()
+//     }
+   
+//   }
+  
+//   function setCountryAndGetCitiesForBILLING(){
+//     let country=$("#BILLING_SELECT_COUNTRIES").val()
+    
+//     $.ajax({
+//        type: 'POST',
+//        crossDomain: true,
+//        dataType: 'jsonp',
+//        url: 'https://geo-battuta.net/api/region/'+country+'/all/?key=877dc90523497fbbc7215407755bac84',
+//        success: function(jsondata){
+
+//              html=""
+//         jsondata.forEach(function callback(currentValue, index, array) {
+//           html+=`
+//             <option class="opcionesRegion2" value="`+currentValue.region+`">`+currentValue.region+`</option>
+//     `
+//           });
+//          $("#BILLING_SELECT_REGION").html(html);
+//        }
+//     })
+    
+    
+//   }
+  
+  
+  function setCountryAndGetCities(){
+    let country=$("#SHIPPING_SELECT_COUNTRIES").val()
+    
+    $.ajax({
+       type: 'POST',
+       crossDomain: true,
+       dataType: 'jsonp',
+       url: 'https://geo-battuta.net/api/region/'+country+'/all/?key=877dc90523497fbbc7215407755bac84',
+       success: function(jsondata){
+
+             html=""
+        jsondata.forEach(function callback(currentValue, index, array) {
+          html+=`
+            <option class="opcionesRegion" value="`+currentValue.region+`">`+currentValue.region+`</option>
+    `
+          });
+         $("#SHIPPING_SELECT_REGION").html(html);
+//          $("#BILLING_SELECT_REGION").html(html);
+       }
+    })
+    
+    
+  }
+</script>

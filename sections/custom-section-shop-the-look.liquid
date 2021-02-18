@@ -1,0 +1,199 @@
+<div class="page-width text-center section-{{ section.id }}">
+  <div class="section-header text-center">
+    <h4 class="h3">{{ section.settings.title | escape }}</h4>
+    <h4 class="h4">PACKAGE INCLUDES</h4>
+  </div>
+  
+  <div class="grid grid--uniform right-bordered-grid">
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <img class="mt-20" src="https://cdn.shopify.com/s/files/1/0274/9775/8792/files/Group_59_74a95860-e881-4da1-95e8-685e73d6a90f_50x50.png?v=1606757925" alt="">
+      <p class="m-20">3d model, floor plan, color palette of the selected design in your own space</p>
+    </div>
+    <div class="grid__item small--one-half medium-up--one-fifth text-center">
+      <img class="mt-20" src="https://cdn.shopify.com/s/files/1/0274/9775/8792/files/idea_2x_21b3c388-daad-4273-b573-8ab7871ff4bb_50x50.png?v=1606757972" alt="">
+      <p class="m-20">Interact with Top Professional Designers</p>
+    </div>
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <img class="mt-20" src="https://cdn.shopify.com/s/files/1/0274/9775/8792/files/sketch_2x_504518fa-d818-4b4d-8105-28291dd7c660_50x50.png?v=1606757995" alt="">
+      <p class="m-20">Make upto 3 changes to the purchased design to achieve the perfect look of your space</p>
+    </div>
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <img class="mt-20" src="https://cdn.shopify.com/s/files/1/0274/9775/8792/files/discount_2x_9e087261-8c1d-4098-b146-cf8a5d265cad_50x50.png?v=1606758015" alt="">
+      <p class="m-20">Furniture and Decor Discounts</p>
+    </div>
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <img class="mt-20" src="https://cdn.shopify.com/s/files/1/0274/9775/8792/files/fast-time_2x_74fda5bf-2fb9-4e0d-a725-06e770e65c0f_50x50.png?v=1606758033" alt="">
+      <p class="m-20">Quick, easy, hassle free. Get designer look for your space in no time and without breaking the bank</p>
+    </div>
+  </div>
+  
+  {% comment %}<br><br>
+  <a href="https://panacche.com/collections"><button type="button" class="btn btn_curved">Connect Now!</button></a>{% endcomment %}
+  
+  <hr>
+  
+  <h4 class="h4">HOW IT WORKS</h4>
+  <div class="grid grid--uniform bordered-grid">
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <div class="grid">
+        <div class="grid__item color-bg-arrowed">
+          <h4 class="h1">1</h4>
+        </div>
+        <div class="grid__item">
+          <p class="m-20">Select a room that resonates your taste, and budget</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <div class="grid">
+        <div class="grid__item color-bg-arrowed">
+          <h4 class="h1">2</h4>
+        </div>
+        <div class="grid__item">
+          <p class="m-20">Work with a professional designer to make it meet your needs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <div class="grid">
+        <div class="grid__item color-bg-arrowed">
+          <h4 class="h1">3</h4>
+        </div>
+        <div class="grid__item">
+          <p class="m-20">Make upto 3 changes to the selected look</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <div class="grid">
+        <div class="grid__item color-bg-arrowed">
+          <h4 class="h1">4</h4>
+        </div>
+        <div class="grid__item">
+          <p class="m-20">Preview the look by getting a 3d model and floor plan for your space</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid__item small--one-half medium-up--one-fifth text-center mt-20">
+      <div class="grid">
+        <div class="grid__item color-bg-arrowed">
+          <h4 class="h1">5</h4>
+        </div>
+        <div class="grid__item">
+          <p class="m-20">Receive color palette and shopping list discount. Best Price Guarantee.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #shopify-section-{{ section.id }}.shop-the-look {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  @media (min-width: 769px) {
+  	.right-bordered-grid {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  }
+  
+  #shopify-section-{{ section.id }} .right-bordered-grid .grid__item:not(:last-of-type) {
+  	border-right: 1.5px solid #e4e4e4;
+  }
+  
+  .bordered-grid .grid{
+  	border: 1.5px solid #e4e4e4;
+  }
+  
+  #shopify-section-{{ section.id }} .bordered-grid .grid__item:nth-of-type(even) .color-bg-arrowed {
+  	background-color: #5E6DBE;
+    position: relative;
+  }
+  
+  #shopify-section-{{ section.id }} .bordered-grid .grid__item:nth-of-type(odd) .color-bg-arrowed {
+  	background-color: #94D2D1;
+    position: relative;
+  }
+  
+  #shopify-section-{{ section.id }} .bordered-grid .grid__item:nth-child(even) .color-bg-arrowed:after {
+     content: "";
+     position: absolute;
+     top: 100%;
+     left: 50%;
+     margin-left: -10px;
+     border-width: 10px;
+     border-style: solid;
+     border-color: #5E6DBE transparent transparent transparent;
+  }
+  
+  #shopify-section-{{ section.id }} .bordered-grid .grid__item:nth-child(odd) .color-bg-arrowed:after {
+     content: "";
+     position: absolute;
+     top: 100%;
+     left: 50%;
+     margin-left: -10px;
+     border-width: 10px;
+     border-style: solid;
+     border-color: #94D2D1 transparent transparent transparent;
+  }
+  
+  .color-bg-arrowed .h1{
+  	color: #fff;
+    margin: 10px auto;
+  }
+  
+  .shop-the-look .h4 {
+  	color: #3C3C3C;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .btn_curved {
+  	font-family: Segoe UI;
+    border-radius: 35px;
+  }
+  
+  @media (max-width: 768px) {
+  	.shop-the-look {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    } 
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Shop The Look",
+	"class": "shop-the-look",
+    "settings": [
+      {
+		"id": "title",
+		"type": "text",
+		"label": "Heading"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Custom content background color"
+      }
+    ],
+	"presets": [
+      {
+        "name": "Shop The Look",
+        "category": "Home"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

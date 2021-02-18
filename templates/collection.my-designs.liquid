@@ -1,0 +1,10 @@
+{% if customer %}
+  {% assign designer_tag = 'designer:' | append: customer.id %}
+  {% for product in collection.products %}
+    {% if product.tags contains designer_tag %}
+      <p><b>{{ product.title }}</b></p>
+    {% endif %}
+  {% endfor %}
+{% else %}
+Login first
+{% endif %}

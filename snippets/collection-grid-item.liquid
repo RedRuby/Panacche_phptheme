@@ -1,0 +1,82 @@
+{% comment %}
+    Renders a list of products from a collection
+
+    Accepts:
+    - collection: {Object} Collection Liquid object (required)
+
+    Usage:
+    {% include 'collection-grid-item', collection: collection %}
+{% endcomment %}
+{% if collection.image %}
+  {%- assign collection_image = collection.image -%}
+{% elsif collection.products.first and collection.products.first.media != empty %}
+  {%- assign collection_image = collection.products.first.featured_media.preview_image -%}
+{% else %}
+  {% assign collection_image = blank %}
+{% endif %}
+
+<div class="collection-grid-item">
+  {%- if collection.products == empty -%}
+  {% assign collection_url = '#' %}
+  {%- else -%}
+  {% assign collection_url = collection.url %}
+  {%- endif -%}
+  <a href="{{ collection_url }}" class="collection-grid-item__link">
+    {% unless collection_image == blank %}
+      <div class="collection-grid-item__overlay box ratio-container lazyload js"
+        data-bgset="{% include 'bgset', image: collection_image %}"
+        data-sizes="auto"
+        data-parent-fit="cover"
+        style="background-image: url('{{ collection_image | img_url: '300x300' }}')">
+      </div>
+      <noscript>
+        <div class="collection-grid-item__overlay" style="background-image: url('{{ collection_image | img_url: '1024x1024' }}')"></div>
+      </noscript>
+    {% else %}
+      {% if collection == empty %}
+        <div class="collection-grid-item__overlay">
+          {% capture current %}{% cycle 1, 2, 3 %}{% endcapture %}
+          {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% else %}
+        <div class="collection-grid-item__overlay" style="background-image: url('{{ collection_image | img_url: '1024x1024' }}')"></div>
+      {% endif %}
+    {% endunless %}
+    
+    <span class="collection-grid__item-title psudo">
+      {% if collection.title == blank %}
+        {{ 'homepage.onboarding.collection_title' | t }}
+      {% else %}
+        {%- if collection.all_tags contains 'main' -%}
+          {% assign designer_id = collection.handle | split: '-' | first | plus: 0 %}
+          {% assign exclude_from_title = designer_id | append: ' - ' %}
+          {{ collection.title | remove_first: exclude_from_title }}
+        {%- else -%}
+          {{ collection.title }}
+        {%- endif -%}
+      {% endif %}
+    </span>
+
+    <div class="collection-grid-item__title-wrapper">
+      <div class="collection-grid-item__title h3">
+        <span class="collection-grid__item-title" style="display: none;">
+        {% if collection.title == blank %}
+          {{ 'homepage.onboarding.collection_title' | t }}
+        {% else %}
+          {%- if collection.all_tags contains 'main' -%}
+        	{% assign designer_id = collection.handle | split: '-' | first | plus: 0 %}
+        	{% assign exclude_from_title = designer_id | append: ' - ' %}
+        	{{ collection.title | remove_first: exclude_from_title }}
+          {%- else -%}
+        	{{ collection.title }}
+          {%- endif -%}
+        {% endif %}
+        {%- comment -%}
+          <span class="svg-image"><img src="https://cdn.shopify.com/s/files/1/0274/9775/8792/files/right-arrow_1.svg?v=1602415973" width="60"></span>
+        {%- endcomment -%}
+        </span>
+        <button type="button" class="btn m-20">Shop Now</button>
+      </div>
+    </div>
+  </a>
+</div>
