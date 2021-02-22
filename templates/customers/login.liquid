@@ -6,20 +6,43 @@
     <div class="loginWrapper col-xl-6 col-md-7 col-sm-12 col-xs-12 mx-auto">
       <div class="logo text-center col-12 float-left mb-4"><img src="{{ 'panacche_logo.jpg' | asset_url }}"></div>
       <div class="loginform col-12 float-left px-5 pt-5 pb-4">
-        <form>
+        {% form 'customer_login', novalidate: 'novalidate' %}
+        {%- if form.errors -%}
+            <div class="form-message form-message--error">
+              <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
           <div class="form-group">
           <label for="exampleInputEmail1">Username</label>
-          <input type="email" class="form-control userName pl-5" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+          <input type="email"
+          name="customer[email]"
+          id="CustomerEmail"
+          autocomplete="email"
+          autocorrect="off"
+          autocapitalize="off"
+          {%- if form.errors contains 'form' -%}
+            
+            aria-invalid="true"
+          {%- endif -%} class="form-control userName pl-5 {%- if form.errors contains 'form' -%}input--error  {%- endif -%}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
           <i class="fa fa-user-circle"></i>
           </div>
           <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <span class="float-right"><a href="#">Forgot password?</a></span>
-          <input type="password" class="form-control passWord pl-5" id="exampleInputPassword1" placeholder="">
+          <input type="password" class="form-control passWord pl-5" id="exampleInputPassword1" placeholder="" type="password"
+          value=""
+          name="customer[password]"
+          id="CustomerPassword"
+          {%- if form.errors contains 'form' -%}
+            class="input--error"
+            aria-invalid="true"
+          {%- endif -%}>
           <i class="fa fa-lock"></i>
           </div>
           <button type="submit" class="btn btn-primary float-right loginBtn">Login</button>
-        </form>
+          {% endform %}
       </div>
       <div class="col-12 mt-4 float-left text-center">
           <span class="mr-2">Don't have an account?</span>
