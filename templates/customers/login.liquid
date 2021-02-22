@@ -1,148 +1,40 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+{{ 'style.css' |   asset_url | stylesheet_tag }}
 {%- assign collection_handle = request.path | split: '/' | last -%}
-<div class="page-width">
-  <div class="grid">
-
-    <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
-      <div class="form-message form-message--success hide" id="ResetSuccess" tabindex="-1">
-        {{ 'customer.recover_password.success' | t }}
-      </div>
-
-      <div id="CustomerLoginForm" class="form-vertical">
-
-        <h1 id="LoginHeading" class="text-center">{{ 'customer.login.title' | t }}</h1>
-
-        {% form 'customer_login', novalidate: 'novalidate' %}
-
-          {%- if form.errors -%}
-            <div class="form-message form-message--error">
-              <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
-              {{ form.errors | default_errors }}
-            </div>
-          {%- endif -%}
-
-          <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
-          <input
-            type="email"
-            name="customer[email]"
-            id="CustomerEmail"
-            autocomplete="email"
-            autocorrect="off"
-            autocapitalize="off"
-            {%- if form.errors contains 'form' -%}
-              class="input--error"
-              aria-invalid="true"
-            {%- endif -%}
-            >
-        
-          {%- if collection_handle != 'login' and collection_handle != blank -%}
-          <input type="hidden" name="return_to" value="/products/{{collection_handle}}">
-          {%- endif -%}
-
-          {% if form.password_needed %}
-            <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
-            <input
-              type="password"
-              value=""
-              name="customer[password]"
-              id="CustomerPassword"
-              {%- if form.errors contains 'form' -%}
-                class="input--error"
-                aria-invalid="true"
-              {%- endif -%}
-            >
-          {% endif %}
-
-          <div class="text-center">
-            {% if form.password_needed %}
-              <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
-            {% endif %}
-
-            <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
-
-            <p><a href="/account/register" id="customer_register_link">Create customer account</a></p>
-            {%comment%}
-            <p>
-              {{ 'layout.customer.create_account' | t | customer_register_link }}
-              <a href="/account/register/{%- if collection_handle != 'login' and collection_handle != blank -%}{{collection_handle}}{%- endif -%}" id="customer_register_link">Create account</a>
-            </p>
-            {%endcomment%}
-            <p><a href="/account/register?view=designer" id="designer_register_link">Create designer account</a></p>
+<div class="container h-100">
+  <div class="row align-items-center h-100">
+    <div class="loginWrapper col-xl-6 col-md-7 col-sm-12 col-xs-12 mx-auto">
+      <div class="logo text-center col-12 float-left mb-4"><img src="{{ 'panacche_logo.jpg' | asset_url }}"></div>
+      <div class="loginform col-12 float-left px-5 pt-5 pb-4">
+        <form>
+          <div class="form-group">
+          <label for="exampleInputEmail1">Username</label>
+          <input type="email" class="form-control userName pl-5" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+          <i class="fa fa-user-circle"></i>
           </div>
-
-        {% endform %}
+          <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <span class="float-right"><a href="#">Forgot password?</a></span>
+          <input type="password" class="form-control passWord pl-5" id="exampleInputPassword1" placeholder="">
+          <i class="fa fa-lock"></i>
+          </div>
+          <button type="submit" class="btn btn-primary float-right loginBtn">Login</button>
+        </form>
       </div>
-
-      <div id="RecoverPasswordForm" class="hide">
-
-        <div class="text-center">
-          <h2 id="RecoverHeading">{{ 'customer.recover_password.title' | t }}</h2>
-          <p>{{ 'customer.recover_password.subtext' | t }}</p>
-        </div>
-
-        <div class="form-vertical">
-          {% form 'recover_customer_password' %}
-
-            {% comment %}
-              Add a hidden span to indicate the form was submitted succesfully.
-            {% endcomment %}
-            {% if form.posted_successfully? %}
-              <span class="hide reset-password-success"></span>
-            {% endif %}
-
-            <label for="RecoverEmail">{{ 'customer.recover_password.email' | t }}</label>
-            <input
-              type="email"
-              value=""
-              name="email"
-              id="RecoverEmail"
-              class="input-full{% if form.errors %} input--error{% endif %}"
-              autocorrect="off"
-              autocapitalize="off"
-              {% if form.errors %}
-                aria-invalid="true"
-                aria-describedby="RecoverEmail-email-error"
-              {%- endif -%}
-              >
-          
-              {%- if collection_handle != 'login' and collection_handle != blank -%}
-              <input type="hidden" name="return_to" value="/products/{{collection_handle}}">
-              {%- endif -%}
-          
-            {%- if form.errors -%}
-              <span id="RecoverEmail-email-error" class="input-error-message">
-                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                {% include 'icon-error' %}
-                <span>{{ form.errors.messages['form'] }}</span>
-              </span>
-            {%- endif -%}
-
-            <div class="text-center">
-              <p>
-                <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
-              </p>
-
-              <a href="#LoginHeading" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</a>
-            </div>
-          {% endform %}
-        </div>
-
+      <div class="col-12 mt-4 float-left text-center">
+          <span class="mr-2">Don't have an account?</span>
+          <a href="#">Sign Up</a>
       </div>
-
-      {% comment %}
-        If accounts are set as optional, the following will be shown as an option
-        during checkout, not on the default /login page.
-      {% endcomment %}
-      {% if shop.checkout.guest_login %}
-        <div class="text-center">
-          <hr class="hr--invisible">
-          <h2>{{ 'customer.login.guest_title' | t }}</h2>
-
-          {% form 'guest_login' %}
-            <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
-          {% endform %}
-        </div>
-      {% endif %}
+      <div class="col-12 mt-4 float-left text-center justify-content-between">
+                  <a href="/account/register?view=designer">Designer</a>
+        <a href="/account/register" class="px-5">Customer</a>
+        <a href="#">Central Admin</a>
+      </div>
     </div>
-
   </div>
 </div>
+<!-- Optional JavaScript; choose one of the two! -->
+<script src="https://kit.fontawesome.com/14f6289dc5.js" crossorigin="anonymous"></script>
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
