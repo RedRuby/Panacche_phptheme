@@ -9,15 +9,24 @@
             var data  = $("#RegisterForm").serializeArray();
             //console.log($('input[name="communication_channel"]:checked').serialize());  
 
+            var formData = new FormData($("#RegisterForm")[0]);
 
-            console.log("data", data);
-            var url = "https://40f1c23c3d0c.ngrok.io/api/customer";
+
+            console.log("formData", formData);
+            // data['profile_pic'] = formData;
+            // console.log("data", data);
+            //
+            var url = "https://d2372e30d0d1.ngrok.io/api/customer";
 
             $.ajax({
                 type: "POST",
                 url: url,
-                data: data,
+                data: formData,
                 dataType:"json",
+                cache : false,
+                processData : false,
+                //contentType: "multipart/form-data",
+                contentType:false,
                 beforeSend: function() {
                     $(".validation_error").text('');
                 },
@@ -25,7 +34,8 @@
                     console.log("response", response);
                     $( "#result" ).empty().append( response );
                     if(response.success == 'customer created successfully'){
-                        alert("Done: customer created successfully");
+                        alert("Account created successfully, Account activation link has been sent to your email!");
+                        console.log("Account created successfully, Account activation link has been sent to your email!");
                         window.location.href = "https://panacchebeta.myshopify.com/account/";
                     }
                     
@@ -54,6 +64,8 @@
 var loadFile = function(event) {
     var output = document.getElementById('profile_pic_output');
     output.src = URL.createObjectURL(event.target.files[0]);
+    $("profilePic").val(event.target.files[0]);
+    console.log(event.target.files[0]);
     output.onload = function() {
     URL.revokeObjectURL(output.src) // free memory
     }
