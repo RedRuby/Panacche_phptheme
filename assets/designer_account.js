@@ -71,21 +71,21 @@
   }, false);
 
   
-  (function() {
-    // your page initialization code here
-    // the DOM will be available here
+//   (function() {
+//     // your page initialization code here
+//     // the DOM will be available here
     
-    console.log("url", window.location.href );
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var view = url.searchParams.get("view");
-    console.log("View", view);
+//     console.log("url", window.location.href );
+//     var url_string = window.location.href;
+//     var url = new URL(url_string);
+//     var view = url.searchParams.get("view");
+//     console.log("View", view);
 
-    var input = document.getElementsByName('customer[tags]');
-    console.log('input', input);
-    input.value = view;
+//     var input = document.getElementsByName('customer[tags]');
+//     console.log('input', input);
+//     input.value = view;
  
- })();
+//  })();
 
 
 

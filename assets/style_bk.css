@@ -1,5 +1,3 @@
-
-
 body, html{
 	height:100%;
 	color:#6C757D;
@@ -18,23 +16,6 @@ hr {
 }
 .borderradius6{
 	border-radius:6px;
-}
-
-.landingPageWrap .toast{
-	max-width: auto !important;
-}
-
-.modal-backdrop {
-    /* bug fix - no overlay */    
-    display: none;    
-}
-
-/*--------- Tooltip Css ---------*/
-.tooltip-inner {
-    background-color: #2DBAB6;
-}
-.tooltip.bs-tooltip-right .arrow:before {
-    border-right-color: #2DBAB6 !important;
 }
 
 /*--------- Sign Up Popup Css ---------*/
@@ -87,27 +68,6 @@ input::placeholder {
     background: #2DBAB6;
 	border:1px solid #2DBAB6;
 }
-
-
-.loginBtn a{
-	color:#ffffff;
-	padding: 0px 20px;
-	text-decoration:none;
-}
-.cancleBtn a{
-	color:#ffffff;
-	padding: 0px 20px;
-	text-decoration:none;
-	color:#5462BD;
-}
-.cancleBtn a:hover{
-	color:#ffffff;
-}
-.designOptions .card .card-title a{
-	color:#5462BD;
-}
-
-
 .fa-user-circle, .fa-lock{
 	position:absolute;
 	left: 62px;
@@ -216,7 +176,6 @@ Register Screen
     border-radius: .25rem;
 	font-size: 12px;
 }
-
 .custom-file-label2 {
     position: absolute;
     top: 0px;
@@ -249,131 +208,9 @@ Register Screen
     height: 3em;
 }
 
-/*------------------------
-Side Nav
--------------------------*/
-.leftSideNav{
-	background:#5462BD;
-	top: 65px;
-    left: 0;
-	z-index:1;
-}
-.leftSideNav .drawer-menu li{
-	list-style:none;
-}
-.leftSideNav .drawer-menu .drawer-menu-item a{
-	font-size:20px;
-	color:#D2D6ED;
-}
-.leftSideNav .drawer-menu .drawer-menu-item a:hover{
-	color:#ffffff;
-}
 
-/*------------------------
-Top Navbar
--------------------------*/
-.navbar{
-	border-top:3px solid #616FC5;
-}
-.navbar-nav li .dropdown-menu{
-	right:0 !important;
-	left:auto;
-}
 
-.navMenus li a{
-	color:#CAC9C9 !important;
-}
-.navMenus li a:hover{
-	color:#5462BD !important;
-}
-.userBoxWrap .nav-link, .registerLink .nav-link {
-	color:#616FC5 !important;
-}
-.userBox {
-	border:0px;
-	border-radius:0px;
-	min-width:200px;
-	box-shadow:0px 0px 20px 0px #dfdfdf;
-}
-.userBox .upArrow{
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 11px solid #ffffff;
-    position: absolute;
-    top: -10px;
-    right: 5px;
-}
-.userBox .userName{
-	font-size:18px;
-	color:#222222;
-	text-transform:uppercase;
-}
-.userBox .userType{
-	color:#222222;
-	text-transform:uppercase;
-	opacity:50%;
-	font-size: 14px;
-}
-.userBox .editButton{
-	color:#222222;
-	text-transform:uppercase;
-	background:#2DBAB6;
-	font-size:12px;
-	font-weight:bold;
-	color:#ffffff;
-	cursor:pointer;
-	border-radius:6px;
-}
-.userboxImgWrap{
-	width:60px;
-	height:60px;
-	background:#ffffff;
-	border:1px solid #616FC5;
-	position:relative;
-}
-.userLogout{
-	background:#616FC5;
-	color:#ffffff;
-}
-.userLogout a{
-	color:#ffffff;
-	text-decoration:none;
-}
-.smallUserPro{
-	width:26px;
-	height:26px;
-	background:#616FC5;
-	color:#ffffff;
-}
-.userboxImg{
-	width: 51px;
-    height: 50px;
-    background: #616FC5;
-    color: #ffffff;
-    margin-left: 4px;
-    margin-top: 4px;
-    font-size: 30px;
-}
-.editUserImg{
-	position: absolute;
-    left: 0px;
-    width: 22px;
-    height: 22px;
-    background: #2DBAB6;
-    color: #ffffff;
-    bottom: 0px;
-    font-size: 10px;
-    line-height: 23px;
-	cursor:pointer;
-}
-.bellIcon{
-	width:26px;
-	height:26px;
-	color:#616FC5;
-	font-size:22px;
-}
+
 
 /*------------------------
 Langing Page Screen
@@ -799,6 +636,7 @@ Create New Design Page Screen
 
 .modelLogo img{
 	width:120px;
+	margin-top: -83px;
 }
 .subDesignPop .modal-header{
 	border-bottom:0px;
@@ -828,6 +666,267 @@ Create New Design Page Screen
 Footer CSS
 --------------------------------*/
 .footerWrap{
-	background:#D9D9D9;
+	background:#5462BD;
 	height:75px;
+}
+
+/*------------------------
+Top Navbar
+-------------------------*/
+.navbar{
+	border-top:3px solid #616FC5;
+}
+.navbar-nav li .dropdown-menu{
+	right:0 !important;
+	left:auto;
+}
+
+.navMenus li a{
+	color:#CAC9C9 !important;
+}
+.navMenus li a:hover{
+	color:#5462BD !important;
+}
+.userBoxWrap .nav-link, .registerLink .nav-link {
+	color:#616FC5 !important;
+}
+.userBox {
+	border:0px;
+	border-radius:0px;
+	min-width:200px;
+	box-shadow:0px 0px 20px 0px #dfdfdf;
+}
+.userBox .upArrow{
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 11px solid #ffffff;
+    position: absolute;
+    top: -10px;
+    right: 5px;
+}
+.userBox .userName{
+	font-size:18px;
+	color:#222222;
+	text-transform:uppercase;
+}
+.userBox .userType{
+	color:#222222;
+	text-transform:uppercase;
+	opacity:50%;
+	font-size: 14px;
+}
+.userBox .editButton{
+	color:#222222;
+	text-transform:uppercase;
+	background:#2DBAB6;
+	font-size:12px;
+	font-weight:bold;
+	color:#ffffff;
+	cursor:pointer;
+	border-radius:6px;
+}
+.userboxImgWrap{
+	width:60px;
+	height:60px;
+	background:#ffffff;
+	border:1px solid #616FC5;
+	position:relative;
+}
+.userLogout{
+	background:#616FC5;
+	color:#ffffff;
+}
+.userLogout a{
+	color:#ffffff;
+	text-decoration:none;
+}
+.smallUserPro{
+	width:26px;
+	height:26px;
+	background:#616FC5;
+	color:#ffffff;
+}
+.userboxImg{
+	width: 51px;
+    height: 50px;
+    background: #616FC5;
+    color: #ffffff;
+    margin-left: 4px;
+    margin-top: 4px;
+    font-size: 30px;
+}
+.editUserImg{
+	position: absolute;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+    background: #2DBAB6;
+    color: #ffffff;
+    bottom: 0px;
+    font-size: 10px;
+    line-height: 23px;
+	cursor:pointer;
+}
+.bellIcon{
+	width:26px;
+	height:26px;
+	color:#616FC5;
+	font-size:22px;
+}
+/*------------------------
+Langing Page Screen
+-------------------------*/
+.landingPageWrap{
+	background:#F2F2F2;
+}
+.designOptions .card, .dataCards .card{
+	background:#ffffff;
+	border:1px solid #E2E8EE !important;
+	border-radius: 0px;
+}
+.designOptions .card{
+	cursor:pointer;
+}
+.designOptions .card .card-title{
+	color:#5462BD;
+}
+
+/*----------------- Data Cards Css ----------------*/
+.dataCards .card .card-title span{
+	color:#5462BD;
+	width:100%;
+	float:left;
+}
+.dataCards .card .card-title span:nth-child(1){
+	font-size:16px;
+}
+.dataCards .card .card-title span:nth-child(2){
+	font-size:40px;
+	font-weight: bold;
+}
+
+.landingHeading h4{
+	font-weight:bold;
+	color:#5462BD;
+}
+
+/*----------------- Table Css ----------------*/
+.landingTable{
+	border:1px solid #E2E8EE;
+}
+.landingTable thead{
+	background:#F5F9FB;
+}
+.landingTable tbody{
+	background:#ffffff;
+}
+.table td, .table th {
+    padding: .55rem 1rem;
+    vertical-align: top;
+    border-top: 1px solid #E2E8EE;
+    font-size: 14px;
+}
+.table td .fa-address-book {
+    color:#5462BD;
+}
+.table th {
+    font-size: 12px;
+}
+.badge {
+    display: inline-block;
+    padding: .15rem .45rem;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+.badge-warning {
+    color: #fff;
+    background-color: #f5b666;
+}
+.badge-danger {
+    color: #fff;
+    background-color: #ff3d55;
+}
+.badge-success {
+    color: #fff;
+    background-color: #7bb859;
+}
+
+/*----------------- My Designs Cards Css ----------------*/
+.designCards .card{
+	border-radius: 0px;
+}
+.designCards .card-body{
+	position:relative;
+}
+.card-img, .card-img-bottom, .card-img-top {
+	border-radius:0px;
+}
+.designCards .author-info{
+	font-size:19px;
+	color:#5462BD;
+}
+.designCards .author-info p{
+	padding-right:15px;
+}
+.designCards .card-text{
+	font-size:19px;
+	font-weight:bold;
+	color:#575757;
+}
+.designCards .card-footer{
+	font-size:22px;
+}
+.designCards .card-footer a{
+	color:#5462BD;
+}
+.newDesinIcon{
+	position:absolute;
+	right:13px;
+	top:15px;
+	z-index: 1;
+}
+
+/*----------------- Notifications box Css ----------------*/
+.noteBoxWrap .noteDetails p{
+	color:#A0A0A0;
+	font-size:12px;
+	font-weight:bold;
+}
+.noteBoxWrap .noteDetails .viewMore{
+	color:#0089FF;
+	font-size:14px;
+	font-weight:normal;
+}
+
+/*----------------- chat box Css ----------------*/
+.chatBoxWrap .card-header .fa-sync{
+	color:#5462BD;
+	font-size:20px;
+}
+.chatBoxWrap .card-title{
+	font-weight:bold;
+	color:#5462BD;
+	font-size:24px;
+}
+.chatBoxWrap .media-body a{
+	font-weight:bold;
+	color:#5462BD;
+	font-size:16px;
+}
+.chatBoxWrap .media-body div small{
+	color:#A0A0A0;
+	font-size:13px;
+}
+.chatBoxWrap .media .fa-circle{
+	font-size:10px;
+}
+.chatBoxWrap .dropdown .fa-comment-alt{
+	font-size:20px;
 }

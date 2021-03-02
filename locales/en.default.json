@@ -333,7 +333,7 @@
       "locality": "Locality",
       "confirm_password": "ConfirmPassword",
       "state": "State",
-      "pincode": "PinCode",
+      "zipcode": "ZipCode",
       "city": "City",
       "last_name": "Last Name",
       "email": "Email",
