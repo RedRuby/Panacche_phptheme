@@ -1,0 +1,676 @@
+{% if customer.metafields.global.tag == 'role:designer' %}
+<div class="container-fluid landingPageWrap">
+    <div class="row align-items-center h-100">
+        {% include 'dashboard-sidebar' %}
+
+        <div class="col-md-12 col-sm-12 col-xs-12 mx-auto pl-5 createNewForm">
+
+            <div class="logo col-12 float-left mb-4 px-3 mt-4">
+                <img src="{{ 'panacche_logo.png' | asset_url }}"></div>
+
+            <div class="col-12 px-3 landingHeading float-left">
+                <h4 class="mb-4">
+                    <span>Create New Design</span>
+                    <span class="float-right">
+                        <button type="button" class="btn btn-primary loginBtn mr-3" data-toggle="modal" data-target="#staticBackdrop">Submit New Design</button>
+                        <a href="landing_page.html"><i class="fas fa-times-circle newDesignClose"></i></a>
+                    </span>
+                </h4>
+            </div>
+
+            <div class="leftPart col-md-5 col-xs-12 float-left px-3">
+                <div class="registerForm col-md-12 col-xs-12 float-left px-0">
+                    <form class="mx-0" id="create-design-form">
+                        <div class="form-group">
+                            <label for="">Design Name</label>
+                            <input type="text" class="form-control" placeholder="" name="design_name">
+                        </div>
+                        <div class="col-12 px-0">
+                            <div class="form-group col-6 float-left pl-0">
+                                <label for="">Design Price</label>
+                                <input type="text" class="form-control" placeholder="$" name="design_price">
+                            </div>
+                            <div class="form-group col-6 float-left pr-0">
+                                <label for="">Room Budget</label>
+                                <input type="text" class="form-control" placeholder="$" name="room_budget">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Room Type</label>
+                            <select class="custom-select selectDropdown" name="room_type">
+                              <option selected>Select Room Type</option>
+                              <option value="1">Bedroom</option>
+                              <option value="2">Kitchen</option>
+                              <option value="3">Living Room</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Room Style</label>
+                            <select class="custom-select selectDropdown" name="room_style">
+                              <option selected>Select Room Style</option>
+                              <option value="1">Bedroom</option>
+                              <option value="2">Kitchen</option>
+                              <option value="3">Living Room</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 px-0">
+                            <label for="" class="w-100">Price</label>
+                            <div class="form-group col-5 float-left px-0">
+                                <p class="italicLabel">Width</p>
+                                <p class="col-6 float-left pl-0">
+                                    <input type="text" class="form-control" placeholder="Feet" name="width_in_feet">
+                                </p>
+                                <p class="col-6 float-left pl-0">
+                                    <input type="text" class="form-control" placeholder="Inches" name="width_in_inches">
+                                </p>
+                            </div>
+                            <div class="form-group col-1 float-left px-0 text-center pt-5">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="form-group col-6 float-left pr-0">
+                                <p class="italicLabel">Height</p>
+                                <p class="col-6 float-left pl-0">
+                                    <input type="text" class="form-control" placeholder="Feet" name="height_in_feet">
+                                </p>
+                                <p class="col-6 float-left pl-0">
+                                    <input type="text" class="form-control" placeholder="Inches" name="height_in_inches">
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Design Description</label>
+                            <textarea class="form-control textarea" rows="4"></textarea>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="rightPart col-md-7 col-xs-12 float-left px-sm-3">
+                <label for="" class="col-12 px-0">Upload Images</label>
+                <div class="dragandDropWrap col-md-12 col-xs-12 float-left px-0 mb-3">
+                    <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active col-xl-3 col-md-4 col-sm-4 col-5 text-left" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">3D Rendered Images</a>
+                            <a class="nav-item nav-link col-xl-3 col-md-4 col-sm-4 col-5 text-left" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Blue Prints</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content pb-2 px-3" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="dragDropBox py-2">
+                                <div class="col-12 float-left px-0">
+                                    <p class="custom-file mt-3 mb-3">
+                                        <input type="file" class="custom-file-input" id="customFile" name="room_images">
+                                        <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                    </p>
+                                </div>
+                                <p class="text-center mb-2">Upload / drop files here <span>Browse Files</span></p>
+                            </div>
+                            <div class="uploadedImages py-2 mt-2 overflow-hidden">
+                                <div id="carouselExample" class="carousel slide row" data-ride="carousel" data-interval="9000">
+                                    <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                                        <div class="carousel-item col-md-3 active">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 1" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 3" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 4" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 5" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 6" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 7" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 8" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 2" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="dragDropBox py-2">
+                                <div class="col-12 float-left px-0">
+                                    <p class="custom-file mt-3 mb-3">
+                                        <input type="file" class="custom-file-input" id="customFile" name="room_blueprints">
+                                        <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                    </p>
+                                </div>
+                                <p class="text-center mb-2">Upload / drop files here <span>Browse Files</span></p>
+                            </div>
+                            <div class="uploadedImages py-2 mt-2 overflow-hidden">
+
+
+                                <div id="carouselExample" class="carousel slide row" data-ride="carousel" data-interval="9000">
+                                    <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                                        <div class="carousel-item col-md-3 active">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 1" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 3" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 4" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 5" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 6" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 7" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 8" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item col-md-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-thumbnail">
+                                                    <a href="#" title="image 2" class="thumb">
+                                                        <p class="uploadedFile"><span class="imageClose"><i class="fas fa-times-circle"></i></span></p>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <label for="" class="col-12 px-0">Color Pallette</label>
+                <div class="dragandDropWrap col-md-12 col-xs-12 float-left px-3">
+                    <table class="table colorPaintTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Color</th>
+                                <th scope="col">Color Name</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Finish</th>
+                                <th scope="col">Application</th>
+                                <th scope="col">Add/Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="col-12 float-left px-0">
+                                        <p class="custom-file addColor">
+                                            <!--<span class="addColorIcon"><i class="fas fa-plus-circle"></i></span>-->
+                                            <input type="file" class="custom-file-input" id="customFile" name="color_pallette_images">
+                                            <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td><input type="text" class="form-control" placeholder=""></td>
+                                <td><input type="text" class="form-control" placeholder=""></td>
+                                <td><input type="text" class="form-control" placeholder=""></td>
+                                <td><input type="text" class="form-control" placeholder=""></td>
+                                <td><i class="fas fa-save mr-2"></i> <i class="fas fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-12 float-left px-0">
+                                        <p class="custom-file addColor">
+                                            <!--<span class="addColorIcon"><i class="fas fa-plus-circle"></i></span>-->
+                                            <input type="file" class="custom-file-input" id="customFile" name="add_color">
+                                            <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td><input type="text" class="form-control" placeholder=""></td>
+                                <td><input type="text" class="form-control" placeholder=""></td>
+                                <td><input type="text" class="form-control" placeholder=""></td>
+                                <td><input type="text" class="form-control" placeholder=""></td>
+                                <td><i class="fas fa-plus-circle addPlus"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row mt-4 px-3">
+        <div class="col-md-12 float-left mb-5 pl-5">
+            <label for="" class="col-12 px-0 font14">Add Merchandise References</label>
+            <div class="addRefWrap col-12 float-left py-3 mb-3">
+                <div class="row px-3">
+                    <button type="button" class="btn btn-primary loginBtn mr-2">Add</button>
+                    <button type="button" class="btn btn-primary loginBtn mr-2">Upload Bulk</button>
+                    <button type="button" class="btn btn-primary cancelBtn">Cancel</button>
+                </div>
+
+                <div class="row px-3 mt-4">
+                    <label for="" class="col-12 float-left px-0 font14">Upload the CSV file, in correct format</label>
+                    <div class="col-md-5 float-left mx-0 typeUser px-0">
+                        <div class="row mx-0 px-0 pt-2">
+                            <div class="custom-file mb-1">
+                                <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                <label class="custom-file-label mb-0" for="customFile"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 float-left mx-0 typeUser text-right pt-4 font14">
+                        <a href="">Download a Sample CSV file for Bulk upload</a>
+                    </div>
+                </div>
+
+                <div class="row px-3 mt-3 ">
+                    <div class="col-12 addMearchForm py-3 px-0">
+                        <form class="mx-0">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
+                                <div class="form-group">
+                                    <label for="">Merchandise</label>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Description (Sourcing / Vendor)</label>
+                                    <textarea class="form-control textarea" rows="13"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
+                                <div class="form-group">
+                                    <label for="">Size Specification</label>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">URL</label>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Price</label>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Compare at Price </label>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Quantity</label>
+                                    <p class="italicLabel">Available</p>
+                                    <input type="number" class="form-control" name="points" step="3">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
+                                <div class="form-group">
+                                    <label for="">Upload Image Reference <span class="deleteUpload deleteUpload2"><i class="fas fa-times-circle"></i></span></label>
+                                    <div class="imageRefUpload p-3 col-12 float-left">
+                                        <p>Drag and Drop Image / Click to browse</p>
+
+                                        <div class="col-12 float-left px-0">
+                                            <p class="custom-file mb-3 addImage">
+                                                <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                                <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                            </p>
+                                        </div>
+                                        <div class="row uploadedImage px-0">
+                                            <div class="col-6 float-left">
+                                                <p>
+                                                    <span class="imageClose"><i class="fas fa-times-circle"></i></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-6 float-left">
+                                                <p>
+                                                    <span class="imageClose"><i class="fas fa-times-circle"></i></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-6 float-left">
+                                                <p>
+                                                    <span class="imageClose"><i class="fas fa-times-circle"></i></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-6 float-left">
+                                                <p>
+                                                    <span class="imageClose"><i class="fas fa-times-circle"></i></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-6 float-left">
+                                                <p>
+                                                    <span class="imageClose"><i class="fas fa-times-circle"></i></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-6 float-left">
+                                                <p>
+                                                    <span class="imageClose"><i class="fas fa-times-circle"></i></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+                <div class="col-12 float-left mt-1 px-0 addmerchBoxWrap">
+                    <label for="" class="col-12 px-0 mt-3 mb-0">1</label>
+
+                    <div class="row addmerchBox borderradius6 mt-1 mx-0 pt-3">
+                        <div class="col-md-4 float-left">
+                            <p>Merchandise</p>
+                            <p>Denim Pattern </p>
+                            <p>Description (Sourcing / Vendor)</p>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+
+                            <div class="col-6 px-0 float-left colorVariants">
+                                <p class="mb-1">Quantity</p>
+                                <p>121</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 float-left">
+                            <p>Size Specification</p>
+                            <p>12' X 12'</p>
+                            <p>URL</p>
+                            <p>http://sd23rvdvs.csdc.scsd/sdsfw/ dfvww123/3</p>
+                            <div class="col-6 px-0 float-left">
+                                <p>Price</p>
+                                <p>$ 121</p>
+                            </div>
+                            <div class="col-6 px-0 float-left colorVariants">
+                                <p>Compare at Price </p>
+                                <p>$ 500</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 float-left">
+                            <p>Upload Image Reference
+                                <span class="deleteUpload"><i class="fas fa-times-circle"></i></span>
+                            </p>
+                            <p class="border border-light"><img src="{{ 'upload_mearch_Img1.jpg' | asset_url }}" class="img-fluid"></p>
+                            <div class="row uploadedImage px-0">
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img1.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img1.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img1.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img1.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img1.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img1.jpg' | asset_url }}"></p>
+                                </div>
+                            </div>
+
+                            <p class="text-right"><button type="submit" class="btn btn-primary loginBtn">Edit</button></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 float-left mt-1 px-0 addmerchBoxWrap">
+                    <label for="" class="col-12 px-0 mt-3 mb-0">2</label>
+
+                    <div class="row addmerchBox borderradius6 mt-1 mx-0 pt-3">
+                        <div class="col-md-4 float-left">
+                            <p>Merchandise</p>
+                            <p>Denim Pattern </p>
+                            <p>Description (Sourcing / Vendor)</p>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+
+                            <div class="col-6 px-0 float-left colorVariants">
+                                <p class="mb-1">Quantity</p>
+                                <p>121</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 float-left">
+                            <p>Size Specification</p>
+                            <p>12' X 12'</p>
+                            <p>URL</p>
+                            <p>http://sd23rvdvs.csdc.scsd/sdsfw/ dfvww123/3</p>
+                            <div class="col-6 px-0 float-left">
+                                <p>Price</p>
+                                <p>$ 121</p>
+                            </div>
+                            <div class="col-6 px-0 float-left colorVariants">
+                                <p>Compare at Price </p>
+                                <p>$ 500</p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 float-left">
+                            <p>Upload Image Reference
+                                <span class="deleteUpload"><i class="fas fa-times-circle"></i></span>
+                            </p>
+                            <p class="border border-light"><img src="{{ 'upload_mearch_Img2.jpg' | asset_url }}" class="img-fluid"></p>
+                            <div class="row uploadedImage px-0">
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img2.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img2.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img2.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img2.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img2.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img2.jpg' | asset_url }}"></p>
+                                </div>
+                            </div>
+                            <p class="text-right"><button type="submit" class="btn btn-primary loginBtn">Edit</button></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 float-left mt-1 px-0 addmerchBoxWrap">
+                    <label for="" class="col-12 px-0 mt-3 mb-0">3</label>
+
+                    <div class="row addmerchBox borderradius6 mt-1 mx-0 pt-3">
+                        <div class="col-md-4 float-left">
+                            <p>Merchandise</p>
+                            <p>Denim Pattern </p>
+                            <p>Description (Sourcing / Vendor)</p>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+
+                            <div class="col-6 px-0 float-left colorVariants">
+                                <p class="mb-1">Quantity</p>
+                                <p>121</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 float-left">
+                            <p>Size Specification</p>
+                            <p>12' X 12'</p>
+                            <p>URL</p>
+                            <p>http://sd23rvdvs.csdc.scsd/sdsfw/ dfvww123/3</p>
+                            <div class="col-6 px-0 float-left">
+                                <p>Price</p>
+                                <p>$ 121</p>
+                            </div>
+                            <div class="col-6 px-0 float-left colorVariants">
+                                <p>Compare at Price </p>
+                                <p>$ 500</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 float-left">
+                            <p>Upload Image Reference
+                                <span class="deleteUpload"><i class="fas fa-times-circle"></i></span>
+                            </p>
+                            <p class="border border-light"><img src="{{ 'upload_mearch_Img3.jpg' | asset_url }}" class="img-fluid"></p>
+                            <div class="row uploadedImage px-0">
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img3.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img3.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img3.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img3.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img3.jpg' | asset_url }}"></p>
+                                </div>
+                                <div class="col-4 float-left">
+                                    <p><img src="{{ 'upload_mearch_Img3.jpg' | asset_url }}"></p>
+                                </div>
+                            </div>
+                            <p class="text-right"><button type="submit" class="btn btn-primary loginBtn">Edit</button></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row px-3 pt-4">
+                    <button type="submit" class="btn btn-primary loginBtn mr-2">Edit</button>
+                    <button type="submit" class="btn btn-primary loginBtn">Upload Bulk</button>
+                </div>
+
+            </div>
+
+            <div class="col-12 float-left text-right px-0">
+                <button type="button" class="btn btn-primary loginBtn" data-toggle="modal" data-target="#staticBackdrop">Submit New Design</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% else %}
+
+<script>
+    window.location = "/";
+</script>
+
+{% endif %} {{ 'create_design.js' | asset_url | script_tag }}

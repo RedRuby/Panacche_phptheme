@@ -1,25 +1,7 @@
-
- 
-    {% if customer.metafields.global.tag == 'role:designer' %}
-        {% section 'designer-dashboard' %}
-    {% else if customer.metafields.blobal.tag == 'role:admin' %}
-        {% section 'admin-dashboard' %}
-    {% else %}
-        {% section 'customer-dashboard' %}
-    {% endif %}
+ {% if customer.metafields.global.tag == 'role:designer' %} {% section 'designer-dashboard' %} {% else if customer.metafields.global.tag == 'role:admin' %} {% section 'admin-dashboard' %} {% else %} {% section 'customer-dashboard' %} {% endif %}
 
 <!-- 
 {{ 'create_design.js' | asset_url | script_tag }} -->
 
-{% if customer.metafields.global.tag == 'role:admin' %}
-{{ 'admin_dashboard.js' | asset_url | script_tag }}
-{% endif %}
-
-{% if customer.metafields.global.tag == 'role:designer' %}
-{{ 'designer_dashboard.js' | asset_url | script_tag }}
-{% endif %}
-
-{% if customer.metafields.global.tag == 'role:customer' %}
-{{ 'customer_dashboard.js' | asset_url | script_tag }}
-{% endif %}
-
+{% if customer.metafields.global.tag == 'role:admin' %} {{ 'admin_dashboard.js' | asset_url | script_tag }} {% endif %} {% if customer.metafields.global.tag == 'role:designer' %} {{ 'designer_dashboard.js' | asset_url | script_tag }} {% endif %} {% if
+customer.metafields.global.tag == 'role:customer' %} {{ 'customer_dashboard.js' | asset_url | script_tag }} {% endif %}

@@ -1,13 +1,9 @@
-
-{%- assign formId = 'RegisterForm' -%}
+ {%- assign formId = 'RegisterForm' -%}
 <form method="post" action="/account" id="RegisterForm" accept-charset="UTF-8" enctype="multipart/form-data">
-  <input type="hidden" name="form_type" value="create_customer">
-  <input type="hidden" name="utf8" value="✓">
-
-
-    {% include 'form-status', form: form, form_id: formId %}
-    <input name="tag" type="hidden" value="role:admin"/>
-    <input name="shop" type="hidden" value="panacchebeta.myshopify.com"/>
+    <input type="hidden" name="form_type" value="create_customer">
+    <input type="hidden" name="utf8" value="✓"> {% include 'form-status', form: form, form_id: formId %}
+    <input name="tag" type="hidden" value="role:designer" />
+    <input name="shop" type="hidden" value="panacchebeta.myshopify.com" />
 
     <div class="container h-100">
         <div class="row align-items-center h-100">
@@ -52,16 +48,16 @@
                                     </span>
                                     {{ 'customer.register.email' | t }}
                                     (This will be your userid)</label>
-                                <input type="email" name="email" id="{{ formId }}-email" class="form-control {% if form.errors contains 'email' %} input--error{% endif %}" {% if form.email %} value="{{ form.email }}" {% endif %} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$" autocorrect="off" autocapitalize="off" autocomplete="email" aria-required="true" required {%- if form.errors contains 'email' -%} class="input--error" aria-invalid="true" aria-describedby="{{ formId }}-email-error" {%- endif -%}>
-                                <span class="validation_error label--error"></span>
-                                {%- if form.errors contains 'email' -%}
-                                    <span id="{{ formId }}-email-error" class="input-error-message">
+                                <input type="email" name="email" id="{{ formId }}-email" class="form-control {% if form.errors contains 'email' %} input--error{% endif %}" {% if form.email %} value="{{ form.email }}" {% endif %} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
+                                    autocorrect="off" autocapitalize="off" autocomplete="email" aria-required="true" required {%- if form.errors contains 'email' -%} class="input--error" aria-invalid="true" aria-describedby="{{ formId }}-email-error" {%-
+                                    endif -%}>
+                                <span class="validation_error label--error"></span> {%- if form.errors contains 'email' -%}
+                                <span id="{{ formId }}-email-error" class="input-error-message">
                                         <span class="visually-hidden">{{ 'general.accessibility.error' | t }}
-                                        </span>
-                                        {% include 'icon-error' %}
-                                        <span>{{ form.errors.translated_fields['email'] | capitalize }}
+                                        </span> {% include 'icon-error' %}
+                                <span>{{ form.errors.translated_fields['email'] | capitalize }}
                                             {{ form.errors.messages['email'] }}.</span>
-                                    </span>
+                                </span>
                                 {%- endif -%}
                             </div>
                             <div class="form-group col-md-6 col-xs-12 float-left px-0 px-3">
@@ -105,13 +101,13 @@
                                     <span class="label--error">*
                                     </span>
                                     {{ 'customer.register.password' | t }}</label>
-                                <input type="password" name="password" minlength="5" required id="{{ formId }}-password" class="form-control {% if form.errors contains 'password' %} input--error{% endif %}" aria-required="true" {%- if form.errors contains 'password' -%} class="input--error" aria-invalid="true" aria-describedby="{{ formId }}-password-error" {%- endif -%}>
-                                {%- if form.errors contains 'password' -%}
-                                    <span id="{{ formId}}-password-error" class="input-error-message">
+                                <input type="password" name="password" minlength="5" required id="{{ formId }}-password" class="form-control {% if form.errors contains 'password' %} input--error{% endif %}" aria-required="true" {%- if form.errors contains 'password' -%} class="input--error"
+                                    aria-invalid="true" aria-describedby="{{ formId }}-password-error" {%- endif -%}> {%- if form.errors contains 'password' -%}
+                                <span id="{{ formId}}-password-error" class="input-error-message">
                                         {% include 'icon-error' %}
                                         <span>{{ form.errors.translated_fields['password'] | capitalize }}
                                             {{ form.errors.messages['password'] }}.</span>
-                                    </span>
+                                </span>
                                 {%- endif -%}
                                 <span class="validation_error label--error"></span>
                             </div>
@@ -233,5 +229,4 @@
     </div>
 </form>
 
-{{ 'designer_account.js' |   asset_url | script_tag }}
-{{ 'registration.js' |   asset_url | script_tag }}
+{{ 'designer_account.js' | asset_url | script_tag }} {{ 'registration.js' | asset_url | script_tag }}

@@ -1,8 +1,14 @@
-(function($){
-    $(function(){
+(function($) {
+    $(function() {
+        $(document).on("load", function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+
+
 
         // $("#create-design").on("click", function(e){
-        //     e.preventDefault(); 
+        //     e.preventDefault();
         //     $status = $(this).attr('data');
         //     if($status == 'active'){
         //         window.location.href="/pages/create-design";
@@ -14,35 +20,35 @@
         //     }
         // });
 
-        $("#create-design").on("submit", function(e){
+        $("#create-design").on("submit", function(e) {
             e.preventDefault();
             console.log("clicked");
-               
-           var formData = new FormData($("#create-design")[0]);
-    
-            var url = ngrokURL+"/api/design";
+
+            var formData = new FormData($("#create-design")[0]);
+
+            var url = ngrokURL + "/api/design";
             $.ajax({
                 type: "POST",
                 url: url,
-                cache : false,
-                data:formData,
-                dataType:"json",
-                processData : false,
-                contentType:false,
+                cache: false,
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
                     // loader
                 },
-                success: function(response){
+                success: function(response) {
                     console.log(response);
-                    if(response.status == 200){
-                    $('.toast-header').text("Success");
-                            $('.toast-body').text(response.message)
-                            $('.toast').removeClass('hide');
-                            $('.toast').addClass('show');
+                    if (response.status == 200) {
+                        $('.toast-header').text("Success");
+                        $('.toast-body').text(response.message)
+                        $('.toast').removeClass('hide');
+                        $('.toast').addClass('show');
                     }
                 },
-                error: function(xhr, status, error){
+                error: function(xhr, status, error) {
                     console.log("error");
                     console.log('error', JSON.stringify(xhr.responseJSON));
                 }
@@ -69,5 +75,5 @@
     //                 console.log('error', xhr.responseText);
     //             }
     //           });
-        
+
 })(jQuery);

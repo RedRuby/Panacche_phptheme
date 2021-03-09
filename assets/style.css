@@ -121,6 +121,19 @@ input::placeholder {
     border: 1px solid #2DBAB6;
 }
 
+.cancelBtn {
+    min-width: 115px;
+    background: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #5462BD;
+    color: #5462BD;
+}
+
+.cancelBtn:hover {
+    background: #2DBAB6;
+    border: 1px solid #2DBAB6;
+}
+
 .loginBtn a {
     color: #ffffff;
     padding: 0px 20px;
@@ -723,7 +736,6 @@ Create New Design Page Screen
 }
 
 .uploadedFile {
-    width: 104px;
     height: 90px;
     background: #BCB7B7;
     border-radius: 6px;
@@ -735,6 +747,15 @@ Create New Design Page Screen
     right: 5px;
     top: 0px;
     color: #ffffff;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.uploadedImage .imageClose {
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    color: #8A8888;
     cursor: pointer;
     z-index: 1;
 }
@@ -872,7 +893,7 @@ Create New Design Page Screen
 
 .colorPaintTable {
     border-collapse: separate;
-    border-spacing: 0 7px;
+    border-spacing: 0 16px;
 }
 
 .colorPaintTable thead tr th {
@@ -916,7 +937,7 @@ Create New Design Page Screen
 }
 
 
-/*---------- Add Color Table Css -----------*/
+/*---------- Add Merchandise Table Css -----------*/
 
 .addRefWrap {
     background: #ffffff;
@@ -954,11 +975,39 @@ Create New Design Page Screen
     font-size: 12px;
     color: #707070;
     position: relative;
+    border-radius: 15px;
 }
 
 .addmerchBox div:nth-child(2) p:nth-child(4) {
     font-size: 12px;
     color: #5462BD;
+}
+
+.addmerchBox div:nth-child(2) .colorVariants div p:nth-child(1) {
+    font-size: 12px;
+    color: #707070;
+    font-weight: normal;
+}
+
+.addmerchBox div:nth-child(2) .colorVariants div p:nth-child(2) span {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #707070;
+    border-radius: 50%;
+    float: left;
+    margin: 0 4px;
+}
+
+.addmerchBox div:nth-child(2) .colorVariants div p:nth-child(2) span:nth-child(1) {
+    background: #AC0B0B;
+}
+
+.addmerchBox div:nth-child(2) .colorVariants div p:nth-child(2) span:nth-child(2) {
+    background: #600909;
+}
+
+.addmerchBox div:nth-child(2) .colorVariants div p:nth-child(2) span:nth-child(3) {
+    background: #ffffff;
 }
 
 .addmerchBox div:nth-child(2) p:nth-child(6) {
@@ -969,13 +1018,15 @@ Create New Design Page Screen
 .addmerchBox div:nth-child(3) p:nth-child(2) {
     max-height: 140px;
     overflow: hidden;
+    border-radius: 15px;
 }
 
 .addmerchBox div:nth-child(3) p:nth-child(2) img {
     width: 100%;
 }
 
-.deleteUpload {
+.deleteUpload,
+.deleteUpload2 {
     position: absolute;
     right: 0px;
     top: 0px;
@@ -983,6 +1034,87 @@ Create New Design Page Screen
     font-size: 14px;
     cursor: pointer;
 }
+
+.addMearchForm {
+    background: #F5F5F5;
+    border-radius: 6px;
+}
+
+.addMearchForm label {
+    font-size: 14px;
+}
+
+.italicLabel {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.addMearchForm .imageRefUpload {
+    background: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #E2E8EE;
+}
+
+.addMearchForm .imageRefUpload p {
+    color: #707070;
+    font-size: 18px;
+}
+
+.addMearchForm .imageRefUpload .addImage {
+    height: 100px;
+    position: relative;
+    background: #ECECEC;
+    border: 1px dashed #707070;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.addMearchForm .imageRefUpload .addImage .addImageIcon {
+    font-size: 12px;
+    font-weight: normal;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -3px;
+    margin-top: -10px;
+}
+
+.addMearchForm .imageRefUpload .addImageText {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.addMearchForm .uploadedImage {
+    max-height: 218px;
+    overflow: auto
+}
+
+.addMearchForm .uploadedImage div p {
+    min-height: 100px;
+    border: 1px solid #707070;
+    border-radius: 6px;
+    position: relative;
+}
+
+.addmerchBox .uploadedImage {
+    height: 115px;
+    overflow: auto;
+}
+
+.addmerchBox .uploadedImage div p {
+    height: 100px;
+    border: 1px solid #707070;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.registerForm .fa-times {
+    font-size: 30px;
+}
+
+
+/*---------- Submit Successfully Model Css -----------*/
 
 .modelLogo img {
     width: 120px;
@@ -1102,6 +1234,83 @@ Gallery Page Css
 .viewMorebtn button:hover {
     background: #5462BD;
     border: 1px solid #5462BD;
+}
+
+.galleryBack a {
+    color: #8B8B8B;
+}
+
+.galleryBack span {
+    background: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px #c1c1c1;
+}
+
+.ourDesignersCards .cardChekbox .form-check-input {
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.ourDesignersCards .designerProf {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.ourDesignersCards .card {
+    border-radius: 30px;
+}
+
+.ourDesignersCards .card .author-info p:nth-child(1) {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #707070;
+    line-height: 24px;
+}
+
+.ourDesignersCards .card .author-info p:nth-child(2) {
+    color: #707070;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.ourDesignersCards .card .author-info p:nth-child(3) {
+    font-weight: bold;
+    color: #A0A0A0;
+    font-size: 15px;
+}
+
+.ourDesignersCards .card .author-info p:nth-child(3) .fa-star {
+    color: #5462BD;
+}
+
+.ourDesignersCards .card .author-info p:nth-child(4) {
+    color: #A0A0A0;
+    font-size: 13px;
+    text-align: left;
+}
+
+.ourDesignersCards .card .author-info p:nth-child(5) button {
+    background: #5462BD;
+}
+
+.ourDesignersCards .card .author-info p:nth-child(5) button:hover {
+    background: #2DBAB6;
+    border-color: #2DBAB6;
+}
+
+.deleteUpload2 {
+    right: 16px;
 }
 
 
