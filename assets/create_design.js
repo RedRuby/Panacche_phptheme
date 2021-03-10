@@ -20,11 +20,11 @@
         //     }
         // });
 
-        $("#create-design").on("submit", function(e) {
+        $(".submit-design-btn").on("click", function(e) {
             e.preventDefault();
             console.log("clicked");
 
-            var formData = new FormData($("#create-design")[0]);
+            var formData = new FormData($("#create-design-form")[0]);
 
             var url = ngrokURL + "/api/design";
             $.ajax({
@@ -37,20 +37,47 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $('.ajax-loader').css("visibility", "visible");
                     // loader
                 },
                 success: function(response) {
-                    console.log(response);
-                    if (response.status == 200) {
+                    $('.ajax-loader').css("visibility", "hidden");
+                    console.log("response", response);
+
+                    $("#result").empty().append(response);
+                    if (response.status == 201) {
+                        console.log(response.message);
                         $('.toast-header').text("Success");
+                        $('.toast-body').text(response.message)
+                        $('.toast').removeClass('hide');
+                        $('.toast').addClass('show');
+                    } else {
+                        $('.toast-header').text("Error");
                         $('.toast-body').text(response.message)
                         $('.toast').removeClass('hide');
                         $('.toast').addClass('show');
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.log("error");
-                    console.log('error', JSON.stringify(xhr.responseJSON));
+                    console.log('xhr', xhr)
+                    console.log('error', xhr.responseJSON.message);
+                    console.log('error', error);
+                    console.log('status', status);
+                    $('.ajax-loader').css("visibility", "hidden");
+                    $('.toast-header').text("Error");
+                    $('.toast-body').text(JSON.stringify(xhr.responseJSON.errors))
+                    $('.toast').removeClass('hide');
+                    $('.toast').addClass('show');
+
+                    if (xhr.responseJSON.errors) {
+                        $.each(xhr.responseJSON.errors, function(key, item) {
+                            console.log("error", key);
+                            $("input[name=" + key + "]").next("span").text(item);
+                            if (key == 'room_style' || key == 'room_type') {
+                                $("#" + key).next("span").text(item);
+                            }
+                        });
+                    }
                 }
             });
         });

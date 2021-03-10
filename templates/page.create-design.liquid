@@ -12,7 +12,7 @@
                 <h4 class="mb-4">
                     <span>Create New Design</span>
                     <span class="float-right">
-                        <button type="button" class="btn btn-primary loginBtn mr-3" data-toggle="modal" data-target="#staticBackdrop">Submit New Design</button>
+                        <button type="button" class="btn btn-primary loginBtn mr-3 submit-design-btn" data-toggle="modal" data-target="#staticBackdrop">Submit New Design</button>
                         <a href="landing_page.html"><i class="fas fa-times-circle newDesignClose"></i></a>
                     </span>
                 </h4>
@@ -24,46 +24,53 @@
                         <div class="form-group">
                             <label for="">Design Name</label>
                             <input type="text" class="form-control" placeholder="" name="design_name">
+                            <span class="validation_error label--error"></span>
                         </div>
                         <div class="col-12 px-0">
                             <div class="form-group col-6 float-left pl-0">
                                 <label for="">Design Price</label>
                                 <input type="text" class="form-control" placeholder="$" name="design_price">
+                                <span class="validation_error label--error"></span>
                             </div>
                             <div class="form-group col-6 float-left pr-0">
                                 <label for="">Room Budget</label>
                                 <input type="text" class="form-control" placeholder="$" name="room_budget">
+                                <span class="validation_error label--error"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="">Room Type</label>
-                            <select class="custom-select selectDropdown" name="room_type">
-                              <option selected>Select Room Type</option>
-                              <option value="1">Bedroom</option>
-                              <option value="2">Kitchen</option>
-                              <option value="3">Living Room</option>
+                            <select class="custom-select selectDropdown" name="room_type" id="room_type">
+                              <option value="0">Select Room Type</option>
+                              <option value="Bedroom">Bedroom</option>
+                              <option value="Kitchen">Kitchen</option>
+                              <option value="Living Room">Living Room</option>
                             </select>
+                            <span class="validation_error label--error"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="">Room Style</label>
-                            <select class="custom-select selectDropdown" name="room_style">
-                              <option selected>Select Room Style</option>
-                              <option value="1">Bedroom</option>
-                              <option value="2">Kitchen</option>
-                              <option value="3">Living Room</option>
+                            <select class="custom-select selectDropdown" name="room_style" id="room_style">
+                              <option value="0">Select Room Style</option>
+                              <option value="Bedroom">Bedroom</option>
+                              <option value="Kitchen">Kitchen</option>
+                              <option value="Living Room">Living Room</option>
                             </select>
+                            <span class="validation_error label--error"></span>
                         </div>
 
                         <div class="col-12 px-0">
-                            <label for="" class="w-100">Price</label>
+                            <!-- <label for="" class="w-100">Price</label> -->
                             <div class="form-group col-5 float-left px-0">
                                 <p class="italicLabel">Width</p>
                                 <p class="col-6 float-left pl-0">
                                     <input type="text" class="form-control" placeholder="Feet" name="width_in_feet">
+                                    <span class="validation_error label--error"></span>
                                 </p>
                                 <p class="col-6 float-left pl-0">
                                     <input type="text" class="form-control" placeholder="Inches" name="width_in_inches">
+                                    <span class="validation_error label--error"></span>
                                 </p>
                             </div>
                             <div class="form-group col-1 float-left px-0 text-center pt-5">
@@ -73,9 +80,11 @@
                                 <p class="italicLabel">Height</p>
                                 <p class="col-6 float-left pl-0">
                                     <input type="text" class="form-control" placeholder="Feet" name="height_in_feet">
+                                    <span class="validation_error label--error"></span>
                                 </p>
                                 <p class="col-6 float-left pl-0">
                                     <input type="text" class="form-control" placeholder="Inches" name="height_in_inches">
+                                    <span class="validation_error label--error"></span>
                                 </p>
                             </div>
                         </div>
@@ -106,6 +115,7 @@
                                     <p class="custom-file mt-3 mb-3">
                                         <input type="file" class="custom-file-input" id="customFile" name="room_images">
                                         <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                        <span class="validation_error label--error"></span>
                                     </p>
                                 </div>
                                 <p class="text-center mb-2">Upload / drop files here <span>Browse Files</span></p>
@@ -203,6 +213,7 @@
                                 <div class="col-12 float-left px-0">
                                     <p class="custom-file mt-3 mb-3">
                                         <input type="file" class="custom-file-input" id="customFile" name="room_blueprints">
+                                        <span class="validation_error label--error"></span>
                                         <label class="custom-file-label2 mb-0" for="customFile"></label>
                                     </p>
                                 </div>
@@ -362,7 +373,7 @@
             <label for="" class="col-12 px-0 font14">Add Merchandise References</label>
             <div class="addRefWrap col-12 float-left py-3 mb-3">
                 <div class="row px-3">
-                    <button type="button" class="btn btn-primary loginBtn mr-2">Add</button>
+                    <button type="button" class="btn btn-primary loginBtn mr-2" id="add-product">Add</button>
                     <button type="button" class="btn btn-primary loginBtn mr-2">Upload Bulk</button>
                     <button type="button" class="btn btn-primary cancelBtn">Cancel</button>
                 </div>
@@ -388,35 +399,43 @@
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
                                 <div class="form-group">
                                     <label for="">Merchandise</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" name="product_name">
+                                    <span class="validation_error label--error"></span>
+
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Description (Sourcing / Vendor)</label>
-                                    <textarea class="form-control textarea" rows="13"></textarea>
+                                    <textarea class="form-control textarea" rows="13" name="product_description"></textarea>
+                                    <span class="validation_error label--error"></span>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
                                 <div class="form-group">
                                     <label for="">Size Specification</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" name="size_specification">
+                                    <span class="validation_error label--error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="">URL</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" name="product_url">
+                                    <span class="validation_error label--error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Price</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" name="product_price">
+                                    <span class="validation_error label--error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Compare at Price </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" name="compare_at_price">
+                                    <span class="validation_error label--error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Quantity</label>
                                     <p class="italicLabel">Available</p>
-                                    <input type="number" class="form-control" name="points" step="3">
+                                    <input type="number" class="form-control" name="points" step="3" name="quantity">
+                                    <span class="validation_error label--error"></span>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
@@ -659,7 +678,7 @@
             </div>
 
             <div class="col-12 float-left text-right px-0">
-                <button type="button" class="btn btn-primary loginBtn" data-toggle="modal" data-target="#staticBackdrop">Submit New Design</button>
+                <button type="button" class="btn btn-primary loginBtn submit-design-btn" data-toggle="modal" data-target="#staticBackdrop">Submit New Design</button>
             </div>
 
         </div>

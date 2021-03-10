@@ -26,10 +26,11 @@ hr {
     max-width: auto !important;
 }
 
-.modal-backdrop {
-    /* bug fix - no overlay */
+
+/* .modal-backdrop {
+     bug fix - no overlay 
     display: none;
-}
+} */
 
 .ajax-loader {
     visibility: hidden;

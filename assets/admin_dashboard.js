@@ -101,8 +101,9 @@
                     console.log("hello");
                     console.log(response);
                     //$(".landingPageWrap").empty();
+                    $("#myModal .modal-body").empty();
                     $("#myModal .modal-body").append(response);
-                    $("#myModal").modal('toggle');
+                    $("#myModal").modal('show');
                     $("body").children().first().before($(".modal"));
                     //$("#myModal").prependTo('body');
                 },
@@ -114,9 +115,12 @@
 
         });
 
-        $(".landingPageWrap #myModal").on("click", "#approve-profile-btn", function(e) {
-            var id = ""; //assign id attr
-            var url = ngrokURL + '/api/designer/approval/' + id
+        $(".landingPageWrap #myModal").on("click", "#designer-profile-approve-btn", function(e) {
+            var id = $(this).attr('data'); //assign id attr
+            var url = ngrokURL + '/api/designer/profile/approve/' + id
+            console.log('approve api');
+
+
             $.ajax({
                 type: "GET",
                 url: url,
@@ -142,7 +146,45 @@
                 }
             });
         });
+
+
+        $(".landingPageWrap #myModal").on("click", "#designer-profile-reject-btn", function(e) {
+            var id = $(this).attr('data'); //assign id attr
+            var url = ngrokURL + '/api/designer/profile/reject/' + id
+            console.log('approve api');
+
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $(".validation_error").text('');
+                    // loader
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.status == 200) {
+                        $('.toast-header').text("Success");
+                        $('.toast-body').text(response.message)
+                        $('.toast').removeClass('hide');
+                        $('.toast').addClass('show');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("error");
+                    console.log('error', JSON.stringify(xhr.responseJSON));
+                }
+            });
+        });
+
+
     });
+
+
+
 
 
 })(jQuery);
