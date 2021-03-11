@@ -1,4 +1,4 @@
-{% assign ngrok_url = 'https://307270b4543e.ngrok.io' %} {% include 'search-drawer' %}
+{% assign ngrok_url = 'https://113a8146a4df.ngrok.io' %} {% include 'search-drawer' %}
 
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
 
@@ -64,7 +64,7 @@
                                             </span>
                                 </p>
                             </div>
-                            <p class="userName text-center mb-0">{{ customer.first_name }} {{ customer.last_name }}</p>
+                            <p class="userName text-center mb-0" id="customer_id" data="{{ customer.id }}">{{ customer.first_name }} {{ customer.last_name }}</p>
                             <p class="userType text-center">{{customer.metafields.global.tag}}</p>
                             <p class="editButton mx-auto w-25 text-center py-1 px-1 mb-4">Edit</p>
                             <p class="account mb-0">

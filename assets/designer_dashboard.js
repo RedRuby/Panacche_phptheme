@@ -1,5 +1,105 @@
 (function($) {
     $(function() {
+        var id = $("#customer_id").attr('data');
+
+        var url = ngrokURL + "/api/designer/users/" + id;
+        var designsUrl = ngrokURL + "/api/designer/designs/" + id;
+        var statisticsUrl = ngrokURL + "/api/designer/statistics/" + id;
+        var customerUrl = ngrokURL + "/api/get/customer/" + id;
+
+        $.ajax({
+            type: "GET",
+            url: customerUrl,
+            //dataType:"json",
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $(".validation_error").text('');
+                // loader
+            },
+            success: function(response) {
+                console.log("hello");
+                console.log("my customer details", response);
+                $("#create-design-btn").attr('data', response.data.status);
+                //$(".designersApproveCards").append(response);
+            },
+            error: function(xhr, status, error) {
+                console.log("error");
+                console.log('error', JSON.stringify(xhr.responseJSON));
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            //dataType:"json",
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $(".validation_error").text('');
+                // loader
+            },
+            success: function(response) {
+                console.log("hello");
+                console.log(response);
+                $(".designersApproveCards").empty();
+                $(".designersApproveCards").append(response);
+            },
+            error: function(xhr, status, error) {
+                console.log("error");
+                console.log('error', JSON.stringify(xhr.responseJSON));
+            }
+        });
+
+
+        $.ajax({
+            type: "GET",
+            url: designsUrl,
+            //dataType:"json",
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $(".validation_error").text('');
+                // loader
+            },
+            success: function(response) {
+                console.log("hello");
+                console.log(response);
+                $(".designCards").empty();
+                $(".designCards").append(response);
+            },
+            error: function(xhr, status, error) {
+                console.log("error");
+                console.log('error', JSON.stringify(xhr.responseJSON));
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: statisticsUrl,
+            //dataType:"json",
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $(".validation_error").text('');
+                // loader
+            },
+            success: function(response) {
+                console.log("hello");
+                console.log(response);
+                $(".dataCards").empty();
+                $(".dataCards").append(response);
+            },
+            error: function(xhr, status, error) {
+                console.log("error");
+                console.log('error', JSON.stringify(xhr.responseJSON));
+            }
+        });
+
 
         $("#create-design-btn").on("click", function(e) {
             e.preventDefault();

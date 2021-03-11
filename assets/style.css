@@ -532,6 +532,12 @@ Langing Page Screen
     background: #ffffff;
 }
 
+.landingTable .notifications {
+    height: 23px;
+    width: 23px;
+    line-height: 18px;
+}
+
 .table td,
 .table th {
     padding: .55rem 1rem;
@@ -725,6 +731,43 @@ Create New Design Page Screen
     border: 1px dashed #707070;
     border-radius: 12px;
     line-height: 75px;
+    left: 50%;
+    margin-left: -37px;
+}
+
+.dragDropBox .custom-file-label2 {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: 74px;
+    padding: .375rem .75rem;
+    overflow: hidden;
+    font-weight: 400;
+    line-height: 4;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 12px !important;
+    color: #C3C3C3;
+    cursor: pointer;
+}
+
+.dragDropBox .custom-file-label2::after {
+    position: absolute;
+    content: "+" !important;
+    top: 0px;
+    right: 0px;
+    line-height: 2.5;
+    padding: .375rem 1rem;
+    color: #A0A0A0;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    height: 75px;
+    cursor: pointer;
 }
 
 .dragDropBox p:nth-child(2) span {
@@ -763,6 +806,27 @@ Create New Design Page Screen
 
 .createNewForm label {
     font-size: 14px;
+}
+
+.createNewForm .custom-file-label {
+    height: 40px;
+}
+
+.createNewForm .custom-file-label::after {
+    content: "Upload File" !important;
+    right: 3px;
+    line-height: 1.5;
+    font-size: 13px;
+    height: 33.5px;
+}
+
+.saveRoomWrap p:nth-child(1) {
+    border-top: 1px solid #707070;
+}
+
+.disbaleBtn {
+    opacity: 0.5;
+    cursor: auto !important;
 }
 
 
@@ -937,6 +1001,41 @@ Create New Design Page Screen
     font-size: 25px;
 }
 
+.addColor .custom-file-label2 {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: 45px;
+    padding: .375rem .75rem;
+    overflow: hidden;
+    font-weight: 400;
+    line-height: 4;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 12px !important;
+    color: #C3C3C3;
+    cursor: pointer;
+}
+
+.addColor .custom-file-label2::after {
+    position: absolute;
+    content: "+" !important;
+    top: 0px;
+    right: 0px;
+    line-height: 2;
+    padding: 0;
+    color: #A0A0A0;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    height: 45px;
+    cursor: pointer;
+}
+
 
 /*---------- Add Merchandise Table Css -----------*/
 
@@ -1068,6 +1167,29 @@ Create New Design Page Screen
     border: 1px dashed #707070;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.addMearchForm .imageRefUpload .addImage .custom-file-input {
+    height: 100px;
+}
+
+.addMearchForm .imageRefUpload .addImage .custom-file-label2 {
+    height: 98px;
+    padding: 0;
+    line-height: 2;
+    background-color: transparent;
+    color: #C3C3C3;
+}
+
+.addMearchForm .imageRefUpload .addImage .custom-file-label2::after {
+    content: "+" !important;
+    line-height: 3;
+    padding: 0;
+    color: #707070;
+    background-color: transparent;
+    font-size: 27px;
+    height: 100px;
+    font-weight: bold;
 }
 
 .addMearchForm .imageRefUpload .addImage .addImageIcon {

@@ -1,12 +1,36 @@
 (function($) {
     $(function() {
         console.log("admin dashboard js");
+        //var id = $("#customer_id").attr('data');
         var url = ngrokURL + "/api/admin/designers";
         var designsUrl = ngrokURL + "/api/admin/designs";
         var statisticsUrl = ngrokURL + "/api/admin/statistics";
+        // var customerUrl = ngrokURL + "/api/get/customer/" + id;
         // $("#myModal").modal('show');
 
 
+        // $.ajax({
+        //     type: "GET",
+        //     url: customerUrl,
+        //     //dataType:"json",
+        //     cache: false,
+        //     processData: false,
+        //     contentType: false,
+        //     beforeSend: function() {
+        //         $(".validation_error").text('');
+        //         // loader
+        //     },
+        //     success: function(response) {
+        //         console.log("hello");
+        //         console.log("my customer details", response);
+        //         //$(".designersApproveCards").empty();
+        //         //$(".designersApproveCards").append(response);
+        //     },
+        //     error: function(xhr, status, error) {
+        //         console.log("error");
+        //         console.log('error', JSON.stringify(xhr.responseJSON));
+        //     }
+        // });
 
 
         $.ajax({
@@ -117,7 +141,8 @@
 
         $(".landingPageWrap #myModal").on("click", "#designer-profile-approve-btn", function(e) {
             var id = $(this).attr('data'); //assign id attr
-            var url = ngrokURL + '/api/designer/profile/approve/' + id
+
+            var url = ngrokURL + '/api/designer/profile/approve/' + id + '/' + shop
             console.log('approve api');
 
 
