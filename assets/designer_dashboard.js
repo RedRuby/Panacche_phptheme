@@ -30,7 +30,7 @@
             }
         });
 
-        $.ajax({
+        /*$.ajax({
             type: "GET",
             url: url,
             //dataType:"json",
@@ -51,7 +51,7 @@
                 console.log("error");
                 console.log('error', JSON.stringify(xhr.responseJSON));
             }
-        });
+        });*/
 
 
         $.ajax({
