@@ -153,6 +153,46 @@
                 }
             });
         });
+
+
+        $(".landingPageWrap").on("click", "#view-design", function(e) {
+            e.preventDefault();
+
+            console.log('view design page');
+            //return false;
+            var id = $(this).attr('data');
+            //alert("view profile" + id);
+            var url = ngrokURL + "/api/design/" + id;
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $(".validation_error").text('');
+                    // loader
+                },
+                success: function(response) {
+                    console.log("hello");
+                    console.log(response);
+                    //$(".landingPageWrap").empty();
+                    $("#myModal .modal-body").empty();
+                    $("#myModal .modal-body").append(response);
+                    $("#myModal").modal('show');
+                    $("body").children().first().before($(".modal"));
+                    //$("#myModal").prependTo('body');
+                },
+                error: function(xhr, status, error) {
+                    console.log("error");
+                    console.log('error', JSON.stringify(xhr.responseJSON));
+                }
+            });
+
+        });
+
+
     });
 
 

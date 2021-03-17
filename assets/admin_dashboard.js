@@ -206,6 +206,47 @@
         });
 
 
+        $(".landingPageWrap").on("click", "#view-design", function(e) {
+            e.preventDefault();
+
+            console.log('view design page');
+
+
+            //return false;
+            var id = $(this).attr('data');
+            window.location.href = "https://panacchebeta.myshopify.com/pages/view-design?id=" + id;
+            return false;
+            //alert("view profile" + id);
+            var url = ngrokURL + "/api/admin/design/" + id;
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $(".validation_error").text('');
+                    // loader
+                },
+                success: function(response) {
+                    console.log("hello");
+                    //console.log(response);
+
+                    //$("#content").empty();
+                    $("#content").append(response);
+
+                    //document.title = response.pageTitle;
+                    window.history.pushState({ "html": response, "pageTitle": "View Design" }, "", "https://panacchebeta.myshopify.com/pages/view-design");
+                },
+                error: function(xhr, status, error) {
+                    console.log("error");
+                    console.log('error', JSON.stringify(xhr.responseJSON));
+                }
+            });
+
+        });
+
     });
 
 
