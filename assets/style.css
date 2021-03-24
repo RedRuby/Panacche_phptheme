@@ -1359,6 +1359,24 @@ Gallery Page Css
     border: 1px solid #5462BD;
 }
 
+.viewMorebtn a {
+    background: #707070;
+    border: 1px solid #707070;
+    border-radius: 20px;
+    height: 35px;
+    line-height: 0px;
+}
+
+.viewMorebtn a:hover {
+    background: #5462BD;
+    border: 1px solid #5462BD;
+}
+
+background: #707070;
+border: 1px solid #707070;
+border-radius: 20px;
+height: 35px;
+line-height: 0px;
 .galleryBack a {
     color: #8B8B8B;
 }

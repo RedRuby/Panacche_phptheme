@@ -162,6 +162,10 @@
             //return false;
             var id = $(this).attr('data');
             //alert("view profile" + id);
+            //var id = $(this).attr('data');
+            window.location.href = "https://panacchebeta.myshopify.com/pages/view-design?id=" + id;
+            return false;
+
             var url = ngrokURL + "/api/design/" + id;
 
             $.ajax({
