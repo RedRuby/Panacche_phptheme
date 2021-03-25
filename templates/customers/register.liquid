@@ -1,238 +1,83 @@
-
-
-{%- assign formId = 'RegisterForm' -%}
-<form method="post" action="/account" id="RegisterForm" accept-charset="UTF-8" enctype="multipart/form-data">
-  <input type="hidden" name="form_type" value="create_customer">
-  <input type="hidden" name="utf8" value="✓">
-
-
-    {% include 'form-status', form: form, form_id: formId %}
-    <input name="tag" type="hidden" value="role:customer"/>
-    <input name="shop" type="hidden" value="panacchebeta.myshopify.com"/>
+<form method="post" id="RegisterForm" accept-charset="UTF-8" enctype="multipart/form-data">
+    <input type="hidden" name="form_type" value="create_customer">
+    <input type="hidden" name="utf8" value="✓"> {% include 'form-status', form: form, form_id: formId %}
+    <input name="tag" type="hidden" value="role:customer" />
+    <input name="shop" type="hidden" value="panacchebeta.myshopify.com" />
 
     <div class="container h-100">
         <div class="row align-items-center h-100">
             <div class="loginWrapper col-md-12 col-sm-12 col-xs-12 mt-4 mx-auto">
-                <div class="logo col-12 float-left mb-4 px-0"><img src="{{ 'panacche_logo.jpg' | asset_url }}"></div>
-
-                <div class="registerForm row">
-                    <div class="form-group col-md-4 col-xs-12 float-left px-0 px-3">
-                        <label for="{{ formId }}-Username">
-                            <span class="label--error">*
-                            </span>
-                            {{ 'customer.register.username' | t }}</label>
-                        <input required type="text" name="username" id="{{ formId }}-Username" {% if form.username %} value="{{ form.username }}" {% endif %} autocomplete="given-name" class="form-control">
-                        <span class="validation_error label--error"></span>
-                    </div>
-
-                    <div class="form-group col-md-4 col-xs-12 float-left px-0 px-3">
-                        <label for="{{ formId }}-FirstName">
-                            <span class="label--error">*
-                            </span>
-                            {{ 'customer.register.first_name' | t }}</label>
-                        <input required type="text" name="first_name" id="{{ formId }}-FirstName" {% if form.first_name %} value="{{ form.first_name }}" {% endif %} autocomplete="given-name" class="form-control">
-                        <span class="validation_error label--error"></span>
-                    </div>
-
-                    <div class="form-group col-md-4 col-xs-12 float-left px-0 px-3">
-                        <label for="{{ formId }}-LastName">
-                            <span class="label--error">*
-                            </span>
-                            {{ 'customer.register.last_name' | t }}</label>
-                        <input required type="text" name="last_name" id="{{ formId }}-LastName" {% if form.last_name %} value="{{ form.last_name }}" {% endif %} autocomplete="family-name" minlength="2" class="form-control">
-                        <span class="validation_error label--error"></span>
-                    </div>
+                <div class="logo col-12 float-left mb-4 px-0">
+                    <div class="galleryBack">
+                        <a href="javascript&colon; history.go(-1)"><span><i class="fas fa-arrow-left "></i></span></a></div>
+                    <img class="ml-4 " src="{{ 'panacche_logo.jpg' | asset_url }} ">
                 </div>
 
-                <div class="row">
-                    <div class="registerForm col-md-8 col-xs-12 float-left">
-                        <div class="row">
-                            <div class="form-group col-md-6 col-xs-12 float-left px-0 px-3">
-                                <label for="{{ formId }}-email">
-                                    <span class="label--error">*
-                                    </span>
-                                    {{ 'customer.register.email' | t }}
-                                    (This will be your userid)</label>
-                                <input type="email" name="email" id="{{ formId }}-email" class="form-control {% if form.errors contains 'email' %} input--error{% endif %}" {% if form.email %} value="{{ form.email }}" {% endif %} pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$" autocorrect="off" autocapitalize="off" autocomplete="email" aria-required="true" required {%- if form.errors contains 'email' -%} class="input--error" aria-invalid="true" aria-describedby="{{ formId }}-email-error" {%- endif -%}>
-                                <span class="validation_error label--error"></span>
-                                {%- if form.errors contains 'email' -%}
-                                    <span id="{{ formId }}-email-error" class="input-error-message">
-                                        <span class="visually-hidden">{{ 'general.accessibility.error' | t }}
-                                        </span>
-                                        {% include 'icon-error' %}
-                                        <span>{{ form.errors.translated_fields['email'] | capitalize }}
-                                            {{ form.errors.messages['email'] }}.</span>
-                                    </span>
-                                {%- endif -%}
-                            </div>
-                            <div class="form-group col-md-6 col-xs-12 float-left px-0 px-3">
-                                <label for="{{ formId }}-Location">
-                                    <span class="label--error">*
-                                    </span>
-                                    {{ 'customer.register.location' | t }}</label>
-                                <input required type="text" name="location" id="{{ formId }}-Location" {% if form.location %} value="{{ form.location }}" {% endif %} autocomplete="given-name" class="form-control">
-                                <span class="validation_error label--error"></span>
-                            </div>
-                        </div>
+                <div class="row mb-4">
+                    <div class="col-12 float-left">
+                        <div class="form-group landingHeading">
+                            <h4 for=" ">Create Customer Account</h4>
+                            <div class="col-12 float-left px-0 mb-3">
+                                <p class="addUserPic mx-auto mt-1 mb-1">
 
-                        <div class="row">
-                            <div class="form-group col-md-6 col-xs-12 float-left px-0 px-3">
-                                <label for="">Display Picture
-                                </label>
-                                <div class="col-12 float-left px-0">
-                                    <p class="userPictureBox userPictureBox mb-0">
-                                        <span class="userPic"><img src="{{ 'userPic.png' | asset_url }}" id="profile_pic_output"></span>
-                                        <span class="removeUserPic">-</span>
-                                        <input type="hidden" id="profilePic" value="">
-                                    </p>
-
-                                    <div class="custom-file col-xl-10 col-md-9 px-md-1 col-sm-10 col-10 float-right">
-                                        <input accept="image/*" class="custom-file-input" id="customFile" name="profile_pic" type="file">
-                                        <span class="validation_error label--error"></span>
-                                        <label class="custom-file-label2 mb-0" for="customFile"></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6 col-xs-12 float-left px-0 px-3">
-                                <label for="">Profile Type</label>
-                                <input class="form-control" name="profile_type" placeholder="" type="text">
-                                <span class="validation_error label--error"></span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-md-6 col-xs-12 float-left px-0 px-3">
-                                <label for="{{ formId }}-password">
-                                    <span class="label--error">*
-                                    </span>
-                                    {{ 'customer.register.password' | t }}</label>
-                                <input type="password" name="password" minlength="5" required id="{{ formId }}-password" class="form-control {% if form.errors contains 'password' %} input--error{% endif %}" aria-required="true" {%- if form.errors contains 'password' -%} class="input--error" aria-invalid="true" aria-describedby="{{ formId }}-password-error" {%- endif -%}>
-                                {%- if form.errors contains 'password' -%}
-                                    <span id="{{ formId}}-password-error" class="input-error-message">
-                                        {% include 'icon-error' %}
-                                        <span>{{ form.errors.translated_fields['password'] | capitalize }}
-                                            {{ form.errors.messages['password'] }}.</span>
-                                    </span>
-                                {%- endif -%}
-                                <span class="validation_error label--error"></span>
-                            </div>
-                            <div class="form-group col-md-6 col-xs-12 float-left px-0 px-3">
-                                <label for="">
-                                    <span class="label--error">*
-                                    </span>Confirm Password</label>
-                                <input class="form-control" name="confirm_password" placeholder="" type="password">
-                                <span class="validation_error label--error"></span>
+                                    <span class="addPicIcon">
+                                        <i class="fas fa-plus-circle"></i></span>
+                                    <input type="file" class="custom-file-input" id="customFile" name="display_picture">
+                                    <label class="custom-file-label mb-0" for="customFile"></label>
+                                </p>
+                                <p class="text-center font14 mb-1">
+                                    Add Display Picture
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="registerForm col-md-4 col-xs-12 float-left">
-                        <div class="row">
-                            <div class="form-group mx-3 w-100">
-                                <label for="{{ formId }}-FullAdress">
-                                    <span class="label--error">*
-                                    </span>
-                                    {{ 'customer.register.full_address' | t }}</label>
-                                <input required type="text" name="full_address" id="{{ formId }}-FullAdress" {% if form.full_address %} value="{{ form.full_address }}" {% endif %} autocomplete="family-name" minlength="2" class="form-control">
-                                <span class="validation_error label--error"></span>
-                            </div>
-
-                            <div class="form-group mx-3 w-100">
-                                <input required type="text" name="phone" id="{{ formId }}-Phone" {% if form.locality %} value="{{ form.locality }}" {% endif %} autocomplete="family-name" minlength="2" class="form-control" placeholder="+11234567890">
-                                <span class="validation_error label--error"></span>
-                            </div>
-
-                            <div class="form-group mx-3 w-100">
-                                <input required type="text" name="locality" id="{{ formId }}-Locality" {% if form.locality %} value="{{ form.locality }}" {% endif %} autocomplete="family-name" minlength="2" class="form-control" placeholder="Locality">
-                                <span class="validation_error label--error"></span>
-                            </div>
-
-                            <div class="form-group w-100 mx-3">
-                                <input required type="text" name="zip" id="{{ formId }}-Postal\/Zip Code" {% if form.zip %} value="{{ form.zip }}" {% endif %} autocomplete="family-name" minlength="2" class="form-control col-6 float-left mr-2" placeholder="zip">
-                                <span class="validation_error label--error"></span>
-
-                                <input required type="text" name="city" id="{{ formId }}-City" {% if form.city %} value="{{ form.city }}" {% endif %} autocomplete="family-name" minlength="2" class="form-control col-5 float-right" placeholder="city">
-                                <span class="validation_error label--error"></span>
-                            </div>
-
-                            <div class="form-group w-100 mx-3">
-                                <input required type="text" name="state" id="{{ formId }}-State" {% if form.state %} value="{{ form.state }}" {% endif %} autocomplete="family-name" minlength="2" class="form-control" placeholder="state">
-                                <span class="validation_error label--error"></span>
-                            </div>
-
+                    <div class="registerForm col-lg-6 col-sm-12 float-left">
+                        <div class="form-group">
+                            <label for=""><span class="mandetory">*</span> First Name</label>
+                            <input type="text" name="first_name" id="first_name
+                            " class="form-control" placeholder="">
+                            <span class="validation_error "></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=""><span class="mandetory">*</span> Last Name</label>
+                            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=" "><span class="mandetory">*</span> Email- Id <em>(This will be your UserID)</em> </label>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=" "><span class="mandetory">*</span> Contact No. <em>(Example: 123-456-7890)</em></label>
+                            <input type="text" name="phone" id="phone" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                    </div>
+                    <div class="registerForm col-lg-6 col-sm-12 float-left ">
+                        <div class="form-group">
+                            <label for=" "><span class="mandetory">*</span> How did you hear about us? </label>
+                            <input type="text" name="how_did_you_hear_about_us" id="how_did_you_hear_about_us" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=""><span class="mandetory">*</span> Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=" "><span class="mandetory">*</span> Confirm Password</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                        <div class="form-group mt-5">
+                            <button type="button" class="btn btn-light float-right cancleBtn"><a href="javascript&colon; history.go(-1)">Cancel</a></button>
+                            <button href="#" type="submit" class="btn btn-primary float-right loginBtn mr-4" id="registration"><a href="#">Submit</a></button>
                         </div>
                     </div>
                 </div>
-
-                <div class="registerForm row">
-
-                    <!-- <div class="col-md-4 col-sm-12 float-left px-3">
-                        <label class="col-12 float-left px-0" for="">Designer Verification</label>
-                        <div class="col-md-12 float-left mx-0 commChannel typeUser">
-                            <div class="row mx-0 px-0 pt-2">
-                                <div class="custom-file mb-1">
-                                    <input class="custom-file-input" id="customFile" name="certificate" type="file">
-                                    <span class="validation_error label--error"></span>
-                                    <label class="custom-file-label mb-0" for="customFile">Upload certificate file</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <div class="col-md-8 col-sm-12 mt-md-0 mt-sm-3 mt-3 float-left px-3">
-                        <label class="col-12 float-left px-0" for="">Allowed Communication Channel</label>
-                        <div class="col-md-12 float-left mx-0 commChannel">
-                            <div class="row mx-0 px-0 pt-3">
-                                <p class="col form-check">
-                                    <input class="form-check-input" id="defaultCheck1" name="communication_channel" type="checkbox" value="email">
-                                    <span class="validation_error label--error"></span>
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        email
-                                    </label>
-                                </p>
-                                <p class="col form-check">
-                                    <input class="form-check-input" id="defaultCheck2" name="communication_channel" type="checkbox" value="phone">
-                                    <span class="validation_error label--error"></span>
-                                    <label class="form-check-label" for="defaultCheck2">
-                                        Phone
-                                    </label>
-                                </p>
-                                <p class="col form-check">
-                                    <input class="form-check-input" id="defaultCheck3" name="communication_channel" type="checkbox" value="inperson">
-                                    <span class="validation_error label--error"></span>
-                                    <label class="form-check-label" for="defaultCheck3">
-                                        In Person
-                                    </label>
-                                </p>
-                                <p class="col form-check">
-                                    <input class="form-check-input" id="defaultCheck4" name="communication_channel" type="checkbox" value="whatsapp">
-                                    <label class="form-check-label" for="defaultCheck4">
-                                        WhatsApp
-                                    </label>
-                                </p>
-                                <p class="col form-check">
-                                    <input class="form-check-input" id="defaultCheck5" name="communication_channel" type="checkbox" value="skype">
-                                    <span class="validation_error label--error"></span>
-                                    <label class="form-check-label" for="defaultCheck5">
-                                        Skype
-                                    </label>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="registerForm col-md-12 col-xs-12 float-left px-0 mb-4 mt-4">
-
-                    <button class="btn btn-light float-right cancleBtn" type="button">
-                        <a href="login.html">Cancel</a>
-                    </button>
-                    <button class="btn btn-primary float-right loginBtn mr-4" id="registration" type="submit">Register</button>
-
-                </div>
-
             </div>
         </div>
     </div>
 </form>
-
-{{ 'designer_account.js' |   asset_url | script_tag }}
-{{ 'registration.js' |   asset_url | script_tag }}
+{{ 'designer_account.js' | asset_url | script_tag }} {{ 'customer_registration.js' | asset_url | script_tag }}

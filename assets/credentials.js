@@ -1,2 +1,2 @@
-var ngrokURL = "https://1c12e1c86b85.ngrok.io";
+var ngrokURL = "http://3.6.94.36";
 var shop = "panacchebeta.myshopify.com";

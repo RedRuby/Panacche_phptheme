@@ -1,53 +1,53 @@
 (function($) {
     $(function() {
-        console.log("jquery");
+        console.log("customer registration");
         $verifyUsername = false;
         $verifyEmail = false;
         $verifyPhone = false;
         $verifyZip = false;
 
-        $("input[name='username']").on("change", function(e) {
-            var formData = new FormData();
-            var username = $(this).val();
-            formData.append('username', username);
-            console.log("username changes");
+        /* $("input[name='username']").on("change", function(e) {
+             var formData = new FormData();
+             var username = $(this).val();
+             formData.append('username', username);
+             console.log("username changes");
 
-            var url = ngrokURL + '/api/verify_username';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: formData,
-                dataType: "json",
-                cache: false,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $("input[name='username']").next('span').text('');
-                    $('.ajax-loader').css("visibility", "visible");
-                },
-                success: function(response) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    if (response.status == 200) {
-                        console.log(response.message);
-                        $verifyUsername = true;
-                    } else {
-                        $verifyUsername = false;
-                    }
+             var url = ngrokURL + '/api/verify_username';
+             $.ajax({
+                 type: "POST",
+                 url: url,
+                 data: formData,
+                 dataType: "json",
+                 cache: false,
+                 processData: false,
+                 contentType: false,
+                 beforeSend: function() {
+                     $("input[name='username']").next('span').text('');
+                     $('.ajax-loader').css("visibility", "visible");
+                 },
+                 success: function(response) {
+                     $('.ajax-loader').css("visibility", "hidden");
+                     if (response.status == 200) {
+                         console.log(response.message);
+                         $verifyUsername = true;
+                     } else {
+                         $verifyUsername = false;
+                     }
 
-                },
-                error: function(xhr, status, error) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    $verifyUsername = false;
+                 },
+                 error: function(xhr, status, error) {
+                     $('.ajax-loader').css("visibility", "hidden");
+                     $verifyUsername = false;
 
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
-                        });
-                    }
-                }
-            });
-        });
+                     if (xhr.responseJSON.errors) {
+                         $.each(xhr.responseJSON.errors, function(key, item) {
+                             console.log("error", key);
+                             $("input[name=" + key + "]").next("span").text(item);
+                         });
+                     }
+                 }
+             });
+         }); */
 
 
         $("input[name='email']").on("change", function(e) {
@@ -134,7 +134,7 @@
         });
 
 
-        $("input[name='zip']").on("change", function(e) {
+        /*$("input[name='zip']").on("change", function(e) {
             var formData = new FormData();
             var zip = $(this).val();
             formData.append('zip', zip);
@@ -170,14 +170,16 @@
                     }
                 }
             });
-        });
+        }); */
 
 
         $("#registration").on("click", function(e) {
             e.preventDefault();
 
+            console.log("registration click");
+
             var formData = new FormData($("#RegisterForm")[0]);
-            var url = ngrokURL + "/api/customer";
+            var url = ngrokURL + "/api/customer/registration";
 
             $.ajax({
                 type: "POST",
@@ -189,6 +191,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $("input.form-control").removeClass('error');
                     $('.ajax-loader').css("visibility", "visible");
                 },
                 success: function(response) {
@@ -224,24 +227,113 @@
                         $.each(xhr.responseJSON.errors, function(key, item) {
                             console.log("error", key);
                             $("input[name=" + key + "]").next("span").text(item);
+                            $("input[name=" + key + "]").addClass('error');
                         });
                     }
                 }
             });
         });
 
-        $("input[name=profile_pic]").on("change", function(e) {
+        $("input[name=display_picture]").on("change", function(e) {
             console.log("pic change");
             var file = e.target.files[0];
             if (file) {
                 var reader = new FileReader();
 
                 reader.onload = function() {
-                    $("#profile_pic_output").attr("src", reader.result);
+                    $(".addUserPic").css("background-image", 'url(' + reader.result + ')');
                 }
 
                 reader.readAsDataURL(file);
             }
-        })
+        });
+
+        $('#first_name').blur(function() {
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('The first name field is required.');
+            } else {
+                $(this).removeClass('error');
+                $(this).next('span').text('');
+
+            }
+        });
+
+        $('#last_name').blur(function() {
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('The last name field is required.');
+
+            } else {
+                $(this).removeClass('error');
+                $(this).next('span').text('');
+
+            }
+        });
+
+
+        $('#email').blur(function() {
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('The email field is required.');
+            } else {
+                $(this).removeClass('error');
+                $(this).next('span').text('');
+
+            }
+        });
+
+        $('#phone').blur(function() {
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('The phone field is required.');
+            } else {
+                $(this).removeClass('error');
+                $(this).next('span').text('');
+            }
+        });
+
+        $('#password').blur(function() {
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('The password field is required.');
+
+            } else {
+                $(this).removeClass('error');
+                $(this).next('span').text('');
+            }
+        });
+
+        $('#confirm_password').blur(function() {
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('The confirm password field is required.');
+            } else {
+                $(this).removeClass('error');
+                $(this).next('span').text('');
+            }
+        });
+
+        $('#how_did_you_hear_about_us').blur(function() {
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('The how did you hear about us field is required.');
+            } else {
+                $(this).removeClass('error');
+                $(this).next('span').text('');
+
+            }
+        });
+
+
+
     });
+
 })(jQuery);

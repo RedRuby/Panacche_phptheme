@@ -1,11 +1,11 @@
- {%- assign formId = 'RegisterForm' -%}
+<!-- {%- assign formId = 'RegisterForm' -%}
 <form method="post" action="/account" id="RegisterForm" accept-charset="UTF-8" enctype="multipart/form-data">
     <input type="hidden" name="form_type" value="create_customer">
     <input type="hidden" name="utf8" value="✓"> {% include 'form-status', form: form, form_id: formId %}
     <input name="tag" type="hidden" value="role:designer" />
-    <input name="shop" type="hidden" value="panacchebeta.myshopify.com" />
+    <input name="shop" type="hidden" value="panacchebeta.myshopify.com" /> -->
 
-    <div class="container h-100">
+<!-- <div class="container h-100">
         <div class="row align-items-center h-100">
             <div class="loginWrapper col-md-12 col-sm-12 col-xs-12 mt-4 mx-auto">
                 <div class="logo col-12 float-left mb-4 px-0"><img src="{{ 'panacche_logo.jpg' | asset_url }}"></div>
@@ -226,7 +226,138 @@
 
             </div>
         </div>
+    </div> -->
+<!-- </form> -->
+
+<form method="post" action="/account" id="RegisterForm" accept-charset="UTF-8" enctype="multipart/form-data">
+    <input type="hidden" name="form_type" value="create_customer">
+    <input type="hidden" name="utf8" value="✓"> {% include 'form-status', form: form, form_id: formId %}
+    <input name="tag" type="hidden" value="role:designer" />
+    <input name="shop" type="hidden" value="panacchebeta.myshopify.com" />
+    <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="loginWrapper col-md-12 col-sm-12 col-xs-12 mt-4 mx-auto">
+                <div class="logo col-12 float-left mb-4 px-0">
+                    <div class="galleryBack"><a href="javascript&colon; history.go(-1)"><span><i class="fas fa-arrow-left"></i></span></a></div>
+                    <img class="ml-4" src="{{ 'panacche_logo.jpg' | asset_url }}">
+                </div>
+                <form>
+                    <div class="row mb-4">
+
+                        <div class="registerForm col-lg-4 col-sm-12 float-left">
+                            <div class="form-group landingHeading">
+                                <h4 for="">Create Designer Account</h4>
+                                <div class="col-12 float-left px-0">
+                                    <p class="addUserPic mx-auto mt-1 mb-1">
+                                        <span class="addPicIcon"><i class="fas fa-plus-circle"></i></span>
+                                        <input type="file" class="custom-file-input" id="customFile" name="display_picture">
+                                        <label class="custom-file-label mb-0" for="customFile"></label>
+                                    </p>
+                                    <p class="text-center font14 mb-1">
+                                        Add Display Picture
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> First Name</label>
+                                <input type="text" name="first_name" id="first_name" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Last Name</label>
+                                <input type="text" name="last_name" id="last_name" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Bio (Short description about yourself)</label>
+                                <textarea class="form-control" id="bio" name="bio" rows="3"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">A quote/ message for your clients</label>
+                                <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
+                        </div>
+                        <div class="registerForm col-lg-4 col-sm-12 float-left">
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Email- Id <em>(This will be your UserID)</em> </label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Password</label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Confirm Password</label>
+                                <input type="text" name="confirm_password" id="confirm_password" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Contact No. <em>(Example: 123-456-7890)</em></label>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Business Name</label>
+                                <input type="text" name="business_name" id="business_name" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Business Address</label>
+                                <textarea class="form-control" id="business_address" name="business_address" rows="4"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
+                        </div>
+                        <div class="registerForm col-lg-4 col-sm-12 float-left">
+                            <div class="form-group">
+                                <label for="">Website URL <em>(Example: https://www.mywebsite.com)</em> </label>
+                                <input type="text" name="website_url" id="website_url" class="form-control" placeholder="Street Name">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group landingHeading">
+                                <h4 class="defaultColor" for="">Designer Verification</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Upload Resume</label>
+                                <div class="dragDropBox py-2">
+                                    <div class="col-12 float-left px-0">
+                                        <p class="custom-file mt-3 mb-3">
+                                            <input type="file" class="custom-file-input" id="resume" name="resume">
+                                            <span class="validation_error"></span>
+                                            <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                        </p>
+                                    </div>
+                                    <p class="text-center mb-2">Upload / drop files here <span>Browse Files</span></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Upload Portfolio</label>
+                                <div class="dragDropBox py-2">
+                                    <div class="col-12 float-left px-0">
+                                        <p class="custom-file mt-3 mb-3">
+                                            <input type="file" class="custom-file-input" id="portfolio" name="portfolio">
+                                            <span class="validation_error"></span>
+                                            <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                        </p>
+                                    </div>
+                                    <p class="text-center mb-2">Upload / drop files here <span>Browse Files</span></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-light float-right cancleBtn"><a href="javascript&colon; history.go(-1)">Cancel</a></button>
+                                <button type="submit" class="btn btn-primary float-right loginBtn mr-4" id="registration"><a href="landing_page.html">Submit</a></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </form>
-
-{{ 'designer_account.js' | asset_url | script_tag }} {{ 'registration.js' | asset_url | script_tag }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
+<input type='text' id='textbox' /> {{ 'designer_account.js' | asset_url | script_tag }} {{ 'designer_registration.js' | asset_url | script_tag }}
