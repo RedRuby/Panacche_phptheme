@@ -1,5 +1,4 @@
-{% assign ngrok_url = 'http://3.6.94.36' %} {% include 'search-drawer' %}
-
+{% assign ngrok_url = 'https://4c55bb2b5542.ngrok.io' %} {% include 'search-drawer' %}
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
@@ -19,10 +18,19 @@
                     <a class="nav-link" href="{{ shop.url }}/pages/gallery">Gallery</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#">Our Designers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blogs</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">Our Mission</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">FAQ</a>
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
@@ -84,7 +92,7 @@
                     {% else %}
 
                     <li class="nav-item registerLink">
-                        <a class="nav-link" href="/account">Register</a>
+                        <a class="nav-link" href="/account">Sign Up</a>
                     </li>
                     {% endif %} {% endif %}
 
@@ -93,10 +101,6 @@
             </div>
         </div>
     </nav>
-
-    <div id="ajax-loader">
-        <img src="{{ 'ajax-loader.gif' | asset_url }}">
-    </div>
 
     {% if section.settings.align_logo == 'center' %}
     <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">

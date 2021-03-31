@@ -6,7 +6,7 @@
         $verifyPhone = false;
         $verifyZip = false;
 
-        $("input[name='username']").on("change", function(e) {
+        /*$("input[name='username']").on("change", function(e) {
             var formData = new FormData();
             var username = $(this).val();
             formData.append('username', username);
@@ -49,7 +49,7 @@
             });
         });
 
-
+*/
         $("input[name='email']").on("change", function(e) {
             var formData = new FormData();
             var email = $(this).val();
@@ -123,18 +123,35 @@
                 error: function(xhr, status, error) {
                     $('.ajax-loader').css("visibility", "hidden");
                     $verifyPhone = false;
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
+                    if (xhr.responseText != "") {
+
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $("input[name=" + key + "]").next("span").text(item);
+                                    $("input[name=" + key + "]").addClass('error');
+                                });
+                            }
                         });
+
+                        //   alert(message);
                     }
+                    // if (xhr.responseJSON.errors) {
+                    //     $.each(xhr.responseJSON.errors, function(key, item) {
+                    //         console.log("error", key);
+                    //         $("input[name=" + key + "]").next("span").text(item);
+                    //     });
+                    // }
                 }
             });
         });
 
 
-        $("input[name='zip']").on("change", function(e) {
+        /*   $("input[name='zip']").on("change", function(e) {
             var formData = new FormData();
             var zip = $(this).val();
             formData.append('zip', zip);
@@ -172,12 +189,14 @@
             });
         });
 
-
+*/
         $("#registration").on("click", function(e) {
             e.preventDefault();
 
+            console.log("designer registration");
+
             var formData = new FormData($("#RegisterForm")[0]);
-            var url = ngrokURL + "/api/customer";
+            var url = ngrokURL + "/api/designer";
 
             $.ajax({
                 type: "POST",
@@ -190,42 +209,62 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $("input.form-control").removeClass('error');
-                    $('.ajax-loader').css("visibility", "visible");
+                    $(".container").addClass('hide');
+                    $(".spinner-border").removeClass('hide');
+                    $('.alert-danger').addClass('hide');
+                    $('.alert-success').addClass('hide');
                 },
                 success: function(response) {
-                    $('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
-
+                    $(".container").removeClass('hide');
+                    $(".spinner-border").addClass('hide');
                     $("#result").empty().append(response);
                     if (response.status == 201) {
                         console.log(response.message);
-                        $('.toast-header').text("Success");
-                        $('.toast-body').text(response.message)
-                        $('.toast').removeClass('hide');
-                        $('.toast').addClass('show');
+                        $('.alert-success').removeClass('hide');
+                        $('.alert-success .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: $(".alert-success").offset().top
+                        }, 2000);
+                        setTimeout(
+                            function() {
+                                window.location.href = "/account";
+                            }, 5000);
                     } else {
-                        $('.toast-header').text("Error");
-                        $('.toast-body').text(response.message)
-                        $('.toast').removeClass('hide');
-                        $('.toast').addClass('show');
+                        $('.alert-danger').removeClass('hide');
+                        $('.alert-danger .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: $(".alert-danger").offset().top
+                        }, 2000);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.log('xhr', xhr)
-                    console.log('error', xhr.responseJSON.message);
-                    console.log('error', error);
-                    console.log('status', status);
-                    $('.ajax-loader').css("visibility", "hidden");
-                    $('.toast-header').text("Error");
-                    $('.toast-body').text(JSON.stringify(xhr.responseJSON.errors))
-                    $('.toast').removeClass('hide');
-                    $('.toast').addClass('show');
+                    $(".spinner-border").addClass('hide');
+                    $(".container").removeClass('hide');
+                    if (xhr.responseText != "") {
 
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
-                            $("input[name=" + key + "]").addClass('error');
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $('.alert-danger').removeClass('hide');
+                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
+                                    $('html, body').animate({
+                                        scrollTop: $(".alert-danger").offset().top
+                                    }, 2000);
+
+                                    if (key == 'resume' || key == 'portfolio') {
+                                        $("input[name=" + key + "]").closest('.form-group').find('.validation_error').text(item);
+                                    }
+                                    $("input[name=" + key + "]").next("span").text(item);
+                                    $("input[name=" + key + "]").addClass('error');
+
+
+                                });
+                            }
                         });
                     }
                 }
@@ -294,14 +333,10 @@
         });
 
         $('#phone').keypress(function() {
-
-
-
-
             var val = $(this).val();
             if (val == "") {
                 $(this).addClass('error');
-                $(this).next('span').text('The phone field is required.');
+                $(this).next('span').text('Contact number field is required.');
             } else {
                 var phoneRegex = /^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
 
@@ -310,6 +345,8 @@
                         val.replace(phoneRegex, "($1) $2-$3");
                     $(this).val(formattedPhoneNumber);
                 } else {
+                    //$(this).addClass('error');
+                    //$(this).next('span').text('Contact number must be valid.');
                     // Invalid phone number
                 }
 
@@ -318,11 +355,32 @@
             }
         });
 
+        $('#phone').blur(function() {
+            var phoneRegex = /^(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([0-9]{3})\s*\)|([0-9]{3}))\s*(?:[.-]\s*)?([0-9]{3})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('password field is required.');
+
+            } else {
+                if (phoneRegex.test(val)) {
+                    $(this).removeClass('error');
+                    $(this).next('span').text('');
+                } else {
+                    $(this).addClass('error');
+                    $(this).next('span').text('Contact number format is invalid');
+                }
+
+            }
+        });
+
+
         $('#password').blur(function() {
             var val = $(this).val();
             if (val == "") {
                 $(this).addClass('error');
-                $(this).next('span').text('The password field is required.');
+                $(this).next('span').text('password field is required.');
 
             } else {
                 $(this).removeClass('error');
@@ -334,11 +392,41 @@
             var val = $(this).val();
             if (val == "") {
                 $(this).addClass('error');
-                $(this).next('span').text('The confirm password field is required.');
+                $(this).next('span').text('confirm password field is required.');
             } else {
                 $(this).removeClass('error');
                 $(this).next('span').text('');
             }
+        });
+
+        $('#website_url').blur(function() {
+            var val = $(this).val();
+            var urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+
+            if (val == "") {
+                //$(this).addClass('error');
+                //$(this).next('span').text('The confirm password field is required.');
+            } else {
+                if (urlRegex.test(val)) {
+                    $(this).removeClass('error');
+                    $(this).next('span').text('');
+                } else {
+                    $(this).addClass('error');
+                    $(this).next('span').text('The website url field format is invalid');
+                }
+            }
+        });
+
+        $('#resume').change(function() {
+            //var i = $(this).prev('label').clone();
+            var file = $('#resume')[0].files[0].name;
+            $(".resume-file-name").text(file);
+        });
+
+        $('#portfolio').change(function() {
+            //var i = $(this).prev('label').clone();
+            var file = $('#portfolio')[0].files[0].name;
+            $(".portfolio-file-name").text(file);
         });
 
     });

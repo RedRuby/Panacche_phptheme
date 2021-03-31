@@ -30,6 +30,10 @@ label em {
     color: #707070 !important;
 }
 
+.defaultBlueColor {
+    background: #5462BD !important;
+}
+
 .mandetory {
     color: red;
 }
@@ -54,33 +58,6 @@ label em {
     width: 100%;
     -webkit-overflow-scrolling: touch;
     ;
-}
-
-.landingPageWrap .toast {
-    max-width: auto !important;
-}
-
-.ajax-loader {
-    visibility: hidden;
-    background-color: rgba(255, 255, 255, 0.7);
-    position: absolute;
-    z-index: +100 !important;
-    width: 100%;
-    height: 100%;
-}
-
-.ajax-loader img {
-    position: relative;
-    top: 50%;
-    left: 50%;
-}
-
-span.validation_error {
-    color: #651818;
-}
-
-input.form-control.error {
-    border: 1px solid #d20000 !important;
 }
 
 
@@ -405,6 +382,14 @@ Side Nav
     color: #ffffff;
 }
 
+.leftSideNav .drawer-menu .drawer-menu-item a svg {
+    fill: #D2D6ED;
+}
+
+.leftSideNav .drawer-menu .drawer-menu-item a svg:hover {
+    fill: #ffffff;
+}
+
 
 /*------------------------
 Top Navbar
@@ -529,10 +514,43 @@ Top Navbar
     font-size: 22px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1080px) {
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 1rem;
         padding-left: 1rem;
+    }
+}
+
+@media (max-width: 1080px) {
+    .navMenus {
+        font-size: 14px;
+    }
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+        position: absolute;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 0.7rem;
+        padding-left: 0.7rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .navMenus {
+        display: none;
+    }
+    .navbar-nav {
+        -ms-flex-direction: initial;
+        flex-direction: initial;
+    }
+    .navbar {
+        display: block;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: .5rem 1rem;
     }
 }
 
@@ -1642,6 +1660,122 @@ Gallery Page Css
 Admin Dashboard CSS
 --------------------------------*/
 
+.newArrivalCard .card,
+.todaysSaleCard .card {
+    background: none;
+    border: none;
+    border-radius: 0px;
+}
+
+.newArrivalCard .card a,
+.todaysSaleCard .card a {
+    text-decoration: none;
+    color: #5462BD;
+}
+
+.newArrivalCard .card .card-body {
+    background: #ffffff;
+    border: 1px solid #5462BD;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.newArrivalCard .card .card-body:hover {
+    background: #2DBAB6;
+    color: #ffffff;
+    border: 1px solid #2DBAB6;
+}
+
+.newArrivalCard .card .card-title,
+.todaysSaleCard .card .card-title {
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.newArrivalCard .card .card-title em {
+    font-size: 9px;
+    line-height: 10px;
+    font-weight: normal;
+}
+
+.newArrivalCard .card .card-body div:nth-child(2) {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.todaysSaleCard .card .card-body {
+    text-decoration: none;
+    color: #5462BD;
+    background: #ffffff;
+    border: 1px solid #5462BD;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.todaysSaleCard .card .card-body:hover {
+    background: #2DBAB6;
+    color: #ffffff;
+    border: 1px solid #2DBAB6;
+}
+
+.totalFiguresCard .card {
+    background: none;
+    border: none;
+    border-radius: 0px;
+}
+
+.totalFiguresCard .card a {
+    color: #5462BD;
+}
+
+.totalFiguresCard .card .card-body {
+    background: #ffffff;
+    border: 1px solid #5462BD;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.totalFiguresCard .card .card-body:hover {
+    background: #2DBAB6;
+    color: #ffffff;
+    border: 1px solid #2DBAB6;
+}
+
+.totalFiguresCard .card .card-title span {
+    width: 100%;
+    float: left;
+}
+
+.totalFiguresCard .card .card-title span:nth-child(1) {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.totalFiguresCard .card .card-title span:nth-child(2) {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.todaysSaleCard .card .card-body div:nth-child(2) {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.todaysSaleHead p:nth-child(1) {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.todaysSaleHead p:nth-child(2) em {
+    font-size: 14px !important;
+    font-weight: normal;
+}
+
+.dashboardGraph .card {
+    background: #5462BD;
+    min-height: 300px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+}
+
 
 /*---------- Designers Approve Cards Css -----------*/
 
@@ -1683,14 +1817,13 @@ Admin Dashboard CSS
 }
 
 .designersApproveCards .card .author-info p:nth-child(1) {
-    font-size: 1.5rem;
+    font-size: 16px;
     font-weight: bold;
-    color: #5462BD;
+    color: #707070;
     line-height: 24px;
 }
 
 .designersApproveCards .card .author-info p:nth-child(2) {
-    font-weight: bold;
     color: #A0A0A0;
     font-size: 12px;
 }
@@ -1718,6 +1851,102 @@ Admin Dashboard CSS
 .designersApproveCards .card .author-info p:nth-child(5) button:hover {
     background: #2DBAB6;
     border-color: #2DBAB6;
+}
+
+
+/*------------------------
+Show All Designs
+-------------------------*/
+
+.showAllContent .fa-search {
+    position: absolute;
+    left: 30px;
+    top: 11px;
+    z-index: 1;
+    color: #707070;
+}
+
+.showAllContent .searchInput {
+    border-radius: 6px;
+    line-height: 0px;
+}
+
+.showAllTabs .nav-item .active {
+    color: #5462BD;
+    border-color: transparent;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.showAllContent .showallTable {
+    background: #ffffff;
+    min-height: 500px;
+    border-radius: 6px;
+    box-shadow: 0px 4px 5px rgb(0 0 0 / 5%);
+}
+
+.showAllContent .landingTable {
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+.showAllContent .landingTable tbody tr {
+    background: rgba(45, 186, 182, 0.13);
+}
+
+.showAllContent .landingTable tbody tr td,
+.showAllContent .landingTable thead tr th,
+.showAllContent .landingTable {
+    border: none;
+}
+
+.showAllContent .landingTable tbody tr td {
+    padding: 1rem 1rem;
+}
+
+.showAllContent .landingTable thead tr th {
+    padding: 0.3rem 1rem 1rem 1em;
+}
+
+.showAllContent .tableHeaderBorder {
+    position: absolute;
+    top: 0;
+    height: 20px;
+    z-index: 11;
+    background: #5462BD;
+}
+
+
+/*--------------------------------
+New Designer Page CSS
+--------------------------------*/
+
+.newDesignerProfile p {
+    width: 200px;
+    height: 200px;
+    border: 3px solid #5462BD;
+    border-radius: 50%;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 2px 9px 0px #dfdfdf;
+    background-position: center;
+    background-size: cover;
+}
+
+.newDesignerdownlaodDoc {
+    background: #ffffff;
+    border-radius: 6px;
+}
+
+.submitedText {
+    background: #ffffff;
+    border: 1px solid #E2E8EE;
+    border-radius: 6px;
+}
+
+.businessAddress {
+    min-height: 125px;
 }
 
 

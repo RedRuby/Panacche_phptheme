@@ -1,4 +1,10 @@
+# development:
+#   password: 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
+#   theme_id: "117985968314"
+#   store: panacchebeta.myshopify.com
+
+
 development:
-  password: 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
-  theme_id: "117985968314"
-  store: panacchebeta.myshopify.com
+  password: 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
+  theme_id: "121360253125"
+  store: panaccheuat.myshopify.com

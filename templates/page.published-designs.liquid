@@ -9,17 +9,24 @@
             </div>
 
             <div class="leftPart col-md-12 col-xs-12 float-left pl-3 pr-0 mt-2">
+                <div class="row px-3 mt-2 mb-0 mb-md-3">
+                    <div class="col-12 px-0 landingHeading">
+                        <h4 class="mb-4">
+                            <span>In Progress Design</span>
+                        </h4>
+                    </div>
 
+                    <div class="col-12 px-0 mb-4">
+                        <div class="row px-0 designCards">
 
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </div>
     </div>
 </div>
-<div class="text-center">
-    <div class="spinner-border hide text-primary" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
 
-{{ 'view-designers-profile.js' | asset_url | script_tag }}
+{{ 'designer_published_designs.js' | asset_url | script_tag }}

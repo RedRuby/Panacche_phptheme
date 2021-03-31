@@ -94,8 +94,8 @@
             success: function(response) {
                 console.log("hello");
                 console.log(response);
-                $(".dataCards").empty();
-                $(".dataCards").append(response);
+                $(".newArrivalCard").empty();
+                $(".newArrivalCard").append(response);
             },
             error: function(xhr, status, error) {
                 console.log("error");
@@ -248,9 +248,4 @@
         });
 
     });
-
-
-
-
-
 })(jQuery);

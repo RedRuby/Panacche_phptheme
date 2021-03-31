@@ -904,7 +904,7 @@ body .copy_right_clovecode {
 
 body.template-customers-login main#MainContent,
 body.template-customers-register main#MainContent {
-    padding: 0px 0;
+    padding: 50px 0;
 }
 
 .grid-view-item__image-wrapper {

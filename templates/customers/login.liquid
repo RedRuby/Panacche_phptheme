@@ -1,55 +1,61 @@
-<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
-{{ 'style.css' |   asset_url | stylesheet_tag }}
-
-{%- assign collection_handle = request.path | split: '/' | last -%}
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet"> {{ 'style.css' | asset_url | stylesheet_tag }} {%- assign collection_handle = request.path | split: '/' | last -%}
 <div class="container h-100">
     <div class="row align-items-center h-100">
         <div class="loginWrapper col-xl-6 col-md-7 col-sm-12 col-xs-12 mx-auto">
             <div class="logo text-center col-12 float-left mb-4"><img src="{{ 'panacche_logo.jpg' | asset_url }}"></div>
             <div class="loginform col-12 float-left px-5 pt-5 pb-4">
 
-                
+
                 {% form 'customer_login', novalidate: 'novalidate' %}
 
-                    <input name="form_type" type="hidden" value="customer_login">
-                    <input name="utf8" type="hidden" value="✓">
-                    <input type="hidden" name="return_to" value="{{ shop.url }}">
+                <input name="form_type" type="hidden" value="customer_login">
+                <input name="utf8" type="hidden" value="✓">
+                <input type="hidden" name="return_to" value="{{ shop.url }}"> {%- if form.errors -%}
+                <div class="form-message form-message--error">
+                    <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+                    {{ form.errors | default_errors }}
+                </div>
+                {%- endif -%}
 
-                    {%- if form.errors -%}
-                        <div class="form-message form-message--error">
-                        <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
-                        {{ form.errors | default_errors }}
-                        </div>
-                    {%- endif -%}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" autocorrect="off" autocapitalize="off" {%- if form.errors contains 'form' -%} aria-invalid="true" {%- endif -%} class="form-control userName pl-5 {%- if form.errors contains 'form' -%}input--error  {%- endif -%}"
+                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required>
+                    <i class="fa fa-user-circle"></i>
+                </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Username</label>
-                        <input type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" autocorrect="off" autocapitalize="off" {%- if form.errors contains 'form' -%} aria-invalid="true" {%- endif -%} class="form-control userName pl-5 {%- if form.errors contains 'form' -%}input--error  {%- endif -%}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required>
-                        <i class="fa fa-user-circle"></i>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <span class="float-right">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <span class="float-right">
                             <a href="#">Forgot password?</a>
                         </span>
-                        <input type="password" class="form-control passWord pl-5" id="exampleInputPassword1" placeholder="" type="password" value="" name="customer[password]" id="CustomerPassword" {%- if form.errors contains 'form' -%} class="input--error" aria-invalid="true" {%- endif -%} required>
-                        <i class="fa fa-lock"></i>
+                    <input type="password" class="form-control passWord pl-5" id="exampleInputPassword1" placeholder="" type="password" value="" name="customer[password]" id="CustomerPassword" {%- if form.errors contains 'form' -%} class="input--error" aria-invalid="true"
+                        {%- endif -%} required>
+                    <i class="fa fa-lock"></i>
+                </div>
+
+                <button class="btn btn-primary float-right loginBtn" type="submit">Login</button> {% endform %}
+            </div>
+            <div class="col-12 mt-3 float-left px-0">
+                <div class="col-10 float-left pl-0">
+                    <div class="mr-2 float-left font14 mt-2">Don't have an account?</div>
+                    <div class="form-group loginSignupSelect float-left">
+                        <select class="custom-select font14" name="signup_option" id="signup_option">
+                            <option selected="">Sign Up</option>
+                            <option value="customer_account">Create Customer Account</option>
+                            <option value="designer_account">Create Designer Account</option>
+                        </select>
                     </div>
-
-                    <button class="btn btn-primary float-right loginBtn" type="submit">Login</button>
-
-                {% endform %}
+                </div>
+                <div class="col-2 float-left text-right pr-0 font14 pt-1">
+                    <a href="#">Cancel</a>
+                </div>
             </div>
-            <div class="col-12 mt-4 float-left text-center">
-                <span class="mr-2">Don't have an account?</span>
-                <a href="#">Sign Up</a>
-            </div>
-            <div class="col-12 mt-4 float-left text-center justify-content-between">
+            <!-- <div class="col-12 mt-4 float-left text-center justify-content-between">
                 <a href="/account/register?view=designer">Designer</a>
                 <a class="px-5" href="/account/register">Customer</a>
                 <a href="#">Central Admin</a>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -58,3 +64,16 @@
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#signup_option").on("change", function() {
+            var val = $(this).find(":selected").val();
+            console.log("value is: ", val);
+            if (val == 'customer_account') {
+                window.location.href = '/account/register';
+            } else if (val == "designer_account") {
+                window.location.href = '/account/register?view=designer';
+            }
+        })
+    })
+</script>

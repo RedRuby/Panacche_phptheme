@@ -14,6 +14,10 @@ hr {
     margin-right: 0rem;
 }
 
+label em {
+    color: #C3C0C0;
+}
+
 .font14 {
     font-size: 14px;
 }
@@ -22,29 +26,38 @@ hr {
     border-radius: 6px;
 }
 
+.defaultColor {
+    color: #707070 !important;
+}
+
+.mandetory {
+    color: red;
+}
+
+.cancleBtn {
+    width: 115px;
+    background: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #E2E8EE;
+    color: #5462BD;
+}
+
+.cancleBtn:hover {
+    background: #2DBAB6;
+    border: 1px solid #2DBAB6;
+    color: #ffffff;
+}
+
+.responsiveTableWrap {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    ;
+}
+
 .landingPageWrap .toast {
     max-width: auto !important;
-}
-
-
-/* .modal-backdrop {
-     bug fix - no overlay 
-    display: none;
-} */
-
-.ajax-loader {
-    visibility: hidden;
-    background-color: rgba(255, 255, 255, 0.7);
-    position: absolute;
-    z-index: +100 !important;
-    width: 100%;
-    height: 100%;
-}
-
-.ajax-loader img {
-    position: relative;
-    top: 50%;
-    left: 50%;
 }
 
 
@@ -128,6 +141,7 @@ input::placeholder {
     border-radius: 6px;
     border: 1px solid #5462BD;
     color: #5462BD;
+    position: relative;
 }
 
 .cancelBtn:hover {
@@ -156,19 +170,54 @@ input::placeholder {
     color: #5462BD;
 }
 
+.loginSignupSelect .custom-select {
+    display: inline-block;
+    width: auto;
+    padding: 0 1.75rem 0 .75rem;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #0089FF;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat, repeat;
+    /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+    background-position: right .7em top 50%, 0 0;
+    /* icon size, then gradient */
+    background-size: .65em auto, 100%;
+    border: 1px solid #E2E8EE !important;
+    cursor: pointer;
+}
+
+.loginSignupSelect .custom-select:after {
+    position: absolute;
+    content: "+" !important;
+    top: 0px;
+    right: 0px;
+    line-height: 2;
+    padding: 0;
+    color: #A0A0A0;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    height: 45px;
+    cursor: pointer;
+}
+
 .fa-user-circle,
 .fa-lock {
     position: absolute;
-    left: 62px;
+    left: 20px;
     color: #A0A0A0;
 }
 
 .fa-user-circle {
-    bottom: 174px;
+    bottom: 11px;
 }
 
 .fa-lock {
-    bottom: 89px;
+    bottom: 11px;
 }
 
 
@@ -182,82 +231,6 @@ Register Screen
 
 .registerForm .form-check .form-check-input {
     cursor: pointer;
-}
-
-.userPictureBox {
-    width: 38px;
-    height: 38px;
-    float: left;
-    border-radius: 6px;
-}
-
-.userPictureBox .userPic {
-    width: 38px;
-    height: 38px;
-    border-radius: 6px;
-    background: #828282;
-    float: left;
-    overflow: hidden;
-}
-
-.userPictureBox .userPic img {
-    width: 100%;
-}
-
-.uploadUserPic {
-    height: 38px;
-    background: #5462BD;
-    border-radius: 6px;
-    font-size: 14px;
-}
-
-.uploadUserPic:hover {
-    background: #2DBAB6;
-    border: 1px solid #2DBAB6;
-}
-
-.removeUserPic {
-    width: 14px;
-    height: 14px;
-    background: #FF0000;
-    position: absolute;
-    border-radius: 50%;
-    color: #ffffff;
-    text-align: center;
-    line-height: 11px;
-    font-weight: bold;
-    left: 30px;
-    cursor: pointer;
-}
-
-.commChannel {
-    background: #F6F6F6;
-    min-height: 38px;
-    border-radius: 6px;
-    line-height: 19px;
-}
-
-.typeUserClose {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    top: 0;
-    cursor: pointer;
-    color: #A0A0A0;
-}
-
-.cancleBtn {
-    width: 115px;
-    background: #ffffff;
-    border-radius: 6px;
-    border: 1px solid #E2E8EE;
-    color: #5462BD;
-}
-
-.cancleBtn:hover {
-    background: #2DBAB6;
-    border: 1px solid #2DBAB6;
-    color: #ffffff;
 }
 
 .custom-file-input {
@@ -314,6 +287,74 @@ Register Screen
     width: 100%;
     text-align: center;
     height: 3em;
+}
+
+.addUserPic {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #C3C0C0;
+    border-radius: 50%;
+    cursor: pointer;
+    background: #C3C0C0;
+    background-position: center;
+    background-size: contain;
+}
+
+.addUserPic .custom-file-label {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: 100px;
+    padding: .375rem .75rem;
+    overflow: hidden;
+    font-weight: 400;
+    line-height: 4;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 12px !important;
+    color: #C3C3C3;
+    cursor: pointer;
+    border: 0px;
+}
+
+.addUserPic .custom-file-label::after {
+    position: absolute;
+    content: "" !important;
+    top: 0px;
+    right: 0px;
+    line-height: 2;
+    padding: 0;
+    color: #A0A0A0;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+    cursor: pointer;
+}
+
+.addUserPic .custom-file-input {
+    border: 0px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.addPicIcon {
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    color: #5462BD;
+    font-size: 25px;
 }
 
 
@@ -465,6 +506,13 @@ Top Navbar
     font-size: 22px;
 }
 
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+}
+
 
 /*------------------------
 Langing Page Screen
@@ -487,6 +535,22 @@ Langing Page Screen
 
 .designOptions .card .card-title {
     color: #5462BD;
+}
+
+.designOptions .cardActive {
+    background: #5462BD;
+    border: 1px solid #5462BD !important;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.designOptions .cardActive .card-title a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.designOptions .cardActive:hover {
+    background: #2DBAB6;
+    border: 1px solid #2DBAB6 !important;
 }
 
 
@@ -685,12 +749,66 @@ Create New Design Page Screen
     color: #CB0000;
     font-size: 25px;
     cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.viewRemarkdrop {
+    top: 45px !important;
+    left: 0px !important;
+    width: 340px;
+    background: #5462BD;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+    box-shadow: 0px 0px 20px 0px #dfdfdf;
 }
 
 .selectDropdown,
 .textarea {
     border: 1px solid #E2E8EE;
     color: #707070;
+}
+
+
+/*---------- Steps Css -----------*/
+
+.stepsWrap .stepsCount {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.stepsWrap .stepsName span:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    float: left;
+    border: 1px solid #707070;
+    border-radius: 50%;
+    background: #ffffff;
+    margin-top: 3px;
+}
+
+.stepsWrap .stepsName .greenActive {
+    border: 1px solid #00B41C !important;
+    background: #00B41C !important;
+}
+
+.stepsWrap .stepsName .greenActiveText {
+    color: #00B41C;
+}
+
+.stepsWrap .stepLine {
+    border-top: 1px solid #707070;
+}
+
+.stepsWrap .stepArrow {
+    position: absolute;
+    color: #707070;
+    top: 9px;
+    left: 50%;
+    font-size: 20px;
 }
 
 
@@ -958,7 +1076,7 @@ Create New Design Page Screen
 
 .colorPaintTable {
     border-collapse: separate;
-    border-spacing: 0 16px;
+    border-spacing: 0 12px;
 }
 
 .colorPaintTable thead tr th {
@@ -1273,6 +1391,66 @@ Create New Design Page Screen
 }
 
 
+/*--------------------------------
+Create New Design Page View Mode
+--------------------------------*/
+
+.remarkAdddrop {
+    top: -8px !important;
+}
+
+.createNewFormView label,
+.colorPaintTableView thead tr th {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.colorPaintTableView {
+    border-collapse: separate;
+    border-spacing: 0px 0px !important;
+}
+
+.colorPaintTableView tbody tr {
+    background: #ffffff;
+}
+
+.approveBtn {
+    background: #00B41C;
+    border: 1px solid #00B41C;
+}
+
+.rejectBtn {
+    background: #CB0000;
+    border: 1px solid #CB0000;
+}
+
+.brownColor {
+    background: #81082C;
+}
+
+.approveBtn:hover,
+.rejectBtn:hover {
+    background: #2DBAB6;
+    border: 1px solid #2DBAB6;
+}
+
+.yellowColor {
+    background: #E9C016;
+}
+
+@media (max-width: 760px) {
+    .remarkAdddrop {
+        top: 230px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .remarkAdddrop {
+        top: 12px !important;
+    }
+}
+
+
 /*------------------------
 Gallery Page Css
 -------------------------*/
@@ -1326,7 +1504,7 @@ Gallery Page Css
     font-size: 24px;
     font-weight: bold;
     text-transform: uppercase;
-    margin-top: 174px;
+    margin-top: 124px;
 }
 
 .meetDesigners {
@@ -1359,24 +1537,6 @@ Gallery Page Css
     border: 1px solid #5462BD;
 }
 
-.viewMorebtn a {
-    background: #707070;
-    border: 1px solid #707070;
-    border-radius: 20px;
-    height: 35px;
-    line-height: 0px;
-}
-
-.viewMorebtn a:hover {
-    background: #5462BD;
-    border: 1px solid #5462BD;
-}
-
-background: #707070;
-border: 1px solid #707070;
-border-radius: 20px;
-height: 35px;
-line-height: 0px;
 .galleryBack a {
     color: #8B8B8B;
 }

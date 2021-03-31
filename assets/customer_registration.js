@@ -123,10 +123,19 @@
                 error: function(xhr, status, error) {
                     $('.ajax-loader').css("visibility", "hidden");
                     $verifyPhone = false;
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
+                    if (xhr.responseText != "") {
+
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $("input[name=" + key + "]").next("span").text(item);
+                                    $("input[name=" + key + "]").addClass('error');
+                                });
+                            }
                         });
                     }
                 }
@@ -179,7 +188,7 @@
             console.log("registration click");
 
             var formData = new FormData($("#RegisterForm")[0]);
-            var url = ngrokURL + "/api/customer/registration";
+            var url = ngrokURL + "/api/customer";
 
             $.ajax({
                 type: "POST",
@@ -192,44 +201,70 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $("input.form-control").removeClass('error');
-                    $('.ajax-loader').css("visibility", "visible");
+                    $(".container").addClass('hide');
+                    $(".spinner-border").removeClass('hide');
+                    $('.alert-danger').addClass('hide');
+                    $('.alert-success').addClass('hide');
                 },
                 success: function(response) {
-                    $('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
-
+                    $(".container").removeClass('hide');
+                    $(".spinner-border").addClass('hide');
                     $("#result").empty().append(response);
                     if (response.status == 201) {
                         console.log(response.message);
-                        $('.toast-header').text("Success");
-                        $('.toast-body').text(response.message)
-                        $('.toast').removeClass('hide');
-                        $('.toast').addClass('show');
+                        $('.alert-success').removeClass('hide');
+                        $('.alert-success .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: $(".alert-success").offset().top
+                        }, 2000);
+                        setTimeout(
+                            function() {
+                                window.location.href = "/account";
+                            }, 5000);
                     } else {
-                        $('.toast-header').text("Error");
-                        $('.toast-body').text(response.message)
-                        $('.toast').removeClass('hide');
-                        $('.toast').addClass('show');
+                        $('.alert-danger').removeClass('hide');
+                        $('.alert-danger .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: $(".alert-danger").offset().top
+                        }, 2000);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.log('xhr', xhr)
-                    console.log('error', xhr.responseJSON.message);
-                    console.log('error', error);
-                    console.log('status', status);
-                    $('.ajax-loader').css("visibility", "hidden");
-                    $('.toast-header').text("Error");
-                    $('.toast-body').text(JSON.stringify(xhr.responseJSON.errors))
-                    $('.toast').removeClass('hide');
-                    $('.toast').addClass('show');
+                    $(".spinner-border").addClass('hide');
+                    $(".container").removeClass('hide');
+                    if (xhr.responseText != "") {
 
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
-                            $("input[name=" + key + "]").addClass('error');
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $('.alert-danger').removeClass('hide');
+                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
+                                    $('html, body').animate({
+                                        scrollTop: $(".alert-danger").offset().top
+                                    }, 2000);
+                                    $("input[name=" + key + "]").next("span").text(item);
+                                    $("input[name=" + key + "]").addClass('error');
+                                });
+
+                            }
                         });
+
+                        //   alert(message);
                     }
+
+
+                    // if (xhr.responseText.errors) {
+                    //     $.each(xhr.responseText.errors, function(key, item) {
+                    //         console.log("error", key);
+                    //         $("input[name=" + key + "]").next("span").text(item);
+                    //         $("input[name=" + key + "]").addClass('error');
+                    //     });
+                    // }
                 }
             });
         });
@@ -275,7 +310,7 @@
 
 
         $('#email').blur(function() {
-            var val = $(this).val();
+            var val = $(this).val();;
             if (val == "") {
                 $(this).addClass('error');
                 $(this).next('span').text('The email field is required.');
@@ -286,14 +321,56 @@
             }
         });
 
-        $('#phone').blur(function() {
+        $(window).load(function() {
+            var phones = [{ "mask": "(###) ###-####" }, { "mask": "(###) ###-##############" }];
+            $("#phone").inputmask({
+                mask: phones,
+                greedy: false,
+                definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
+            });
+        });
+
+        $('#phone').keypress(function() {
             var val = $(this).val();
             if (val == "") {
                 $(this).addClass('error');
-                $(this).next('span').text('The phone field is required.');
+                $(this).next('span').text('Contact number field is required.');
             } else {
+                var phoneRegex = /^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+
+                if (phoneRegex.test(val)) {
+                    var formattedPhoneNumber =
+                        val.replace(phoneRegex, "($1) $2-$3");
+                    $(this).val(formattedPhoneNumber);
+                } else {
+                    //$(this).addClass('error');
+                    //$(this).next('span').text('Contact number must be valid.');
+
+                    // Invalid phone number
+                }
+
                 $(this).removeClass('error');
                 $(this).next('span').text('');
+            }
+        });
+
+        $('#phone').blur(function() {
+            var phoneRegex = /^(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([0-9]{3})\s*\)|([0-9]{3}))\s*(?:[.-]\s*)?([0-9]{3})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+
+            var val = $(this).val();
+            if (val == "") {
+                $(this).addClass('error');
+                $(this).next('span').text('password field is required.');
+
+            } else {
+                if (phoneRegex.test(val)) {
+                    $(this).removeClass('error');
+                    $(this).next('span').text('');
+                } else {
+                    $(this).addClass('error');
+                    $(this).next('span').text('Contact number format is invalid');
+                }
+
             }
         });
 

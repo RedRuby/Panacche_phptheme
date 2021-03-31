@@ -1,0 +1,13 @@
+span.validation_error {
+    color: #651818;
+}
+
+input.form-control.error {
+    border: 1px solid #d20000 !important;
+}
+
+.spinner-border {
+    width: 18rem;
+    height: 18rem;
+    z-index: 10;
+}

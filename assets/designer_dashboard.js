@@ -2,14 +2,15 @@
     $(function() {
         var id = $("#customer_id").attr('data');
 
-        var url = ngrokURL + "/api/designer/users/" + id;
-        var designsUrl = ngrokURL + "/api/designer/designs/" + id;
-        var statisticsUrl = ngrokURL + "/api/designer/statistics/" + id;
-        var customerUrl = ngrokURL + "/api/get/customer/" + id;
+        // var url = ngrokURL + "/api/designer/users/" + id;
+        // var designsUrl = ngrokURL + "/api/designer/designs/" + id;
+        // var statisticsUrl = ngrokURL + "/api/designer/statistics/" + id;
+        // var customerUrl = ngrokURL + "/api/get/customer/" + id;
+        var dashboardURL = ngrokURL + "/api/designer/dashboard/" + id;
 
         $.ajax({
             type: "GET",
-            url: customerUrl,
+            url: dashboardURL,
             //dataType:"json",
             cache: false,
             processData: false,
@@ -21,7 +22,11 @@
             success: function(response) {
                 console.log("hello");
                 console.log("my customer details", response);
-                $("#create-design-btn").attr('data', response.data.status);
+                $(".dataCards").empty();
+                $(".dataCards").append(response.data.dataCards);
+                $("#create-design-btn").attr('data', response.data.designer.status);
+                $(".designCards").empty();
+                $(".designCards").append(response.data.designCards);
                 //$(".designersApproveCards").append(response);
             },
             error: function(xhr, status, error) {
@@ -54,7 +59,7 @@
         });*/
 
 
-        $.ajax({
+        /*$.ajax({
             type: "GET",
             url: designsUrl,
             //dataType:"json",
@@ -75,9 +80,9 @@
                 console.log("error");
                 console.log('error', JSON.stringify(xhr.responseJSON));
             }
-        });
+        });*/
 
-        $.ajax({
+        /*$.ajax({
             type: "GET",
             url: statisticsUrl,
             //dataType:"json",
@@ -98,19 +103,21 @@
                 console.log("error");
                 console.log('error', JSON.stringify(xhr.responseJSON));
             }
-        });
+        });*/
 
 
-        $("#create-design-btn").on("click", function(e) {
+        $(".landingPageWrap").on("click", "#create-design-btn", function(e) {
             e.preventDefault();
+            console.log("kkkl");
             $status = $(this).attr('data');
             if ($status == 'active') {
                 window.location.href = "/pages/create-design";
             } else {
-                $('.toast-header').text("Error");
-                $('.toast-body').text('Your account is not approved yet to create design, contact Admin!');
-                $('.toast').removeClass('hide');
-                $('.toast').addClass('show');
+                $('.alert-danger').removeClass('hide');
+                $('.alert-danger .text').text('Your account is not approved yet to create design, contact Admin!');
+                $('html, body').animate({
+                    scrollTop: $(".alert-danger").offset().top
+                }, 2000);
             }
         });
 
@@ -119,7 +126,7 @@
 
 
 
-        $("#create-design").on("submit", "#creat", function(e) {
+        /*$("#create-design").on("submit", "#creat", function(e) {
             e.preventDefault();
             console.log("clicked");
 
@@ -152,7 +159,7 @@
                     console.log('error', JSON.stringify(xhr.responseJSON));
                 }
             });
-        });
+        });*/
 
 
         $(".landingPageWrap").on("click", "#view-design", function(e) {
