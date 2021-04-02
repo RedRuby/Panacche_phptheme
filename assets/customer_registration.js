@@ -182,6 +182,7 @@
         }); */
 
 
+
         $("#registration").on("click", function(e) {
             e.preventDefault();
 
@@ -201,14 +202,14 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $("input.form-control").removeClass('error');
-                    $(".container").addClass('hide');
-                    $(".spinner-border").removeClass('hide');
+                    // $(".template-customers-register").addClass('hide');
+                    //$(".spinner-border").removeClass('hide');
                     $('.alert-danger').addClass('hide');
                     $('.alert-success').addClass('hide');
                 },
                 success: function(response) {
                     console.log("response", response);
-                    $(".container").removeClass('hide');
+                    //  $(".template-customers-register").removeClass('hide');
                     $(".spinner-border").addClass('hide');
                     $("#result").empty().append(response);
                     if (response.status == 201) {
@@ -232,7 +233,7 @@
                 },
                 error: function(xhr, status, error) {
                     $(".spinner-border").addClass('hide');
-                    $(".container").removeClass('hide');
+                    //  $(".template-customers-register").removeClass('hide');
                     if (xhr.responseText != "") {
 
                         var jsonResponseText = $.parseJSON(xhr.responseText);
@@ -254,7 +255,6 @@
                             }
                         });
 
-                        //   alert(message);
                     }
 
 

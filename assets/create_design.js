@@ -5,12 +5,46 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
 
+        var url_string = window.location.href;
+        console.log('url_str', url_string);
+        var url_str = new URL(url_string);
+        var id = url_str.searchParams.get("id");
+        console.log('id', id);
+        if (id != '') {
+            var url = ngrokURL + "/api/designer/create-design/" + id;
+            $.ajax({
+                type: "GET",
+                url: url,
+                // data: formData,
+                dataType: "json",
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $("input[name='design_name']").next('span').text('');
+                    $('.ajax-loader').css("visibility", "visible");
+                },
+                success: function(response) {
+                    $('.ajax-loader').css("visibility", "hidden");
+                    $(".landingPageWrap").empty();
+                    $(".landingPageWrap").append(response.data.design);
+                    verifyInputs();
+
+                },
+                error: function(xhr, status, error) {
+                    console.log("error");
+                    console.log('error', JSON.stringify(xhr.responseJSON));
+                }
+            });
+        }
+
+
 
         $("input[name='design_name']").on("change", function(e) {
             var formData = new FormData();
             var design_name = $(this).val();
             formData.append('design_name', design_name);
-            console.log("username changes");
+            console.log("design_name changes");
 
             var url = ngrokURL + '/api/verify_design_name';
             $.ajax({
@@ -52,7 +86,7 @@
 
         var color_pallette_count = 0;
 
-        $("#save-room-details-btn").on("click", function(e) {
+        $(".landingPageWrap").on("click", "#save-room-details-btn", function(e) {
             e.preventDefault();
             console.log("clicked");
 
@@ -72,54 +106,78 @@
                 // Accept: 'application/json',
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    $('.ajax-loader').css("visibility", "visible");
+                    // $('.ajax-loader').css("visibility", "visible");
                     // loader
                 },
                 success: function(response) {
-                    $('.ajax-loader').css("visibility", "hidden");
+                    //$('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
 
                     $("#result").empty().append(response);
                     if (response.status == 201) {
+
                         console.log(response.data.smart_collection);
                         console.log("my id", response.data.smart_collection.id);
+                        window.history.pushState("create design", "id", "/pages/create-design?id=" + response.data.smart_collection.id);
+                        $(".room-progress").addClass('greenActive');
+                        $(".room-progress").next('span').addClass('greenActiveText');
+
                         $('#merchandise-section').removeClass('hide');
                         $('#collection_id').val(response.data.smart_collection.id);
                         $('#collection_id_bulk_upload').val(response.data.smart_collection.id);
                         $('#collection_id_submit_design').val(response.data.smart_collection.id);
 
-                        $('.toast-header').text("Success");
-                        $('.toast-body').text(response.message)
-                        $('.toast').removeClass('hide');
-                        $('.toast').addClass('show');
+                        $('.alert-success').removeClass('hide');
+                        $('.alert-success .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: $(".alert-success").offset().top
+                        }, 2000);
                     } else {
-                        $('.toast-header').text("Error");
-                        $('.toast-body').text(response.message)
-                        $('.toast').removeClass('hide');
-                        $('.toast').addClass('show');
+                        $('.alert-danger').removeClass('hide');
+                        $('.alert-danger .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: $(".alert-danger").offset().top
+                        }, 2000);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.log('xhr', xhr)
-                        // console.log('error', xhr.responseJSON.message);
-                        // console.log('error', error);
-                        // console.log('status', status);
-                    $('.ajax-loader').css("visibility", "hidden");
-                    $('.toast-header').text("Error");
-                    $('.toast-body').text(JSON.stringify(xhr.responseJSON.errors))
-                    $('.toast').removeClass('hide');
-                    $('.toast').addClass('show');
+                    console.log('xhr', xhr.responseText);
+                    $(".spinner-border").addClass('hide');
+                    $("#loadingDiv").addClass('hide');
 
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            //if (key == 'room_style' || key == 'room_type' || key == 'implementation_guide_description') {
-                            $("#" + key).next("span").text(item);
-                            //} else {
-                            //  $("input[name=" + key + "]").next("span").text(item);
-                            // }
+                    if (xhr.responseText != "") {
+
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $('.alert-danger').removeClass('hide');
+                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
+                                    $('html, body').animate({
+                                        scrollTop: $(".alert-danger").offset().top
+                                    }, 2000);
+                                    $("#" + key).next("span").text(item);
+                                    // $("input[name=" + key + "]").addClass('error');
+                                });
+
+                            }
                         });
                     }
+
+                    // $('.alert-danger').removeClass('hide');
+                    // $('.alert-danger .text').text(JSON.stringify(xhr.responseText.errors));
+                    // $('html, body').animate({
+                    //     scrollTop: $(".alert-danger").offset().top
+                    // }, 2000);
+                    // if (xhr.responseJSON.errors) {
+                    //     $.each(xhr.responseJSON.errors, function(key, item) {
+                    //         console.log("error", key);
+                    //         $("#" + key).next("span").text(item);
+                    //     });
+                    // }
                 }
             });
         });
@@ -128,7 +186,7 @@
 
 
 
-        $("#colorPaintTable").on("click", ".addPlus", function() {
+        $(".landingPageWrap #colorPaintTable").on("click", ".addPlus", function() {
             color_pallette_count = color_pallette_count + 1;
             console.log("you clicked me");
             var html = '<tr>' +
@@ -154,7 +212,7 @@
             $(this).closest('tbody').append(html);
         });
 
-        $("#colorPaintTable").on("click", ".fa-trash", function() {
+        $(".landingPageWrap #colorPaintTable").on("click", ".fa-trash", function() {
             color_pallette_count = color_pallette_count - 1;
             var child = $(this).closest('tr').nextAll();
 
@@ -183,7 +241,7 @@
         });
 
 
-        $("#collection_images").on("change", function(e) {
+        $(".landingPageWrap").on("change", "#collection_images", function(e) {
             console.log('image changed');
             var total_file = document.getElementById("collection_images").files.length;
             for (var i = 0; i < total_file; i++) {
@@ -208,7 +266,7 @@
 
         });
 
-        $("#collection_blue_prints").on("change", function(e) {
+        $(".landingPageWrap").on("change", "#collection_blue_prints", function(e) {
             console.log('image changed');
             var total_file = document.getElementById("collection_blue_prints").files.length;
             for (var i = 0; i < total_file; i++) {
@@ -233,7 +291,7 @@
 
         });
 
-        $(".colorPaintTable").on("change", '.addColorImg input', function(e) {
+        $(".landingPageWrap .colorPaintTable").on("change", '.addColorImg input', function(e) {
             console.log('image changed');
             var id = $(this).attr('id');
             console.log('id', id);
@@ -254,13 +312,13 @@
 
 
 
-        $(".carousel-inner").on("click", ".imageClose", function(e) {
+        $(".landingPageWrap .carousel-inner").on("click", ".imageClose", function(e) {
             e.preventDefault();
             console.log('image close');
             $(this).closest('.carousel-item').remove();
         });
 
-        $('#design_implementation_guide').change(function() {
+        $('.landingPageWrap').on("change", "#design_implementation_guide", function() {
             var i = $(this).prev('label').clone();
             var file = $('#design_implementation_guide')[0].files[0].name;
             $(".dig_file_name").text(file);
@@ -268,7 +326,7 @@
 
 
 
-        $("#save-merchandise-section-btn").on("click", function(e) {
+        $(".landingPageWrap").on("click", "#save-merchandise-section-btn", function(e) {
             var html = '<h1>Hello World</h1>';
             //$(".landingPageWrap #upload-products-sec").append(html);
 
@@ -302,33 +360,44 @@
 
                         // var html =
                         console.log(response.message);
-                        $('.toast-header').text("Success");
-                        $('.toast-body').text(response.message)
-                        $('.toast').removeClass('hide');
-                        $('.toast').addClass('show');
+                        $('.alert-success').removeClass('hide');
+                        $('.alert-success .text').text(response.message);
+                        $(".").addClass('')
+                        $(".landingPageWrap .merchandise-progress").addClass('greenActive');
+                        $(".landingPageWrap .merchandise-progress").next('span').addClass('greenActiveText');
+
                     } else {
-                        $('.toast-header').text("Error");
-                        $('.toast-body').text(response.message)
-                        $('.toast').removeClass('hide');
-                        $('.toast').addClass('show');
+                        $('.alert-danger').removeClass('hide');
+                        $('.alert-danger .text').text(response.message);
                     }
                 },
                 error: function(xhr, status, error) {
                     console.log('xhr', xhr)
-                    $('.ajax-loader').css("visibility", "hidden");
-                    $('.toast-header').text("Error");
-                    $('.toast-body').text(JSON.stringify(xhr.responseJSON.errors))
-                    $('.toast').removeClass('hide');
-                    $('.toast').addClass('show');
+                        // $('.ajax-loader').css("visibility", "hidden");
+                        // $('.toast-header').text("Error");
+                        // $('.toast-body').text(JSON.stringify(xhr.responseJSON.errors))
+                        // $('.toast').removeClass('hide');
+                        // $('.toast').addClass('show');
 
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            //if (key == 'room_style' || key == 'room_type' || key == 'implementation_guide_description') {
-                            $("#" + key).next("span").text(item);
-                            //} else {
-                            //  $("input[name=" + key + "]").next("span").text(item);
-                            // }
+                    if (xhr.responseText != "") {
+
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $('.alert-danger').removeClass('hide');
+                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
+                                    $('html, body').animate({
+                                        scrollTop: $(".alert-danger").offset().top
+                                    }, 2000);
+                                    $("#" + key).next("span").text(item);
+                                    // $("input[name=" + key + "]").addClass('error');
+                                });
+
+                            }
                         });
                     }
                 }
@@ -459,7 +528,6 @@
                     $('.ajax-loader').css("visibility", "visible");
                 },
                 success: function(response) {
-                    $('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
                     //$(this).closest('.addRefWrap').append(response);
                     if (response.status == 200) {
@@ -482,11 +550,66 @@
             });
         });
 
+        $("#room_type").on("change", function(e) {
+            verifyInputs();
+        });
 
-
-
+        $("#room_style").on("change", function(e) {
+            verifyInputs();
+        });
     });
 
-
-
 })(jQuery);
+
+function verifyInputs() {
+    console.log("verifyInputs");
+    var design_name = $("#design_name").val();
+    var design_price = $("#design_price").val();
+    var room_budget = $("#room_budget").val();
+    var room_type = $('#room_type').find(":selected").val();
+    var room_style = $('#room_style').find(":selected").val();
+
+    if (design_name == '' || design_price == '' || room_budget == '' || room_type == '0' || room_style == '0') {
+        $("#save-room-details-btn").addClass('disbaleBtn');
+    } else {
+        $("#save-room-details-btn").removeClass('disbaleBtn');
+    }
+}
+
+
+
+$(document).ready(function() {
+    console.log("dddd");
+    $('[data-toggle="tooltip"]').tooltip();
+
+    var url_string = window.location.href;
+    console.log('url_str', url_str);
+    var url_str = new URL(url_string);
+    var id = url_str.searchParams.get("id");
+
+    if (id != '') {
+        var url = ngrokURL + "/api/designer/create-design/" + id;
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: formData,
+            dataType: "json",
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $("input[name='design_name']").next('span').text('');
+                $('.ajax-loader').css("visibility", "visible");
+            },
+            success: function(response) {
+                $('.ajax-loader').css("visibility", "hidden");
+                $("#content").append(response);
+
+            },
+            error: function(xhr, status, error) {
+                console.log("error");
+                console.log('error', JSON.stringify(xhr.responseJSON));
+            }
+        });
+    }
+});
