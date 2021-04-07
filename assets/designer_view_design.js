@@ -5,9 +5,8 @@ $(document).ready(function() {
     console.log('url_str', url_str);
     var url_str = new URL(url_string);
     var id = url_str.searchParams.get("id");
-    var url = ngrokURL + "/api/design/" + id;
+    var url = ngrokURL + "/api/designer/design/" + id;
 
-    //var url = ngrokURL + "/api/design/" + id;
     console.log('url', url);
 
     $.ajax({
@@ -21,14 +20,8 @@ $(document).ready(function() {
             // loader
         },
         success: function(response) {
-            console.log("hello");
-            //console.log(response);
-
-            //$("#content").empty();
-            $("#content").append(response);
-
-            //document.title = response.pageTitle;
-            //window.history.pushState({ "html": response, "pageTitle": "View Design" }, "", "https://panacchebeta.myshopify.com/pages/view-design");
+            //console.log("hello");
+            $("#content").append(response.data.design);
         },
         error: function(xhr, status, error) {
             console.log("error");

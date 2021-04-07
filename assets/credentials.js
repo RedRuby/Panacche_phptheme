@@ -1,4 +1,4 @@
-var ngrokURL = "https://0a792748c039.ngrok.io"; //"http://3.6.94.36";
+var ngrokURL = "https://b68914fd96f9.ngrok.io"; //"http://3.6.94.36";
 var shop = "panacchebeta.myshopify.com"; // "panaccheuat.myshopify.com";
 
 
@@ -39,5 +39,11 @@ var shop = "panacchebeta.myshopify.com"; // "panaccheuat.myshopify.com";
             $("#loadingDiv").addClass('hide');
             console.log("success");
         });
+
+        $(".alert-success .close").on("click", function(e) {
+            e.preventDefault();
+            console.log("hide success alert");
+            $(".alert-success").addClass('hide');
+        })
     });
 })(jQuery);

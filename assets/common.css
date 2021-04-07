@@ -71,8 +71,7 @@ p.custom-file.addColor.addColorImg {
 }
 
 #loadingDiv {
-    position: absolute;
-    ;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -80,4 +79,15 @@ p.custom-file.addColor.addColorImg {
     background-color: #000;
     opacity: 0.5;
     z-index: 99;
+}
+
+p.custom-file.mb-0.addImage {
+    background-size: cover;
+    background-position: center;
+}
+
+div#shopify-section-toast-message {
+    position: absolute;
+    z-index: 2222;
+    top: 45px;
 }

@@ -24,7 +24,7 @@ $(document).ready(function() {
             //console.log(response);
 
             //$("#content").empty();
-            $("#content").append(response);
+            $("#content").append(response.data.design);
 
             //document.title = response.pageTitle;
             //window.history.pushState({ "html": response, "pageTitle": "View Design" }, "", "https://panacchebeta.myshopify.com/pages/view-design");
