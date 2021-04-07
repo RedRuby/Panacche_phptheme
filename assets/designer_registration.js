@@ -224,7 +224,7 @@
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(response.message);
                         $('html, body').animate({
-                            scrollTop: $(".alert-success").offset().top
+                            scrollTop: "0"
                         }, 2000);
                         setTimeout(
                             function() {
@@ -234,7 +234,7 @@
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
-                            scrollTop: $(".alert-danger").offset().top
+                            scrollTop: "0"
                         }, 2000);
                     }
                 },
@@ -253,7 +253,7 @@
                                     $('.alert-danger').removeClass('hide');
                                     $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
                                     $('html, body').animate({
-                                        scrollTop: $(".alert-danger").offset().top
+                                        scrollTop: "0"
                                     }, 2000);
 
                                     if (key == 'resume' || key == 'portfolio') {

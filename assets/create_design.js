@@ -234,17 +234,6 @@
                         });
                     }
 
-                    // $('.alert-danger').removeClass('hide');
-                    // $('.alert-danger .text').text(JSON.stringify(xhr.responseText.errors));
-                    // $('html, body').animate({
-                    //     scrollTop: $(".alert-danger").offset().top
-                    // }, 2000);
-                    // if (xhr.responseJSON.errors) {
-                    //     $.each(xhr.responseJSON.errors, function(key, item) {
-                    //         console.log("error", key);
-                    //         $("#" + key).next("span").text(item);
-                    //     });
-                    // }
                 }
             });
         });
@@ -298,13 +287,13 @@
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(response.message);
                         $('html, body').animate({
-                            scrollTop: $(".alert-success").offset().top
+                            scrollTop: "0"
                         }, 2000);
                     } else {
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
-                            scrollTop: $(".alert-danger").offset().top
+                            scrollTop: "0"
                         }, 2000);
                     }
                 },
@@ -325,7 +314,7 @@
                                     $('.alert-danger').removeClass('hide');
                                     $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
                                     $('html, body').animate({
-                                        scrollTop: $(".alert-danger").offset().top
+                                        scrollTop: "0"
                                     }, 2000);
                                     $("#" + key).next("span").text(item);
                                     // $("input[name=" + key + "]").addClass('error');
@@ -560,7 +549,7 @@
                                     $('.alert-danger').removeClass('hide');
                                     $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
                                     $('html, body').animate({
-                                        scrollTop: $(".alert-danger").offset().top
+                                        scrollTop: "0"
                                     }, 2000);
                                     $("#" + key).next("span").text(item);
                                     // $("input[name=" + key + "]").addClass('error');
@@ -637,7 +626,7 @@
                         $('.alert-suceess').removeClass('hide');
                         $('.alert-suceess .text').text(response.message);
                         $('html, body').animate({
-                            scrollTop: $(".alert-suceess").offset().top
+                            scrollTop: "0"
                         }, 2000);
 
 
@@ -645,7 +634,7 @@
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
-                            scrollTop: $(".alert-danger").offset().top
+                            scrollTop: "0"
                         }, 2000);
                     }
                 },
@@ -656,7 +645,7 @@
                     $('.alert-danger').removeClass('hide');
                     $('.alert-danger .text').text(JSON.stringify(xhr.responseJSON.errors));
                     $('html, body').animate({
-                        scrollTop: $(".alert-danger").offset().top
+                        scrollTop: "0"
                     }, 2000);
                     if (xhr.responseJSON.errors) {
                         $.each(xhr.responseJSON.errors, function(key, item) {
@@ -801,7 +790,7 @@
                     $('.alert-success').removeClass('hide');
                     $('.alert-success .text').text(response.message);
                     $('html, body').animate({
-                        scrollTop: $(".alert-success").offset().top
+                        scrollTop: "0"
                     }, 2000);
 
                     //$(this).closest('.update-product-section').addClass('hide');
