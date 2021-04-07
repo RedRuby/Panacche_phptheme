@@ -246,15 +246,17 @@
                         var jsonResponseText = $.parseJSON(xhr.responseText);
                         var jsonResponseStatus = '';
                         var message = '';
+
+                        $('.alert-danger').removeClass('hide');
+                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.message));
+                        $('html, body').animate({
+                            scrollTop: "0"
+                        }, 2000);
                         $.each(jsonResponseText, function(name, val) {
                             if (name == "errors") {
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    $('.alert-danger').removeClass('hide');
-                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
-                                    $('html, body').animate({
-                                        scrollTop: "0"
-                                    }, 2000);
+
 
                                     if (key == 'resume' || key == 'portfolio') {
                                         $("input[name=" + key + "]").closest('.form-group').find('.validation_error').text(item);
