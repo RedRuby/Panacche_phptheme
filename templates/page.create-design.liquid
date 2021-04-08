@@ -1,4 +1,4 @@
-{% if customer.metafields.global.tag == 'role:designer' %} {% assign ngrok_url = 'https://b68914fd96f9.ngrok.io' %}
+*/{% if customer.metafields.global.tag == 'role:designer' %} {% assign ngrok_url = 'https://1b21440a7a1b.ngrok.io' %}
 <div class="container-fluid landingPageWrap">
     <div class="row align-items-center h-100">
         {% include 'dashboard-sidebar' %}
@@ -267,7 +267,7 @@
                                 <div class="dragDropBox py-2">
                                     <div class="col-12 float-left px-0">
                                         <p class="custom-file mt-3 mb-3">
-                                            <input type="file" class="custom-file-input" name="collection_images[]" id="collection_images" multiple="multiple" accept="image/x-png,image/gif,image/jpeg">
+                                            <input type="file" class="custom-file-input" name="collection_images[]" id="collection_images" multiple="multiple" accept="image/x-png,image/gif,image/jpeg,webp">
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
                                             <span class="validation_error"></span>
                                         </p>
@@ -319,7 +319,7 @@
                             </div>
                         </div>
                     </div>
-                    <label for="" class="col-12 px-0">Paint Pallette</label>
+                    <label for="" class="col-12 px-0 float-left">Paint Pallette</label>
                     <div class="dragandDropWrap col-md-12 col-xs-12 float-left px-3">
                         <table class="table colorPaintTable" id="colorPaintTable">
                             <thead>

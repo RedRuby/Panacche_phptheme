@@ -83,9 +83,9 @@
         $(".landingPageWrap").on("change", "#vendor_id", function(e) {
             e.preventDefault();
             //alert("ok");
-            var value = $('#vendor_id').val();
+            var value = $('.landingPageWrap #vendor_id').val();
             console.log("val", value);
-            var id = $('#vendor-datalist [value="' + value + '"]').data('value');
+            var id = $('.landingPageWrap #vendor-datalist [value="' + value + '"]').data('value');
             console.log("id", id);
         });
 
@@ -773,6 +773,12 @@
             var product_id = $(this).attr('data');
             var formData = new FormData($(this).closest(".update-product-form")[0]);
             formData.append('product_id', product_id);
+            // var value = $('.landingPageWrap #vendor_id').val();
+            // console.log("val", value);
+            // var vendor_id = $('.landingPageWrap #vendor-datalist [value="' + value + '"]').data('value');
+            // console.log("vendor_id", vendor_id);
+            //formData.append('vendor_id', vendor_id);
+
             console.log('formData', formData);
             var updateProductUrl = ngrokURL + "/api/designer/update/product/";
             $.ajax({
