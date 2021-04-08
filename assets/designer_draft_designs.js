@@ -23,5 +23,14 @@
                 console.log('error', JSON.stringify(xhr.responseJSON));
             }
         });
+
+        $(".landingPageWrap").on("click", "#view-draft-design", function(e) {
+            e.preventDefault();
+            var id = $(this).attr('data');
+            window.location.href = "/pages/create-design?id=" + id;
+        });
+
+
+
     });
 })(jQuery);

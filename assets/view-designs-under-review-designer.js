@@ -1,12 +1,18 @@
 (function($) {
     $(function() {
-        console.log('designer_under_review_designs.js');
-        var url = ngrokURL + "/api/designer/designs/under_review";
+
+        var url_string = window.location.href;
+        console.log('url_str', url_str);
+        var url_str = new URL(url_string);
+        var id = url_str.searchParams.get("id");
+        var url = ngrokURL + "/api/designer/view_design_under_review/" + id;
+
+        //var url = ngrokURL + "/api/design/" + id;
+        console.log('url', url);
 
         $.ajax({
             type: "GET",
             url: url,
-            //dataType:"json",
             cache: false,
             processData: false,
             contentType: false,
@@ -15,8 +21,8 @@
                 // loader
             },
             success: function(response) {
-                $(".designCards").empty();
-                $(".designCards").append(response.data.designCards);
+                $(".landingPageWrap").empty();
+                $(".landingPageWrap").append(response.data.design);
             },
             error: function(xhr, status, error) {
                 console.log("error");
@@ -24,11 +30,6 @@
             }
         });
 
-        $(".landingPageWrap").on("click", "#view-under-review-design", function(e) {
-            e.preventDefault();
-            var id = $(this).attr('data');
-            window.location.href = "/pages/view-designs-under-review?id=" + id;
-        });
-
     });
+
 })(jQuery);
