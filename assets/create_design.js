@@ -91,14 +91,14 @@
 
 
 
-        document.querySelector('.landingPageWrap .vendor-datalist').addEventListener('.landingPageWrap .vendor-datalist', event => {
-            const value = event.target.value;
-            const opt = [].find.call(event.target.list.options, o => o.value === value);
+        // document.querySelector('.landingPageWrap .vendor-datalist').addEventListener('.landingPageWrap .vendor-datalist', event => {
+        //     const value = event.target.value;
+        //     const opt = [].find.call(event.target.list.options, o => o.value === value);
 
-            if (opt) {
-                event.target.value = opt.textContent;
-            }
-        });
+        //     if (opt) {
+        //         event.target.value = opt.textContent;
+        //     }
+        // });
 
 
 
@@ -887,6 +887,55 @@
 
         $(window).bind("beforeunload", function() {
             return confirm("Do you really want to refresh?");
+        });
+
+        $(".landingPageWrap").on("click", "#remove-design-btn", function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var designerId = $(this).data('designer');
+            var removeDesignUrl = ngrokURL + '/api/design/remove/' + id + '/' +
+                designerId;
+            console.log('remove design api');
+            $.ajax({
+                type: "GET",
+                url: removeDesignUrl,
+                //  data: formData,
+                dataType: "json",
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    $(".spinner-border").removeClass('hide');
+                    $("#loadingDiv").removeClass('hide');
+                    if (response.status == 200) {
+                        $('.alert-success').removeClass('hide');
+                        $('.alert-success .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: "0"
+                        }, 2000);
+                    } else {
+                        $('.alert-success').removeClass('hide');
+                        $('.alert-success .text').text(JSON.stringify(xhr.responseJSON.errors));
+                        $('html, body').animate({
+                            scrollTop: "0"
+                        }, 2000);
+                    }
+
+
+                },
+                error: function(xhr, status, error) {
+                    console.log('xhr', xhr);
+                    $('.alert-success').removeClass('hide');
+                    $('.alert-success .text').text(JSON.stringify(xhr.responseJSON.errors));
+                    $('html, body').animate({
+                        scrollTop: "0"
+                    }, 2000);
+
+                }
+            });
         });
 
     });

@@ -1,4 +1,4 @@
-var ngrokURL = "https://058f6686878e.ngrok.io"; //"http://panaccheuat.qodequay.co.in"; 
+var ngrokURL = "https://5b9b7c848875.ngrok.io"; //"http://panaccheuat.qodequay.co.in"; 
 var shop = "panacchebeta.myshopify.com"; // "panaccheuat.myshopify.com";
 
 

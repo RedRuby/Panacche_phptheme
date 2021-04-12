@@ -68,7 +68,7 @@ label em {
 }
 
 .tooltip.bs-tooltip-right .arrow:before {
-    border-right-color: #2DBAB6 !important;
+    border-right-color: #2DBAB6;
 }
 
 
@@ -125,45 +125,59 @@ input::placeholder {
 }
 
 .loginBtn {
-    min-width: 115px !important;
-    background: #5462BD !important;
-    border-radius: 6px !important;
+    min-width: 115px;
+    background: #5462BD;
+    border-radius: 6px;
 }
 
 .loginBtn:hover {
-    background: #2DBAB6 !important;
-    border: 1px solid #2DBAB6 !important;
+    background: #2DBAB6;
+    border: 1px solid #2DBAB6;
 }
 
 .cancelBtn {
-    min-width: 115px !important;
-    background: #ffffff !important;
-    border-radius: 6px !important;
-    border: 1px solid #5462BD !important;
-    color: #5462BD !important;
-    position: relative !important;
+    min-width: 115px;
+    background: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #5462BD;
+    color: #5462BD;
+    position: relative;
 }
 
 .cancelBtn:hover {
-    background: #2DBAB6 !important;
-    border: 1px solid #2DBAB6 !important;
+    background: #2DBAB6;
+    border: 1px solid #2DBAB6;
+}
+
+.grayBtn {
+    min-width: 115px;
+    background: #707070;
+    border-radius: 6px;
+    border: 1px solid #707070;
+    color: #ffffff;
+    position: relative;
+}
+
+.grayBtn:hover {
+    background: #2DBAB6;
+    border: 1px solid #2DBAB6;
 }
 
 .loginBtn a {
-    color: #ffffff !important;
-    padding: 0px 20px !important;
-    text-decoration: none !important;
+    color: #ffffff;
+    padding: 0px 20px;
+    text-decoration: none;
 }
 
 .cancleBtn a {
-    color: #ffffff !important;
-    padding: 0px 20px !important;
-    text-decoration: none !important;
-    color: #5462BD !important;
+    color: #ffffff;
+    padding: 0px 20px;
+    text-decoration: none;
+    color: #5462BD;
 }
 
 .cancleBtn a:hover {
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
 .designOptions .card .card-title a {
@@ -1275,7 +1289,7 @@ Create New Design Page Screen
 }
 
 .addmerchBox div:nth-child(3) p:nth-child(2) {
-    max-height: 140px;
+    max-height: 200px;
     overflow: hidden;
     border-radius: 15px;
 }
@@ -1314,13 +1328,18 @@ Create New Design Page Screen
     border: 1px solid #E2E8EE;
 }
 
-.addMearchForm .imageRefUpload p {
+.addMearchForm .imageRefUpload p:nth-child(1) {
     color: #707070;
-    font-size: 18px;
+    font-size: 14px;
+    position: absolute;
+    z-index: 1;
+    bottom: 0px;
+    left: 50%;
+    margin-left: -108px;
 }
 
 .addMearchForm .imageRefUpload .addImage {
-    height: 100px;
+    height: 90px;
     position: relative;
     background: #ECECEC;
     border: 1px dashed #707070;
@@ -1329,11 +1348,11 @@ Create New Design Page Screen
 }
 
 .addMearchForm .imageRefUpload .addImage .custom-file-input {
-    height: 100px;
+    height: 90px;
 }
 
 .addMearchForm .imageRefUpload .addImage .custom-file-label2 {
-    height: 98px;
+    height: 90px;
     padding: 0;
     line-height: 2;
     background-color: transparent;
@@ -1342,12 +1361,12 @@ Create New Design Page Screen
 
 .addMearchForm .imageRefUpload .addImage .custom-file-label2::after {
     content: "+" !important;
-    line-height: 3;
+    line-height: 2.2;
     padding: 0;
     color: #707070;
     background-color: transparent;
     font-size: 27px;
-    height: 100px;
+    height: 90px;
     font-weight: bold;
 }
 
@@ -1393,6 +1412,63 @@ Create New Design Page Screen
 
 .registerForm .fa-times {
     font-size: 30px;
+}
+
+.disclaimerBox {
+    background: #5462BD;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+    border-radius: 6px;
+}
+
+
+/*---------- Add Vendor Model Css -----------*/
+
+.addVendorPopWrap .modal-header {
+    border-bottom: 0px;
+}
+
+.addVendorPopWrap .modal-header .close {
+    padding: 1rem 1rem 1rem 0rem;
+    margin: -1rem -1rem -1rem 0rem;
+}
+
+.addVendorPopWrap .modal-footer {
+    border-top: 0px;
+}
+
+.addVendorPopWrap .addImage {
+    height: 90px;
+    position: relative;
+    background: #ECECEC;
+    border: 1px dashed #707070;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.addVendorPopWrap .addImage .custom-file-input {
+    height: 90px;
+}
+
+.addVendorPopWrap .addImage .custom-file-label2 {
+    height: 90px;
+    padding: 0;
+    line-height: 2;
+    background-color: transparent;
+    color: #C3C3C3;
+}
+
+.addVendorPopWrap .addImage .custom-file-label2::after {
+    content: "+" !important;
+    line-height: 3;
+    padding: 0;
+    color: #707070;
+    background-color: transparent;
+    font-size: 27px;
+    height: 90px;
+    font-weight: bold;
 }
 
 
@@ -1492,6 +1568,44 @@ Create New Design Page View Mode
 }
 
 
+/*--------------------------------
+Create New Design Page Admin View Mode
+--------------------------------*/
+
+.changeNotification {
+    color: #CB0000 !important;
+}
+
+.changeNotification .ibtn {
+    background: #CB0000;
+    color: #ffffff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    margin-top: 11px;
+    font-size: 15px;
+    line-height: 19px;
+    display: inline-block;
+}
+
+.changeNotification .ibtn .tooltiptext {
+    visibility: hidden;
+    background: #CB0000;
+    color: #fff;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    width: 300px;
+    left: 27px;
+    top: -14px;
+}
+
+.changeNotification .ibtn:hover .tooltiptext {
+    visibility: visible;
+}
+
+
 /*------------------------
 Gallery Page Css
 -------------------------*/
@@ -1544,8 +1658,22 @@ Gallery Page Css
     color: #ffffff;
     font-size: 24px;
     font-weight: bold;
-    text-transform: uppercase;
     margin-top: 124px;
+}
+
+.galleryHead .galleryHeadText {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.galleryHead .btn-warning {
+    font-weight: 500;
+    color: #ffffff;
+    min-width: 150px;
+}
+
+.galleryDesigns {
+    padding-top: 230px;
 }
 
 .meetDesigners {
@@ -1553,6 +1681,7 @@ Gallery Page Css
     color: #ffffff;
     font-size: 24px;
     font-weight: bold;
+    margin-top: 124px;
 }
 
 .meetDesigners p:nth-child(1) {
@@ -1653,6 +1782,64 @@ Gallery Page Css
 
 .deleteUpload2 {
     right: 16px;
+}
+
+@media (max-width: 992px) {
+    .galleryDesigns {
+        padding-top: 310px;
+    }
+}
+
+@media (max-width: 768px) {
+    .galleryDesigns {
+        padding-top: 370px;
+    }
+}
+
+@media (max-width: 1090px) {
+    .galleryHead .galleryHeadText {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1004px) {
+    .galleryHead .galleryHeadText {
+        font-size: 16px;
+    }
+}
+
+
+/*------------------------
+Our Designers Page Css
+-------------------------*/
+
+.ourDesigner .designerInfo p:nth-child(1) {
+    color: #2DBAB6;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.ourDesigner .designerInfo p:nth-child(2) {
+    font-size: 18px;
+}
+
+.ourDesigner .designerInfo p:nth-child(4) span {
+    color: #5462BD;
+}
+
+.ourDesigner .author-info p {
+    font-weight: bold;
+}
+
+.ourDesigner .designCards .card .card-text {
+    font-weight: normal;
+    color: #AFAFAF;
+}
+
+.designerImg {
+    min-height: 250px;
+    overflow: hidden;
 }
 
 
@@ -1902,10 +2089,11 @@ Show All Designs
 
 .showAllContent .landingTable tbody tr td {
     padding: 1rem 1rem;
+    vertical-align: middle;
 }
 
 .showAllContent .landingTable thead tr th {
-    padding: 0.3rem 1rem 1rem 1em;
+    padding: 0.3rem 1rem 1rem 1.3em;
 }
 
 .showAllContent .tableHeaderBorder {
@@ -1947,6 +2135,79 @@ New Designer Page CSS
 
 .businessAddress {
     min-height: 125px;
+}
+
+
+/*--------------------------------
+Add New Vendor Page CSS
+--------------------------------*/
+
+.addnewVendorDrop {
+    top: 15px !important;
+    right: 20px !important;
+    width: 400px;
+    background: #ffffff;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: normal;
+    box-shadow: 0px 4px 6px rgb(0 0 0 / 20%);
+}
+
+.addnewVendorDrop p {
+    font-size: 16px;
+    color: #616161;
+}
+
+.addnewVendorDrop .addImage {
+    height: 90px;
+    position: relative;
+    background: #ECECEC;
+    border: 1px dashed #707070;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.addnewVendorDrop .addImage .custom-file-input {
+    height: 90px;
+}
+
+.addnewVendorDrop .addImage .custom-file-label2 {
+    height: 90px;
+    padding: 0;
+    line-height: 2;
+    background-color: transparent;
+    color: #C3C3C3;
+}
+
+.addnewVendorDrop .addImage .custom-file-label2::after {
+    content: "+" !important;
+    line-height: 3;
+    padding: 0;
+    color: #707070;
+    background-color: transparent;
+    font-size: 27px;
+    height: 90px;
+    font-weight: bold;
+}
+
+
+/*--------------------------------
+Disclaimer Page CSS
+--------------------------------*/
+
+.addedDisclaimer {
+    background: #ffffff;
+    border: 1px solid #707070;
+}
+
+.addedDisclaimer p:nth-child(1) {
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.removeDisclaimer .fa-times-circle {
+    color: #CB0000;
 }
 
 

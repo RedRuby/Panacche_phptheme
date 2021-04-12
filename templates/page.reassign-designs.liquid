@@ -1,0 +1,32 @@
+<div class="container-fluid landingPageWrap">
+    <div class="row align-items-center h-100">
+        {% include 'dashboard-sidebar' %}
+
+        <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-5 pt-5">
+
+            <div class="col-md-12 float-left galleryBack">
+                <a href="javascript&colon; history.go(-1)"><span><i class="fas fa-arrow-left"></i></span></a>
+            </div>
+
+            <div class="leftPart col-md-12 col-xs-12 float-left pl-3 pr-0 mt-2">
+                <div class="row px-3 mt-2 mb-0 mb-md-3">
+                    <div class="col-12 px-0 landingHeading">
+                        <h4 class="mb-4">
+                            <span>Reassign Design</span>
+                        </h4>
+                    </div>
+
+                    <div class="col-12 px-0 mb-4">
+                        <div class="row px-0 designCards">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{ 'designer_reassign_designs.js' | asset_url | script_tag }}
