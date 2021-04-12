@@ -15,7 +15,7 @@
             success: function(response) {
                 console.log('success');
                 $(".landingPageWrap").empty();
-                $(".landingPageWrap").append(response);
+                $(".landingPageWrap").append(response.data.designs);
 
             },
             error: function(xhr, status, error) {
@@ -28,6 +28,16 @@
                 }
             }
         });
+
+
+        // document.querySelector('.landingPageWrap #room-style-datalist').addEventListener('.landingPageWrap #room-style-datalist', event => {
+        //     const value = event.target.value;
+        //     const opt = [].find.call(event.target.list.options, o => o.value === value);
+
+        //     if (opt) {
+        //         event.target.value = opt.textContent;
+        //     }
+        // });
 
         $("#search").on("click", function(e) {
             e.preventDefault();

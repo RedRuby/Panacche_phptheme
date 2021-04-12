@@ -32,6 +32,14 @@
             var id = $(this).attr('data');
             window.location.href = "/pages/designers-profile?id=" + id;
         });
+
+        $(".landingPageWrap").on("click", ".review-design", function(e) {
+            e.preventDefault();
+            var id = $(this).attr('data');
+            window.location.href = "/pages/review-design?id=" + id;
+        });
+
+
     });
 
 })(jQuery);

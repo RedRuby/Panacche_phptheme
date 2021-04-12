@@ -125,45 +125,45 @@ input::placeholder {
 }
 
 .loginBtn {
-    min-width: 115px;
-    background: #5462BD;
-    border-radius: 6px;
+    min-width: 115px !important;
+    background: #5462BD !important;
+    border-radius: 6px !important;
 }
 
 .loginBtn:hover {
-    background: #2DBAB6;
-    border: 1px solid #2DBAB6;
+    background: #2DBAB6 !important;
+    border: 1px solid #2DBAB6 !important;
 }
 
 .cancelBtn {
-    min-width: 115px;
-    background: #ffffff;
-    border-radius: 6px;
-    border: 1px solid #5462BD;
-    color: #5462BD;
-    position: relative;
+    min-width: 115px !important;
+    background: #ffffff !important;
+    border-radius: 6px !important;
+    border: 1px solid #5462BD !important;
+    color: #5462BD !important;
+    position: relative !important;
 }
 
 .cancelBtn:hover {
-    background: #2DBAB6;
-    border: 1px solid #2DBAB6;
+    background: #2DBAB6 !important;
+    border: 1px solid #2DBAB6 !important;
 }
 
 .loginBtn a {
-    color: #ffffff;
-    padding: 0px 20px;
-    text-decoration: none;
+    color: #ffffff !important;
+    padding: 0px 20px !important;
+    text-decoration: none !important;
 }
 
 .cancleBtn a {
-    color: #ffffff;
-    padding: 0px 20px;
-    text-decoration: none;
-    color: #5462BD;
+    color: #ffffff !important;
+    padding: 0px 20px !important;
+    text-decoration: none !important;
+    color: #5462BD !important;
 }
 
 .cancleBtn a:hover {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .designOptions .card .card-title a {

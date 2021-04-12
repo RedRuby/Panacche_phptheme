@@ -60,8 +60,8 @@
                 var input = document.getElementById('vendor_id');
 
                 // var btn = '<button type="button" class="btn btn-secondary mr-3 w-100" data-toggle="modal" data-target="#addVenderPop"><i class="fas fa-plus-circle mr-2"></i> Add New Vendor</button>';
-                $("#vendor-datalist").empty();
-                $("#vendor-datalist").append(response.data.datalist);
+                $(".landingPageWrap .vendor-datalist").empty();
+                $(".landingPageWrap .vendor-datalist").append(response.data.datalist);
 
 
             },
@@ -80,18 +80,18 @@
 
         });
 
-        $(".landingPageWrap").on("change", "#vendor_id", function(e) {
+        $(".landingPageWrap").on("change", ".vendor_id", function(e) {
             e.preventDefault();
             //alert("ok");
-            var value = $('.landingPageWrap #vendor_id').val();
+            var value = $('.landingPageWrap .vendor_id').val();
             console.log("val", value);
-            var id = $('.landingPageWrap #vendor-datalist [value="' + value + '"]').data('value');
+            var id = $('.landingPageWrap .vendor-datalist [value="' + value + '"]').data('value');
             console.log("id", id);
         });
 
 
 
-        document.querySelector('#vendor-datalist').addEventListener('#vendor-datalist', event => {
+        document.querySelector('.landingPageWrap .vendor-datalist').addEventListener('.landingPageWrap .vendor-datalist', event => {
             const value = event.target.value;
             const opt = [].find.call(event.target.list.options, o => o.value === value);
 
@@ -435,6 +435,7 @@
                     '</div>' +
                     '</div>';
 
+                $('.carousel-inner.collection_blue_prints').empty();
                 $('.carousel-inner.collection_blue_prints').append(html);
             }
 
@@ -486,9 +487,9 @@
             var formData = new FormData($("#merchandise-section-form")[0]);
             console.log('formData', formData);
 
-            var value = $('#vendor_id').val();
+            var value = $('.landingPageWrap .vendor_id').val();
             console.log("val", value);
-            var vendor_id = $('#vendor-datalist [value="' + value + '"]').data('value');
+            var vendor_id = $('.landingPageWrap .vendor-datalist [value="' + value + '"]').data('value');
             console.log("vendor_id", vendor_id);
             formData.append('vendor_id', vendor_id);
 
@@ -511,6 +512,7 @@
                     console.log("response", response);
                     //$(this).closest('.addRefWrap').append(response);
                     if (response.status == 201) {
+                        $(".landingPageWrap #upload-products-sec").empty();
                         $(".landingPageWrap #upload-products-sec").append(response.data.products);
                         $(".landingPageWrap #submit-new-design-btn").removeClass('hide');
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
@@ -588,7 +590,7 @@
 
         });
 
-        $(".landingPageWrap").on("click", "#upload-bulk-btn", function(e) {
+        $(".landingPageWrap").on("click", ".upload-bulk-btn", function(e) {
             console.log("upload bulk btn");
             $("#csv-bulk-upload").removeClass('hide');
         });
@@ -621,7 +623,8 @@
                     console.log("response", response);
                     //$(this).closest('.addRefWrap').append(response);
                     if (response.status == 201) {
-                        $(".landingPageWrap #upload-products-sec").append(response.data);
+                        $(".landingPageWrap #upload-products-sec").empty();
+                        $(".landingPageWrap #upload-products-sec").append(response.data.products);
                         $(".landingPageWrap #submit-new-design-btn").removeClass('hide');
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         console.log(response.message);
@@ -659,7 +662,7 @@
             });
         });
 
-        $(".landingPageWrap").on("click", "#add-product-view-btn", function(e) {
+        $(".landingPageWrap").on("click", ".add-product-view-btn", function(e) {
             e.preventDefault();
             $(".landingPageWrap #add-product-view").removeClass('hide');
             $(".landingPageWrap #save-merchandise-section-btn").removeClass('hide');
@@ -773,9 +776,9 @@
             var product_id = $(this).attr('data');
             var formData = new FormData($(this).closest(".update-product-form")[0]);
             formData.append('product_id', product_id);
-            // var value = $('.landingPageWrap #vendor_id').val();
+            // var value = $('.landingPageWrap .vendor_id').val();
             // console.log("val", value);
-            // var vendor_id = $('.landingPageWrap #vendor-datalist [value="' + value + '"]').data('value');
+            // var vendor_id = $('.landingPageWrap .vendor-datalist [value="' + value + '"]').data('value');
             // console.log("vendor_id", vendor_id);
             //formData.append('vendor_id', vendor_id);
 
@@ -804,6 +807,7 @@
                     //$(this).closest('.update-product-section').addClass('hide');
 
                     this1.closest('.update-product-section').parent('.product-preview-section').remove();
+                    $("#upload-products-sec").empty();
                     $("#upload-products-sec").append(response.data.products);
                 },
                 error: function(xhr, status, error) {
@@ -849,8 +853,8 @@
                         scrollTop: "0"
                     }, 2000);
 
-                    $(".landingPageWrap #vendor-datalist").empty();
-                    $(".landingPageWrap #vendor-datalist").append(response.data.datalist);
+                    $(".landingPageWrap .vendor-datalist").empty();
+                    $(".landingPageWrap .vendor-datalist").append(response.data.datalist);
                 },
                 error: function(xhr, status, error) {
                     console.log('xhr', xhr)
@@ -880,32 +884,15 @@
                 }
             });
         });
-        /* $(".landingPageWrap").on("click", ".collection-images", function(e) {
-             e.preventDefault();
-             console.log("dffffffffff");
-             $(".landingPageWrap #concept").removeClass('show active');
-             //$(".landingPageWrap #concept").removeClass('active');
-             $(".landingPageWrap #concept").addClass('hide');
-             $(".landingPageWrap #rendered").addClass('show active');
 
-         });
-
-
-         $(".landingPageWrap").on("click", ".concept-board-images", function(e) {
-             e.preventDefault();
-             console.log("dfffffffffffff");
-
-             $(".landingPageWrap #rendered").removeClass('show');
-             $(".landingPageWrap #rendered").removeClass('active');
-             $(".landingPageWrap #rendered").addClass('hide');
-             $(".landingPageWrap #concept").addClass('show active');
-
-
-         });*/
+        $(window).bind("beforeunload", function() {
+            return confirm("Do you really want to refresh?");
+        });
 
     });
 
 })(jQuery);
+
 
 
 
@@ -933,6 +920,8 @@ function verifyInputs() {
 
 
 $(document).ready(function() {
+
+
     console.log("dddd");
     // $('[data-toggle="tooltip"]').tooltip();
 
@@ -978,14 +967,8 @@ $(document).ready(function() {
                     },
                     success: function(response) {
                         $('.ajax-loader').css("visibility", "hidden");
-                        var dataList = document.getElementById('vendor-datalist');
-                        var input = document.getElementById('vendor_id');
-
-                        // var btn = '<button type="button" class="btn btn-secondary mr-3 w-100" data-toggle="modal" data-target="#addVenderPop"><i class="fas fa-plus-circle mr-2"></i> Add New Vendor</button>';
-                        $("#vendor-datalist").empty();
-                        $("#vendor-datalist").append(response.data.datalist);
-
-
+                        $(".landingPageWrap .vendor-datalist").empty();
+                        $(".landingPageWrap .vendor-datalist").append(response.data.datalist);
                     },
                     error: function(xhr, status, error) {
                         console.log("error");
