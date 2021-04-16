@@ -4,11 +4,54 @@
         var url = ngrokURL + "/api/admin/designers";
         var designsUrl = ngrokURL + "/api/admin/designs";
         var statisticsUrl = ngrokURL + "/api/admin/statistics";
+        var dashboardUrl = ngrokURL + "/api/admin/dashboard";
+        /*
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $(".validation_error").text('');
+                    },
+                    success: function(response) {
+                        console.log("hello");
+                        console.log(response);
+                        $(".designersApproveCards").empty();
+                        $(".designersApproveCards").append(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("error");
+                        console.log('error', JSON.stringify(xhr.responseJSON));
+                    }
+                });
 
+
+                $.ajax({
+                    type: "GET",
+                    url: designsUrl,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $(".validation_error").text('');
+                    },
+                    success: function(response) {
+                        console.log("hello");
+                        console.log(response);
+                        $(".designCards").empty();
+                        $(".designCards").append(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("error");
+                        console.log('error', JSON.stringify(xhr.responseJSON));
+                    }
+                });*/
 
         $.ajax({
             type: "GET",
-            url: url,
+            url: dashboardUrl,
             cache: false,
             processData: false,
             contentType: false,
@@ -17,52 +60,16 @@
             },
             success: function(response) {
                 console.log("hello");
-                console.log(response);
-                $(".designersApproveCards").empty();
-                $(".designersApproveCards").append(response);
-            },
-            error: function(xhr, status, error) {
-                console.log("error");
-                console.log('error', JSON.stringify(xhr.responseJSON));
-            }
-        });
-
-
-        $.ajax({
-            type: "GET",
-            url: designsUrl,
-            cache: false,
-            processData: false,
-            contentType: false,
-            beforeSend: function() {
-                $(".validation_error").text('');
-            },
-            success: function(response) {
-                console.log("hello");
-                console.log(response);
-                $(".designCards").empty();
-                $(".designCards").append(response);
-            },
-            error: function(xhr, status, error) {
-                console.log("error");
-                console.log('error', JSON.stringify(xhr.responseJSON));
-            }
-        });
-
-        $.ajax({
-            type: "GET",
-            url: statisticsUrl,
-            cache: false,
-            processData: false,
-            contentType: false,
-            beforeSend: function() {
-                $(".validation_error").text('');
-            },
-            success: function(response) {
-                console.log("hello");
-                console.log(response);
+                console.log(response.data.totalFigures);
                 $(".newArrivalCard").empty();
-                $(".newArrivalCard").append(response);
+                $(".newArrivalCard").append(response.data.statistics);
+
+                $(".totalFiguresCard").empty();
+                $(".totalFiguresCard").append(response.data.totalFigures);
+
+                $(".todaysSaleCard").empty();
+                $(".todaysSaleCard").append(response.data.todaySale);
+
             },
             error: function(xhr, status, error) {
                 console.log("error");

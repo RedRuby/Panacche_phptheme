@@ -1,4 +1,4 @@
-var ngrokURL = "https://be77d98c1c38.ngrok.io";
+var ngrokURL = "https://730349d1ebbb.ngrok.io";
 var shop = "panacchebeta.myshopify.com";
 
 (function($) {

@@ -61,7 +61,7 @@
 
                 // var btn = '<button type="button" class="btn btn-secondary mr-3 w-100" data-toggle="modal" data-target="#addVenderPop"><i class="fas fa-plus-circle mr-2"></i> Add New Vendor</button>';
                 $(".landingPageWrap .vendor-datalist").empty();
-                $(".landingPageWrap .vendor-datalist").append(response.data.datalist);
+                $(".landingPageWrap .vendor-datalist").append(response.data.vendors);
 
 
             },
@@ -893,49 +893,59 @@
             e.preventDefault();
             var id = $(this).data('id');
             var designerId = $(this).data('designer');
-            var removeDesignUrl = ngrokURL + '/api/design/remove/' + id + '/' +
-                designerId;
-            console.log('remove design api');
-            $.ajax({
-                type: "GET",
-                url: removeDesignUrl,
-                //  data: formData,
-                dataType: "json",
-                cache: false,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
+            $(".landingPageWrap #confirm-remove-design-modal").modal('show');
+            $(".landingPageWrap #confirm-remove-design-modal").prependTo("body");
 
-                },
-                success: function(response) {
-                    $(".spinner-border").removeClass('hide');
-                    $("#loadingDiv").removeClass('hide');
-                    if (response.status == 200) {
-                        $('.alert-success').removeClass('hide');
-                        $('.alert-success .text').text(response.message);
-                        $('html, body').animate({
-                            scrollTop: "0"
-                        }, 2000);
-                    } else {
+
+            $("body").on("click", "#remove-design-yes-btn", function(e) {
+                e.preventDefault();
+                console.log("remove design");
+                var removeDesignUrl = ngrokURL + '/api/design/remove/' + id + '/' +
+                    designerId;
+                console.log('remove design api');
+                $.ajax({
+                    type: "GET",
+                    url: removeDesignUrl,
+                    //  data: formData,
+                    dataType: "json",
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+
+                    },
+                    success: function(response) {
+                        $(".spinner-border").removeClass('hide');
+                        $("#loadingDiv").removeClass('hide');
+                        if (response.status == 200) {
+                            $('.alert-success').removeClass('hide');
+                            $('.alert-success .text').text(response.message);
+                            $('html, body').animate({
+                                scrollTop: "0"
+                            }, 2000);
+                        } else {
+                            $('.alert-success').removeClass('hide');
+                            $('.alert-success .text').text(JSON.stringify(xhr.responseJSON.errors));
+                            $('html, body').animate({
+                                scrollTop: "0"
+                            }, 2000);
+                        }
+
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('xhr', xhr);
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(JSON.stringify(xhr.responseJSON.errors));
                         $('html, body').animate({
                             scrollTop: "0"
                         }, 2000);
+
                     }
-
-
-                },
-                error: function(xhr, status, error) {
-                    console.log('xhr', xhr);
-                    $('.alert-success').removeClass('hide');
-                    $('.alert-success .text').text(JSON.stringify(xhr.responseJSON.errors));
-                    $('html, body').animate({
-                        scrollTop: "0"
-                    }, 2000);
-
-                }
+                });
             });
+
+
         });
 
     });
@@ -1017,7 +1027,7 @@ $(document).ready(function() {
                     success: function(response) {
                         $('.ajax-loader').css("visibility", "hidden");
                         $(".landingPageWrap .vendor-datalist").empty();
-                        $(".landingPageWrap .vendor-datalist").append(response.data.datalist);
+                        $(".landingPageWrap .vendor-datalist").append(response.data.vendors);
                     },
                     error: function(xhr, status, error) {
                         console.log("error");

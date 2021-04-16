@@ -1,0 +1,36 @@
+<div class="container-fluid landingPageWrap">
+    <div class="row align-items-center h-100">
+        {% include 'dashboard-sidebar' %}
+
+        <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-5 pt-5">
+            <div class="col-md-12 float-left galleryBack">
+                <a href="designer_dashboard.html"><span><i class="fas fa-arrow-left"></i></span></a>
+            </div>
+            <div class="leftPart col-md-12 col-xs-12 float-left pl-3 pr-0 mt-2">
+                <div class="row px-3 mt-2 mb-0 mb-md-3">
+                    <div class="col-12 px-0 landingHeading">
+                        <h4 class="mb-4">
+                            <span>Update Discount</span>
+                        </h4>
+                    </div>
+                    <div class="col-md-12 col-xs-12 float-left px-0 mb-3 showAllContent">
+                        <div class="row">
+                            <form id="update-discount-form">
+                                <div class="form-group">
+                                    <input type="text" name="discount" id="discount" value="">
+                                </div>
+                                <button id="update-discount-btn">Update</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row footerWrap">
+        <footer></footer>
+    </div>
+</div>
+
+{{ 'update_discount.js' | asset_url | script_tag }}
