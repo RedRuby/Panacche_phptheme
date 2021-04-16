@@ -1,8 +1,6 @@
 (function($) {
     $(function() {
-        console.log('designer_view_all_designs');
-        var url = ngrokURL + "/api/designer/designs/all";
-
+        var url = ngrokURL + '/api/admin/settings';
         $.ajax({
             type: "GET",
             url: url,
@@ -11,10 +9,11 @@
             contentType: false,
             beforeSend: function() {
                 $(".validation_error").text('');
-                // loader
             },
             success: function(response) {
-                $(".landingPageWrap").append(response.data.designCards);
+                console.log("hello");
+                $(".landingPageWrap .vendors-count").text(response.data.vendors);
+                $(".landingPageWrap .disclaimers-count").text(response.data.disclaimer);
             },
             error: function(xhr, status, error) {
                 console.log("error");

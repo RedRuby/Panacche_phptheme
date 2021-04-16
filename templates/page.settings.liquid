@@ -1,0 +1,51 @@
+<div class="container-fluid landingPageWrap">
+    <div class="row align-items-center h-100">
+        {% include 'dashboard-sidebar' %}
+
+        <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-5 pt-5">
+            <div class="col-md-12 float-left galleryBack">
+                <a href="designer_dashboard.html"><span><i class="fas fa-arrow-left"></i></span></a>
+            </div>
+            <div class="leftPart col-md-12 col-xs-12 float-left pl-3 pr-0 mt-2">
+                <div class="row px-3 mt-2 mb-0 mb-md-3">
+                    <div class="col-12 px-0 landingHeading">
+                        <h4 class="mb-4">
+                            <span>Settings</span>
+                        </h4>
+                    </div>
+                    <div class="col-md-12 col-xs-12 float-left px-0 mb-3 showAllContent">
+
+                        <div class="row px-0 newArrivalCard">
+                            <div class="col-xl-3 col-lg-6 col-sm-6 col-12 card text-center mx-0 mb-4">
+                                <a href="{{ shop.URL }}/pages/vendors">
+                                    <div class="card-body">
+                                        <div class="card-title mb-0 text-left col px-0 pt-xl-2 pt-md-2 pt-sm-2 pt-3">
+                                            <p class="mb-0 text-center">Panacche Vendors</p>
+                                        </div>
+                                        <div class="text-center col px-0 vendors-count">104</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 col-sm-6 col-12 card text-center mx-0 mb-4">
+                                <a href="{{ shop.URL }}/pages/disclaimers">
+                                    <div class="card-body">
+                                        <div class="card-title mb-0 text-left col px-0 pt-xl-2 pt-md-2 pt-sm-2 pt-3">
+                                            <p class="mb-0 text-center">Disclaimers</p>
+                                        </div>
+                                        <div class="text-center col px-0 disclaimers-count">1</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row footerWrap">
+        <footer></footer>
+    </div>
+</div>
+
+{{ 'settings.js' | asset_url | script_tag }}

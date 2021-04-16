@@ -1,6 +1,5 @@
-var ngrokURL = "https://618596749153.ngrok.io"; //"http://panaccheuat.qodequay.co.in"; 
-var shop = "panacchebeta.myshopify.com"; // "panaccheuat.myshopify.com";
-
+var ngrokURL = "https://be77d98c1c38.ngrok.io";
+var shop = "panacchebeta.myshopify.com";
 
 (function($) {
     $(function() {

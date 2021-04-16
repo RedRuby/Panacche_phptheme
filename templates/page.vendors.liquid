@@ -1,0 +1,142 @@
+<div class="container-fluid landingPageWrap">
+    <div class="row align-items-center h-100">
+        {% include 'dashboard-sidebar' %}
+
+        <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-5 pt-5">
+            <div class="col-md-12 float-left galleryBack">
+                <a href="designer_dashboard.html"><span><i class="fas fa-arrow-left"></i></span></a>
+            </div>
+            <div class="leftPart col-md-12 col-xs-12 float-left pl-3 pr-0 mt-2">
+                <div class="row px-3 mt-2 mb-0 mb-md-3">
+                    <div class="col-12 px-0 landingHeading">
+                        <h4 class="mb-4">
+                            <span>Vendor</span>
+                            <div class="float-right p-ralative">
+                                <a class="" href="#" id="addvendorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button type="button" class="btn btn-primary loginBtn"><i class="fas fa-plus mr-2"></i>Add New Vendor</button>
+                                </a>
+                                <div class="dropdown-menu addnewVendorDrop p-2" aria-labelledby="addvendorDropdown">
+                                    <form id="save-vendor-form">
+                                        <div class="text-center pt-3 col-12 float-left px-0">
+                                            <div class="col-4 float-left">
+                                                <p class="text-left">Vendor Logo</p>
+                                                <div class="col-12 float-left px-0">
+                                                    <div class="col-12 float-left px-0">
+                                                        <p class="custom-file mb-0 addImage">
+                                                            <input type="file" class="custom-file-input" id="vendor_logo" name="vendor_logo">
+                                                            <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-8 float-left">
+                                                <p class="text-left">Vendor Name</p>
+                                                <textarea class="form-control textarea" placeholder="Type Here" name="vendor_name" id="vendor_name" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="text-center d-block col-12 float-left mt-3 px-0">
+                                            <p class="col-6 float-left">
+                                                <a href="#">
+                                                    <button type="button" class="btn btn-primary cancleBtn w-100">Cancel</button>
+                                                </a>
+                                            </p>
+                                            <p class="col-6 float-left">
+                                                <a href="#">
+                                                    <button type="button" class="btn btn-primary loginBtn w-100" id="save-vendor-btn">Save</button>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </h4>
+                    </div>
+                    <div class="col-md-12 col-xs-12 float-left px-0 mb-3 showAllContent">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 float-left">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                <input type="search" class="form-control col-12 float-left pl-5 searchInput" placeholder="Search">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-6 float-left">
+                                <div class="form-group">
+                                    <select class="custom-select selectDropdown">
+                               <option selected="">Filter</option>
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="3">4</option>
+                            </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 float-left mt-3 px-0">
+                            <div class="col-12 float-left px-0 showallTable responsiveTableWrap">
+                                <p class="tableHeaderBorder col-12 mb-0"></p>
+                                <table class="table landingTable">
+                                    <thead>
+                                        <tr class="defaultBlueColor text-white">
+                                            <th scope="col">Vendor logo</th>
+                                            <th scope="col">Date Registered</th>
+                                            <th scope="col">Vendor ID</th>
+                                            <th scope="col">Vendor Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-body">
+                                        <tr>
+                                            <td><span class="vendorLogo"><img src="images/person-1.jpg" class="img-fluid rounded-circle mr-3" width="40"></span>Carter & Barrel</td>
+                                            <td>10-4-2021</td>
+                                            <td>03</td>
+                                            <td><a href="#">View More</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="vendorLogo"><img src="images/person-1.jpg" class="img-fluid rounded-circle mr-3" width="40"></span>Wayfair</td>
+                                            <td>10-4-2021</td>
+                                            <td>03</td>
+                                            <td><a href="#">View More</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="vendorLogo"><img src="images/person-1.jpg" class="img-fluid rounded-circle mr-3" width="40"></span>Joybird Furniture</td>
+                                            <td>10-4-2021</td>
+                                            <td>03</td>
+                                            <td><a href="#">View More</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="vendorLogo"><img src="images/person-1.jpg" class="img-fluid rounded-circle mr-3" width="40"></span>Carter & Barrel</td>
+                                            <td>10-4-2021</td>
+                                            <td>03</td>
+                                            <td><a href="#">View More</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="vendorLogo"><img src="images/person-1.jpg" class="img-fluid rounded-circle mr-3" width="40"></span>Carter & Barrel</td>
+                                            <td>10-4-2021</td>
+                                            <td>03</td>
+                                            <td><a href="#">View More</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="vendorLogo"><img src="images/person-1.jpg" class="img-fluid rounded-circle mr-3" width="40"></span>Carter & Barrel</td>
+                                            <td>10-4-2021</td>
+                                            <td>03</td>
+                                            <td><a href="#">View More</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="vendorLogo"><img src="images/person-1.jpg" class="img-fluid rounded-circle mr-3" width="40"></span>Carter & Barrel</td>
+                                            <td>10-4-2021</td>
+                                            <td>03</td>
+                                            <td><a href="#">View More</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row footerWrap">
+        <footer></footer>
+    </div>
+</div>
+
+{{ 'admin_vendors.js' | asset_url | script_tag }}

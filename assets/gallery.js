@@ -46,24 +46,42 @@
             var url = ngrokURL + '/api/design/search';
 
             var room_budget_val = $('#room_budget').val();
-            var room_budget = $('#room-budget-datalist [value="' + room_budget_val + '"]').data('value');
-            var room_budget_arr = room_budget.split(",");
+            console.log('room_budget_val', room_budget_val);
+            if (room_budget_val) {
+                console.log('not empty');
+                var room_budget = $('#room-budget-datalist [value="' + room_budget_val + '"]').data('value');
+                if (room_budget) {
+                    var room_budget_arr = room_budget.split(",");
+                    formData.append('min', room_budget_arr[0]);
+                    formData.append('max', room_budget_arr[1]);
+                }
+            }
 
 
             var room_style_val = $('#room_style').val();
-            var room_style = $('#room-style-datalist [value="' + room_style_val + '"]').data('value');
+            if (room_style_val) {
+                var room_style = $('#room-style-datalist [value="' + room_style_val + '"]').data('value');
+                if (room_style) {
+                    formData.append('room_style', room_style);
+                }
+            }
 
             var room_type_val = $('#room_type').val();
-            var room_type = $('#room-type-datalist [value="' + room_type_val + '"]').data('value');
+            if (room_type_val) {
+                var room_type = $('#room-type-datalist [value="' + room_type_val + '"]').data('value');
+                if (room_type) {
+                    formData.append('room_type', room_type);
+                }
 
+            }
             var designer_val = $('#designer_id').val();
-            var designer = $('#designer-datalist [value="' + designer_val + '"]').data('value');
 
-            formData.append('min', room_budget_arr[0]);
-            formData.append('max', room_budget_arr[1]);
-            formData.append('room_style', room_style);
-            formData.append('room_type', room_type);
-            formData.append('designer', designer);
+            if (designer_val) {
+                var designer = $('#designer-datalist [value="' + designer_val + '"]').data('value');
+                if (designer) {
+                    formData.append('designer', designer);
+                }
+            }
 
             $.ajax({
                 type: "POST",
@@ -78,8 +96,7 @@
                 success: function(response) {
                     console.log('success');
                     $(".landingPageWrap").empty();
-                    $(".landingPageWrap").append(response);
-
+                    $(".landingPageWrap").append(response.data.designs);
                 },
                 error: function(xhr, status, error) {
                     console.log("error");
@@ -96,11 +113,8 @@
 
         $(".landingPageWrap").on("click", ".view-designer-profile-btn", function(e) {
             e.preventDefault();
-
             var id = $(this).attr('data');
-
             window.location.href = "https://panacchebeta.myshopify.com/pages/designers-profile?id=" + id;
-
         });
 
     });

@@ -21,11 +21,7 @@
             },
             success: function(response) {
                 console.log("hello");
-                //console.log(response);
-                //$("#content").empty();
-                $("#content").append(response);
-                //document.title = response.pageTitle;
-                //window.history.pushState({ "html": response, "pageTitle": "View Design" }, "", "https://panacchebeta.myshopify.com/pages/view-design");
+                $(".landingPageWrap").append(response);
             },
             error: function(xhr, status, error) {
                 console.log("error");

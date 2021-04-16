@@ -42,7 +42,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!--<tr>
                                     <td>23 Feb 2018</td>
                                     <td>3 May 2018</td>
                                     <td><i class="fas fa-address-book mr-2"></i>Tara Knows </td>
@@ -109,7 +109,7 @@
                                         <div class="badge badge-danger">Abandoned</div>
                                     </td>
                                     <td class="text-center"></td>
-                                </tr>
+                                </tr>-->
                             </tbody>
                         </table>
                     </div>
@@ -121,13 +121,30 @@
                         <h4 class="mb-4 mt-lg-3 mt-md-0 float-left">
                             <span>My Designs</span>
                         </h4>
-                        <div class="col-lg-5 col-md-12 designOptions float-right px-0 mb-4">
+                        <div class="col-lg-5 col-md-4 designOptions float-right px-0 mb-4">
                             <div class="card text-center">
                                 <a href="show_all_designs.html">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-0"><i class="fa fa-folder-open mr-3"></i>Show All Customers</h5>
+                                    </div>
+                                </a>
+
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-4 designOptions float-right px-0 mb-4">
+                            <div class="card text-center">
+                                <a href="{{shop.url}}/pages/view-all-designs">
                                     <div class="card-body">
                                         <h5 class="card-title mb-0"><i class="fa fa-folder-open mr-3"></i>Show All Designs</h5>
                                     </div>
                                 </a>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -137,9 +154,9 @@
 
                         </div>
                     </div>
-                    <div class="col-12 float-left text-right px-0 mt-4">
+                    <!--<div class="col-12 float-left text-right px-0 mt-4">
                         <a href="my_designs.html"><button type="button" class="btn btn-primary loginBtn">View All</button></a>
-                    </div>
+                    </div>-->
                 </div>
 
             </div>
@@ -150,7 +167,7 @@
                         <div class="card-title mb-0">Notifications</div>
                     </div>
                     <ul class="list-group list-group-flush">
-
+                        <!---
                         <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                             <div class="media align-items-center">
                                 <img alt="User1" class="img-fluid mr-3" src="{{ 'person-1.jpg' | asset_url }}" width="45">
@@ -200,7 +217,7 @@
                                 <p class="mb-2 text-right">11:00 am</p>
                                 <a class="viewMore text-right" href="#">View Details</a>
                             </div>
-                        </li>
+                        </li>-->
 
                     </ul>
                 </div>
@@ -214,7 +231,7 @@
                         </a>
                     </div>
                     <ul class="list-group list-group-flush">
-
+                        <!--
                         <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                             <div class="media align-items-center">
                                 <i class="fas fa-circle md-14 align-middle mr-2 text-success"></i>
@@ -282,76 +299,7 @@
                                     <a class="dropdown-item" href="#">Incompleted</a>
                                 </div>
                             </div>
-                        </li>
-
-                        <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-                            <div class="media align-items-center">
-                                <i class="fas fa-circle md-14 align-middle mr-2 text-muted"></i>
-                                <img alt="User4" class="img-fluid rounded-circle mr-3" src="{{ 'person-3.jpg' | asset_url }}" width="45">
-                                <div class="media-body lh-1">
-                                    <a href="#">Steven Short</a>
-                                    <div>
-                                        <small class="text-muted">Active 8m ago</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <a aria-expanded="false" class="btn btn-white btn-sm" data-toggle="dropdown" href="#">
-                                    <i class="fas fa-comment-alt align-middle md-18 text-muted"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <h6 class="dropdown-header">Assignments</h6>
-                                    <a class="dropdown-item" href="#">Completed</a>
-                                    <a class="dropdown-item" href="#">Incompleted</a>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-                            <div class="media align-items-center">
-                                <i class="fas fa-circle md-14 align-middle mr-2 text-muted"></i>
-                                <img alt="User5" class="img-fluid rounded-circle mr-3" src="{{ 'person-8.jpg' | asset_url }}" width="45">
-                                <div class="media-body lh-1">
-                                    <a href="#">Karen Smith</a>
-                                    <div>
-                                        <small class="text-muted">Active 46m ago</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <a aria-expanded="false" class="btn btn-white btn-sm" data-toggle="dropdown" href="#">
-                                    <i class="far fa-comment-alt align-middle md-18 text-muted"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <h6 class="dropdown-header">Assignments</h6>
-                                    <a class="dropdown-item" href="#">Completed</a>
-                                    <a class="dropdown-item" href="#">Incompleted</a>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-                            <div class="media align-items-center">
-                                <i class="fas fa-circle md-14 align-middle mr-2 text-danger"></i>
-                                <img alt="User6" class="img-fluid rounded-circle mr-3" src="{{ 'person-10.jpg' | asset_url }}" width="45">
-                                <div class="media-body lh-1">
-                                    <a href="#">John Smith</a>
-                                    <div>
-                                        <small class="text-muted">No Active</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <a aria-expanded="false" class="btn btn-white btn-sm" data-toggle="dropdown" href="#">
-                                    <i class="far fa-comment-alt align-middle md-18 text-muted"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <h6 class="dropdown-header">Assignments</h6>
-                                    <a class="dropdown-item" href="#">Completed</a>
-                                    <a class="dropdown-item" href="#">Incompleted</a>
-                                </div>
-                            </div>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </div>

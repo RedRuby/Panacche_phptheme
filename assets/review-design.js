@@ -139,10 +139,54 @@
             e.preventDefault();
             console.log("kkkkkkkkkkkkkkkkkkkkkkkkkk");
             var id = $(this).attr('data');
-            var formData = new FormData($(".landingPageWrap #add-remark-btn")[0]);
+            var formData = new FormData($(".landingPageWrap #add-remark-form")[0]);
             formData.append('collection_id', id);
 
             var url = ngrokURL + 'api/admin/design/add/remark';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: formData,
+                dataType: "json",
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {},
+                success: function(response) {
+                    if (response.status == 201) {
+                        console.log(response.message);
+                        $('.alert-success').removeClass('hide');
+                        $('.alert-success .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: "0"
+                        }, 2000);
+                    } else {
+                        $('.alert-danger').removeClass('hide');
+                        $('.alert-danger .text').text(response.message);
+                        $('html, body').animate({
+                            scrollTop: "0"
+                        }, 2000);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $('.alert-danger').removeClass('hide');
+                    $('.alert-danger .text').text(JSON.stringify(xhr.responseJSON));
+                    $('html, body').animate({
+                        scrollTop: "0"
+                    }, 2000);
+                }
+            });
+
+        });
+
+        $(".landingPageWrap").on("click", "#submit-disclaimer-btn", function(e) {
+            e.preventDefault();
+            console.log("kkkkkkkkkkkkkkkkkkkkkkkkkk");
+            var id = $(this).attr('data');
+            var formData = new FormData($(".landingPageWrap #disclaimer-form")[0]);
+            formData.append('collection_id', id);
+
+            var url = ngrokURL + 'api/admin/design/add/disclaimer';
             $.ajax({
                 type: "POST",
                 url: url,

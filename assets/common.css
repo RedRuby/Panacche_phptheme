@@ -91,3 +91,31 @@ div#shopify-section-toast-message {
     z-index: 2222;
     top: 45px;
 }
+
+.gallery-page {
+    padding-top: 230px;
+}
+
+.card-img {
+    max-height: 230px;
+}
+
+.meetDesigners p {
+    color: #ffffff;
+}
+
+.newArrivalCard .card .card-body .card-title p {
+    color: #5462BD;
+}
+
+.newArrivalCard .card .card-body .card-title p:hover {
+    color: #ffffff;
+}
+
+.newArrivalCard .card .card-body:hover .card-title p {
+    color: #ffffff !important;
+}
+
+.newArrivalCard .card .card-title em {
+    font-size: 8px !important;
+}

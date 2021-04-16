@@ -1,0 +1,56 @@
+<div class="container-fluid landingPageWrap">
+    <div class="row align-items-center h-100">
+        {% include 'dashboard-sidebar' %}
+        <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-5 pt-5">
+            <div class="col-md-12 float-left galleryBack">
+                <a href="designer_dashboard.html"><span><i class="fas fa-arrow-left"></i></span></a>
+            </div>
+            <div class="leftPart col-md-12 col-xs-12 float-left pl-3 pr-0 mt-2">
+                <div class="row px-3 mt-2 mb-0 mb-md-3">
+                    <div class="col-12 px-0 landingHeading">
+                        <h4 class="mb-4">
+                            <span>Disclaimers</span>
+                            <div class="float-right p-ralative">
+                                <a class="" href="#" role="button">
+                                    <button type="button" class="btn btn-primary loginBtn"><i class="fas fa-plus mr-2"></i>Add New Disclaimer</button>
+                                </a>
+                            </div>
+                        </h4>
+                    </div>
+                    <div class="col-md-12 col-xs-12 float-left px-0 mb-3 showAllContent">
+                        <div class="row">
+                            <div class="col-12 float-left">
+                                <div class="form-group">
+                                    <div class="disclaimerBox col-12 float-left py-3">
+                                        <div class="mb-0">
+                                            <textarea class="form-control textarea" rows="4" placeholder="Type here"></textarea>
+                                            <p>
+                                                <button type="button" class="btn btn-primary cancelBtn float-right mt-2 p-1">Cancel</button>
+                                                <button type="button" class="btn btn-primary cancelBtn float-right mt-2 p-1 mr-2">Submit</button>
+                                                <button type="button" class="btn btn-primary cancelBtn float-right mt-2 p-1 mr-2">Save</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 float-left disclaimer-list">
+                                <div class="landingHeading col-12 px-0 float-left">
+                                    <h5 class="defaultColor font-weight-bold mb-0" for="">Currently Displaying</h5>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row footerWrap">
+        <footer></footer>
+    </div>
+</div>
+
+{{ 'admin_disclaimer.js' | asset_url | script_tag }}
