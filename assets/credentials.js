@@ -1,5 +1,5 @@
-var ngrokURL = "https://730349d1ebbb.ngrok.io";
-var shop = "panacchebeta.myshopify.com";
+var ngrokURL = "https://qodequaydev.com";
+var shop = "panaccheuat.myshopify.com";
 
 (function($) {
     $(function() {
