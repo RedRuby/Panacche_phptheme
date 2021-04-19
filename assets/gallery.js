@@ -114,7 +114,7 @@
         $(".landingPageWrap").on("click", ".view-designer-profile-btn", function(e) {
             e.preventDefault();
             var id = $(this).attr('data');
-            window.location.href = "https://panacchebeta.myshopify.com/pages/designers-profile?id=" + id;
+            window.location.href = shop + "/pages/designers-profile?id=" + id;
         });
 
     });

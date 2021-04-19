@@ -182,7 +182,7 @@
 
             //return false;
             var id = $(this).attr('data');
-            window.location.href = "https://panacchebeta.myshopify.com/pages/view-design?id=" + id;
+            window.location.href = shop + "/pages/view-design?id=" + id;
             return false;
             //alert("view profile" + id);
             var url = ngrokURL + "/api/admin/design/" + id;
@@ -205,7 +205,7 @@
                     $("#content").append(response);
 
                     //document.title = response.pageTitle;
-                    window.history.pushState({ "html": response, "pageTitle": "View Design" }, "", "https://panacchebeta.myshopify.com/pages/view-design");
+                    window.history.pushState({ "html": response, "pageTitle": "View Design" }, "", shop + "/pages/view-design");
                 },
                 error: function(xhr, status, error) {
                     console.log("error");

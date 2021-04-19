@@ -27,7 +27,7 @@ $(document).ready(function() {
             $("#content").append(response.data.design);
 
             //document.title = response.pageTitle;
-            //window.history.pushState({ "html": response, "pageTitle": "View Design" }, "", "https://panacchebeta.myshopify.com/pages/view-design");
+            //window.history.pushState({ "html": response, "pageTitle": "View Design" }, "", shop + "/pages/view-design");
         },
         error: function(xhr, status, error) {
             console.log("error");

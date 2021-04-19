@@ -214,396 +214,408 @@
     <div class="section-header text-center">
         <h4>{{ customer.first_name }}'s Account</h4>
 
-        <a href="/account/logout" style="cursor:pointer;">Log out</a>
-
-        {% if customer.tags contains 'designer' %}<br>
-            <a href="#">My Designs</a><br>
-            <a href="https://panacchebeta.myshopify.com/pages/create-design">Create a Design</a><br>
-            <a href="/collections/list-designs/designer:{{customer.id}}">Edit a Design</a>
-            {% elsif customer.tags contains 'admin' %}<br>
-            <a href="/pages/designer">Create a Design</a><br>
-            <a href="/collections/list-designs">Edit a Design</a><br>
-            <a href="/pages/request">Review requests</a>
-        {% endif %}
+        <a href="/account/logout" style="cursor:pointer;">Log out</a> {% if customer.tags contains 'designer' %}<br>
+        <a href="#">My Designs</a><br>
+        <a href="{{ shop.domain}}/pages/create-design">Create a Design</a><br>
+        <a href="/collections/list-designs/designer:{{customer.id}}">Edit a Design</a> {% elsif customer.tags contains 'admin' %}<br>
+        <a href="/pages/designer">Create a Design</a><br>
+        <a href="/collections/list-designs">Edit a Design</a><br>
+        <a href="/pages/request">Review requests</a> {% endif %}
     </div>
 
     <div class="grid myaccount">
         <div class="grid__item">
             <h2>Your Designs</h2>
 
-            {% paginate customer.orders by 500 %}
+            {% paginate customer.orders by 500 %} {% if customer.tags contains 'designer' or customer.tags contains 'admin' %}
+            <table class="responsive-table" id="chat_list">
+                <thead>
+                    <tr>
+                        <th>Chat</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            {% else %} {% if customer.orders.size > 0 %} {% assign collection_handle_array = '' %} {% assign product_handle_array = '' %} {% for order in customer.orders %} {% for line_item in order.line_items %} {% assign line_item_handle = line_item.url | split:
+            '?' | first | split: '/' | last %} {% assign product = all_products[line_item_handle] %} {% unless collection_handle_array contains product.collections[0].handle %} {% assign collection_handle_array = collection_handle_array | append: ','
+            | append: product.collections[0].handle %} {% endunless %} {% unless product_handle_array contains product.handle %} {% assign product_handle_array = product_handle_array | append: ',' | append: product.handle %} {% endunless %} {% endfor
+            %} {% endfor %} {% assign collection_handle_array = collection_handle_array | remove_first: ',' | split: ','%} {% assign product_handle_array = collection_handle_array | remove_first: ',' | split: ','%}
 
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Room Designs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in customer.orders %} {% assign order_item = forloop.index %} {% for line_item in order.line_items %} {% assign line_item_handle = line_item.url | split: '?' | first | split: '/' | last %} {% assign product = all_products[line_item_handle]
+                    %} {% if product.tags contains 'main' %}
+                    <tr>
+                        <td>
+                            <p class="open_table" data-id="{{ order_item }}">
+                                {{ product.title }}
+                            </p>
+                        </td>
+                    </tr>
+                    {% endif %} {% endfor %} {% endfor %}
+                </tbody>
+            </table>
 
-                {% if customer.tags contains 'designer' or customer.tags contains 'admin' %}
-                    <table class="responsive-table" id="chat_list">
-                        <thead>
-                            <tr>
-                                <th>Chat</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                {% else %}
-
-                    {% if customer.orders.size > 0 %}
-
-
-                        {% assign collection_handle_array = '' %}
-                        {% assign product_handle_array = '' %}
-                        {% for order in customer.orders %}
-                            {% for line_item in order.line_items %}
-                                {% assign line_item_handle = line_item.url | split: '?' | first | split: '/' | last %}
-                                {% assign product = all_products[line_item_handle] %}
-                                {% unless collection_handle_array contains product.collections[0].handle %}
-                                    {% assign collection_handle_array = collection_handle_array | append: ',' | append: product.collections[0].handle %}
-                                {% endunless %}
-                                {% unless product_handle_array contains product.handle %}
-                                    {% assign product_handle_array = product_handle_array | append: ',' | append: product.handle %}
-                                {% endunless %}
-
-                            {% endfor %}
-                        {% endfor %}
-
-
-                        {% assign collection_handle_array = collection_handle_array | remove_first: ',' | split: ','%}
-                        {% assign product_handle_array = collection_handle_array | remove_first: ',' | split: ','%}
-
-                        <table class="responsive-table">
-                            <thead>
-                                <tr>
-                                    <th>Room Designs</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for order in customer.orders %}
-                                    {% assign order_item = forloop.index %}
-                                    {% for line_item in order.line_items %}
-                                        {% assign line_item_handle = line_item.url | split: '?' | first | split: '/' | last %}
-                                        {% assign product = all_products[line_item_handle] %}
-                                        {% if product.tags contains 'main' %}
-                                            <tr>
-                                                <td>
-                                                    <p class="open_table" data-id="{{ order_item }}">
-                                                        {{ product.title }}
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
-
-                    {% else %}
-                        <p>{{ 'customer.orders.none' | t }}</p>
-                    {% endif %}
-
-
-                {% endif %}
-
-
-                {%- if paginate.pages > 1 -%}
-                    {% include 'pagination', paginate: paginate %}
-                {%- endif -%}
-            {% endpaginate %}
+            {% else %}
+            <p>{{ 'customer.orders.none' | t }}</p>
+            {% endif %} {% endif %} {%- if paginate.pages > 1 -%} {% include 'pagination', paginate: paginate %} {%- endif -%} {% endpaginate %}
         </div>
     </div>
 
     {%- if customer.tags contains 'designer' -%}
-        <div id="request-wrapper" style="display:none;">
-            <h2>My update request</h2>
-            <table class="responsive-table">
-                <thead>
-                    <tr>
-                        <th>Design</th>
-                        <th>Notes</th>
-                        <th>Dismiss</th>
-                    </tr>
-                </thead>
-                <tbody id="request-body"></tbody>
-            </table>
-        </div>
-    {%- endif -%}
-
-    {%- if customer.tags contains 'designer' or customer.tags contains 'admin' -%}
-        <h2>My Designs</h2>
-        <div id="designer_collection"></div>
+    <div id="request-wrapper" style="display:none;">
+        <h2>My update request</h2>
+        <table class="responsive-table">
+            <thead>
+                <tr>
+                    <th>Design</th>
+                    <th>Notes</th>
+                    <th>Dismiss</th>
+                </tr>
+            </thead>
+            <tbody id="request-body"></tbody>
+        </table>
+    </div>
+    {%- endif -%} {%- if customer.tags contains 'designer' or customer.tags contains 'admin' -%}
+    <h2>My Designs</h2>
+    <div id="designer_collection"></div>
     {%- endif -%}
 
 </div>
 {%- if customer.tags contains 'designer' or customer.tags contains 'admin' -%}
-    <script id="chat_template" type="text/template">
-        <div id="chat_container" style="display: none">
-            <div id="chat_sidebar">
-                <div id="chat_history">
-                    <div class="messages-container">
-                        <ol class="messages">
-                            <li {% if customer.tags contains 'designer' %} class="mine" {%endif%}>
-                                Thank you for purchasing my design. As the 1st step to building your dream room<br>
-                                a.  Please attach the pictures of your space with all the walls and ceiling captured.<br>
-                                b.  Please send the dimensions of the room.
-                            </li>
-                        </ol>
-                    </div>
-                    <form id="chat">
-                        <input autocomplete="off" id="message" minlength="3" name="message" placeholder="Message for the designer" required type="text">
-                        <button class="btn" type="submit">{% include 'icon-chevron-right' %}</button>
-                    </form>
+<script id="chat_template" type="text/template">
+    <div id="chat_container" style="display: none">
+        <div id="chat_sidebar">
+            <div id="chat_history">
+                <div class="messages-container">
+                    <ol class="messages">
+                        <li {% if customer.tags contains 'designer' %} class="mine" {%endif%}>
+                            Thank you for purchasing my design. As the 1st step to building your dream room<br> a. Please attach the pictures of your space with all the walls and ceiling captured.<br> b. Please send the dimensions of the room.
+                        </li>
+                    </ol>
                 </div>
+                <form id="chat">
+                    <input autocomplete="off" id="message" minlength="3" name="message" placeholder="Message for the designer" required type="text">
+                    <button class="btn" type="submit">{% include 'icon-chevron-right' %}</button>
+                </form>
             </div>
         </div>
-    </script>
-    {% if customer.tags contains 'admin' %}
-        {% assign user_type = 'a' %}
-    {% elsif customer.tags contains 'designer' %}
-        {% assign user_type = 'd' %}
-    {% endif %}
-{%- endif -%}
+    </div>
+</script>
+{% if customer.tags contains 'admin' %} {% assign user_type = 'a' %} {% elsif customer.tags contains 'designer' %} {% assign user_type = 'd' %} {% endif %} {%- endif -%}
 
 <script crossorigin="anonymous" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
-  console.log({{ customer.first_name | json }});
-  console.log({{ customer.last_name | json }});
-  console.log({{ customer.metafields.global.username | json }});
-  console.log({{ customer.metafields.global.location | json }});
-  console.log({{ customer.metafields.global.locality | json }});
-  console.log({{ customer.metafields.global.state | json }});
-  console.log({{ customer.metafields.global.profile_type | json }});
-  console.log({{ customer.metafields.global.status | json }});
+    console.log({
+        {
+            customer.first_name | json
+        }
+    });
+    console.log({
+        {
+            customer.last_name | json
+        }
+    });
+    console.log({
+        {
+            customer.metafields.global.username | json
+        }
+    });
+    console.log({
+        {
+            customer.metafields.global.location | json
+        }
+    });
+    console.log({
+        {
+            customer.metafields.global.locality | json
+        }
+    });
+    console.log({
+        {
+            customer.metafields.global.state | json
+        }
+    });
+    console.log({
+        {
+            customer.metafields.global.profile_type | json
+        }
+    });
+    console.log({
+        {
+            customer.metafields.global.status | json
+        }
+    });
 </script>
 
 <script>
+    // var customer = {{ customer | json }};
 
-// var customer = {{ customer | json }};
-
-//   console.log("customer", customer);
-//   console.log("customer", customer.CustomerDrop);
-    document.addEventListener("DOMContentLoaded", function (event) {
-        $("p.open_table").on("click", function () {
+    //   console.log("customer", customer);
+    //   console.log("customer", customer.CustomerDrop);
+    document.addEventListener("DOMContentLoaded", function(event) {
+        $("p.open_table").on("click", function() {
             var id = $(this).attr("data-id");
             window.location.href = "/collections/merchandise?page=" + id;
-        });{%- if customer.tags contains 'designer' or customer.tags contains 'admin' -%}
-            $("#chat_list tbody").on("click", "p.title", function () {
-                if ($(this).hasClass("active")) {
-                    $("#chat_container").slideToggle(250);
-                } else {
-                    $("p.title").addClass("active");
-                    var $this = $(this);
-                    $("#chat_container").remove();
-                    $this
-                        .parent("td")
-                        .children("div.chat_container")
-                        .empty()
-                        .append($("#chat_template").html());
-                    var order_id = $(this).attr("data-order");
-                    $.ajax({
-                        url: "https://api.panacche.com/chat",
-                        method: "POST",
-                        async: false,
-                        data: {
-                            id: order_id
-                        },
-                        jsonpCallback: "dp",
-                        dataType: "jsonp",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (response) {
-                            $("p.title").removeClass("active");
-                            $this.addClass("active");
-                            var cls = "";
-                            $(response).each(function (t) {
-                                cls = "";
-                                if (response[t].user == "a" && user_type != "a") {
-                                    cls = " class=\"bold\"";
-                                } else if (response[t].user == "c" && user_type == "a") {
-                                    cls = " class=\"bold\"";
-                                } else if (user_type == response[t].user) {
-                                    cls = " class=\"mine\"";
-                                }
-                                $("ol.messages").append("<li" + cls + ">" + response[t].message + "</li>");
-                            })
-                            $("#chat_container").slideDown(250);
-                            $this
-                                .parent("td")
-                                .children("div.chat_container")
-                                .slideDown(500);
-                        },
-                        error: function (XMLHttpRequest) {
-                            console.log(XMLHttpRequest);
-                        }
-                    });
-                }
-            })
+        }); { % -
+            if customer.tags contains 'designer'
+            or customer.tags contains 'admin' - %
+        }
+        $("#chat_list tbody").on("click", "p.title", function() {
+            if ($(this).hasClass("active")) {
+                $("#chat_container").slideToggle(250);
+            } else {
+                $("p.title").addClass("active");
+                var $this = $(this);
+                $("#chat_container").remove();
+                $this
+                    .parent("td")
+                    .children("div.chat_container")
+                    .empty()
+                    .append($("#chat_template").html());
+                var order_id = $(this).attr("data-order");
+                $.ajax({
+                    url: "https://api.panacche.com/chat",
+                    method: "POST",
+                    async: false,
+                    data: {
+                        id: order_id
+                    },
+                    jsonpCallback: "dp",
+                    dataType: "jsonp",
+                    contentType: "application/json; charset=utf-8",
+                    success: function(response) {
+                        $("p.title").removeClass("active");
+                        $this.addClass("active");
+                        var cls = "";
+                        $(response).each(function(t) {
+                            cls = "";
+                            if (response[t].user == "a" && user_type != "a") {
+                                cls = " class=\"bold\"";
+                            } else if (response[t].user == "c" && user_type == "a") {
+                                cls = " class=\"bold\"";
+                            } else if (user_type == response[t].user) {
+                                cls = " class=\"mine\"";
+                            }
+                            $("ol.messages").append("<li" + cls + ">" + response[t].message + "</li>");
+                        })
+                        $("#chat_container").slideDown(250);
+                        $this
+                            .parent("td")
+                            .children("div.chat_container")
+                            .slideDown(500);
+                    },
+                    error: function(XMLHttpRequest) {
+                        console.log(XMLHttpRequest);
+                    }
+                });
+            }
+        })
 
-            var user_type = "{{ user_type }}";
-            var id_designer = {{ customer.id }};
+        var user_type = "{{ user_type }}";
+        var id_designer = {
+            {
+                customer.id
+            }
+        };
+        $.ajax({
+            url: "https://api.panacche.com/chat/list_chats",
+            method: "POST",
+            async: true,
+            { % -
+                if customer.tags contains 'admin' - %
+            }
+            data: {
+                user_type: "a"
+            },
+            { % -
+                else - %
+            }
+            data: {
+                id: id_designer
+            },
+            { % -endif - %
+            }
+            jsonpCallback: "dp",
+            dataType: "jsonp",
+            contentType: "application/json; charset=utf-8",
+            success: function(response) {
+                var cls = "",
+                    $chat_title = "";
+                $(response).each(function(t) {
+                    var arr_title = response[t].title.split("|");
+                    var product_title = "";
+                    if (response[t].last_msg == "c") {
+                        product_title = "<span><b>" + arr_title[0] + "</b></span>";
+                    } else {
+                        product_title = "<span>" + arr_title[0] + "</span>";
+                    }
+
+                    var title = product_title + arr_title[1]; { % -
+                        if customer.tags contains 'admin' - %
+                    }
+                    var lock_icon = " - Completed";
+                    if (response[t].status == 1) { // active
+                        lock_icon = "<a href=\"javascript:void(0);\" class=\"lock_chat\" data-id=\"" + response[t].id_order + "\" title=\"Lock chat\">{% include 'icon-lock' %}</a>";
+                    } { % -
+                        else - %
+                    }
+                    var lock_icon = "";
+                    if (response[t].status != 1) { // active
+                        lock_icon = " - Completed";
+                    } { % -endif - %
+                    }
+
+                    $chat_title = "<tr><td><p class=\"title\" data-order=\"" + response[t].id_order + "\">" + title + "</p>" + lock_icon + "<div class=\"chat_container\"></div></td></tr>";
+                    $("#chat_list tbody").prepend($chat_title);
+                })
+            },
+            error: function(XMLHttpRequest) {
+                console.log(XMLHttpRequest);
+            }
+        }); { % -
+            if customer.tags contains 'designer' - %
+        }
+        $(window).on("load", function() {
             $.ajax({
-                url: "https://api.panacche.com/chat/list_chats",
+                url: "https://api.panacche.com/request/list_rejected",
                 method: "POST",
-                async: true,{%- if customer.tags contains 'admin' -%}
-                    data : {
-                        user_type: "a"
-                    },
-                {%- else -%}
-                    data : {
-                        id: id_designer
-                    },
-                {%- endif -%}
+                async: true,
+                data: {
+                    id: {
+                        {
+                            customer.id
+                        }
+                    }
+                },
                 jsonpCallback: "dp",
                 dataType: "jsonp",
                 contentType: "application/json; charset=utf-8",
-                success: function (response) {
-                    var cls = "",
-                        $chat_title = "";
-                    $(response).each(function (t) {
-                        var arr_title = response[t].title.split("|");
-                        var product_title = "";
-                        if (response[t].last_msg == "c") {
-                            product_title = "<span><b>" + arr_title[0] + "</b></span>";
-                        } else {
-                            product_title = "<span>" + arr_title[0] + "</span>";
-                        }
-
-                        var title = product_title + arr_title[1];{%- if customer.tags contains 'admin' -%}
-                            var lock_icon = " - Completed";
-                            if (response[t].status == 1) { // active
-                                lock_icon = "<a href=\"javascript:void(0);\" class=\"lock_chat\" data-id=\"" + response[t].id_order + "\" title=\"Lock chat\">{% include 'icon-lock' %}</a>";
-                            }
-                        {%- else -%}
-                            var lock_icon = "";
-                            if (response[t].status != 1) { // active
-                                lock_icon = " - Completed";
-                            }
-                        {%- endif -%}
-
-                        $chat_title = "<tr><td><p class=\"title\" data-order=\"" + response[t].id_order + "\">" + title + "</p>" + lock_icon + "<div class=\"chat_container\"></div></td></tr>";
-                        $("#chat_list tbody").prepend($chat_title);
-                    })
+                success: function(json) {
+                    if (json.length > 0) {
+                        $("#request-wrapper").show();
+                        $(json).each(function(index, row) {
+                            $("#request-body").append("<tr><td><p>" + row.title + "</p></td><td><p>" + row.notes + "</p></td><td><i class=\"fa fa-close\" data-id=\"" + row.id + "\"></i></td></tr>");
+                        });
+                    }
                 },
-                error: function (XMLHttpRequest) {
+                error: function(XMLHttpRequest) {
                     console.log(XMLHttpRequest);
                 }
-            });{%- if customer.tags contains 'designer' -%}
-                $(window).on("load", function () {
-                    $.ajax({
-                        url: "https://api.panacche.com/request/list_rejected",
-                        method: "POST",
-                        async: true,
-                        data: {
-                            id: {{ customer.id }}
-                        },
-                        jsonpCallback: "dp",
-                        dataType: "jsonp",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (json) {
-                            if (json.length > 0) {
-                                $("#request-wrapper").show();
-                                $(json).each(function (index, row) {
-                                    $("#request-body").append("<tr><td><p>" + row.title + "</p></td><td><p>" + row.notes + "</p></td><td><i class=\"fa fa-close\" data-id=\"" + row.id + "\"></i></td></tr>");
-                                });
-                            }
-                        },
-                        error: function (XMLHttpRequest) {
-                            console.log(XMLHttpRequest);
-                        }
-                    });
-                });{%- endif -%}
+            });
+        }); { % -endif - %
+        }
 
-            $("body").on("click", "#chat button", function (e) {
-                var order_id = $(this)
-                    .closest("td")
-                    .children("p.title")
-                    .attr("data-order");
-                e.preventDefault();
-                var message = $("#chat input").val();
-                if (message.length > 0) {
-                    $("#chat button").prop("disabled", true);
-                    $.ajax({
-                        url: "https://api.panacche.com/chat/send",
-                        method: "POST",
-                        async: true,
-                        data: {
-                            id: order_id,
-                            user: user_type,
-                            message: message
-                        },
-                        success: function (response) {
-                            $("ol.messages").append("<li class=\"mine\">" + message + "</li>");
-                            $("#chat input").val("");
-                            $("#chat button").prop("disabled", false);
-                        },
-                        error: function (XMLHttpRequest) {
-                            console.log(XMLHttpRequest);
-                            return false;
-                        }
-                    });
-                }
-            });{%- endif -%}
+        $("body").on("click", "#chat button", function(e) {
+            var order_id = $(this)
+                .closest("td")
+                .children("p.title")
+                .attr("data-order");
+            e.preventDefault();
+            var message = $("#chat input").val();
+            if (message.length > 0) {
+                $("#chat button").prop("disabled", true);
+                $.ajax({
+                    url: "https://api.panacche.com/chat/send",
+                    method: "POST",
+                    async: true,
+                    data: {
+                        id: order_id,
+                        user: user_type,
+                        message: message
+                    },
+                    success: function(response) {
+                        $("ol.messages").append("<li class=\"mine\">" + message + "</li>");
+                        $("#chat input").val("");
+                        $("#chat button").prop("disabled", false);
+                    },
+                    error: function(XMLHttpRequest) {
+                        console.log(XMLHttpRequest);
+                        return false;
+                    }
+                });
+            }
+        }); { % -endif - %
+        }
 
 
-        {%- if customer.tags contains 'designer' or customer.tags contains 'admin' -%}
-            $("#chat_list thead th").on("click", function (e) {
-                $("#chat_list tbody").slideToggle();
-            });{%- if customer.tags contains 'designer' -%}
-                var url = "/collections/list-designs/designer:{{ customer.id }}?view=layout_none&page=1";
-            {%- else -%}
-                var url = "/collections/list-designs?view=layout_none&page=1";{%- endif -%}
+        { % -
+            if customer.tags contains 'designer'
+            or customer.tags contains 'admin' - %
+        }
+        $("#chat_list thead th").on("click", function(e) {
+            $("#chat_list tbody").slideToggle();
+        }); { % -
+            if customer.tags contains 'designer' - %
+        }
+        var url = "/collections/list-designs/designer:{{ customer.id }}?view=layout_none&page=1"; { % -
+            else - %
+        }
+        var url = "/collections/list-designs?view=layout_none&page=1"; { % -endif - %
+        }
 
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "GET",
+            async: true,
+            success: function(data) {
+                $("#designer_collection").html(data);
+            }
+        });
+        $("body").on("click", "a.action_url", function(e) {
+            var url = $(this).attr("data-url");
             $.ajax({
                 url: url,
                 cache: false,
                 type: "GET",
                 async: true,
-                success: function (data) {
+                success: function(data) {
                     $("#designer_collection").html(data);
                 }
             });
-            $("body").on("click", "a.action_url", function (e) {
-                var url = $(this).attr("data-url");
+        });
+
+        $("body").on("click", "a.lock_chat", function(e) {
+            var r = confirm("You are about to lock the chat, this action can't be reverted\nPlease confirm to finish the conversation.");
+            var $this = $(this);
+            if (r) {
+                var order_id = $this.attr("data-id");
+                $this.fadeOut(150);
                 $.ajax({
-                    url: url,
-                    cache: false,
-                    type: "GET",
+                    url: "https://api.panacche.com/chat/lock",
+                    method: "POST",
                     async: true,
-                    success: function (data) {
-                        $("#designer_collection").html(data);
+                    data: {
+                        order_id: order_id
+                    },
+                    success: function(response) {
+                        $this.remove();
+                    },
+                    error: function(XMLHttpRequest) {
+                        console.log(XMLHttpRequest);
+                        return false;
                     }
                 });
-            });
-
-            $("body").on("click", "a.lock_chat", function (e) {
-                var r = confirm("You are about to lock the chat, this action can't be reverted\nPlease confirm to finish the conversation.");
-                var $this = $(this);
-                if (r) {
-                    var order_id = $this.attr("data-id");
-                    $this.fadeOut(150);
-                    $.ajax({
-                        url: "https://api.panacche.com/chat/lock",
-                        method: "POST",
-                        async: true,
-                        data: {
-                            order_id: order_id
-                        },
-                        success: function (response) {
-                            $this.remove();
-                        },
-                        error: function (XMLHttpRequest) {
-                            console.log(XMLHttpRequest);
-                            return false;
-                        }
-                    });
-                } else {
-                    return false;
-                }
-            });{%- endif -%}
+            } else {
+                return false;
+            }
+        }); { % -endif - %
+        }
     });
 
 
-    $("#clear").on("click", function (e) {
+    $("#clear").on("click", function(e) {
         e.preventDefault();
         $.ajax({
             type: "POST",
             url: "/cart/clear.js",
-            success: function () {
+            success: function() {
                 window.location.href = "https://panacche.com/account/logout"
             },
             dataType: "json"

@@ -29,7 +29,7 @@
 
             var id = $(this).attr('data');
 
-            window.location.href = "https://panacchebeta.myshopify.com/pages/view-our-designer-profile?id=" + id;
+            window.location.href = shop + "/pages/view-our-designer-profile?id=" + id;
 
         });
 

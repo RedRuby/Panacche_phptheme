@@ -1,37 +1,8 @@
-<!-- <div class="pt-5">
-    <div class="alert alert-success hide pt-4 mx-5" role="alert">
-        <button type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="alert-heading mb-0">Success!</h4>
-        <hr>
-        <p class="mb-0 text">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-
-    </div>
-
-    <div class="alert alert-danger hide pt-4 mx-5" role="alert">
-        <button type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="alert-heading mb-0">Error!</h4>
-        <hr>
-        <p class="mb-0 text">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-
-    </div>
-</div> -->
-
-
-
-
-
-
-
-
 <form method="post" action="/account" id="RegisterForm" accept-charset="UTF-8" enctype="multipart/form-data">
     <input type="hidden" name="form_type" value="create_customer">
     <input type="hidden" name="utf8" value="✓"> {% include 'form-status', form: form, form_id: formId %}
     <input name="tag" type="hidden" value="role:designer" />
-    <input name="shop" type="hidden" value="panacchebeta.myshopify.com" />
+    <input name="shop" type="hidden" value="{{ shop.domain}}" />
     <div class="container h-100">
         <div class="row align-items-center h-100">
             <div class="loginWrapper col-md-12 col-sm-12 col-xs-12 mt-4 mx-auto">

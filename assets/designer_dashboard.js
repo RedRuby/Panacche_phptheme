@@ -170,7 +170,7 @@
             var id = $(this).attr('data');
             //var designer_id = $(this).attr('data');
 
-            window.location.href = "https://panacchebeta.myshopify.com/pages/designer-view-design?id=" + id;
+            window.location.href = shop + "/pages/designer-view-design?id=" + id;
             return false;
 
             var url = ngrokURL + "/api/design/" + id;
