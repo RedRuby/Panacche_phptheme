@@ -119,3 +119,11 @@ div#shopify-section-toast-message {
 .newArrivalCard .card .card-title em {
     font-size: 8px !important;
 }
+
+.searchFilter .fa-search {
+    position: absolute;
+    left: 30px;
+    top: 11px;
+    z-index: 1;
+    color: #707070;
+}

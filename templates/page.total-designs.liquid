@@ -9,7 +9,7 @@
                 <div class="row px-3 mt-2 mb-0 mb-md-3">
                     <div class="col-12 px-0 landingHeading">
                         <h4 class="mb-4">
-                            <span>Panacche Designers</span>
+                            <span>Panacche Designs</span>
                         </h4>
                     </div>
                     <div class="col-md-12 col-xs-12 float-left px-0 mb-3">
@@ -27,11 +27,28 @@
                                 <a class="nav-link" id="inactive-tab" data-toggle="tab" href="#inactive" role="tab" aria-controls="inactive" aria-selected="false">Inactive</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="rejected-tab" data-toggle="tab" href="#rejected" role="tab" aria-controls="rejected" aria-selected="false">Rejected</a>
+                                <a class="nav-link" id="abandoned-tab" data-toggle="tab" href="#abandoned" role="tab" aria-controls="abandoned" aria-selected="false">Abandoned</a>
                             </li>
                         </ul>
-
+                        <div class="row searchFilter">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 float-left">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                <input type="search" class="form-control col-12 float-left pl-5 searchInput" name="search" id="search" placeholder="Search">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-6 float-left">
+                                <div class="form-group">
+                                    <select class="custom-select selectDropdown">
+                                        <option selected="">Filter</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="3">4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-content showAllContent mt-4" id="myTabContent">
+
 
                         </div>
                     </div>
@@ -44,4 +61,5 @@
     </div>
 </div>
 
-{{ 'total-designers.js' | asset_url | script_tag }}
+
+{{ 'total-designs.js' | asset_url | script_tag }}
