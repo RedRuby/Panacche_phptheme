@@ -59,7 +59,9 @@ label em {
     -webkit-overflow-scrolling: touch;
     ;
 }
-
+.form-group {
+    position: relative;
+}
 
 /*--------- Tooltip Css ---------*/
 
