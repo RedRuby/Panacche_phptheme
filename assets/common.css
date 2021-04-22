@@ -85,9 +85,12 @@ p.custom-file.mb-0.addImage {
 }
 
 div#shopify-section-toast-message {
-    position: absolute;
+    position: fixed;
     z-index: 2222;
-    top: 45px;
+    top: 46%;
+    margin-top: -120px;
+    width: 100%;
+    padding: 0 8rem;
 }
 
 .gallery-page {
@@ -124,4 +127,10 @@ div#shopify-section-toast-message {
     top: 11px;
     z-index: 1;
     color: #707070;
+}
+
+@media (max-width: 1220px){
+	div#shopify-section-toast-message {
+        padding: 0px;
+    }
 }
