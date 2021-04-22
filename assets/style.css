@@ -38,20 +38,6 @@ label em {
     color: red;
 }
 
-.cancleBtn {
-    width: 115px;
-    background: #ffffff;
-    border-radius: 6px;
-    border: 1px solid #E2E8EE;
-    color: #5462BD;
-}
-
-.cancleBtn:hover {
-    background: #2DBAB6;
-    border: 1px solid #2DBAB6;
-    color: #ffffff;
-}
-
 .responsiveTableWrap {
     display: block;
     overflow-x: auto;
@@ -127,26 +113,40 @@ input::placeholder {
 .loginBtn {
     min-width: 115px;
     background: #5462BD;
-    border-radius: 6px;
+    border-radius: 6px !important;
 }
 
 .loginBtn:hover {
     background: #2DBAB6;
-    border: 1px solid #2DBAB6;
+    border: 1px solid #2DBAB6 !important;
 }
 
+.cancleBtn,
 .cancelBtn {
     min-width: 115px;
     background: #ffffff;
-    border-radius: 6px;
-    border: 1px solid #5462BD;
+    border-radius: 6px !important;
+    border: 1px solid #5462BD !important;
     color: #5462BD;
-    position: relative;
 }
 
+.cancleBtn:hover,
 .cancelBtn:hover {
     background: #2DBAB6;
+    border: 1px solid #2DBAB6 !important;
+    color: #ffffff;
+}
+
+.warningBtn {
+    min-width: 115px;
+    background: #F2B018;
+    border-radius: 6px !important;
+}
+
+.warningBtn:hover {
+    background: #2DBAB6;
     border: 1px solid #2DBAB6;
+    color: #ffffff;
 }
 
 .grayBtn {
@@ -570,7 +570,7 @@ Top Navbar
 
 
 /*------------------------
-Langing Page Screen
+Designer Dashboard Page CSS
 -------------------------*/
 
 .landingPageWrap {
@@ -638,6 +638,21 @@ Langing Page Screen
 
 
 /*----------------- Table Css ----------------*/
+
+.designerDashTable .nav-item .nav-link {
+    color: #ffffff;
+    background: #5462BD !important;
+    border-radius: 0px;
+    font-weight: bold;
+    padding: 0.7rem 1.2rem;
+}
+
+.designerDashTable .nav-item .active {
+    color: #5462BD;
+    border-color: transparent;
+    text-decoration: none !important;
+    background: #ffffff !important;
+}
 
 .landingTable {
     border: 1px solid #E2E8EE;
@@ -2040,6 +2055,20 @@ Admin Dashboard CSS
     border-color: #2DBAB6;
 }
 
+.discPercentage {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    color: #5462BD;
+    font-size: 18px;
+}
+
+@media (max-width: 1070px) {
+    .adminDashboard .landingHeading h4 {
+        font-size: 1.1rem;
+    }
+}
+
 
 /*------------------------
 Show All Designs
@@ -2208,6 +2237,988 @@ Disclaimer Page CSS
 
 .removeDisclaimer .fa-times-circle {
     color: #CB0000;
+}
+
+
+/*--------------------------------
+Custer Buy Design Page CSS
+--------------------------------*/
+
+.lastLogin p:nth-child(1) {
+    font-size: 1rem;
+    color: #707070;
+}
+
+.lastLogin p:nth-child(2) {
+    font-size: 1.2rem;
+    color: #707070;
+}
+
+.backBtn a {
+    color: #8B8B8B;
+}
+
+.backBtn a span {
+    background: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px #c1c1c1;
+}
+
+.roomsDisc p {
+    font-weight: 500;
+}
+
+.roomsDisc p span {
+    font-weight: normal;
+}
+
+.designPrice h4 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #00B41C;
+}
+
+.panaccheSaving p:nth-child(1) {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #5462BD;
+}
+
+.panaccheSaving p:nth-child(2) {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #5462BD;
+}
+
+.panaccheSaving .ibtn {
+    background: #2DBAB6;
+    color: #ffffff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    margin-top: 11px;
+    font-size: 15px;
+    line-height: 19px;
+    display: inline-block;
+}
+
+.panaccheSaving .ibtn .tooltiptext {
+    visibility: hidden;
+    background: #ffffff;
+    color: #707070;
+    position: absolute;
+    z-index: 1;
+    width: 372px;
+    left: -238px;
+    top: 28px;
+}
+
+.panaccheSaving .ibtn:hover .tooltiptext {
+    visibility: visible;
+}
+
+.designDisc p:nth-child(1) {
+    font-weight: 500;
+    color: #5462BD;
+}
+
+.designDisc p:nth-child(2) {
+    font-size: 0.8rem;
+}
+
+.designDisc p:nth-child(3) span {
+    border: 1px solid #5462BD;
+    border-radius: 6px;
+    color: #5462BD;
+    min-width: 50px;
+    background: #ffffff;
+    float: left;
+}
+
+.disclaimerShow {
+    font-weight: 500;
+    font-style: italic;
+}
+
+.disclaimerView {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.buyDesign .card-body {
+    background: #5462BD;
+    min-height: 150px;
+}
+
+
+/* Start Gallery CSS */
+
+.thumb {
+    margin-bottom: 15px;
+}
+
+.thumb:last-child {
+    margin-bottom: 0;
+}
+
+.thumb figure:hover img {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}
+
+.gallery p {
+    font-style: italic;
+    color: #5462BD;
+}
+
+.gallery .img-thumbnail {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.gallery .thumb figure {
+    margin: 0 0 1rem;
+    height: 230px;
+    overflow: hidden;
+}
+
+#galleryPop .modal-header .close {
+    position: absolute;
+    right: 27px;
+    z-index: 1;
+    top: 21px;
+}
+
+
+/*----------Tab 1 CSS----------*/
+
+.customerBuytabs .showAllTabs li a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.customerBuytabs .showAllTabs .nav-item .active {
+    color: #5462BD;
+    background: #ffffff;
+}
+
+.customerBuytabs .showAllTabs .nav-item .showActive {
+    color: #ffffff;
+    background: #5462BD;
+}
+
+.customerBuytabs .showAllTabs .nav-item .disabled {
+    color: #A0A0A0;
+    background: #E3E3E3;
+}
+
+.customersBuyContant {
+    background: #ffffff;
+    min-height: 500px;
+    box-shadow: 0px 4px 5px rgb(0 0 0 / 5%);
+}
+
+.customersBuyContant .tab1 h1 {
+    font-weight: bold;
+    color: #5462BD;
+}
+
+.customersBuyContant .tab1 p,
+.customersBuyContant .tab1 ul li {
+    color: #5462BD;
+}
+
+.customersBuyContant .tab1Right .buyPriceBox p:nth-child(1) {
+    color: #2DBAB6;
+    font-size: 5rem;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 7%);
+    border-radius: 6px 6px 0px 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.customersBuyContant .tab1Right .buyPriceBox p:nth-child(2) {
+    color: #ffffff;
+    background: #F2B018;
+    font-size: 2rem;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 7%);
+    border-radius: 0px 0px 6px 6px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.customersBuyContant .tab1Right .buyPriceBox p:nth-child(2) a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.customersBuyContant .tab1Right .buyPriceBox p:nth-child(3) {
+    color: #F2B018;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.customersBuyContant .tab1Right .buyPriceBox ul li {
+    color: #F2B018;
+}
+
+.customersBuyContant .tab1Right .downloadZipBox p:nth-child(1) {
+    color: #2DBAB6;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.customersBuyContant .tab1Right .downloadZipBox div {
+    background: #ffffff;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 7%);
+    border-radius: 6px;
+}
+
+.customersBuyContant .tab1Right .downloadZipBox div .fa-file-archive {
+    font-size: 8rem;
+}
+
+
+/*----------Tab 2 CSS----------*/
+
+.uplodDocuments,
+.shoppingList {
+    background: rgba(45, 186, 182, 0.13);
+}
+
+.tab2dragDropBox p {
+    color: #5462BD;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.tab2dragDropBox .showAllTabs li a {
+    font-size: 1rem;
+    font-weight: normal;
+    border-radius: 6px;
+}
+
+.tab2dragDropBox .dragDropBox p {
+    font-style: normal;
+    color: #A0A0A0;
+}
+
+.tab2UploadLinks .showAllTabs li a {
+    font-size: 1rem;
+    font-weight: normal;
+    border-radius: 6px;
+}
+
+.tab2UploadLinks .linkInputs input {
+    height: 58px;
+    background: #F5F5F5;
+    color: #2097FE;
+}
+
+.tab2UploadLinks .addLinkInput {
+    font-size: 1.5rem;
+    color: #A0A0A0;
+    cursor: pointer;
+}
+
+.tab2UploadLinks p:nth-child(1) {
+    color: #5462BD;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.shoppingListTable {
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    min-width: 600px;
+}
+
+.shoppingListTable tbody tr {
+    background: #ffffff;
+}
+
+.shoppingListTable thead tr th {
+    font-size: 1rem;
+    color: #5462BD;
+}
+
+.shoppingListTable tr td,
+.shoppingListTable tr th {
+    vertical-align: middle;
+    border-top: 0px;
+    border-bottom: 0px;
+    padding: 7px;
+}
+
+.itenImage {
+    width: 75px;
+    height: 75px;
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.shoppingListTable tbody tr td:nth-child(2) p:nth-child(1) {
+    color: #5462BD;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.shoppingListTable tbody tr td:nth-child(2) p:nth-child(2),
+.shoppingListTable tbody tr td:nth-child(2) p:nth-child(3) {
+    color: #707070;
+    font-size: 0.9rem;
+    font-style: normal;
+}
+
+.shoppingListTable tbody tr td:nth-child(4),
+.shoppingListTable tbody tr td:nth-child(5) {
+    color: #5462BD;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.shoppingListTable tbody tr td:nth-child(6) input {
+    width: 100px;
+    border: 1px solid #5462BD !important;
+    border-radius: 0;
+}
+
+.shoppingListTable tbody tr td:nth-child(7) input {
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+    cursor: pointer;
+}
+
+.paintColor {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    border: 4px solid #ffffff;
+    border-radius: 50%;
+}
+
+.burgundy {
+    background: #81082C;
+}
+
+.chromeYellow {
+    background: #E9C016;
+}
+
+.buyColorPaintTable {
+    min-width: 600px;
+}
+
+.buyColorPaintTable tbody tr td p:nth-child(1) {
+    color: #5462BD;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.buyColorPaintTable tbody tr td p:nth-child(2) {
+    color: #707070;
+    font-size: 0.9rem;
+    font-style: normal;
+}
+
+.buyColorPaintTable tbody tr td:first-child,
+.buyColorPaintTable tbody tr td:last-child {
+    border-radius: 0px;
+}
+
+.addChangesWrap {
+    min-width: 1100px;
+}
+
+.addFreeChangebtn {
+    min-width: 115px;
+    background: #2DBAB6;
+    border-radius: 6px !important;
+    border: 1px solid #2DBAB6;
+    color: #ffffff;
+    position: relative;
+    font-weight: bold;
+}
+
+.addPaidChangebtn {
+    background: #00B41C !important;
+    border: 1px solid #00B41C !important;
+}
+
+.addFreeChangebtn:hover,
+.addPaidChangebtn:hover {
+    background: #5462BD !important;
+    border: 1px solid #5462BD !important;
+}
+
+.changeAddCount {
+    color: #2DBAB6;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.buyColorPaintTable .custom-select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-size: .6em;
+    background-position: calc(100% - 1.3em) center;
+    background-repeat: no-repeat;
+}
+
+.buyColorPaintTable .custom-file-label {
+    height: 36px;
+}
+
+.buyColorPaintTable .custom-file-label::after {
+    content: "" !important;
+    top: 0px;
+    right: 0px;
+    height: 34px;
+    width: 50px;
+}
+
+.buyColorPaintTable .custom-file .fa-paperclip {
+    position: absolute;
+    color: #ffffff;
+    right: 18px;
+    top: 11px;
+    z-index: 11;
+    font-size: 16px;
+}
+
+.freeChangeHead {
+    color: #5462BD;
+}
+
+.paidChangeHead {
+    color: #004A0B;
+    background: rgba(0, 180, 28, 0.16) !important;
+}
+
+.paidChange {
+    background: rgba(0, 180, 28, 0.16) !important;
+}
+
+.addChangesWrap tbody tr td {
+    padding: 15px 7px;
+}
+
+@media (max-width: 824px) {
+    .panaccheSaving .ibtn .tooltiptext {
+        width: 315px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .panaccheSaving .ibtn .tooltiptext {
+        width: 372px;
+        font-size: 0.95rem;
+    }
+}
+
+.tabAccordian .card-header.active {
+    color: #5462BD;
+    background: #ffffff !important;
+    border-bottom: 1px solid #5462BD !important;
+}
+
+.tabAccordian .card-header.active h2 .btn {
+    color: #5462BD !important;
+}
+
+.tabAccordian .card-header.showActive {
+    color: #ffffff;
+    background: #5462BD !important;
+    border-bottom: 1px solid #ffffff !important;
+}
+
+.tabAccordian .card-header.showActive h2 .btn {
+    color: #ffffff !important;
+}
+
+.tabAccordian .card-header {
+    background: #E3E3E3;
+    border-bottom: 0px;
+}
+
+.tabAccordian .card-header h2 .btn {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 0px;
+    color: #A0A0A0;
+    box-shadow: none;
+}
+
+.tabAccordian .card-header h2 .btn-link:focus {
+    text-decoration: none;
+}
+
+.tabAccordian .card-header h2 .btn:hover {
+    text-decoration: none;
+}
+
+.tabAccordian .customersBuyContant {
+    box-shadow: none;
+}
+
+
+/*----------Tab 3 CSS----------*/
+
+.changeRequest tbody tr td:last-child p {
+    font-size: 1.5rem;
+}
+
+.floorPlanImgWrap .floorPlanImg p {
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+    border: 1px solid #5462BD;
+    border-radius: 10px;
+    margin: auto;
+    cursor: pointer;
+}
+
+#finalDesignFloorPlan .modal-header .close {
+    position: absolute;
+    right: 27px;
+    z-index: 1;
+    top: 21px;
+}
+
+.quantityView {
+    height: 38px;
+    width: 100px;
+    border: 1px solid #5462BD !important;
+    font-size: 1.3rem !important;
+    line-height: 20px;
+    color: #575757 !important;
+    font-style: normal !important;
+}
+
+
+/*----------Tab 4 CSS----------*/
+
+.orderSummaryTable {
+    background: rgba(87, 87, 87, 0.13);
+    color: #5462BD;
+}
+
+.orderSummaryTable table td,
+.orderSummaryTable table th {
+    color: #5462BD;
+}
+
+.orderSummaryTable .table thead th {
+    border-bottom: 2px solid #5462BD;
+}
+
+.orderSummaryTable .table .totalPrice {
+    border-top: 2px solid #5462BD;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.orderSummaryTable .landingHeading h4 span:nth-child(2) {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.orderSummaryTable .savedMoney span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.orderSummaryChecklist p {
+    font-size: 1.2rem;
+    color: #5462BD;
+}
+
+.orderSummaryChecklist p .fa-check-square {
+    font-size: 1.2rem;
+    color: #39BB4D;
+}
+
+.payNowBtn .loginBtn {
+    margin-top: 175px;
+}
+
+@media (max-width: 767px) {
+    .payNowBtn .loginBtn {
+        margin-top: 20px;
+    }
+}
+
+
+/*--------------------------------
+Customer Landing Page CSS
+--------------------------------*/
+
+.projectEditBtn {
+    background: #ffffff;
+    border: 1px solid #A0A0A0 !important;
+    border-radius: 6px !important;
+    font-size: 14px;
+    color: #A0A0A0;
+}
+
+.projectImg {
+    overflow: hidden;
+    max-height: 230px;
+}
+
+.card .author-info .fa-exclamation-circle {
+    color: #FF930E;
+    font-size: 20px;
+    position: absolute;
+    right: 8px;
+    top: 22px;
+}
+
+.fa-check-square {
+    font-size: 1.2rem;
+    color: #39BB4D;
+}
+
+.completedTag {
+    position: absolute;
+    right: -15px;
+    top: 10px;
+}
+
+.completedTag svg {
+    width: 150px;
+}
+
+.completedTag span {
+    position: absolute;
+    right: 25px;
+    top: 12px;
+    color: #ffffff;
+}
+
+.addCancelDesignBox {
+    border: 1px solid #707070;
+    background: transparent;
+    min-height: 280px;
+}
+
+.addNewDesign,
+.cancelNewDesign {
+    color: #A0A0A0 !important;
+    font-weight: normal !important;
+}
+
+.addNewDesign span,
+.cancelNewDesign span {
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+.cancelNewDesign .fa-times-circle {
+    color: #CB0000;
+}
+
+.addCancelDesignBox .packageSelect {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 11;
+    ;
+}
+
+.addCancelDesignBox .packageSelect .loyalPkg,
+.addCancelDesignBox .packageSelect .lavishPkg {
+    background: #5462BD;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.addCancelDesignBox .packageSelect .loyalPkg:hover,
+.addCancelDesignBox .packageSelect .lavishPkg:hover {
+    background: #2DBAB6;
+    border-color: #2DBAB6;
+}
+
+.addCancelDesignBox .packageSelect p {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.addCancelDesignBtns {
+    margin-top: 10%;
+}
+
+@media (min-width: 1200px) {
+    .addCancelDesignBtns {
+        margin-top: 30%;
+    }
+}
+
+
+/*--------------------------------
+Customer Designer Rating Page CSS
+--------------------------------*/
+
+.orderPlacedText h4 {
+    font-weight: bold;
+    color: #00B41C;
+    font-size: 2rem;
+}
+
+.goBack {
+    background: #5462BD;
+    color: #ffffff;
+    cursor: pointer;
+    border-color: #5462BD;
+}
+
+.goBack:hover {
+    background: #2DBAB6;
+    border-color: #2DBAB6;
+}
+
+.orderPlacedWrap .shoppingListTable {
+    min-width: auto;
+}
+
+.orderPlacedWrap .landingHeading2 h4 {
+    font-weight: normal;
+    color: #ffffff;
+}
+
+.orderPlacedWrap .shoppingList {
+    background: #2DBAB6;
+}
+
+.orderPlacedWrap .ratingBox {
+    background: #ffffff;
+    min-height: 387px;
+}
+
+.ratingBox .designCards .card .card-text {
+    font-weight: normal;
+    color: #AFAFAF;
+}
+
+.ratingBox .designerImg {
+    max-height: 200px;
+    min-height: auto;
+    overflow: hidden;
+}
+
+.ratingBox .designerStars {
+    color: #5462BD;
+    font-size: 1.8rem;
+}
+
+.ratingBox .designerStars .fa-star {
+    cursor: pointer;
+}
+
+
+/*--------------------------------
+FAQ Page CSS
+--------------------------------*/
+
+.faqPageWrap {
+    padding-top: 100px;
+}
+
+
+/*--------------------------------
+Design Details Page CSS
+--------------------------------*/
+
+.designDetails .panaccheSaving .ibtn .tooltiptext {
+    left: 29px;
+    top: 0;
+}
+
+.designDetails .panaccheSaving .ibtn:hover .tooltiptext {
+    visibility: visible;
+}
+
+.getaGuideWrap {
+    background: #2DBAB6;
+    border-radius: 6px;
+    color: #ffffff;
+}
+
+.getaGuideWrap .getGuideHead {
+    font-size: 1.5rem;
+}
+
+.getGuideBox p:nth-child(1) {
+    color: #2DBAB6;
+    font-size: 5rem;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 7%);
+    border-radius: 6px 6px 0px 0px;
+    font-weight: bold;
+    text-align: center;
+    background: #ffffff;
+}
+
+.getGuideBox p:nth-child(2) {
+    color: #ffffff;
+    background: #F2B018;
+    font-size: 1.5rem;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 7%);
+    border-radius: 0px 0px 6px 6px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.getGuideBox p:nth-child(2) a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.designGalleryWrap {
+    background: rgba(45, 186, 182, 0.13);
+}
+
+.galleryModel .modal-header .close {
+    position: absolute;
+    right: 27px;
+    z-index: 1;
+    top: 21px;
+}
+
+.galleryModel .modal-body img {
+    width: 100%;
+}
+
+.getGuidePop .modal-body p:nth-child(1) {
+    font-size: 18px;
+    color: #5462BD;
+    font-weight: bold;
+}
+
+.getGuidePop .modal-body p:nth-child(2) {
+    font-size: 16px;
+    color: #707070;
+    font-weight: normal;
+}
+
+
+/*--------------------------------
+Admin Invoice Page CSS
+--------------------------------*/
+
+.adminAlertBox {
+    background: #ffffff;
+}
+
+.adminAlertBox .congratsText {
+    color: #00B41C;
+    font-size: 1.7rem;
+}
+
+.adminAlertBox .alertText {
+    color: #CB0000;
+    font-size: 1.7rem;
+}
+
+.uploadedImagesView {
+    max-height: 182px;
+    overflow: hidden;
+}
+
+.custonerInvoiceWrap .orderSummaryTable .landingHeading h4 {
+    color: #707070;
+}
+
+.custonerInvoiceWrap .orderSummaryTable .table td,
+.custonerInvoiceWrap .orderSummaryTable .table th {
+    border-top: 0px solid #ffffff;
+    color: #707070;
+    vertical-align: middle;
+}
+
+.custonerInvoiceWrap .orderSummaryTable .table td .form-control {
+    height: 30px;
+    border-radius: 0px;
+}
+
+.custonerInvoiceWrap .orderSummaryTable .table td select {
+    height: 30px;
+    border-radius: 0px;
+}
+
+.custonerInvoiceWrap .orderSummaryTable .table .totalPricesTr {
+    border-top: 2px solid #5462BD;
+}
+
+.custonerInvoiceWrap .orderSummaryTable .table .totalPrice {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.custonerInvoiceWrap .orderSummaryTable .table .finalPrice {
+    color: #5462BD;
+}
+
+.custonerInvoiceWrap .orderSummaryTable .table .shoppingItnHead {
+    color: #5462BD;
+    font-size: 1.2rem;
+}
+
+.custonerInvoiceWrap .responsiveTableWrap table {
+    min-width: 850px;
+}
+
+.sendPurchesOrder tbody tr td .form-control {
+    width: 100px;
+}
+
+.successInvoiceBack {
+    background: #E3F6F6 !important;
+}
+
+.alertInvoiceBack {
+    background: rgba(203, 0, 0, 0.16) !important;
+}
+
+
+/*--------------------------------
+Customer Designer Intaraction Page CSS
+--------------------------------*/
+
+.clientDocBox {
+    box-shadow: 0px 3px 6px 0px #dfdfdf;
+    border-radius: 6px;
+}
+
+.clientDocBox .fa-file {
+    font-size: 8rem;
+    color: #2DBAB6;
+}
+
+.clientlinks p:nth-child(1) {
+    color: #707070;
+    font-style: normal;
+    font-size: 1.1rem;
+}
+
+.clientlinks .clientlinksBox {
+    border: 1px solid #5462BD;
+    color: #2097FE;
+    word-wrap: break-word;
 }
 
 

@@ -57,6 +57,7 @@
             contentType: false,
             beforeSend: function() {
                 $(".validation_error").text('');
+                $("#shopify-section-toast-message").removeClass('hide');
             },
             success: function(response) {
                 console.log("hello");
@@ -91,6 +92,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("hello");
@@ -123,6 +125,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log(response);
@@ -155,6 +158,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $("#shopify-section-toast-message").removeClass('hide');
                     // loader
                 },
                 success: function(response) {
@@ -195,6 +199,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $("#shopify-section-toast-message").removeClass('hide');
                     // loader
                 },
                 success: function(response) {

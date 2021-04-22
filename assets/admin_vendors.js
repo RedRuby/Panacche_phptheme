@@ -12,6 +12,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("hello");
@@ -42,6 +43,7 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $('.ajax-loader').css("visibility", "visible");
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     $(".landingPageWrap #addVenderPop").modal("hide");
@@ -72,7 +74,7 @@
                 processData: false,
                 contentType: false,
                 beforeSend: function() {
-
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("hello");
@@ -98,6 +100,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                     $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("hello");
