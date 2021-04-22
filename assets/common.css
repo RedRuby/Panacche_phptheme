@@ -124,7 +124,7 @@ div#shopify-section-toast-message {
 .searchFilter .fa-search {
     position: absolute;
     left: 30px;
-    top: 11px;
+    top: 11px; 
     z-index: 1;
     color: #707070;
 }
