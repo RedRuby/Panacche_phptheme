@@ -17,6 +17,7 @@ $(document).ready(function() {
         contentType: false,
         beforeSend: function() {
             $(".validation_error").text('');
+            $("#shopify-section-toast-message").removeClass('hide');
             // loader
         },
         success: function(response) {
