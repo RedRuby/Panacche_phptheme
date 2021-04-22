@@ -168,7 +168,7 @@
       {{ content_for_layout }}
     </main>
 
-    {% section 'footer' %}
+    
 
     <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
       {{- 'sections.slideshow.navigation_instructions' | t -}}
@@ -181,4 +181,12 @@
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
 </body>
+<script>
+$(document).ready(function() {
+
+         $(window).on("load", function(e) {
+            $("#shopify-section-toast-message").addClass('hide');
+        });
+        });
+</script>
 </html>

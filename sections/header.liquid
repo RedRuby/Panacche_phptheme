@@ -75,14 +75,12 @@
                                 </p>
                             </div>
                             <p class="userName text-center mb-0" id="customer_id" data="{{ customer.id }}">{{ customer.first_name }} {{ customer.last_name }}</p>
-                            <p class="userType text-center">{{customer.metafields.global.tag}}</p>
-                            <p class="editButton mx-auto w-25 text-center py-1 px-1 mb-4">Edit</p>
-                            <p class="account mb-0">
-                                <a href="{{ routes.account_url }}">My Account</a>
+                            <p class="userType text-center">{% if customer.metafields.global.tag == 'role:designer' %} DESIGNER {% else if customer.metafields.global.tag == 'role:customer' %} CUSTOMER {% else if customer.metafields.global.tag == 'role:admin' %} ADMIN {% endif %}</p>
+                            <p class="editButton mx-auto w-25 text-center py-1 px-1 mb-2">Edit</p>
+                            <p class="account text-center">
+                                <a href="{{ routes.account_url }}">My Dashboard</a>
                             </p>
-                            <p class="dashboard mb-0">
-                                <a href="/dashboard">View Dashboard</a>
-                            </p>
+                            
                             <p class="userLogout px-4 py-2 mb-0">
                                 <a href="/account/logout">
                                     <i class="fas fa-sign-out-alt mr-2"></i> Logout
