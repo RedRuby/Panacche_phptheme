@@ -3,6 +3,9 @@ html {
     height: 100%;
     color: #6C757D;
 }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
 
 hr {
     margin-top: 1rem;
@@ -413,7 +416,7 @@ Side Nav
 
 .leftSideNav {
     background: #5462BD;
-    top: 65px;
+    top: 38px;
     left: 0;
     z-index: 1;
 }
@@ -625,6 +628,8 @@ Designer Dashboard Page CSS
 
 .designOptions .card .card-title {
     color: #5462BD;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .designOptions .cardActive {
