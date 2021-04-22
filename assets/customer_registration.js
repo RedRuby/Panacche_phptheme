@@ -1,5 +1,9 @@
 (function($) {
     $(function() {
+
+        $(window).on("load", function(e) {
+            $("#shopify-section-toast-message").addClass('hide');
+        });
         console.log("customer registration");
         $verifyUsername = false;
         $verifyEmail = false;
@@ -68,6 +72,7 @@
                 beforeSend: function() {
                     $("input[name='email']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     $('.ajax-loader').css("visibility", "hidden");
@@ -79,13 +84,28 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    $verifyEmail = false;
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
+                    //  $(".template-customers-register").removeClass('hide');
+                    if (xhr.responseText != "") {
+
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $('.alert-danger').removeClass('hide');
+                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
+                                    $('html, body').animate({
+                                        scrollTop: "0"
+                                    }, 2000);
+                                    $("input[name=" + key + "]").next("span").text(item);
+                                    $("input[name=" + key + "]").addClass('error');
+                                });
+
+                            }
                         });
+
                     }
                 }
             });
@@ -110,6 +130,7 @@
                 beforeSend: function() {
                     $("input[name='phone']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     $('.ajax-loader').css("visibility", "hidden");
@@ -205,6 +226,7 @@
                     // $(".template-customers-register").addClass('hide');
                     //$(".spinner-border").removeClass('hide');
                     $('.alert-danger').addClass('hide');
+                    $("#shopify-section-toast-message").removeClass('hide');
                     $('.alert-success').addClass('hide');
                 },
                 success: function(response) {
