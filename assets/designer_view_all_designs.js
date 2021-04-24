@@ -1,7 +1,10 @@
 (function($) {
     $(function() {
         console.log('designer_view_all_designs');
-        var url = ngrokURL + "/api/designer/designs/all";
+        customer = $("input[name=customer]").val();
+        console.log('customer', customer);
+        var url = ngrokURL + "/api/designer/designs/all/" + customer;
+
 
         $.ajax({
             type: "GET",

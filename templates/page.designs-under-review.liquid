@@ -1,4 +1,5 @@
 <div class="container-fluid landingPageWrap">
+<input type="hidden" name="customer" value="{{ customer.id }}" />
     <div class="row align-items-center h-100">
         {% include 'dashboard-sidebar' %}
 
@@ -26,7 +27,7 @@
             </div>
 
         </div>
-    </div>
+</div>
 </div>
 
 {{ 'designer_under_review_designs.js' | asset_url | script_tag }}

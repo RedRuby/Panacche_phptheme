@@ -234,6 +234,12 @@
                                     // $("input[name=" + key + "]").addClass('error');
                                 });
 
+                            } else if (name == "message") {
+                                $('.alert-danger').removeClass('hide');
+                                $('.alert-danger .text').text(JSON.stringify(jsonResponseText.message));
+                                $('html, body').animate({
+                                    scrollTop: "0"
+                                }, 2000);
                             }
                         });
                     }

@@ -1,7 +1,9 @@
 (function($) {
     $(function() {
         console.log('designer_in_progress_designs.js');
-        var url = ngrokURL + "/api/designer/designs/published";
+        customer = $("input[name=customer]").val();
+        console.log('customer', customer);
+        var url = ngrokURL + "/api/designer/designs/published/" + customer;
 
         $.ajax({
             type: "GET",

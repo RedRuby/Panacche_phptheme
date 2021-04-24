@@ -109,14 +109,17 @@
         $(".landingPageWrap").on("click", "#create-design-btn", function(e) {
             e.preventDefault();
             console.log("kkkl");
-            $status = $(this).attr('data');
-            if ($status == 'active') {
+            var status = $(this).attr('data');
+            if (status == 'active') {
+                console.log("jhhhhhhhhhhhhhhhhhhhh");
                 window.location.href = "/pages/create-design";
             } else {
+                console.log("jhjhjhjjh");
+                $("#shopify-section-toast-message").removeClass('hide');
                 $('.alert-danger').removeClass('hide');
                 $('.alert-danger .text').text('Your account is not approved yet to create design, contact Admin!');
                 $('html, body').animate({
-                    scrollTop: $(".alert-danger").offset().top
+                    scrollTop: "0"
                 }, 2000);
             }
         });

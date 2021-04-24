@@ -30,7 +30,7 @@
                 },
                 success: function(response) {
                     console.log(response);
-                    if (response.status == 201) {
+                    if (response.status == 200) {
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(response.message);
                         $('html, body').animate({

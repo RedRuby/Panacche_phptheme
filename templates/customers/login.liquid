@@ -29,7 +29,7 @@
                     <label for="exampleInputPassword1">Password</label>
                     <span class="float-right">
                     
-                            <a href="#">Forgot password?</a>
+                            <a href="{{ shop.url }}/pages/forgot-password">Forgot password?</a>
                         </span>
                     <input type="password" class="form-control passWord pl-5 test input--error" id="exampleInputPassword1" placeholder="" type="password" value="" name="customer[password]" id="CustomerPassword" {%- if form.errors contains 'form' -%}  aria-invalid="true"
                         {%- endif -%} required>

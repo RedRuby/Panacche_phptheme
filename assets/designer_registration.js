@@ -440,6 +440,14 @@
             $(".portfolio-file-name").text(file);
         });
 
+        $(".resume-click").on("click", function() {
+            $("#resume").trigger("click");
+        });
+
+        $(".portfolio-click").on("click", function() {
+            $("#portfolio").trigger("click");
+        });
+
     });
 
 })(jQuery);
