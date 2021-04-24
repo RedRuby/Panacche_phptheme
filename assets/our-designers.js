@@ -24,14 +24,14 @@
             }
         });
 
-        $(".landingPageWrap").on("click", "#view-designer-profile-btn", function(e) {
-            e.preventDefault();
+        // $(".landingPageWrap").on("click", "#view-designer-profile-btn", function(e) {
+        //     e.preventDefault();
 
-            var id = $(this).attr('data');
+        //     var id = $(this).attr('data');
 
-            window.location.href = shop + "/pages/view-our-designer-profile?id=" + id;
+        //     window.location.href = shop + "/pages/view-our-designer-profile?id=" + id;
 
-        });
+        // });
 
     });
 
