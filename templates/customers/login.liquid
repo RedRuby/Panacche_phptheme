@@ -2,7 +2,8 @@
 <div class="container h-100">
     <div class="row align-items-center h-100">
         <div class="loginWrapper col-xl-6 col-md-7 col-sm-12 col-xs-12 mx-auto">
-            <div class="logo text-center col-12 float-left mb-4"><img src="{{ 'panacche_logo.jpg' | asset_url }}"></div>
+            <div class="logo text-center col-12 float-left mb-4">
+            <a href="{{ shop.url }}"><img src="{{ 'panacche_logo.jpg' | asset_url }}"></a></div>
             <div class="loginform col-12 float-left px-5 pt-5 pb-4">
 
 
@@ -27,6 +28,7 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <span class="float-right">
+                    
                             <a href="#">Forgot password?</a>
                         </span>
                     <input type="password" class="form-control passWord pl-5 test input--error" id="exampleInputPassword1" placeholder="" type="password" value="" name="customer[password]" id="CustomerPassword" {%- if form.errors contains 'form' -%}  aria-invalid="true"
@@ -48,7 +50,7 @@
                     </div>
                 </div>
                 <div class="col-2 float-left text-right pr-0 font14 pt-1">
-                    <a href="#">Cancel</a>
+                    <a href="{{ shop.url }}">Cancel</a>
                 </div>
             </div>
             <!-- <div class="col-12 mt-4 float-left text-center justify-content-between">
@@ -59,6 +61,9 @@
         </div>
     </div>
 </div>
+
+
+
 <!-- Optional JavaScript; choose one of the two! -->
 <script crossorigin="anonymous" src="https://kit.fontawesome.com/14f6289dc5.js"></script>
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

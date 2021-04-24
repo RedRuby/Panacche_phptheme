@@ -42,6 +42,7 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $('.ajax-loader').css("visibility", "visible");
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("response", response.data.disclaimer);

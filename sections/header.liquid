@@ -4,7 +4,7 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-        <a class="navbar-brand logo" href="#"><img src="{{ 'panacche_logo.png' | asset_url }}"></a>
+        <a class="navbar-brand logo" href="{{ shop.url }}"><img src="{{ 'panacche_logo.png' | asset_url }}"></a>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,6 +37,7 @@
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav">
+                {% if shop.customer_accounts_enabled %} {% if customer %}
                     <li class="nav-item dropdown notifications">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link pt-1" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
                             <span class="bellIcon text-center float-left mr-2">
@@ -50,7 +51,7 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
-                    {% if shop.customer_accounts_enabled %} {% if customer %}
+                    
 
                     <li class="nav-item dropdown userBoxWrap">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
