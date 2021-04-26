@@ -27,10 +27,13 @@
             }
         });
 
+
         $(".landingPageWrap").on("click", "#add-vendor-btn", function(e) {
             e.preventDefault();
             console.log("add vendor ");
-            $(".landingPageWrap #addVenderPop").modal("show");
+            $(".landingPageWrap #addVenderPop").modal("show").on('hide', function() {
+                $('.landingPageWrap #addVenderPop').modal('hide')
+            });
             $(".landingPageWrap #addVenderPop").prependTo("body");
         });
 
@@ -230,16 +233,11 @@
                 cache: false,
                 processData: false,
                 contentType: false,
-                // contentType: 'application/json',
-                // Accept: 'application/json',
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    // $('.ajax-loader').css("visibility", "visible");
-                    // loader
                     $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
-                    //$('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
 
                     $("#result").empty().append(response);
@@ -248,17 +246,6 @@
                         console.log(response.data.smart_collection);
                         console.log("my id", response.data.smart_collection.id);
                         window.history.pushState("create design", "id", "/pages/create-design?id=" + response.data.smart_collection.id);
-                        /*$(".room-progress").addClass('greenActive');
-                        $(".room-progress").next('span').addClass('greenActiveText');
-
-                        $('#merchandise-section').removeClass('hide');
-                        $('#collection_id').val(response.data.smart_collection.id);
-                        $('#collection_id_bulk_upload').val(response.data.smart_collection.id);
-                        $('#collection_id_submit_design').val(response.data.smart_collection.id);
-                        $("#update-room-details-btn").attr('data', response.data.smart_collection.id);
-                        $("#save-room-details-btn").addClass('hide');
-
-                        $("#update-room-details-btn").removeClass('hide');*/
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(response.message);
                         $('html, body').animate({
@@ -282,21 +269,51 @@
                         var jsonResponseText = $.parseJSON(xhr.responseText);
                         var jsonResponseStatus = '';
                         var message = '';
+                        var flag = false;
                         $.each(jsonResponseText, function(name, val) {
                             if (name == "errors") {
+
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    $('.alert-danger').removeClass('hide');
-                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
-                                    $('html, body').animate({
-                                        scrollTop: "0"
-                                    }, 2000);
-                                    $("#" + key).next("span").text(item);
-                                    // $("input[name=" + key + "]").addClass('error');
+                                    if (key == 'design_name' || key == 'design_price' || key == 'room_budget' || key == 'pet_friendly_design' || key == 'width_in_feet' || key == 'width_in_inches' || key == 'height_in_feet' || key == 'height_in_inches' || key == 'implementation_guide_description') {
+                                        flag = true;
+
+                                        $("input[name=" + key + "]").next("span").text(item);
+                                        $("input[name=" + key + "]").addClass('error');
+
+
+                                    } else {
+                                        flag = true;
+                                        tempKey = String(key);
+                                        //  console.log("tempKey", tempKey);
+                                        var checkDot = "";
+                                        var checkDot = tempKey.includes(".");
+                                        console.log("checkDot", checkDot);
+                                        if (checkDot == true) {
+                                            var temp = key.split(".");
+                                            console.log("temp", temp);
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(item);
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
+                                        } else {
+                                            $("input[name=" + key + "]").next("span").text(item);
+                                            $("input[name=" + key + "]").addClass('error');
+                                        }
+
+                                    }
+
+                                    if (flag == false) {
+                                        $('.alert-danger').removeClass('hide');
+                                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
+                                        $('html, body').animate({
+                                            scrollTop: "0"
+                                        }, 2000);
+                                    }
+
                                 });
 
                             }
                         });
+
                     }
 
                 }
@@ -453,7 +470,7 @@
         $(".landingPageWrap").on("click", "#save-merchandise-section-btn", function(e) {
             var html = '<h1>Hello World</h1>';
             //$(".landingPageWrap #upload-products-sec").append(html);
-
+            var thiss = $(this);
             //return false;
             e.preventDefault();
             console.log("clicked");
@@ -483,6 +500,9 @@
                     $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
+                    thiss.closest("#merchandise-section-form").find("input[type=text]), textarea , input[type=number]").val("");
+                    $(".landingPageWrap #merchandise-section-form")[0].reset();
+                    $("#merchandise-section-form")[0].reset();
                     $('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
                     //$(this).closest('.addRefWrap').append(response);
@@ -552,18 +572,8 @@
 
             var total_file = document.getElementById(id).files.length;
             for (var i = 0; i < total_file; i++) {
-
                 var url = URL.createObjectURL(e.target.files[i]);
-                // var html = '<div class="col-6 float-left">' +
-                //     '<p>' +
-                //     '<img src="' + url + '"/>'
-                // '<span class="imageClose"><i class="fas fa-times-circle"></i></span>' +
-                // '</p>';
-                // console.log('img', url);
-
                 $(this).closest('.addImage').css('background-image', 'url(' + url + ')');
-
-                // $(".landingPageWrap #uploadProductImages").append(html);
             }
 
         });
@@ -576,8 +586,6 @@
         $(".landingPageWrap").on("change", "#upload_product_csv", function(e) {
             e.preventDefault();
             console.log("upload bulk btn");
-
-            //$("csv-bulk-upload-form");
 
             var formData = new FormData($("#csv-bulk-upload-form")[0]);
             console.log('formData', formData);
@@ -600,7 +608,6 @@
                     $(".spinner-border").addClass('hide');
                     $("#loadingDiv").addClass('hide');
                     console.log("response", response);
-                    //$(this).closest('.addRefWrap').append(response);
                     if (response.status == 201) {
                         $(".landingPageWrap #upload-products-sec").empty();
                         $(".landingPageWrap #upload-products-sec").append(response.data.products);
@@ -654,30 +661,6 @@
             $(".landingPageWrap #save-merchandise-section-btn").addClass('hide');
             $(".landingPageWrap #save-merchandise-section-btn").addClass('hide');
         });
-
-        // $(".landingPageWrap").on("click", "#nav-home-tab", function(e) {
-        //     e.preventDefault();
-        //     console.log('eer');
-        //     $("#nav-home").addClass('show active');
-        //     $("#nav-home").removeClass('hide');
-
-        //     $("#nav-profile").addClass('hide');
-        //     $("#nav-profile").removeClass('show active');
-
-        // });
-
-        // $(".landingPageWrap").on("click", "#nav-profile-tab", function(e) {
-        //     e.preventDefault();
-        //     console.log('eer');
-        //     $("#nav-profile").addClass('show active');
-        //     $("#nav-profile").removeClass('hide');
-
-        //     $("#nav-home").addClass('hide');
-        //     $("#nav-home").removeClass('show active');
-        // });
-
-
-
 
         $(".landingPageWrap").on("click", "#submit-new-design-btn", function(e) {
             e.preventDefault();
@@ -756,12 +739,6 @@
             var product_id = $(this).attr('data');
             var formData = new FormData($(this).closest(".update-product-form")[0]);
             formData.append('product_id', product_id);
-            // var value = $('.landingPageWrap .vendor_id').val();
-            // console.log("val", value);
-            // var vendor_id = $('.landingPageWrap .vendor-datalist [value="' + value + '"]').data('value');
-            // console.log("vendor_id", vendor_id);
-            //formData.append('vendor_id', vendor_id);
-
             console.log('formData', formData);
             var updateProductUrl = ngrokURL + "/api/designer/update/product/";
             $.ajax({
@@ -785,20 +762,42 @@
                         scrollTop: "0"
                     }, 2000);
 
-                    //$(this).closest('.update-product-section').addClass('hide');
-
                     this1.closest('.update-product-section').parent('.product-preview-section').remove();
                     $("#upload-products-sec").empty();
                     $("#upload-products-sec").append(response.data.products);
                 },
                 error: function(xhr, status, error) {
-                    console.log('xhr', xhr);
-                    $('.alert-success').removeClass('hide');
-                    $('.alert-success .text').text(JSON.stringify(xhr.responseJSON.errors));
-                    $('html, body').animate({
-                        scrollTop: "0"
-                    }, 2000);
+                    console.log('xhr', xhr)
+                    if (xhr.responseText != "") {
 
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        var flag = false;
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    if (key == 'merchandise' || key == 'size_specification' || key == 'product_url' || key == 'product_price' || key == 'quantity' || key == 'vendor_id') {
+                                        flag = true;
+                                        $("input[name=" + key + "]").next("span").text(item);
+                                        $("input[name=" + key + "]").addClass('error');
+                                    }
+
+                                    if (flag == false) {
+                                        $('.alert-danger').removeClass('hide');
+                                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
+                                        $('html, body').animate({
+                                            scrollTop: "0"
+                                        }, 2000);
+                                    }
+
+                                });
+
+                            }
+                        });
+
+                    }
                 }
             });
         });
@@ -876,7 +875,9 @@
             e.preventDefault();
             var id = $(this).data('id');
             var designerId = $(this).data('designer');
-            $(".landingPageWrap #confirm-remove-design-modal").modal('show');
+            $(".landingPageWrap #confirm-remove-design-modal").modal('show').on('hide', function() {
+                $('.landingPageWrap #confirm-remove-design-modal').modal('hide')
+            });
             $(".landingPageWrap #confirm-remove-design-modal").prependTo("body");
 
 

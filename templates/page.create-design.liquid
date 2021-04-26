@@ -1,4 +1,4 @@
-*/{% if customer.metafields.global.tag == 'role:designer' %} {% assign ngrok_url = 'https://qodequaydev.com' %}
+{% if customer.metafields.global.tag == 'role:designer' %} {% assign ngrok_url = 'https://qodequaydev.com' %}
 <div class="container-fluid landingPageWrap">
     <div class="row align-items-center h-100">
         {% include 'dashboard-sidebar' %}
@@ -340,7 +340,7 @@
                     </div>
                     <div class="col-md-7 float-left mx-0 typeUser text-right pt-4 font14">
 
-                        <a href="{{ ngrok_url }}/uploads/merchandise_bulk_upload.csv">Download a Blank Sample Template CSV file for Bulk upload</a>
+                        <a href="{{ ngrok_url }}/uploads/merchandise_bulk_upload.csv" target="_blank">Download a Blank Sample Template CSV file for Bulk upload</a>
                     </div>
                 </div>
 
@@ -353,7 +353,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
                                 <div class="form-group">
                                     <label for="">Merchandise</label>
-                                    <input type="text" class="form-control" placeholder="" name="merchandise" id="merchandise">
+                                    <input type="text" class="form-control" placeholder="" name="merchandise">
                                     <span class="validation_error"></span>
                                 </div>
 
@@ -371,24 +371,24 @@
 
                                 <div class="form-group">
                                     <label for="">Quantity</label>
-                                    <input type="number" class="form-control" name="quantity" id="quantity" step="3">
+                                    <input type="number" class="form-control" name="quantity"  step="3">
                                     <span class="validation_error"></span>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
                                 <div class="form-group">
                                     <label for="">Specification</label>
-                                    <input type="text" class="form-control" placeholder="" name="size_specification" id="size_specification">
+                                    <input type="text" class="form-control" placeholder="" name="size_specification">
                                     <span class="validation_error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="">URL</label>
-                                    <input type="text" class="form-control" placeholder="" name="product_url" id="product_url">
+                                    <input type="text" class="form-control" placeholder="" name="product_url">
                                     <span class="validation_error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Retail Price</label>
-                                    <input type="number" class="form-control" placeholder="&#36;" name="product_price" id="product_price">
+                                    <input type="number" class="form-control" placeholder="&#36;" name="product_price" >
                                     <span class="validation_error"></span>
                                 </div>
                             </div>
@@ -507,7 +507,17 @@
 <script>
     window.location = "/";
 </script>
-{% endif %} {{ 'create_design.js' | asset_url | script_tag }}
+{% endif %} 
+
+<script>
+$(document).ready(function(e){
+     $("#shopify-section-toast-message").on("load", function(e) {
+            $("#shopify-section-toast-message").addClass('hide');
+        });
+});
+</script>
+{{ 'create_design.js' | asset_url | script_tag }}
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 

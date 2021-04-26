@@ -2,4 +2,12 @@
 
 </div>
 
+
+<script>
+$(document).ready(function(e){
+     $("#shopify-section-toast-message").on("load", function(e) {
+            $("#shopify-section-toast-message").addClass('hide');
+        });
+});
+</script>
 {{ 'review-design.js' | asset_url | script_tag }}

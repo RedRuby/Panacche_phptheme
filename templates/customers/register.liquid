@@ -81,6 +81,13 @@
     </div>
 </form>
 
+<script>
+$(document).ready(function(e){
+     $("#shopify-section-toast-message").on("load", function(e) {
+            $("#shopify-section-toast-message").addClass('hide');
+        });
+});
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
 
 {{ 'designer_account.js' | asset_url | script_tag }} {{ 'customer_registration.js' | asset_url | script_tag }}

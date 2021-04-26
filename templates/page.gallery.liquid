@@ -149,5 +149,12 @@
 </div>
 </div>
 
+<script>
+$(document).ready(function(e){
+     $("#shopify-section-toast-message").on("load", function(e) {
+            $("#shopify-section-toast-message").addClass('hide');
+        });
+});
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 {{ 'carousel.js' | asset_url | script_tag }} {{ 'gallery.js' | asset_url | script_tag }}
