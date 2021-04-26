@@ -10,48 +10,6 @@
         $verifyPhone = false;
         $verifyZip = false;
 
-        /* $("input[name='username']").on("change", function(e) {
-             var formData = new FormData();
-             var username = $(this).val();
-             formData.append('username', username);
-             console.log("username changes");
-
-             var url = ngrokURL + '/api/verify_username';
-             $.ajax({
-                 type: "POST",
-                 url: url,
-                 data: formData,
-                 dataType: "json",
-                 cache: false,
-                 processData: false,
-                 contentType: false,
-                 beforeSend: function() {
-                     $("input[name='username']").next('span').text('');
-                     $('.ajax-loader').css("visibility", "visible");
-                 },
-                 success: function(response) {
-                     $('.ajax-loader').css("visibility", "hidden");
-                     if (response.status == 200) {
-                         console.log(response.message);
-                         $verifyUsername = true;
-                     } else {
-                         $verifyUsername = false;
-                     }
-
-                 },
-                 error: function(xhr, status, error) {
-                     $('.ajax-loader').css("visibility", "hidden");
-                     $verifyUsername = false;
-
-                     if (xhr.responseJSON.errors) {
-                         $.each(xhr.responseJSON.errors, function(key, item) {
-                             console.log("error", key);
-                             $("input[name=" + key + "]").next("span").text(item);
-                         });
-                     }
-                 }
-             });
-         }); */
 
 
         $("input[name='email']").on("change", function(e) {
@@ -75,6 +33,7 @@
                     $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
+                    console.log("response", response);
                     $('.ajax-loader').css("visibility", "hidden");
                     if (response.status == 200) {
                         console.log(response.message);
@@ -84,9 +43,8 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    //  $(".template-customers-register").removeClass('hide');
+                    console.log("error", xhr.responseText);
                     if (xhr.responseText != "") {
-
                         var jsonResponseText = $.parseJSON(xhr.responseText);
                         var jsonResponseStatus = '';
                         var message = '';
@@ -94,18 +52,11 @@
                             if (name == "errors") {
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    $('.alert-danger').removeClass('hide');
-                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
-                                    $('html, body').animate({
-                                        scrollTop: "0"
-                                    }, 2000);
                                     $("input[name=" + key + "]").next("span").text(item);
                                     $("input[name=" + key + "]").addClass('error');
                                 });
-
                             }
                         });
-
                     }
                 }
             });
@@ -164,46 +115,6 @@
         });
 
 
-        /*$("input[name='zip']").on("change", function(e) {
-            var formData = new FormData();
-            var zip = $(this).val();
-            formData.append('zip', zip);
-            console.log("zip changes");
-
-            var url = ngrokURL + '/api/verify_zip';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: formData,
-                dataType: "json",
-                cache: false,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $("input[name='zip']").next('span').text('');
-                    $('.ajax-loader').css("visibility", "visible");
-                },
-                success: function(response) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    if (response.status == 200) {
-                        console.log(response.message);
-                    }
-
-                },
-                error: function(xhr, status, error) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
-                        });
-                    }
-                }
-            });
-        }); */
-
-
-
         $("#registration").on("click", function(e) {
             e.preventDefault();
 
@@ -223,15 +134,12 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $("input.form-control").removeClass('error');
-                    // $(".template-customers-register").addClass('hide');
-                    //$(".spinner-border").removeClass('hide');
                     $('.alert-danger').addClass('hide');
                     $("#shopify-section-toast-message").removeClass('hide');
                     $('.alert-success').addClass('hide');
                 },
                 success: function(response) {
                     console.log("response", response);
-                    //  $(".template-customers-register").removeClass('hide');
                     $(".spinner-border").addClass('hide');
                     $("#result").empty().append(response);
                     if (response.status == 201) {
@@ -255,38 +163,36 @@
                 },
                 error: function(xhr, status, error) {
                     $(".spinner-border").addClass('hide');
-                    //  $(".template-customers-register").removeClass('hide');
                     if (xhr.responseText != "") {
 
                         var jsonResponseText = $.parseJSON(xhr.responseText);
                         var jsonResponseStatus = '';
                         var message = '';
+                        var flag = false;
                         $.each(jsonResponseText, function(name, val) {
                             if (name == "errors") {
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    $('.alert-danger').removeClass('hide');
-                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
-                                    $('html, body').animate({
-                                        scrollTop: "0"
-                                    }, 2000);
-                                    $("input[name=" + key + "]").next("span").text(item);
-                                    $("input[name=" + key + "]").addClass('error');
+                                    if (key == 'first_name' || key == 'last_name' || key == 'email' || key == 'phone' || key == 'password' || key == 'confirm_password' || key == 'how_did_you_hear_about_us') {
+                                        flag = true;
+                                        $("input[name=" + key + "]").next("span").text(item);
+                                        $("input[name=" + key + "]").addClass('error');
+                                    }
+
+                                    if (flag == false) {
+                                        $('.alert-danger').removeClass('hide');
+                                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
+                                        $('html, body').animate({
+                                            scrollTop: "0"
+                                        }, 2000);
+                                    }
+
                                 });
 
                             }
                         });
 
                     }
-
-
-                    // if (xhr.responseText.errors) {
-                    //     $.each(xhr.responseText.errors, function(key, item) {
-                    //         console.log("error", key);
-                    //         $("input[name=" + key + "]").next("span").text(item);
-                    //         $("input[name=" + key + "]").addClass('error');
-                    //     });
-                    // }
                 }
             });
         });

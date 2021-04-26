@@ -11,50 +11,6 @@
         $verifyPhone = false;
         $verifyZip = false;
 
-        /*$("input[name='username']").on("change", function(e) {
-            var formData = new FormData();
-            var username = $(this).val();
-            formData.append('username', username);
-            console.log("username changes");
-
-            var url = ngrokURL + '/api/verify_username';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: formData,
-                dataType: "json",
-                cache: false,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $("input[name='username']").next('span').text('');
-                    $('.ajax-loader').css("visibility", "visible");
-                },
-                success: function(response) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    if (response.status == 200) {
-                        console.log(response.message);
-                        $verifyUsername = true;
-                    } else {
-                        $verifyUsername = false;
-                    }
-
-                },
-                error: function(xhr, status, error) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    $verifyUsername = false;
-
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
-                        });
-                    }
-                }
-            });
-        });
-
-*/
         $("input[name='email']").on("change", function(e) {
             var formData = new FormData();
             var email = $(this).val();
@@ -87,10 +43,18 @@
                 error: function(xhr, status, error) {
                     $('.ajax-loader').css("visibility", "hidden");
                     $verifyEmail = false;
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
+                    if (xhr.responseText != "") {
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $("input[name=" + key + "]").next("span").text(item);
+                                    $("input[name=" + key + "]").addClass('error');
+                                });
+                            }
                         });
                     }
                 }
@@ -145,59 +109,12 @@
                                 });
                             }
                         });
-
-                        //   alert(message);
-                    }
-                    // if (xhr.responseJSON.errors) {
-                    //     $.each(xhr.responseJSON.errors, function(key, item) {
-                    //         console.log("error", key);
-                    //         $("input[name=" + key + "]").next("span").text(item);
-                    //     });
-                    // }
-                }
-            });
-        });
-
-
-        /*   $("input[name='zip']").on("change", function(e) {
-            var formData = new FormData();
-            var zip = $(this).val();
-            formData.append('zip', zip);
-            console.log("zip changes");
-
-            var url = ngrokURL + '/api/verify_zip';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: formData,
-                dataType: "json",
-                cache: false,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $("input[name='zip']").next('span').text('');
-                    $('.ajax-loader').css("visibility", "visible");
-                },
-                success: function(response) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    if (response.status == 200) {
-                        console.log(response.message);
-                    }
-
-                },
-                error: function(xhr, status, error) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
-                        });
                     }
                 }
             });
         });
 
-*/
+
         $("#registration").on("click", function(e) {
             e.preventDefault();
 
@@ -256,23 +173,28 @@
                         var jsonResponseStatus = '';
                         var message = '';
 
-                        $('.alert-danger').removeClass('hide');
-                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.message));
-                        $('html, body').animate({
-                            scrollTop: "0"
-                        }, 2000);
+
                         $.each(jsonResponseText, function(name, val) {
                             if (name == "errors") {
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                var flag = false;
                                 $.each(jsonResponseErrors, function(key, item) {
-
-
                                     if (key == 'resume' || key == 'portfolio') {
                                         $("input[name=" + key + "]").closest('.form-group').find('.validation_error').text(item);
+                                        flag = true;
+                                    } else if (key == 'first_name' || key == 'last_name' || key == 'email' || key == 'phone' || key == 'password' || key == 'confirm_password' || key == 'website_url') {
+                                        flag = true;
+                                        $("input[name=" + key + "]").next("span").text(item);
+                                        $("input[name=" + key + "]").addClass('error');
                                     }
-                                    $("input[name=" + key + "]").next("span").text(item);
-                                    $("input[name=" + key + "]").addClass('error');
 
+                                    if (flag == false) {
+                                        $('.alert-danger').removeClass('hide');
+                                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
+                                        $('html, body').animate({
+                                            scrollTop: "0"
+                                        }, 2000);
+                                    }
 
                                 });
                             }

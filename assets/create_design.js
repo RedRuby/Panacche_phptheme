@@ -1,51 +1,10 @@
 (function($) {
     $(function() {
-        $(document).ready(function() {
-            console.log("dddd");
-            // $('[data-toggle="tooltip"]').tooltip();
-        });
-
-        // var url_string = window.location.href;
-        // console.log('url_str', url_string);
-        // var url_str = new URL(url_string);
-        // var id = url_str.searchParams.get("id");
-
-        // console.log('id', id);
-        // if (id != '') {
-        //     var url = ngrokURL + "/api/designer/create-design/" + id;
-        //     $.ajax({
-        //         type: "GET",
-        //         url: url,
-        //         // data: formData,
-        //         dataType: "json",
-        //         cache: false,
-        //         processData: false,
-        //         contentType: false,
-        //         beforeSend: function() {
-        //             $("input[name='design_name']").next('span').text('');
-        //             $('.ajax-loader').css("visibility", "visible");
-        //         },
-        //         success: function(response) {
-        //             $('.ajax-loader').css("visibility", "hidden");
-        //             $(".landingPageWrap").empty();
-        //             $(".landingPageWrap").append(response.data.design);
-        //             verifyInputs();
-
-        //         },
-        //         error: function(xhr, status, error) {
-        //             console.log("error");
-        //             console.log('error', JSON.stringify(xhr.responseJSON));
-        //         }
-        //     });
-        // }
-
-
 
         var datalist_url = ngrokURL + "/api/admin/vendor_datalist";
         $.ajax({
             type: "GET",
             url: datalist_url,
-            // data: formData,
             dataType: "json",
             cache: false,
             processData: false,
@@ -59,12 +18,8 @@
                 $('.ajax-loader').css("visibility", "hidden");
                 var dataList = document.getElementById('vendor-datalist');
                 var input = document.getElementById('vendor_id');
-
-                // var btn = '<button type="button" class="btn btn-secondary mr-3 w-100" data-toggle="modal" data-target="#addVenderPop"><i class="fas fa-plus-circle mr-2"></i> Add New Vendor</button>';
                 $(".landingPageWrap .vendor-datalist").empty();
                 $(".landingPageWrap .vendor-datalist").append(response.data.vendors);
-
-
             },
             error: function(xhr, status, error) {
                 console.log("error");
@@ -77,33 +32,15 @@
             console.log("add vendor ");
             $(".landingPageWrap #addVenderPop").modal("show");
             $(".landingPageWrap #addVenderPop").prependTo("body");
-            //alert("ok");
-
         });
 
         $(".landingPageWrap").on("change", ".vendor_id", function(e) {
             e.preventDefault();
-            //alert("ok");
             var value = $('.landingPageWrap .vendor_id').val();
             console.log("val", value);
             var id = $('.landingPageWrap .vendor-datalist [value="' + value + '"]').data('value');
             console.log("id", id);
         });
-
-
-
-        // document.querySelector('.landingPageWrap .vendor-datalist').addEventListener('.landingPageWrap .vendor-datalist', event => {
-        //     const value = event.target.value;
-        //     const opt = [].find.call(event.target.list.options, o => o.value === value);
-
-        //     if (opt) {
-        //         event.target.value = opt.textContent;
-        //     }
-        // });
-
-
-
-
 
         $("input[name='design_name']").on("change", function(e) {
             var formData = new FormData();
@@ -136,14 +73,22 @@
 
                 },
                 error: function(xhr, status, error) {
-                    $('.ajax-loader').css("visibility", "hidden");
-                    $verifyUsername = false;
+                    if (xhr.responseText != "") {
 
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $("input[name=" + key + "]").next("span").text(item);
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    $("input[name=" + key + "]").next("span").text(item);
+                                    $("input[name=" + key + "]").addClass('error');
+
+                                });
+
+                            }
                         });
+
                     }
                 }
             });
@@ -168,16 +113,11 @@
                 cache: false,
                 processData: false,
                 contentType: false,
-                // contentType: 'application/json',
-                // Accept: 'application/json',
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $("#shopify-section-toast-message").removeClass('hide');
-                    // $('.ajax-loader').css("visibility", "visible");
-                    // loader
                 },
                 success: function(response) {
-                    //$('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
 
                     $("#result").empty().append(response);
@@ -221,27 +161,31 @@
                         var jsonResponseText = $.parseJSON(xhr.responseText);
                         var jsonResponseStatus = '';
                         var message = '';
+                        var flag = false;
                         $.each(jsonResponseText, function(name, val) {
                             if (name == "errors") {
+
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    $('.alert-danger').removeClass('hide');
-                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
-                                    $('html, body').animate({
-                                        scrollTop: "0"
-                                    }, 2000);
-                                    $("#" + key).next("span").text(item);
-                                    // $("input[name=" + key + "]").addClass('error');
+                                    if (key == 'design_name' || key == 'design_price' || key == 'room_budget' || key == 'pet_friendly_design' || key == 'width_in_feet' || key == 'width_in_inches' || key == 'height_in_feet' || key == 'height_in_inches' || key == 'implementation_guide_description') {
+                                        flag = true;
+                                        $("input[name=" + key + "]").next("span").text(item);
+                                        $("input[name=" + key + "]").addClass('error');
+                                    }
+
+                                    if (flag == false) {
+                                        $('.alert-danger').removeClass('hide');
+                                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
+                                        $('html, body').animate({
+                                            scrollTop: "0"
+                                        }, 2000);
+                                    }
+
                                 });
 
-                            } else if (name == "message") {
-                                $('.alert-danger').removeClass('hide');
-                                $('.alert-danger .text').text(JSON.stringify(jsonResponseText.message));
-                                $('html, body').animate({
-                                    scrollTop: "0"
-                                }, 2000);
                             }
                         });
+
                     }
 
                 }
