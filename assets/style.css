@@ -128,6 +128,7 @@ input::placeholder {
     font-family: inherit !important;
     text-transform: none !important;
     font-weight: 400 !important;
+    letter-spacing: 0 !important;
 }
 
 .loginBtn:hover {
@@ -168,6 +169,7 @@ input::placeholder {
     font-family: inherit !important;
     text-transform: none !important;
     font-weight: 400 !important;
+    letter-spacing: 0 !important;
 }
 
 .cancleBtn:hover,
@@ -195,6 +197,7 @@ input::placeholder {
     font-family: inherit !important;
     text-transform: none !important;
     font-weight: 400 !important;
+    letter-spacing: 0 !important;
 }
 
 .warningBtn:hover {
@@ -210,6 +213,7 @@ input::placeholder {
     border: 1px solid #707070;
     color: #ffffff;
     position: relative;
+    letter-spacing: 0 !important;
 }
 
 .grayBtn:hover {
@@ -524,7 +528,7 @@ Top Navbar
 }
 
 .userLogout a {
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: none;
 }
 
@@ -858,9 +862,8 @@ Create New Design Page Screen
 
 .newDesignClose {
     color: #CB0000;
-    font-size: 25px;
+    font-size: 18px;
     cursor: pointer;
-    position: absolute;
     right: 10px;
     top: 5px;
 }
@@ -917,7 +920,7 @@ Create New Design Page Screen
 .stepsWrap .stepArrow {
     position: absolute;
     color: #707070;
-    top: 9px;
+    top: 10px;
     left: 50%;
     font-size: 20px;
 }
