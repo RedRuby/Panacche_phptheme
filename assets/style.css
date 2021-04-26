@@ -1035,6 +1035,7 @@ Create New Design Page Screen
 
 .createNewForm label {
     font-size: 14px;
+    cursor: default;
 }
 
 .createNewForm .custom-file-label {
