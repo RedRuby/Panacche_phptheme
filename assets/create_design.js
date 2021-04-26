@@ -169,8 +169,28 @@
                                 $.each(jsonResponseErrors, function(key, item) {
                                     if (key == 'design_name' || key == 'design_price' || key == 'room_budget' || key == 'pet_friendly_design' || key == 'width_in_feet' || key == 'width_in_inches' || key == 'height_in_feet' || key == 'height_in_inches' || key == 'implementation_guide_description') {
                                         flag = true;
+
                                         $("input[name=" + key + "]").next("span").text(item);
                                         $("input[name=" + key + "]").addClass('error');
+
+
+                                    } else {
+                                        flag = true;
+                                        tempKey = String(key);
+                                        //  console.log("tempKey", tempKey);
+                                        var checkDot = "";
+                                        var checkDot = tempKey.includes(".");
+                                        console.log("checkDot", checkDot);
+                                        if (checkDot == true) {
+                                            var temp = key.split(".");
+                                            console.log("temp", temp);
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(item);
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
+                                        } else {
+                                            $("input[name=" + key + "]").next("span").text(item);
+                                            $("input[name=" + key + "]").addClass('error');
+                                        }
+
                                     }
 
                                     if (flag == false) {
@@ -490,32 +510,35 @@
                 },
                 error: function(xhr, status, error) {
                     console.log('xhr', xhr)
-                        // $('.ajax-loader').css("visibility", "hidden");
-                        // $('.toast-header').text("Error");
-                        // $('.toast-body').text(JSON.stringify(xhr.responseJSON.errors))
-                        // $('.toast').removeClass('hide');
-                        // $('.toast').addClass('show');
-
                     if (xhr.responseText != "") {
 
                         var jsonResponseText = $.parseJSON(xhr.responseText);
                         var jsonResponseStatus = '';
                         var message = '';
+                        var flag = false;
                         $.each(jsonResponseText, function(name, val) {
                             if (name == "errors") {
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    $('.alert-danger').removeClass('hide');
-                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
-                                    $('html, body').animate({
-                                        scrollTop: "0"
-                                    }, 2000);
-                                    $("#" + key).next("span").text(item);
-                                    // $("input[name=" + key + "]").addClass('error');
+                                    if (key == 'merchandise' || key == 'size_specification' || key == 'product_url' || key == 'product_price' || key == 'quantity' || key == 'vendor_id') {
+                                        flag = true;
+                                        $("input[name=" + key + "]").next("span").text(item);
+                                        $("input[name=" + key + "]").addClass('error');
+                                    }
+
+                                    if (flag == false) {
+                                        $('.alert-danger').removeClass('hide');
+                                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
+                                        $('html, body').animate({
+                                            scrollTop: "0"
+                                        }, 2000);
+                                    }
+
                                 });
 
                             }
                         });
+
                     }
                 }
             });
