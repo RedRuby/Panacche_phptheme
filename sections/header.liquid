@@ -1,8 +1,5 @@
- {% assign ngrok_url = 'https://qodequaydev.com' %} {% include 'search-drawer' %}
+ {% assign ngrok_url = 'https://2e6321aebc1a.ngrok.io' %} {% include 'search-drawer' %}
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
-
-
-
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
         <a class="navbar-brand logo" href="{{ shop.url }}"><img src="{{ 'panacche_logo.png' | asset_url }}"></a>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
@@ -55,11 +52,11 @@
 
                     <li class="nav-item dropdown userBoxWrap">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
-                            <span class="smallUserPro mr-2 text-center float-left rounded-circle">
+                            <span class="smallUserPro mr-2 text-center float-left rounded-circle" >
                                         {% if customer.metafields.global.profile_pic %}
                                             <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
                                         {% else %}
-                                            <img class="fa fa-user"></img>
+                                            <img src="{{ ngrok_url }}/default/user.png"/>
                                         {% endif %}
                                     </span> {{ customer.first_name }} {{ customer.last_name }}
                         </a>
@@ -68,7 +65,11 @@
                             <div class="w-100 mt-3">
                                 <p class="mx-auto userboxImgWrap rounded-circle">
                                     <span class="userboxImg text-center float-left rounded-circle">
-                                                <i class="fa fa-user"></i>
+                                               {% if customer.metafields.global.profile_pic %}
+                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                        {% else %}
+                                            <img src="{{ ngrok_url }}/default/user.png"/>
+                                        {% endif %}
                                             </span>
                                     <span class="editUserImg text-center rounded-circle">
                                                 <i class="fas fa-pencil-alt"></i>
