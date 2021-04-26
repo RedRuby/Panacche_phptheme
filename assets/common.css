@@ -1,5 +1,6 @@
 span.validation_error {
-    color: #651818;
+    color: #CB0000;
+    font-size: 16px;
 }
 
 input.form-control.error {

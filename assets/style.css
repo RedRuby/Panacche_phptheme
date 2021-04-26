@@ -53,7 +53,9 @@ textarea {
     min-height: auto !important;
 }
 
-
+.close {
+    font-family: inherit;
+}
 /*--------- Tooltip Css ---------*/
 
 .tooltip-inner {
@@ -2004,6 +2006,13 @@ Admin Dashboard CSS
 .todaysSaleCard .card .card-body div:nth-child(2) {
     font-size: 40px;
     font-weight: bold;
+}
+
+.todaysSaleHead p {
+    color: #5462BD;
+}
+.todaysSaleHead p:hover, .todaysSaleCard .card .card-body:hover p {
+    color: #ffffff;
 }
 
 .todaysSaleHead p:nth-child(1) {
