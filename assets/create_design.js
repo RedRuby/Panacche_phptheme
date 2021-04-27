@@ -937,7 +937,7 @@
         });
 
         $(".landingPageWrap").on("click", ".blueprint_img_browse", function() {
-            $(".landingPageWrap #blue_print_images").trigger('click');
+            $(".landingPageWrap #collection_blue_prints").trigger('click');
         });
 
 
