@@ -160,7 +160,6 @@
 
   {% section 'header' %}
 
-  {% section 'toast-message' %}
 
   <div class="page-container drawer-page-content" id="PageContainer">
 
@@ -183,10 +182,8 @@
 </body>
 <script>
 $(document).ready(function() {
-
-         $("#shopify-section-toast-message").on("load", function(e) {
-            $("#shopify-section-toast-message").addClass('hide');
-        });
-        });
+    $("#shopify-section-toast-message").addClass('hide');
+    $(".shopify-section-toast-message").addClass('hide');
+});
 </script>
 </html>

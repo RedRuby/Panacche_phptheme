@@ -510,6 +510,7 @@
                         $(".landingPageWrap #upload-products-sec").empty();
                         $(".landingPageWrap #upload-products-sec").append(response.data.products);
                         $(".landingPageWrap #submit-new-design-btn").removeClass('hide');
+                        $(".landingPageWrap #submit-new-design-btn").removeAttr('disabled');
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         $(".spinner-border").addClass('hide');
                         $("#loadingDiv").addClass('hide');

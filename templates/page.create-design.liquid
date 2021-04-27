@@ -511,9 +511,9 @@
 
 <script>
 $(document).ready(function(e){
-     $("#shopify-section-toast-message").on("load", function(e) {
-            $("#shopify-section-toast-message").addClass('hide');
-        });
+    $("#shopify-section-toast-message").addClass('hide');
+    $(".shopify-section-toast-message").addClass('hide');
+     
 });
 </script>
 {{ 'create_design.js' | asset_url | script_tag }}
