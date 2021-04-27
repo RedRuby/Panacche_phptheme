@@ -3,7 +3,7 @@
     <div class="row align-items-center h-100">
         {% include 'dashboard-sidebar' %}
 
-        <div class="col-md-12 col-sm-12 col-xs-12 mx-auto pl-5 createNewForm">
+        <div class="col-md-12 col-sm-12 col-xs-12 mx-auto pl-5 createNewForm pt-5">
 
             
             <div class="col-12 px-3 landingHeading float-left mt-4">
@@ -191,15 +191,15 @@
                         </ul>
                         <div class="tab-content showAllContent" id="myTabContent">
                             <div class="tab-pane fade show active" id="rendered" role="tabpanel" aria-labelledby="rendered-tab">
-                                <div class="dragDropBox py-2">
-                                    <div class="col-12 float-left px-0">
-                                        <p class="custom-file mt-3 mb-3">
+                                <div class="dragDropBox pb-2">
+                                    <div class="col-12 float-left p-2">
+                                        <p class="custom-file p-2">
                                             <input type="file" class="custom-file-input" name="collection_images[]" id="collection_images" multiple="multiple" accept="image/x-png,image/gif,image/jpeg,webp">
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
                                             <span class="validation_error"></span>
                                         </p>
                                     </div>
-                                    <p class="text-center mb-2">Upload / drop files here <span>Browse Files</span></p>
+                                    <p class="text-center mb-2">Upload / drop files here <span class="collection_img_browse">Browse Files</span></p>
                                 </div>
                                 <div class="uploadedImages py-2 mt-2 overflow-hidden">
                                     <div id="carouselExample" class="carousel slide row" data-ride="carousel" data-interval="9000">
@@ -218,15 +218,15 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="concept" role="tabpanel" aria-labelledby="concept-tab">
-                                <div class="dragDropBox py-2">
-                                    <div class="col-12 float-left px-0">
-                                        <p class="custom-file mt-3 mb-3">
+                                 <div class="dragDropBox pb-2">
+                                    <div class="col-12 float-left p-2">
+                                        <p class="custom-file p-2">
                                             <input type="file" class="custom-file-input" name="collection_blue_prints[]" id="collection_blue_prints" accept="image/x-png,image/gif,image/jpeg">
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
                                             <span class="validation_error"></span>
                                         </p>
                                     </div>
-                                    <p class="text-center mb-2">Upload / drop files here <span>Browse Files</span></p>
+                                    <p class="text-center mb-2">Upload / drop files here <span class="blueprint_img_browse">Browse Files</span></p>
                                 </div>
                                 <div class="uploadedImages py-2 mt-2 overflow-hidden">
                                     <div id="carouselExample" class="carousel slide row" data-ride="carousel" data-interval="9000">
