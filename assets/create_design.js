@@ -932,6 +932,15 @@
 
         });
 
+        $(".landingPageWrap").on("click", ".collection_img_browse", function() {
+            $(".landingPageWrap #collection_images").trigger('click');
+        });
+
+        $(".landingPageWrap").on("click", ".blueprint_img_browse", function() {
+            $(".landingPageWrap #blue_print_images").trigger('click');
+        });
+
+
     });
 
 })(jQuery);
