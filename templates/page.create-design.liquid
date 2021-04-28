@@ -1,4 +1,15 @@
-{% if customer.metafields.global.tag == 'role:designer' %} {% assign ngrok_url = 'https://qodequaydev.com' %}
+{% if customer.metafields.global.tag == 'role:designer' %} 
+{% if shop.domain == 'panaccheuat.myshopify.com' %}
+{% assign ngrok_url = 'https://qodequaydev.com' %}
+
+{% else if shop.domain == 'panacch-com.myshopify.com' %}
+{% assign ngrok_url = 'https://panacchepartner.com' %}
+{% else if shop.domain == 'panacche.com' %}
+{% assign ngrok_url = 'https://panacchepartner.com' %}
+{% else %}
+{% assign ngrok_url = 'https://4532046023c1.ngrok.io' %}
+{% endif %}
+
 <div class="container-fluid landingPageWrap">
     <div class="row align-items-center h-100">
         {% include 'dashboard-sidebar' %}
