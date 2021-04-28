@@ -187,7 +187,10 @@
                                         if (checkDot == true) {
                                             var temp = key.split(".");
                                             console.log("temp", temp);
-                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(item);
+                                            tempItem = String(item);
+                                            tempItem = tempItem.replace('.0', '');
+                                            tempItem = tempItem.replace('_', ' ');
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(tempItem);
                                             $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
                                         } else {
                                             $("input[name=" + key + "]").next("span").text(item);
@@ -734,11 +737,19 @@
             console.log("fjjjjjjj");
             var this1 = $(this);
 
+
             //$(this).closest('.product-preview-section').find('.update-product-section').removeClass('hide');
             var product_id = $(this).attr('data');
             var formData = new FormData($(this).closest(".update-product-form")[0]);
             formData.append('product_id', product_id);
             console.log('formData', formData);
+
+            var value = $(this).closest('.update-product-form').find('.vendor_id').val();
+            console.log("val", value);
+            var vendor_id = $(this).closest('.update-product-form').find('.vendor-datalist [value="' + value + '"]').data('value');
+            console.log("id", vendor_id);
+            formData.append('vendor_id', vendor_id);
+
             var updateProductUrl = ngrokURL + "/api/designer/update/product/";
             $.ajax({
                 type: "POST",
