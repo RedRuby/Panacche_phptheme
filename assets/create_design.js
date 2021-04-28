@@ -118,6 +118,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $("input").removeClass('error');
                     // $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
@@ -189,6 +190,11 @@
                                             console.log("temp", temp);
                                             tempItem = String(item);
                                             tempItem = tempItem.replace('.0', '');
+                                            tempItem = tempItem.replace('.1', '');
+                                            tempItem = tempItem.replace('.2', '');
+                                            tempItem = tempItem.replace('.3', '');
+                                            tempItem = tempItem.replace('.4', '');
+                                            tempItem = tempItem.replace('.5', '');
                                             tempItem = tempItem.replace('_', ' ');
                                             $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(tempItem);
                                             $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
@@ -336,16 +342,16 @@
                 '<td>' +
                 '<div class="col-12 float-left px-0">' +
                 '<p class="custom-file addColor addColorImg">' +
-                '<input type="file" class="custom-file-input" name="color_img[' + color_pallette_count + ']" id="color_img.' + color_pallette_count + '">' +
+                '<input type="file" class="custom-file-input color_img_' + color_pallette_count + '" name="color_img[' + color_pallette_count + ']" id="color_img.' + color_pallette_count + '">' +
                 '<span class="validation_error label--error"></span>' +
                 '<label class="custom-file-label2 mb-0" for="customFile"></label>' +
                 '</p>' +
                 '</div>' +
                 '</td>' +
-                '<td><input type="text" class="form-control" placeholder="" name="color_name[' + color_pallette_count + ']" id="color_name.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
-                '<td><input type="text" class="form-control" placeholder="" name="brand[' + color_pallette_count + ']" id="brand.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
-                '<td><input type="text" class="form-control" placeholder="" name="finish[' + color_pallette_count + ']" id="finish.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
-                '<td><input type="text" class="form-control" placeholder="" name="application[' + color_pallette_count + ']" id="application.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
+                '<td><input type="text" class="form-control color_name_' + color_pallette_count + '" placeholder="" name="color_name[' + color_pallette_count + ']" id="color_name.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
+                '<td><input type="text" class="form-control brand_' + color_pallette_count + '" placeholder="" name="brand[' + color_pallette_count + ']" id="brand.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
+                '<td><input type="text" class="form-control finish_' + color_pallette_count + '" placeholder="" name="finish[' + color_pallette_count + ']" id="finish.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
+                '<td><input type="text" class="form-control application_' + color_pallette_count + '" placeholder="" name="application[' + color_pallette_count + ']" id="application.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
                 '<td><i class="fas fa-save hide mr-2"></i> <i class="fas fa-trash hide"></i><i class="fas fa-plus-circle addPlus"></i></td>' +
                 '</tr>';
 
