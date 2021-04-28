@@ -4,8 +4,10 @@ if (shop == 'panaccheuat.myshopify.com') {
     ngrokURL = "https://qodequaydev.com";
 } else if (shop == 'panacch-com.myshopify.com') {
     ngrokURL = "https://panacchepartner.com";
+} else if (shop == 'panacche.com') {
+    ngrokURL = "https://panacchepartner.com";
 } else {
-    ngrokURL = "https://c3bcab6da1af.ngrok.io";
+    ngrokURL = "https://6b2d66777647.ngrok.io";
 }
 (function($) {
     $(function() {
