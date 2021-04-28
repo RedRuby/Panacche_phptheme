@@ -3,8 +3,7 @@
         console.log('designer_view_all_designs');
         customer = $("input[name=customer]").val();
         console.log('customer', customer);
-        var url = ngrokURL + "/api/designer/designs/all/" + customer;
-
+        var url = ngrokURL + "/api/designer/view/all/designs/" + customer;
 
         $.ajax({
             type: "GET",
@@ -17,7 +16,7 @@
                 // loader
             },
             success: function(response) {
-                $(".landingPageWrap").append(response.data.designCards);
+                $(".landingPageWrap .showAllContent").append(response.data.designs);
             },
             error: function(xhr, status, error) {
                 console.log("error");
