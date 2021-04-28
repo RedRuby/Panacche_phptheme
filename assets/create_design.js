@@ -12,7 +12,7 @@
             beforeSend: function() {
                 $("input[name='design_name']").next('span').text('');
                 $('.ajax-loader').css("visibility", "visible");
-                $("#shopify-section-toast-message").addClass('hide');
+                //$("#shopify-section-toast-message").addClass('hide');
             },
             success: function(response) {
                 $('.ajax-loader').css("visibility", "hidden");
@@ -31,10 +31,10 @@
         $(".landingPageWrap").on("click", "#add-vendor-btn", function(e) {
             e.preventDefault();
             console.log("add vendor ");
-            $(".landingPageWrap #addVenderPop").modal("show").on('hide', function() {
-                $('.landingPageWrap #addVenderPop').modal('hide')
+            $("#addVenderPop").modal("show").on('hide', function() {
+                $('#addVenderPop').modal('hide')
             });
-            $(".landingPageWrap #addVenderPop").prependTo("body");
+            $("#addVenderPop").prependTo("body");
         });
 
         $(".landingPageWrap").on("change", ".vendor_id", function(e) {
@@ -63,7 +63,7 @@
                 beforeSend: function() {
                     $("input[name='design_name']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+                    // $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     $('.ajax-loader').css("visibility", "hidden");
@@ -118,7 +118,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    $("#shopify-section-toast-message").removeClass('hide');
+                    // $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("response", response);
@@ -235,7 +235,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    $("#shopify-section-toast-message").removeClass('hide');
+                    //  $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("response", response);
@@ -684,9 +684,7 @@
                 },
                 success: function(response) {
                     console.log("response", response);
-                    //$(this).closest('.addRefWrap').append(response);
                     if (response.status == 200) {
-                        //$(".landingPageWrap #staticBackdrop").modal('show');
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(response.message);
                         $('html, body').animate({
@@ -828,7 +826,7 @@
                 },
                 success: function(response) {
                     console.log("response", response.data.products);
-                    $(".landingPageWrap #addVenderPop").modal("hide");
+                    $("#addVenderPop").modal("hide");
                     $('.alert-success').removeClass('hide');
                     $('.alert-success .text').text(response.message);
                     $(".landingPageWrap .vendor-datalist").empty();
@@ -874,12 +872,17 @@
 
         $(".landingPageWrap").on("click", "#remove-design-btn", function(e) {
             e.preventDefault();
+            console.log("modal button click");
             var id = $(this).data('id');
             var designerId = $(this).data('designer');
-            $(".landingPageWrap #confirm-remove-design-modal").modal('show').on('hide', function() {
-                $('.landingPageWrap #confirm-remove-design-modal').modal('hide')
+
+            $("#confirm-remove-design-modal").css('display', 'block');
+            $("#confirm-remove-design-modal").modal('show').on('hide', function() {
+                $('#confirm-remove-design-modal').modal('hide');
+                $('#confirm-remove-design-modal').modal('close');
             });
-            $(".landingPageWrap #confirm-remove-design-modal").prependTo("body");
+
+            $("#confirm-remove-design-modal").prependTo("body");
 
 
             $("body").on("click", "#remove-design-yes-btn", function(e) {

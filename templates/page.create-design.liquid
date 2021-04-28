@@ -450,16 +450,19 @@
 
             <div class="col-12 float-left text-right px-0">
                 <a href="{{ shop.url }}/account" type="button" class="btn btn-primary cancelBtn float-right hide">Cancel don't Submit</a>
-                <button type="button" class="btn btn-primary hide loginBtn mr-3" data-toggle="modal" data-target="#staticBackdrop" id="submit-new-design-btn">Submit New Design</button>
+                <button type="button" class="btn btn-primary hide loginBtn mr-3" id="submit-new-design-btn">Submit New Design</button>
             </div>
 
         </div>
     </div>
 
-    <!-- Add Vender Popup Modal -->
-    <div class="modal fade addVendorPopWrap" id="addVenderPop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content modal-dialog-centered">
+   
+</div>
+
+ <!-- Add Vender Popup Modal -->
+    <div class="modal fade addVendorPopWrap" id="addVenderPop"  tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
                 <div class="modal-header py-0 px-2">
                     <p class="text-center mx-auto modelLogo mt-3"></p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -490,16 +493,13 @@
 
                 </div>
                 <div class="modal-footer text-center d-block pb-4">
-                    <button type="button" class="btn btn-primary cancleBtn"><a href="#">Cancel</a></button>
+                    <button type="button" class="btn btn-primary cancleBtn" data-dismiss="modal"><a href="#">Cancel</a></button>
                     <button type="button" class="btn btn-primary loginBtn" id="save-vendor-btn"><a href="#">Save</a></button>
                 </div>
             </div>
         </div>
     </div>
     <!-- Modal -->
-</div>
-
-
 
 
 {% else %}
