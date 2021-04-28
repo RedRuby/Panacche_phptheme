@@ -64,8 +64,8 @@
                     <li class="nav-item dropdown userBoxWrap">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
                             <span class="smallUserPro mr-2 text-center float-left rounded-circle" >
-                                        {% if customer.metafields.global.profile_pic %}
-                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                        {% if customer.metafields.global.display_picture %}
+                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture | replace: 'user', 'designer'}}" />
                                         {% else %}
                                             <img src="{{ ngrok_url }}/default/user.png"/>
                                         {% endif %}
