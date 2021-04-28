@@ -1,9 +1,9 @@
-{% if shop.domain == 'panaccheuat.myshopify.com' %}
+{% if shop.permanent_domain == 'panaccheuat.myshopify.com' %}
 {% assign ngrok_url = 'https://qodequaydev.com' %}
 
-{% else if shop.domain == 'panacch-com.myshopify.com' %}
+{% else if shop.permanent_domain == 'panacch-com.myshopify.com' %}
 {% assign ngrok_url = 'https://panacchepartner.com' %}
-{% else if shop.domain == 'panacche.com' %}
+{% else if shop.permanent_domain == 'panacche.com' %}
 {% assign ngrok_url = 'https://panacchepartner.com' %}
 {% else %}
 {% assign ngrok_url = 'https://4532046023c1.ngrok.io' %}
