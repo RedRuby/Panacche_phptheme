@@ -14,6 +14,11 @@
             success: function(response) {
                 console.log("hello");
                 $("#discount").val(response.data.discount);
+                $('.alert-success').removeClass('hide');
+                $('.alert-success .text').text(response.message);
+                $('html, body').animate({
+                    scrollTop: "0"
+                }, 2000);
             },
             error: function(xhr, status, error) {
                 console.log("error");
