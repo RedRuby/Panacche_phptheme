@@ -2,7 +2,7 @@
     <input type="hidden" name="form_type" value="create_customer">
     <input type="hidden" name="utf8" value="✓"> {% include 'form-status', form: form, form_id: formId %}
     <input name="tag" type="hidden" value="role:customer" />
-    <input name="shop" type="hidden" value="{{ shop.domain}}" />
+    <input name="shop" type="hidden" value="{{ shop.permanent_domain}}" />
 
     <div class="container h-100">
         <div class="row align-items-center h-100">

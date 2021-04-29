@@ -94,7 +94,9 @@ textarea {
 /*------------------------
 Login Screen
 -------------------------*/
-
+.loginFormWrap{
+    margin-top:50px;
+}
 .loginWrapper a {
     color: #0089FF;
 }
@@ -421,11 +423,16 @@ Side Nav
 
 .leftSideNav {
     background: #5462BD;
-    top: 38px;
-    left: 0;
     z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
-
+.leftSideNav .drawer-menu {
+    background: #5462BD;
+    padding-top: 55px;
+}
 .leftSideNav .drawer-menu li {
     list-style: none;
 }
@@ -767,6 +774,7 @@ Designer Dashboard Page CSS
 
 .designCards .card {
     border-radius: 0px;
+    margin-bottom:20px;
 }
 
 .designCards .card-body {
@@ -959,7 +967,7 @@ Create New Design Page Screen
     border-radius: 6px;
 }
 
-.dragDropBox p:nth-child(1) {
+/*.dragDropBox p:nth-child(1) {
     width: 75px;
     height: 75px;
     border: 1px dashed #707070;
@@ -1007,7 +1015,66 @@ Create New Design Page Screen
 .dragDropBox p:nth-child(2) span {
     color: #0089FF;
     cursor: pointer;
+}*/
+
+.dragDropBox p:nth-child(1) {
+    height: 75px;
+    border: 1px dashed #707070;
+    border-radius: 12px;
+    line-height: 75px;
 }
+
+.dragDropBox .custom-file-label2 {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: 74px;
+    padding: .375rem .75rem;
+    overflow: hidden;
+    font-weight: 400;
+    line-height: 4;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 12px !important;
+    color: #C3C3C3;
+    cursor: pointer;
+    width: 100%;
+}
+
+.dragDropBox .custom-file-label2::after {
+    position: absolute;
+    content: "+" !important;
+    top: 0px;
+    right: 0px;
+    line-height: 2.5;
+    padding: .375rem 1rem;
+    color: #A0A0A0;
+    background-color: transparent;
+    border-radius: .25rem;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    height: 75px;
+    cursor: pointer;
+}
+
+.dragDropBox p:nth-child(2) span {
+    color: #0089FF;
+    cursor: pointer;
+}
+.dragDropBox .custom-file-input {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 75px;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+    top: 0px;
+}
+
 
 .uploadedImages {
     height: 106px;
@@ -1018,6 +1085,7 @@ Create New Design Page Screen
     background: #BCB7B7;
     border-radius: 6px;
     position: relative;
+    overflow: hidden;
 }
 
 .imageClose {
@@ -1163,6 +1231,10 @@ Create New Design Page Screen
     border-radius: 4px 4px 0 0;
 }
 
+.uploadedImages  .panel-thumbnail .uploadedFile img{
+    width: 100%;
+}
+
 
 /*---------- Add Color Table Css -----------*/
 
@@ -1211,6 +1283,7 @@ Create New Design Page Screen
     border-top: 0px;
     border-bottom: 0px;
     padding: 7px;
+    border:0px;
 }
 
 .colorPaintTable tbody tr td:first-child {
@@ -1359,7 +1432,9 @@ Create New Design Page Screen
 .addmerchBox div:nth-child(3) p:nth-child(2) img {
     width: 100%;
 }
-
+.addmerchBox div:nth-child(3) .uploadedImage div p img {
+    width: 100%;
+}
 .deleteUpload,
 .deleteUpload2 {
     position: absolute;
@@ -1460,12 +1535,12 @@ Create New Design Page Screen
 }
 
 .addmerchBox .uploadedImage {
-    height: 115px;
+    height: 150px;
     overflow: auto;
 }
 
 .addmerchBox .uploadedImage div p {
-    height: 100px;
+    height: 135px;
     border: 1px solid #707070;
     border-radius: 6px;
     position: relative;
@@ -1628,7 +1703,12 @@ Create New Design Page View Mode
         top: 12px !important;
     }
 }
-
+.addmerchBox div:nth-child(3) .viewProductImg p {
+    font-size: 12px;
+    color: #707070;
+    position: relative;
+    border-radius: 15px;
+}
 
 /*--------------------------------
 Create New Design Page Admin View Mode

@@ -1,7 +1,7 @@
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet"> {{ 'style.css' | asset_url | stylesheet_tag }} {%- assign collection_handle = request.path | split: '/' | last -%}
-<div class="container h-100">
+<div class="container h-100 loginFormWrap">
     <div class="row align-items-center h-100">
-        <div class="loginWrapper col-xl-6 col-md-7 col-sm-12 col-xs-12 mx-auto">
+        <div class="loginWrapper col-xl-6 col-md-9 col-sm-12 col-xs-12 mx-auto">
             <div class="logo text-center col-12 float-left mb-4">
             <a href="{{ shop.url }}"><img src="{{ 'panacche_logo.jpg' | asset_url }}"></a></div>
             <div class="loginform col-12 float-left px-5 pt-5 pb-4">

@@ -142,7 +142,7 @@
             var formData = new FormData($(".landingPageWrap #add-remark-form")[0]);
             formData.append('collection_id', id);
 
-            var url = ngrokURL + 'api/admin/design/add/remark';
+            var url = ngrokURL + '/api/admin/design/add/remark';
             $.ajax({
                 type: "POST",
                 url: url,

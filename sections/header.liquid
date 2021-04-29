@@ -1,6 +1,118 @@
- {% assign ngrok_url = 'https://2e6321aebc1a.ngrok.io' %} {% include 'search-drawer' %}
+{% if shop.permanent_domain == 'panaccheuat.myshopify.com' %}
+{% assign ngrok_url = 'https://qodequaydev.com' %}
+
+{% else if shop.permanent_domain == 'panacch-com.myshopify.com' %}
+{% assign ngrok_url = 'https://panacchepartner.com' %}
+{% else if shop.permanent_domain == 'panacche.com' %}
+{% assign ngrok_url = 'https://panacchepartner.com' %}
+{% else %}
+{% assign ngrok_url = 'https://4532046023c1.ngrok.io' %}
+{% endif %}
+
+{% include 'search-drawer' %}
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+         <a class="navbar-brand logo float-left" href="{{ shop.url }}"><img src="{{ 'panacche_logo.png' | asset_url }}"></a>
+         <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto navMenus">
+               <li class="nav-item active">
+                    <a class="nav-link" href="{{ shop.url }}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/our-designers">Our Designers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/blogs/">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/our-mission">Our Mission</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/contact-us">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/faq">FAQ</a>
+                </li>
+            </ul>
+            <div class="form-inline">
+               <ul class="navbar-nav ml-auto">
+                {% if shop.customer_accounts_enabled %} {% if customer %}
+                  <li class="nav-item dropdown notifications">
+                     <a class="nav-link pt-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <span class="bellIcon text-center float-left mr-2"><i class="fas fa-bell"></i></span>
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                     </div>
+                  </li>
+                 <li class="nav-item dropdown userBoxWrap">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                            <span class="smallUserPro mr-2 text-center float-left rounded-circle" >
+                                        {% if customer.metafields.global.profile_pic %}
+                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                        {% else %}
+                                            <img src="{{ ngrok_url }}/default/user.png"/>
+                                        {% endif %}
+                                    </span> {{ customer.first_name }} {{ customer.last_name }}
+                        </a>
+                        <div aria-labelledby="navbarDropdown" class="dropdown-menu userBox pt-4 pb-0">
+                            <p class="upArrow text-center mb-0"></p>
+                            <div class="w-100 mt-3">
+                                <p class="mx-auto userboxImgWrap rounded-circle">
+                                    <span class="userboxImg text-center float-left rounded-circle">
+                                               {% if customer.metafields.global.profile_pic %}
+                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                        {% else %}
+                                            <img src="{{ ngrok_url }}/default/user.png"/>
+                                        {% endif %}
+                                            </span>
+                                    <span class="editUserImg text-center rounded-circle">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </span>
+                                </p>
+                            </div>
+                            <p class="userName text-center mb-0" id="customer_id" data="{{ customer.id }}">{{ customer.first_name }} {{ customer.last_name }}</p>
+                            <p class="userType text-center">{% if customer.metafields.global.tag == 'role:designer' %} DESIGNER {% else if customer.metafields.global.tag == 'role:customer' %} CUSTOMER {% else if customer.metafields.global.tag == 'role:admin' %} ADMIN {% endif %}</p>
+                            <p class="editButton mx-auto w-25 text-center py-1 px-1 mb-2">Edit</p>
+                            <p class="account text-center">
+                                <a href="{{ routes.account_url }}">My Dashboard</a>
+                            </p>
+                            
+                            <p class="userLogout px-4 py-2 mb-0">
+                                <a href="/account/logout">
+                                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                                </a>
+
+                            </p>
+                        </div>
+                    </li>
+
+                    {% else %}
+
+                   <li class="nav-item registerLink">
+                     <a class="nav-link" href="#">Register</a>
+                      </li>
+                    {% endif %} {% endif %}
+                 
+
+
+
+               </ul>
+            </div>
+         </div>
+      </nav>
+
+      
+    {% comment %} <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
         <a class="navbar-brand logo" href="{{ shop.url }}"><img src="{{ 'panacche_logo.png' | asset_url }}"></a>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
@@ -53,8 +165,8 @@
                     <li class="nav-item dropdown userBoxWrap">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
                             <span class="smallUserPro mr-2 text-center float-left rounded-circle" >
-                                        {% if customer.metafields.global.profile_pic %}
-                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                        {% if customer.metafields.global.display_picture %}
+                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture | replace: 'user', 'designer'}}" />
                                         {% else %}
                                             <img src="{{ ngrok_url }}/default/user.png"/>
                                         {% endif %}
@@ -65,8 +177,8 @@
                             <div class="w-100 mt-3">
                                 <p class="mx-auto userboxImgWrap rounded-circle">
                                     <span class="userboxImg text-center float-left rounded-circle">
-                                               {% if customer.metafields.global.profile_pic %}
-                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                               {% if customer.metafields.global.display_picture %}
+                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture | replace: 'user', 'designer'}}" />
                                         {% else %}
                                             <img src="{{ ngrok_url }}/default/user.png"/>
                                         {% endif %}
@@ -102,11 +214,41 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> {% endcomment %}
 
     {% if section.settings.align_logo == 'center' %}
     <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
         {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
     </nav>
     {% endif %}
+</div>
+
+<div id="shopify-section-toast-message" class="shopify-section-toast-message hide"> 
+<div class="pt-5">
+    <div class="alert alert-success hide pt-4 mx-5" role="alert">
+        <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="alert-heading mb-0">Success!</h4>
+        <hr>
+        <p class="mb-0 text">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+
+    </div>
+
+    <div class="alert alert-danger hide pt-4 mx-5" role="alert">
+        <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="alert-heading mb-0">Error!</h4>
+        <hr>
+        <p class="mb-0 text">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+
+    </div>
+</div>
+
+<div class="text-center hide" id="loadingDiv">
+    <div class="spinner-border hide text-primary loader" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 </div>

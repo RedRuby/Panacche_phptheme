@@ -12,7 +12,7 @@
             beforeSend: function() {
                 $("input[name='design_name']").next('span').text('');
                 $('.ajax-loader').css("visibility", "visible");
-                $("#shopify-section-toast-message").addClass('hide');
+                //$("#shopify-section-toast-message").addClass('hide');
             },
             success: function(response) {
                 $('.ajax-loader').css("visibility", "hidden");
@@ -31,10 +31,10 @@
         $(".landingPageWrap").on("click", "#add-vendor-btn", function(e) {
             e.preventDefault();
             console.log("add vendor ");
-            $(".landingPageWrap #addVenderPop").modal("show").on('hide', function() {
-                $('.landingPageWrap #addVenderPop').modal('hide')
+            $("#addVenderPop").modal("show").on('hide', function() {
+                $('#addVenderPop').modal('hide')
             });
-            $(".landingPageWrap #addVenderPop").prependTo("body");
+            $("#addVenderPop").prependTo("body");
         });
 
         $(".landingPageWrap").on("change", ".vendor_id", function(e) {
@@ -63,7 +63,7 @@
                 beforeSend: function() {
                     $("input[name='design_name']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+                    // $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     $('.ajax-loader').css("visibility", "hidden");
@@ -118,7 +118,8 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    $("#shopify-section-toast-message").removeClass('hide');
+                    $("input").removeClass('error');
+                    // $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("response", response);
@@ -187,7 +188,15 @@
                                         if (checkDot == true) {
                                             var temp = key.split(".");
                                             console.log("temp", temp);
-                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(item);
+                                            tempItem = String(item);
+                                            tempItem = tempItem.replace('.0', '');
+                                            tempItem = tempItem.replace('.1', '');
+                                            tempItem = tempItem.replace('.2', '');
+                                            tempItem = tempItem.replace('.3', '');
+                                            tempItem = tempItem.replace('.4', '');
+                                            tempItem = tempItem.replace('.5', '');
+                                            tempItem = tempItem.replace('_', ' ');
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(tempItem);
                                             $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
                                         } else {
                                             $("input[name=" + key + "]").next("span").text(item);
@@ -235,7 +244,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    $("#shopify-section-toast-message").removeClass('hide');
+                    //  $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     console.log("response", response);
@@ -333,16 +342,16 @@
                 '<td>' +
                 '<div class="col-12 float-left px-0">' +
                 '<p class="custom-file addColor addColorImg">' +
-                '<input type="file" class="custom-file-input" name="color_img[' + color_pallette_count + ']" id="color_img.' + color_pallette_count + '">' +
+                '<input type="file" class="custom-file-input color_img_' + color_pallette_count + '" name="color_img[' + color_pallette_count + ']" id="color_img.' + color_pallette_count + '">' +
                 '<span class="validation_error label--error"></span>' +
                 '<label class="custom-file-label2 mb-0" for="customFile"></label>' +
                 '</p>' +
                 '</div>' +
                 '</td>' +
-                '<td><input type="text" class="form-control" placeholder="" name="color_name[' + color_pallette_count + ']" id="color_name.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
-                '<td><input type="text" class="form-control" placeholder="" name="brand[' + color_pallette_count + ']" id="brand.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
-                '<td><input type="text" class="form-control" placeholder="" name="finish[' + color_pallette_count + ']" id="finish.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
-                '<td><input type="text" class="form-control" placeholder="" name="application[' + color_pallette_count + ']" id="application.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
+                '<td><input type="text" class="form-control color_name_' + color_pallette_count + '" placeholder="" name="color_name[' + color_pallette_count + ']" id="color_name.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
+                '<td><input type="text" class="form-control brand_' + color_pallette_count + '" placeholder="" name="brand[' + color_pallette_count + ']" id="brand.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
+                '<td><input type="text" class="form-control finish_' + color_pallette_count + '" placeholder="" name="finish[' + color_pallette_count + ']" id="finish.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
+                '<td><input type="text" class="form-control application_' + color_pallette_count + '" placeholder="" name="application[' + color_pallette_count + ']" id="application.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
                 '<td><i class="fas fa-save hide mr-2"></i> <i class="fas fa-trash hide"></i><i class="fas fa-plus-circle addPlus"></i></td>' +
                 '</tr>';
 
@@ -510,6 +519,7 @@
                         $(".landingPageWrap #upload-products-sec").empty();
                         $(".landingPageWrap #upload-products-sec").append(response.data.products);
                         $(".landingPageWrap #submit-new-design-btn").removeClass('hide');
+                        $(".landingPageWrap #submit-new-design-btn").removeAttr('disabled');
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         $(".spinner-border").addClass('hide');
                         $("#loadingDiv").addClass('hide');
@@ -683,9 +693,7 @@
                 },
                 success: function(response) {
                     console.log("response", response);
-                    //$(this).closest('.addRefWrap').append(response);
                     if (response.status == 200) {
-                        //$(".landingPageWrap #staticBackdrop").modal('show');
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(response.message);
                         $('html, body').animate({
@@ -735,11 +743,19 @@
             console.log("fjjjjjjj");
             var this1 = $(this);
 
+
             //$(this).closest('.product-preview-section').find('.update-product-section').removeClass('hide');
             var product_id = $(this).attr('data');
             var formData = new FormData($(this).closest(".update-product-form")[0]);
             formData.append('product_id', product_id);
             console.log('formData', formData);
+
+            var value = $(this).closest('.update-product-form').find('.vendor_id').val();
+            console.log("val", value);
+            var vendor_id = $(this).closest('.update-product-form').find('.vendor-datalist [value="' + value + '"]').data('value');
+            console.log("id", vendor_id);
+            formData.append('vendor_id', vendor_id);
+
             var updateProductUrl = ngrokURL + "/api/designer/update/product/";
             $.ajax({
                 type: "POST",
@@ -827,7 +843,7 @@
                 },
                 success: function(response) {
                     console.log("response", response.data.products);
-                    $(".landingPageWrap #addVenderPop").modal("hide");
+                    $("#addVenderPop").modal("hide");
                     $('.alert-success').removeClass('hide');
                     $('.alert-success .text').text(response.message);
                     $(".landingPageWrap .vendor-datalist").empty();
@@ -873,12 +889,17 @@
 
         $(".landingPageWrap").on("click", "#remove-design-btn", function(e) {
             e.preventDefault();
+            console.log("modal button click");
             var id = $(this).data('id');
             var designerId = $(this).data('designer');
-            $(".landingPageWrap #confirm-remove-design-modal").modal('show').on('hide', function() {
-                $('.landingPageWrap #confirm-remove-design-modal').modal('hide')
+
+            $("#confirm-remove-design-modal").css('display', 'block');
+            $("#confirm-remove-design-modal").modal('show').on('hide', function() {
+                $('#confirm-remove-design-modal').modal('hide');
+                $('#confirm-remove-design-modal').modal('close');
             });
-            $(".landingPageWrap #confirm-remove-design-modal").prependTo("body");
+
+            $("#confirm-remove-design-modal").prependTo("body");
 
 
             $("body").on("click", "#remove-design-yes-btn", function(e) {
@@ -931,6 +952,15 @@
 
 
         });
+
+        $(".landingPageWrap").on("click", ".collection_img_browse", function() {
+            $(".landingPageWrap #collection_images").trigger('click');
+        });
+
+        $(".landingPageWrap").on("click", ".blueprint_img_browse", function() {
+            $(".landingPageWrap #collection_blue_prints").trigger('click');
+        });
+
 
     });
 
