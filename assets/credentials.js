@@ -2,8 +2,12 @@ var ngrokURL = "";
 var shop = window.location.hostname;
 if (shop == 'panaccheuat.myshopify.com') {
     ngrokURL = "https://qodequaydev.com";
+} else if (shop == 'panacch-com.myshopify.com') {
+    ngrokURL = "https://panacchepartner.com";
+} else if (shop == 'panacche.com') {
+    ngrokURL = "https://panacchepartner.com";
 } else {
-    ngrokURL = "https://2dd410e9d484.ngrok.io";
+    ngrokURL = "https://4532046023c1.ngrok.io";
 }
 (function($) {
     $(function() {

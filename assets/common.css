@@ -77,9 +77,11 @@ p.custom-file.addColor.addColorImg {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 99;
 }
+
 .text-primary {
     color: #2DBAB6!important;
 }
+
 p.custom-file.mb-0.addImage {
     background-size: cover;
     background-position: center;
@@ -125,13 +127,17 @@ div#shopify-section-toast-message {
 .searchFilter .fa-search {
     position: absolute;
     left: 30px;
-    top: 11px; 
+    top: 11px;
     z-index: 1;
     color: #707070;
 }
 
-@media (max-width: 1220px){
-	div#shopify-section-toast-message {
+@media (max-width: 1220px) {
+    div#shopify-section-toast-message {
         padding: 0px;
     }
+}
+
+div#confirm-remove-design-modal {
+    opacity: 1 !important;
 }

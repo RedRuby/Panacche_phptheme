@@ -1,0 +1,61 @@
+<div class="container-fluid landingPageWrap">
+<input type="hidden" value="{{ customer.id }}" name="customer"/> 
+         <div class="row align-items-center h-100">
+            
+            <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-5 pt-5">
+               <div class="col-md-12 float-left galleryBack">
+                  <a href="designer_dashboard.html"><span><i class="fas fa-arrow-left"></i></span></a>
+               </div>
+               <div class="leftPart col-md-12 col-xs-12 float-left pl-3 pr-0 mt-2">
+                  <div class="row px-3 mt-2 mb-0 mb-md-3">
+                     <div class="col-12 px-0 landingHeading">
+                        <h4 class="mb-4">
+                           <span>Show All Designs</span>
+                        </h4>
+                     </div>
+                     <div class="col-md-12 col-xs-12 float-left px-0 mb-3">
+                        <ul class="nav nav-tabs showAllTabs row" id="myTab" role="tablist">
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+                           </li>
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="inactive-tab" data-toggle="tab" href="#inactive" role="tab" aria-controls="inactive" aria-selected="false">Inactive</a>
+                           </li>
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="under_review-tab" data-toggle="tab" href="#under_review" role="tab" aria-controls="under_review" aria-selected="false">Under Review</a>
+                           </li>
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="draft_design-tab" data-toggle="tab" href="#draft_design" role="tab" aria-controls="draft_design" aria-selected="false">Draft Design</a>
+                           </li>
+                        </ul>
+                        <div class="row searchFilter">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-6 float-left">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                <input type="search" class="form-control col-12 float-left pl-5 searchInput" placeholder="Search">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-6 float-left">
+                                <div class="form-group">
+                                    <select class="custom-select selectDropdown">
+                                    <option selected="">Filter</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3">4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content showAllContent mt-4" id="myTabContent">
+                           
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row footerWrap">
+            <footer></footer>
+         </div>
+      </div>
+
+{{ 'designer_view_all_designs.js' | asset_url | script_tag }}
