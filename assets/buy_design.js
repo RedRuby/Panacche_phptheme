@@ -29,8 +29,8 @@
                 success: function(response) {
                     console.log("hello");
                     console.log(response.data.design);
-                    $(".landingPageWrap").empty();
-                    $(".landingPageWrap").append(response.data.design);
+                    $(".landingPageWrapBuyDesigner").empty();
+                    $(".landingPageWrapBuyDesigner").append(response.data.design);
                 },
                 error: function(xhr, status, error) {
                     console.log("error");
