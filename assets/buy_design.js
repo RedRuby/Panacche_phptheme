@@ -11,9 +11,10 @@
             customer = $("input[name=customer]").val();
             console.log('customer', customer);
             //var id = "265380626618";
+            customer = 'a';
             var shop = "panacchebeta.myshopify.com	";
             var url = ngrokURL + '/api/pages/view/design/' + id + '/' + customer + '/' + shop;
-
+            
             //console.log("customer_id", customer_id);
             $.ajax({
                 type: "GET",
