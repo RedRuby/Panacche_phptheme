@@ -62,7 +62,7 @@
                                         {% else %}
                                             <img src="{{ ngrok_url }}/default/user.png"/>
                                         {% endif %}
-                                    </span> {{ customer.first_name }} {{ customer.last_name }}
+                                    </span> {{ customer.first_name }} {{ customer.last_name  | truncate: 12, "..." }}
                         </a>
                         <div aria-labelledby="navbarDropdown" class="dropdown-menu userBox pt-4 pb-0">
                             <p class="upArrow text-center mb-0"></p>
@@ -80,7 +80,7 @@
                                             </span>
                                 </p>
                             </div>
-                            <p class="userName text-center mb-0" id="customer_id" data="{{ customer.id }}">{{ customer.first_name }} {{ customer.last_name }}</p>
+                            <p class="userName text-center mb-0" id="customer_id" data="{{ customer.id }}">{{ customer.first_name }} {{ customer.last_name | truncate: 12, "..."  }}</p>
                             <p class="userType text-center">{% if customer.metafields.global.tag == 'role:designer' %} DESIGNER {% else if customer.metafields.global.tag == 'role:customer' %} CUSTOMER {% else if customer.metafields.global.tag == 'role:admin' %} ADMIN {% endif %}</p>
                             <p class="editButton mx-auto w-25 text-center py-1 px-1 mb-2">Edit</p>
                             <p class="account text-center">
@@ -98,9 +98,9 @@
 
                     {% else %}
 
-                   <li class="nav-item registerLink">
-                     <a class="nav-link" href="#">Register</a>
-                      </li>
+                    <li class="nav-item registerLink">
+                        <a class="nav-link" href="/account">Sign Up</a>
+                    </li>
                     {% endif %} {% endif %}
                  
 
