@@ -159,6 +159,11 @@
 
   {% section 'header' %}
 
+	{% if shop.customer_accounts_enabled %}
+	{% if customer %}
+	{% include 'dashboard-sidebar' %}
+	{% endif %}
+	{% endif %}
 
   <div class="page-container drawer-page-content" id="PageContainer">
 
