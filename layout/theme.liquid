@@ -161,7 +161,13 @@
 
 	{% if shop.customer_accounts_enabled %}
 	{% if customer %}
+	{% if template == 'page.gallery' or template == 'page.our-designers' or template == 'page' or template == 'index' %}
+	
+	{% else %}
+	
 	{% include 'dashboard-sidebar' %}
+	
+	{% endif %}
 	{% endif %}
 	{% endif %}
 
