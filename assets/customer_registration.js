@@ -249,14 +249,14 @@
             }
         });
 
-        $(window).load(function() {
-            var phones = [{ "mask": "(###) ###-####" }, { "mask": "(###) ###-##############" }];
-            $("#phone").inputmask({
-                mask: phones,
-                greedy: false,
-                definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
-            });
-        });
+        // $(window).load(function() {
+        //     var phones = [{ "mask": "(###) ###-####" }, { "mask": "(###) ###-##############" }];
+        //     $("#phone").inputmask({
+        //         mask: phones,
+        //         greedy: false,
+        //         definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
+        //     });
+        // });
 
         $('#phone').keypress(function() {
             var val = $(this).val();
@@ -264,26 +264,26 @@
                 $(this).addClass('error');
                 $(this).next('span').text('Contact number field is required.');
             } else {
-                var phoneRegex = /^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+                // var phoneRegex = /^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
 
-                if (phoneRegex.test(val)) {
-                    var formattedPhoneNumber =
-                        val.replace(phoneRegex, "($1) $2-$3");
-                    $(this).val(formattedPhoneNumber);
-                } else {
-                    //$(this).addClass('error');
-                    //$(this).next('span').text('Contact number must be valid.');
+                // if (phoneRegex.test(val)) {
+                //     var formattedPhoneNumber =
+                //         val.replace(phoneRegex, "($1) $2-$3");
+                //     $(this).val(formattedPhoneNumber);
+                // } else {
+                //$(this).addClass('error');
+                //$(this).next('span').text('Contact number must be valid.');
 
-                    // Invalid phone number
-                }
-
-                $(this).removeClass('error');
-                $(this).next('span').text('');
+                // Invalid phone number
             }
+
+            //$(this).removeClass('error');
+            //$(this).next('span').text('');
+
         });
 
         $('#phone').blur(function() {
-            var phoneRegex = /^(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([0-9]{3})\s*\)|([0-9]{3}))\s*(?:[.-]\s*)?([0-9]{3})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+            //  var phoneRegex = /^(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([0-9]{3})\s*\)|([0-9]{3}))\s*(?:[.-]\s*)?([0-9]{3})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
 
             var val = $(this).val();
             if (val == "") {
@@ -291,13 +291,13 @@
                 $(this).next('span').text('password field is required.');
 
             } else {
-                if (phoneRegex.test(val)) {
-                    $(this).removeClass('error');
-                    $(this).next('span').text('');
-                } else {
-                    $(this).addClass('error');
-                    $(this).next('span').text('Contact number format is invalid');
-                }
+                // if (phoneRegex.test(val)) {
+                //     $(this).removeClass('error');
+                //     $(this).next('span').text('');
+                // } else {
+                //     $(this).addClass('error');
+                //     $(this).next('span').text('Contact number format is invalid');
+                // }
 
             }
         });
