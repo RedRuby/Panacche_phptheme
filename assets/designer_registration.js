@@ -123,6 +123,10 @@
             var formData = new FormData($("#RegisterForm")[0]);
             var url = ngrokURL + "/api/designer";
 
+            var phone = $("#phone").val();
+            var phone = '+' + phone;
+            formData.append("phone", phone);
+
             $.ajax({
                 type: "POST",
                 url: url,

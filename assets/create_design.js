@@ -132,7 +132,7 @@
                         window.history.pushState("create design", "id", "/pages/create-design?id=" + response.data.smart_collection.id);
                         $(".room-progress").addClass('greenActive');
                         $(".room-progress").next('span').addClass('greenActiveText');
-
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('#merchandise-section').removeClass('hide');
                         $('#collection_id').val(response.data.smart_collection.id);
                         $('#collection_id_bulk_upload').val(response.data.smart_collection.id);
@@ -148,6 +148,7 @@
                             scrollTop: "0"
                         }, 2000);
                     } else {
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
@@ -206,6 +207,7 @@
                                     }
 
                                     if (flag == false) {
+                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({
@@ -251,7 +253,7 @@
 
                     $("#result").empty().append(response);
                     if (response.status == 201 || response.status == 200) {
-
+                        $("#shopify-section-toast-message").removeClass('hide');
                         console.log(response.data.smart_collection);
                         console.log("my id", response.data.smart_collection.id);
                         window.history.pushState("create design", "id", "/pages/create-design?id=" + response.data.smart_collection.id);
@@ -261,6 +263,7 @@
                             scrollTop: "0"
                         }, 2000);
                     } else {
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
@@ -311,6 +314,7 @@
                                     }
 
                                     if (flag == false) {
+                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({
@@ -506,7 +510,7 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
                     thiss.closest("#merchandise-section-form").find("input[type=text]), textarea , input[type=number]").val("");
@@ -516,6 +520,7 @@
                     console.log("response", response);
                     //$(this).closest('.addRefWrap').append(response);
                     if (response.status == 201) {
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $(".landingPageWrap #upload-products-sec").empty();
                         $(".landingPageWrap #upload-products-sec").append(response.data.products);
                         $(".landingPageWrap #submit-new-design-btn").removeClass('hide');
@@ -534,6 +539,7 @@
                         $(".landingPageWrap .merchandise-progress").next('span').addClass('greenActiveText');
 
                     } else {
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                     }
@@ -557,6 +563,7 @@
                                     }
 
                                     if (flag == false) {
+                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({
@@ -619,6 +626,7 @@
                     $("#loadingDiv").addClass('hide');
                     console.log("response", response);
                     if (response.status == 201) {
+
                         $("#shopify-section-toast-message").removeClass('hide');
                         $(".landingPageWrap #upload-products-sec").empty();
                         //$(".landingPageWrap #upload-products-sec").append(response.data.products);
@@ -662,6 +670,7 @@
                                     }
 
                                     if (flag == false) {
+                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({
@@ -715,6 +724,7 @@
                     $("#shopify-section-toast-message").removeClass('hide');
                     console.log("response", response);
                     if (response.status == 200) {
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(response.message);
                         $('html, body').animate({
@@ -724,6 +734,7 @@
                         $(".landingPageWrap .submit-design-progress").addClass('greenActive');
                         $(".landingPageWrap .submit-design-progress").next('span').addClass('greenActiveText');
                     } else {
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
@@ -734,6 +745,7 @@
                 error: function(xhr, status, error) {
                     $("#shopify-section-toast-message").removeClass('hide');
                     console.log('xhr', xhr)
+                    $("#shopify-section-toast-message").removeClass('hide');
                     $('.alert-danger').removeClass('hide');
                     $('.alert-danger .text').text(JSON.stringify(xhr.responseJSON.errors));
                     $('html, body').animate({
@@ -793,6 +805,7 @@
                     $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
+                    $("#shopify-section-toast-message").removeClass('hide');
                     console.log("response", response.data.products);
                     $('.alert-success').removeClass('hide');
                     $('.alert-success .text').text(response.message);
@@ -823,6 +836,7 @@
                                     }
 
                                     if (flag == false) {
+                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({
@@ -864,6 +878,7 @@
                     $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
+                    $("#shopify-section-toast-message").removeClass('hide');
                     console.log("response", response.data.products);
                     $("#addVenderPop").modal("hide");
                     $('.alert-success').removeClass('hide');
@@ -889,6 +904,7 @@
                             if (name == "errors") {
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
+                                    $("#shopify-section-toast-message").removeClass('hide');
                                     $('.alert-danger').removeClass('hide');
                                     $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
                                     $('html, body').animate({
@@ -945,12 +961,14 @@
                         $(".spinner-border").removeClass('hide');
                         $("#loadingDiv").removeClass('hide');
                         if (response.status == 200) {
+                            $("#shopify-section-toast-message").removeClass('hide');
                             $('.alert-success').removeClass('hide');
                             $('.alert-success .text').text(response.message);
                             $('html, body').animate({
                                 scrollTop: "0"
                             }, 2000);
                         } else {
+                            $("#shopify-section-toast-message").removeClass('hide');
                             $('.alert-success').removeClass('hide');
                             $('.alert-success .text').text(JSON.stringify(xhr.responseJSON.errors));
                             $('html, body').animate({
@@ -962,6 +980,7 @@
                     },
                     error: function(xhr, status, error) {
                         console.log('xhr', xhr);
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-success').removeClass('hide');
                         $('.alert-success .text').text(JSON.stringify(xhr.responseJSON.errors));
                         $('html, body').animate({
