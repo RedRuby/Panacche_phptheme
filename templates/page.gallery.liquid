@@ -20,10 +20,11 @@
                 <input list="room-budget-datalist" name="room_budget" id="room_budget" placeholder="Room Budget" />
 
                 <datalist id="room-budget-datalist">
-                    <option data-value="0,5000" value="$0 - $ 5000"></option>
+                    <option data-value="0,5000" value="< $ 5000"></option>
                     <option data-value="5000,10000" value="$5000 - $ 10000"></option>
                     <option data-value="10000,15000" value="$10000 - $ 15000"></option>
                     <option data-value="15000,20000" value="$15000 - $ 20000"></option>
+                    <option data-value="20000,50000" value="> $ 20000"></option>
                 </datalist>
 
             </div>
@@ -63,10 +64,17 @@
                 <input list="room-type-datalist" name="room_type" id="room_type" placeholder="Select Room Type" />
 
                 <datalist id="room-type-datalist">
+                    <option data-value="Family Room" value="Family Room"></option>
+                    <option data-value="Office" value="Office"></option>
+                    <option data-value="Dining Room" value="Dining Room"></option>
+                    <option data-value="Foyer" value="Foyer"></option>
                     <option data-value="Bedroom" value="Bedroom"></option>
-                    <option data-value="Kitchen" value="Kitchen"></option>
+                    <option data-value="Mudroom" value="Mudroom"></option>
+                    <option data-value="Nursery" value="Nursery"></option>
+                    <option data-value="Kids Room" value="Kids Room"></option>
                     <option data-value="Living Room" value="Living Room"></option>
-                </datalist>
+                    <option data-value="Patio" value="Patio"></option>
+    </datalist>
 
             </div>
         </div>

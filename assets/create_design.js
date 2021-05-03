@@ -612,7 +612,7 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+                    //  $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     $(".spinner-border").addClass('hide');
@@ -624,6 +624,7 @@
                         $(".landingPageWrap #submit-new-design-btn").removeClass('hide');
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         console.log(response.message);
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-suceess').removeClass('hide');
                         $('.alert-suceess .text').text(response.message);
                         $('html, body').animate({
