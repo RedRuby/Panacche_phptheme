@@ -620,7 +620,7 @@
                     console.log("response", response);
                     if (response.status == 201) {
                         $(".landingPageWrap #upload-products-sec").empty();
-                        $(".landingPageWrap #upload-products-sec").append(response.data.products);
+                        //$(".landingPageWrap #upload-products-sec").append(response.data.products);
                         $(".landingPageWrap #submit-new-design-btn").removeClass('hide');
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         console.log(response.message);
@@ -640,18 +640,33 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    $(".spinner-border").addClass('hide');
-                    $("#loadingDiv").addClass('hide');
-                    console.log('xhr', xhr)
-                    $('.alert-danger').removeClass('hide');
-                    $('.alert-danger .text').text(JSON.stringify(xhr.responseJSON.errors));
-                    $('html, body').animate({
-                        scrollTop: "0"
-                    }, 2000);
-                    if (xhr.responseJSON.errors) {
-                        $.each(xhr.responseJSON.errors, function(key, item) {
-                            console.log("error", key);
-                            $(".landingPageWrap #" + key).next("span").text(item);
+                    if (xhr.responseText != "") {
+
+                        var jsonResponseText = $.parseJSON(xhr.responseText);
+                        var jsonResponseStatus = '';
+                        var message = '';
+                        var flag = false;
+                        $.each(jsonResponseText, function(name, val) {
+                            if (name == "errors") {
+                                jsonResponseErrors = $.parseJSON(JSON.stringify(val));
+                                $.each(jsonResponseErrors, function(key, item) {
+                                    if (key == 'merchandise' || key == 'size_specification' || key == 'product_url' || key == 'product_price' || key == 'quantity' || key == 'vendor_id') {
+                                        flag = true;
+                                        $("input[name=" + key + "]").next("span").text(item);
+                                        $("input[name=" + key + "]").addClass('error');
+                                    }
+
+                                    if (flag == false) {
+                                        $('.alert-danger').removeClass('hide');
+                                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
+                                        $('html, body').animate({
+                                            scrollTop: "0"
+                                        }, 2000);
+                                    }
+
+                                });
+
+                            }
                         });
                     }
                 }
