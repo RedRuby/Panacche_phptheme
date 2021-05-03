@@ -175,8 +175,16 @@
                                 $.each(jsonResponseErrors, function(key, item) {
                                     if (key == 'first_name' || key == 'last_name' || key == 'email' || key == 'phone' || key == 'password' || key == 'confirm_password' || key == 'how_did_you_hear_about_us') {
                                         flag = true;
-                                        $("input[name=" + key + "]").next("span").text(item);
-                                        $("input[name=" + key + "]").addClass('error');
+                                        if (key == 'how_did_you_hear_about_us') {
+                                            $("#" + key).next("span").text(item);
+                                            $("#" + key).addClass('error');
+                                        } else {
+                                            $("input[name=" + key + "]").next("span").text(item);
+                                            $("input[name=" + key + "]").addClass('error');
+                                        }
+
+
+
                                     }
 
                                     if (flag == false) {
