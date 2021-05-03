@@ -16,7 +16,7 @@
                 // loader
             },
             success: function(response) {
-                console.log(response.data);
+                console.log(response);
                 $(".leftPart").empty();
                 $(".leftPart").append(response.data.my_projects);
             },
