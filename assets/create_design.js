@@ -12,7 +12,7 @@
             beforeSend: function() {
                 $("input[name='design_name']").next('span').text('');
                 $('.ajax-loader').css("visibility", "visible");
-                //$("#shopify-section-toast-message").addClass('hide');
+
             },
             success: function(response) {
                 $('.ajax-loader').css("visibility", "hidden");
@@ -63,7 +63,7 @@
                 beforeSend: function() {
                     $("input[name='design_name']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    // $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
                     $('.ajax-loader').css("visibility", "hidden");
@@ -119,7 +119,7 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $("input").removeClass('error');
-                    // $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
                     console.log("response", response);
@@ -244,7 +244,7 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    //  $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
                     console.log("response", response);
@@ -611,28 +611,32 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    $('.ajax-loader').css("visibility", "visible");
-                    //  $("#shopify-section-toast-message").removeClass('hide');
+                    $("#loadingDiv").removeClass('hide');
+                    $(".spinner-border").removeClass('hide');
                 },
                 success: function(response) {
                     $(".spinner-border").addClass('hide');
                     $("#loadingDiv").addClass('hide');
                     console.log("response", response);
                     if (response.status == 201) {
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $(".landingPageWrap #upload-products-sec").empty();
                         //$(".landingPageWrap #upload-products-sec").append(response.data.products);
                         $(".landingPageWrap #submit-new-design-btn").removeClass('hide');
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         console.log(response.message);
-                        $("#shopify-section-toast-message").removeClass('hide');
-                        $('.alert-suceess').removeClass('hide');
-                        $('.alert-suceess .text').text(response.message);
+
+                        $('.alert-success').removeClass('hide');
+                        $('.alert-success .text').text(response.message);
                         $('html, body').animate({
                             scrollTop: "0"
                         }, 2000);
 
 
                     } else {
+                        $(".spinner-border").addClass('hide');
+                        $("#loadingDiv").addClass('hide');
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
@@ -705,9 +709,10 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
+                    $("#shopify-section-toast-message").removeClass('hide');
                     console.log("response", response);
                     if (response.status == 200) {
                         $('.alert-success').removeClass('hide');
@@ -727,6 +732,7 @@
                     }
                 },
                 error: function(xhr, status, error) {
+                    $("#shopify-section-toast-message").removeClass('hide');
                     console.log('xhr', xhr)
                     $('.alert-danger').removeClass('hide');
                     $('.alert-danger .text').text(JSON.stringify(xhr.responseJSON.errors));
@@ -1034,7 +1040,7 @@ $(document).ready(function() {
             beforeSend: function() {
                 $("input[name='design_name']").next('span').text('');
                 $('.ajax-loader').css("visibility", "visible");
-                $("#shopify-section-toast-message").removeClass('hide');
+                // $("#shopify-section-toast-message").removeClass('hide');
             },
             success: function(response) {
                 $('.ajax-loader').css("visibility", "hidden");
@@ -1054,7 +1060,7 @@ $(document).ready(function() {
                     beforeSend: function() {
                         $("input[name='design_name']").next('span').text('');
                         $('.ajax-loader').css("visibility", "visible");
-                        $("#shopify-section-toast-message").removeClass('hide');
+                        // $("#shopify-section-toast-message").removeClass('hide');
                     },
                     success: function(response) {
                         $('.ajax-loader').css("visibility", "hidden");

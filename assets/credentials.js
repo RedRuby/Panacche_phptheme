@@ -19,9 +19,8 @@ if (shop == 'panaccheuat.myshopify.com') {
         });
 
         $(document).ajaxSend(function() {
-            $(".spinner-border").removeClass('hide');
             $("#loadingDiv").removeClass('hide');
-            $("#shopify-section-toast-message").removeClass('hide');
+            $(".spinner-border").removeClass('hide');
             console.log("start");
         });
 
