@@ -69,7 +69,11 @@
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
                             <span class="smallUserPro mr-2 text-center float-left rounded-circle" >
                                         {% if customer.metafields.global.profile_pic %}
-                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                           {% if customer.metafields.global.tag == 'role:designer' %}
+                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic | replace: 'user', 'designer' }}" />
+                                                {% else %}
+                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                                {% endif %}
                                         {% else %}
                                             <img src="{{ ngrok_url }}/default/user.png"/>
                                         {% endif %}
@@ -81,7 +85,12 @@
                                 <p class="mx-auto userboxImgWrap rounded-circle">
                                     <span class="userboxImg text-center float-left rounded-circle">
                                                {% if customer.metafields.global.profile_pic %}
-                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                                {% if customer.metafields.global.tag == 'role:designer' %}
+                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic | replace: 'user', 'designer' }}" />
+                                                {% else %}
+                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                                {% endif %}
+
                                         {% else %}
                                             <img src="{{ ngrok_url }}/default/user.png"/>
                                         {% endif %}
@@ -257,9 +266,10 @@
     </div>
 </div>
 
+</div>
+
 <div class="text-center hide" id="loadingDiv">
     <div class="spinner-border hide text-primary loader" role="status">
         <span class="sr-only">Loading...</span>
     </div>
-</div>
 </div>
