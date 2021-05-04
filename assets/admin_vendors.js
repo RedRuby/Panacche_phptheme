@@ -90,29 +90,5 @@
 
         });
 
-        /*$(".landingTable") on("click", ".edit-vendor-btn", function(e) {
-
-            $.ajax({
-                type: "GET",
-                url: url,
-                cache: false,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $(".validation_error").text('');
-                     $("#shopify-section-toast-message").removeClass('hide');
-                },
-                success: function(response) {
-                    console.log("hello");
-                    $("#table-body").empty();
-                    $("#table-body").append(response.data.vendors);
-                },
-                error: function(xhr, status, error) {
-                    console.log("error");
-                    console.log('error', JSON.stringify(xhr.responseJSON));
-                }
-            });
-        });*/
-
     });
 })(jQuery);

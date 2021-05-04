@@ -486,6 +486,7 @@ Top Navbar
     border-radius: 0px;
     min-width: 200px;
     box-shadow: 0px 0px 20px 0px #dfdfdf;
+    max-width: 250px;
 }
 
 .userBox .upArrow {
@@ -1800,7 +1801,7 @@ Gallery Page Css
     color: #ffffff;
     font-size: 24px;
     font-weight: bold;
-    margin-top: 124px;
+    padding-top: 130px;
 }
 
 .galleryHead .galleryHeadText {
@@ -1812,6 +1813,20 @@ Gallery Page Css
     font-weight: 500;
     color: #ffffff;
     min-width: 150px;
+    background: #ffc107 !important;
+    border: #ffc107 !important;
+    border-radius: .25rem !important;
+    padding: .375rem .75rem !important;
+    text-transform: none !important;
+}
+.galleryHead .btn-warning:hover {
+    background-color: #e0a800 !important;
+    border-color: #d39e00 !important;
+}
+
+.galleryHead .form-group input {
+    padding:0.375rem !important;
+    width: 100%;
 }
 
 .galleryDesigns {
@@ -1823,7 +1838,7 @@ Gallery Page Css
     color: #ffffff;
     font-size: 24px;
     font-weight: bold;
-    margin-top: 124px;
+    padding-top: 130px;
 }
 
 .meetDesigners p:nth-child(1) {
@@ -1842,6 +1857,9 @@ Gallery Page Css
     border-radius: 20px;
     height: 35px;
     line-height: 0px;
+    text-transform: none;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
 }
 
 .viewMorebtn button:hover {
@@ -1885,7 +1903,7 @@ Gallery Page Css
 }
 
 .ourDesignersCards .card .author-info p:nth-child(1) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #707070;
     line-height: 24px;
@@ -2054,6 +2072,9 @@ Admin Dashboard CSS
 
 .totalFiguresCard .card a {
     color: #5462BD;
+}
+.totalFiguresCard .card a:hover {
+    text-decoration: none;
 }
 
 .totalFiguresCard .card .card-body {
@@ -2234,6 +2255,19 @@ Show All Designs
     border-radius: 6px;
     box-shadow: 0px 4px 5px rgb(0 0 0 / 5%);
 }
+.showAllContent .showallTable .btn-success, .showAllContent .showallTable .btn-danger{
+    background: transparent !important;
+    border:0px;
+}
+.showAllContent .showallTable .btn-success:hover, .showAllContent .showallTable .btn-danger:hover{
+    border:0px;
+}
+.showAllContent .showallTable .btn-success .fa-edit{
+    color:#5462BD !important;
+}
+.showAllContent .showallTable .btn-danger .fa-trash{
+    color:#CB0000 !important;
+}
 
 .showAllContent .landingTable {
     border-collapse: separate;
@@ -2352,7 +2386,17 @@ Add New Vendor Page CSS
     height: 90px;
     font-weight: bold;
 }
-
+.vendorLogo{
+    float: left;
+    width: 100px !important;
+    height: 40px;
+    overflow: hidden;
+}
+.vendorLogo img{
+    width: 100% !important;
+    border-radius: 0px !important;
+    height: 100%;
+}
 
 /*--------------------------------
 Disclaimer Page CSS

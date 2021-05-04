@@ -20,9 +20,9 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
+                    $("#shopify-section-toast-message").removeClass('hide');
                     console.log(response);
                     if (response.status == 200) {
                         $('.alert-success').removeClass('hide');
@@ -31,6 +31,7 @@
                             scrollTop: "0"
                         }, 2000);
                     } else {
+                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({

@@ -9,7 +9,7 @@ if (shop == 'panaccheuat.myshopify.com') {
 } else if(shop == 'panacchedev.myshopify.com'){
     ngrokURL = "https://panacchedev.pagekite.me";
 } else {
-    ngrokURL = "https://4532046023c1.ngrok.io";
+    ngrokURL = "https://e0f0feff057d.ngrok.io";
 }
 (function($) {
     $(function() {
@@ -21,9 +21,8 @@ if (shop == 'panaccheuat.myshopify.com') {
         });
 
         $(document).ajaxSend(function() {
-            $(".spinner-border").removeClass('hide');
             $("#loadingDiv").removeClass('hide');
-            $("#shopify-section-toast-message").removeClass('hide');
+            $(".spinner-border").removeClass('hide');
             console.log("start");
         });
 
