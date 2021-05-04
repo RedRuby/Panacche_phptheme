@@ -2180,6 +2180,7 @@ Admin Dashboard CSS
 .designersApproveCards .designerProf img{
     height: 100%;
     max-width: fit-content;
+    width: auto;
 }
 
 .designersApproveCards .card {
