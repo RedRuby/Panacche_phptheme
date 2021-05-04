@@ -2,6 +2,42 @@
     $(function() {
         $(window).load(function() {
             //alert("window load occurred!");
+            function showHideNextPrevIcon(thisElm,setSrc){
+                let closestDiv = thisElm;
+                if(closestDiv.prev('.carousel-item').length == 0){
+                    $('.gallery-control-prev').hide();
+                } else {
+                    $('.gallery-control-prev').show();
+                }
+                if(closestDiv.next('.carousel-item').length == 0){
+                    $('.gallery-control-next').hide();
+                } else {
+                    $('.gallery-control-next').show();
+                }
+                if(setSrc == 1){
+                    $('.designGalleryImgSrc').removeClass('currentImage');
+                    closestDiv.find('.designGalleryImgSrc').addClass('currentImage');
+                    $("#designGalleryImg").attr("src","").attr("src",closestDiv.find('.designGalleryImgSrc').find('img').attr('src'));
+                }
+            }
+            $(document).on("click",'.designGalleryImgSrc',function(){
+                $("#designGalleryImg").attr("src",$(this).find('img').attr('src'));
+                $('.designGalleryImgSrc').removeClass('currentImage');
+                $(this).addClass('currentImage');
+                showHideNextPrevIcon($(this).closest('.carousel-item'),0);
+            });
+            $(document).on("click",'.gallery-control-prev',function(){
+                let currentImageTag = $('.designGalleryImgSrc.currentImage');
+                let closestDiv = currentImageTag.closest('.carousel-item').prev('.carousel-item');
+                showHideNextPrevIcon(closestDiv,1);
+                
+            });
+            $(document).on("click",'.gallery-control-next',function(){
+                let currentImageTag = $('.designGalleryImgSrc.currentImage');
+                let closestDiv = currentImageTag.closest('.carousel-item').next('.carousel-item');
+                showHideNextPrevIcon(closestDiv,1);
+            });
+            
 
             var url_string = window.location.href;
             console.log('url_str', url_str);
@@ -11,9 +47,8 @@
             customer = $("input[name=customer]").val();
             console.log('customer', customer);
             //var id = "265380626618";
-            customer = 'a';
             var shop = "panacchebeta.myshopify.com	";
-            var url = ngrokURL + '/api/pages/view/design/' + id + '/' + customer + '/' + shop;
+            var url = ngrokURL + '/api/pages/view/design/' + id + '/' + shop + '/' + customer;
             
             //console.log("customer_id", customer_id);
             $.ajax({

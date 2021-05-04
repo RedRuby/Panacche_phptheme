@@ -1,5 +1,31 @@
-<div class="container-fluid landingPageWrapBuyDesigner">
-
+{% if customer.id == blank %}
+    <div class="row searchBar fixed-top">
+     <div class="col-xl-5 col-lg-6 col-md-8 col-sm-12 text-center mx-auto py-2">
+        <form class="my-1 text-center col-12 float-left">
+           <div class="col-12 float-left">
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <input type="search" class="form-control col-12 float-left pl-5" placeholder="Search">
+           </div>
+        </form>
+     </div>
+    </div>
+{% endif %}
+<div class="container-fluid">
+    <div class="row align-items-center h-100">
+      <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-4 pt-2">
+          <div class="col-md-12 float-left backBtn mt-5">
+            <a href="#" class="float-left"><span><i class="fas fa-arrow-left"></i></span></a>
+            {% if customer.id %}
+                <div class="float-right lastLogin">
+                <p class="mb-0">Your Last Login was</p>
+                <p class="mb-0">01/01/2021. 12:00 PM</p>
+                </div>
+            {% endif %}
+         </div>
+       </div>
+    </div>
+    <div class="landingPageWrapBuyDesigner">
+    </div>
 </div>
 <input type="hidden" value="{{ customer.id }}" name="customer"/>
 <!-- Submit Buy Design Popup Modal -->

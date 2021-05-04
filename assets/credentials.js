@@ -6,6 +6,8 @@ if (shop == 'panaccheuat.myshopify.com') {
     ngrokURL = "https://panacchepartner.com";
 } else if (shop == 'panacche.com') {
     ngrokURL = "https://panacchepartner.com";
+} else if(shop == 'panacchedev.myshopify.com'){
+    ngrokURL = "https://panacchedev.pagekite.me";
 } else {
     ngrokURL = "https://4532046023c1.ngrok.io";
 }

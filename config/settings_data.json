@@ -54,17 +54,7 @@
     "sections": {
       "header": {
         "type": "header",
-        "settings": {
-          "align_logo": "left",
-          "logo": "shopify:\/\/shop_images\/Logo_c988de26-542e-4ba6-986d-91cb1c1a4599.png",
-          "logo_max_width": 200,
-          "main_linklist": "main-menu",
-          "message": false,
-          "home_page_only": true,
-          "message_text": "Click here for Specials!",
-          "color_bg": "#fafafa",
-          "color_text": "#3d3d3d"
-        }
+        "settings": {}
       },
       "hero-1": {
         "type": "hero",
@@ -928,15 +918,7 @@
       "sections": {
         "header": {
           "type": "header",
-          "settings": {
-            "align_logo": "left",
-            "logo": "",
-            "logo_max_width": 135,
-            "main_linklist": "main-menu",
-            "message": true,
-            "color_bg": "#162950",
-            "color_text": "#ffffff"
-          }
+          "settings": {}
         },
         "hero": {
           "type": "hero",
