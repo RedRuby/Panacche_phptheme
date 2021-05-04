@@ -179,6 +179,10 @@
                                         $("input[name=" + key + "]").addClass('error');
 
 
+                                    } else if (key == 'collection_images' || key == 'blue_print_images') {
+                                        flag = true;
+                                        $(".landingPageWrap .images_error .validation_error").append(item);
+
                                     } else {
                                         flag = true;
                                         tempKey = String(key);
@@ -250,10 +254,10 @@
                 },
                 success: function(response) {
                     console.log("response", response);
-
+                    $("#shopify-section-toast-message").removeClass('hide');
                     $("#result").empty().append(response);
                     if (response.status == 201 || response.status == 200) {
-                        $("#shopify-section-toast-message").removeClass('hide');
+
                         console.log(response.data.smart_collection);
                         console.log("my id", response.data.smart_collection.id);
                         window.history.pushState("create design", "id", "/pages/create-design?id=" + response.data.smart_collection.id);
@@ -263,7 +267,7 @@
                             scrollTop: "0"
                         }, 2000);
                     } else {
-                        $("#shopify-section-toast-message").removeClass('hide');
+
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
@@ -339,7 +343,8 @@
 
 
 
-        $(".landingPageWrap #colorPaintTable").on("click", ".addPlus", function() {
+        $(".main-content   #colorPaintTable").on("click", ".addPlus", function(e) {
+            e.preventDefault();
             color_pallette_count = color_pallette_count + 1;
             console.log("you clicked me");
             var html = '<tr>' +
@@ -894,28 +899,36 @@
                 error: function(xhr, status, error) {
                     console.log('xhr', xhr)
 
-
                     if (xhr.responseText != "") {
 
                         var jsonResponseText = $.parseJSON(xhr.responseText);
                         var jsonResponseStatus = '';
                         var message = '';
+                        var flag = false;
                         $.each(jsonResponseText, function(name, val) {
                             if (name == "errors") {
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    $("#shopify-section-toast-message").removeClass('hide');
-                                    $('.alert-danger').removeClass('hide');
-                                    $('.alert-danger .text').text(JSON.stringify(jsonResponseErrors));
-                                    $('html, body').animate({
-                                        scrollTop: "0"
-                                    }, 2000);
-                                    $("#" + key).next("span").text(item);
-                                    // $("input[name=" + key + "]").addClass('error');
+                                    if (key == 'vendor_name') {
+                                        flag = true;
+                                        $("#" + key).next("span").text(item);
+                                        $("#" + key).addClass('error');
+                                    }
+
+                                    if (flag == false) {
+                                        $("#shopify-section-toast-message").removeClass('hide');
+                                        $('.alert-danger').removeClass('hide');
+                                        $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
+                                        $('html, body').animate({
+                                            scrollTop: "0"
+                                        }, 2000);
+                                    }
+
                                 });
 
                             }
                         });
+
                     }
                 }
             });
@@ -1001,6 +1014,13 @@
         $(".landingPageWrap").on("click", ".blueprint_img_browse", function() {
             $(".landingPageWrap #collection_blue_prints").trigger('click');
         });
+
+        $(".landingPageWrap").on("click", ".close-add-product-view", function(e) {
+            e.preventDefault();
+            console.log("remove add product section");
+            $(".landingPageWrap #add-product-view").addClass('hide');
+
+        })
 
 
     });
