@@ -1,0 +1,20 @@
+<div class="container-fluid landingPageWrap">
+    <div class="row align-items-center h-100">
+        <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-5 pt-5">
+            <div class="col-md-12 float-left galleryBack">
+                <a href="javascript&colon; history.go(-1)"><span><i class="fas fa-arrow-left"></i></span></a>
+            </div>
+            <div class="leftPart col-md-12 col-xs-12 float-left pl-3 pr-0 mt-2">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(e){
+    $("#shopify-section-toast-message").on("load", function(e) {
+        $("#shopify-section-toast-message").addClass('hide');
+    });
+});
+</script>
+{{ 'my-projects.js' | asset_url | script_tag }}
