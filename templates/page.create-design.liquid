@@ -7,7 +7,7 @@
 {% else if shop.permanent_domain == 'panacche.com' %}
 {% assign ngrok_url = 'https://panacchepartner.com' %}
 {% else %}
-{% assign ngrok_url = 'https://4532046023c1.ngrok.io' %}
+{% assign ngrok_url = 'https://08c0f9c89072.ngrok.io' %}
 {% endif %}
 
 <div class="container-fluid landingPageWrap">
@@ -106,9 +106,16 @@
                             <label for="">Room Type</label>
                             <select class="custom-select selectDropdown" name="room_type" id="room_type">
                               <option value="0">Select Room Type</option>
-                              <option value="Bedroom">Bedroom</option>
-                              <option value="Kitchen">Kitchen</option>
-                              <option value="Living Room">Living Room</option>
+                              <option  value="Family Room">Family Room</option>
+                                <option  value="Office">Office</option>
+                                <option value="Dining Room">Dining Room</option>
+                                <option  value="Foyer">Foyer</option>
+                                <option  value="Bedroom">Bedroom</option>
+                                <option  value="Mudroom">Mudroom</option>
+                                <option  value="Nursery">Nursery</option>
+                                <option value="Kids Room">Kids Room</option>
+                                <option  value="Living Room">Living Room</option>
+                                <option value="Patio">Patio</option>
                             </select>
                             <span class="validation_error"></span>
                         </div>
@@ -206,11 +213,14 @@
                                     <div class="col-12 float-left p-2">
                                         <p class="custom-file p-2">
                                             <input type="file" class="custom-file-input" name="collection_images[]" id="collection_images" multiple="multiple" accept="image/x-png,image/gif,image/jpeg,webp">
+                                            
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
-                                            <span class="validation_error"></span>
+                                            
                                         </p>
                                     </div>
                                     <p class="text-center mb-2">Upload / drop files here <span class="collection_img_browse">Browse Files</span></p>
+                                    <p class="text-center mb-2 images_error"><span class="validation_error"></span></p>
+                                    
                                 </div>
                                 <div class="uploadedImages py-2 mt-2 overflow-hidden">
                                     <div id="carouselExample" class="carousel slide row" data-ride="carousel" data-interval="9000">
@@ -233,8 +243,8 @@
                                     <div class="col-12 float-left p-2">
                                         <p class="custom-file p-2">
                                             <input type="file" class="custom-file-input" name="collection_blue_prints[]" id="collection_blue_prints" accept="image/x-png,image/gif,image/jpeg">
+                                        
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
-                                            <span class="validation_error"></span>
                                         </p>
                                     </div>
                                     <p class="text-center mb-2">Upload / drop files here <span class="blueprint_img_browse">Browse Files</span></p>
@@ -351,7 +361,7 @@
                     </div>
                     <div class="col-md-7 float-left mx-0 typeUser text-right pt-4 font14">
 
-                        <a href="{{ ngrok_url }}/uploads/merchandise_bulk_upload.csv" target="_blank">Download a Blank Sample Template CSV file for Bulk upload</a>
+                        <a href="{{ ngrok_url }}/uploads/product_bulk_upload.csv" target="_blank">Download a Blank Sample Template CSV file for Bulk upload</a>
                     </div>
                 </div>
 
@@ -405,7 +415,7 @@
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 float-left">
                                 <div class="form-group">
-                                    <label for="">Upload Image Reference <span class="deleteUpload deleteUpload2"><i class="fas fa-times-circle"></i></span></label>
+                                    <label for="">Upload Image Reference <span class="deleteUpload deleteUpload2"><i class="fas fa-times-circle close-add-product-view"></i></span></label>
                                     <div class="imageRefUpload p-3 col-12 float-left">
 
                                         <div class="col-12 float-left px-0">
@@ -481,9 +491,9 @@
                 </button>
                 </div>
                 <div class="modal-body text-center py-0">
-                    <!--<form id="save-vendor-form">
+                    <form id="save-vendor-form">
                         <input type="hidden" name="shop" value="{{ shop.permanent_domain}}" />
-                        <div class="col-4 float-left">
+                        <!--<div class="col-4 float-left">
                             <p class="text-left">Vendor Logo</p>
                             <div class="col-12 float-left px-0">
                                 <div class="col-12 float-left px-0">
@@ -526,8 +536,3 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(e){
-    $("#shopify-section-toast-message").addClass('hide');
-});
-</script>

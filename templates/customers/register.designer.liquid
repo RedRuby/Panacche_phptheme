@@ -39,14 +39,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Bio (Short description about yourself)</label>
-                                <textarea class="form-control" id="bio" name="bio" rows="3"></textarea>
+                                <textarea class="form-control" id="bio" name="bio" rows="4"></textarea>
                                 <span class="validation_error"></span>
                             </div>
-                            <div class="form-group">
-                                <label for="">A quote/ message for your clients</label>
-                                <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
-                                <span class="validation_error"></span>
-                            </div>
+                           
                         </div>
                         <div class="registerForm col-lg-4 col-sm-12 float-left">
                             <div class="form-group">
@@ -54,7 +50,7 @@
                                 <input type="text" name="email" id="email" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
                             </div>
-                            <div class="form-group">
+                            {% comment %} <div class="form-group">
                                 <label for=""><span class="mandetory">*</span> Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
@@ -63,10 +59,10 @@
                                 <label for=""><span class="mandetory">*</span> Confirm Password</label>
                                 <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
-                            </div>
+                            </div> {% endcomment %}
                             <div class="form-group">
-                                <label for=""><span class="mandetory">*</span> Contact No. <em>(Example: 123-456-7890)</em></label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="">
+                                <label for=""><span class="mandetory">*</span> Contact No. <em>(Example: +911234567890)</em></label>
+                                <input type="number" class="form-control" name="phone" id="phone" placeholder="">
                                 <span class="validation_error"></span>
                             </div>
                             <div class="form-group">
@@ -77,6 +73,11 @@
                             <div class="form-group">
                                 <label for="">Business Address</label>
                                 <textarea class="form-control" id="business_address" name="business_address" rows="4"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
+                             <div class="form-group">
+                                <label for="">A quote/ message for your clients</label>
+                                <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
                                 <span class="validation_error"></span>
                             </div>
                         </div>
@@ -91,7 +92,7 @@
                             </div>
                             <div class="form-group">
                                 <label for=""><span class="mandetory">*</span> Upload Resume</label>
-                                <div class="dragDropBox pb-2">
+                                <div class="dragDropBox pb-2 text-center">
                                     <div class="col-12 float-left p-2">
                                         <p class="custom-file p-2">
                                             <input type="file" class="custom-file-input" id="resume" name="resume">
@@ -100,13 +101,14 @@
                                         </p>
                                     </div>
                                     <p class="text-center mb-2">Upload / drop files here <span class="resume-click">Browse Files</span></p>
-                                </div>
                                 <span class="resume-file-name"></span>
+                                </div>
+                               
                                 <span class="validation_error"></span>
                             </div>
                             <div class="form-group">
                                 <label for=""><span class="mandetory">*</span> Upload Portfolio</label>
-                                <div class="dragDropBox pb-2">
+                                <div class="dragDropBox pb-2 text-center">
                                     <div class="col-12 float-left p-2">
                                         <p class="custom-file p-2">
                                             <input type="file" class="custom-file-input" id="portfolio" name="portfolio">
@@ -115,8 +117,9 @@
                                         </p>
                                     </div>
                                     <p class="text-center mb-2">Upload / drop files here <span class="portfolio-click">Browse Files</span></p>
-                                </div>
                                 <span class="portfolio-file-name"></span>
+                                </div>
+                                
                                 <span class="validation_error"></span>
                             </div>
                             <div class="form-group">
