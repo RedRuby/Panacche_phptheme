@@ -80,7 +80,7 @@
                 beforeSend: function() {
                     $("input[name='phone']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-
+                    $("input[name='phone']").removeClass('error');
                 },
 
                 success: function(response) {
