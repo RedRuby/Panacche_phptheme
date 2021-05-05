@@ -210,15 +210,43 @@
 
         $("input[name=display_picture]").on("change", function(e) {
             console.log("pic change");
-            var file = e.target.files[0];
-            if (file) {
-                var reader = new FileReader();
+            $("#display_picture").next('span.validation_error').text('');
 
-                reader.onload = function() {
-                    $(".addUserPic").css("background-image", 'url(' + reader.result + ')');
+            var file = $('#display_picture')[0].files[0].name;
+            var myfile = e.target.files[0];
+            //  var file = e.target.files[0];
+
+            const size = $('#display_picture')[0].files[0].size;
+            // Check if any file is selected.
+
+            var ext = file.split('.').pop();
+            if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "gif" || ext == "png") {
+
+            } else {
+                alert(ext);
+                $('#display_picture').val("");
+                $("#display_picture").next('span.validation_error').text('Please select valid image extension');
+            }
+
+
+            const fileSize = Math.round((size / 1024));
+            // The size of the file.
+            if (fileSize >= 1025) {
+                //alert("size large");
+                $('#display_picture').val("");
+                $("#display_picture").next('span').text('File too Big, please select a file less than 1mb');
+
+            } else {
+                alert("size ok");
+                if (myfile) {
+                    var reader = new FileReader();
+
+                    reader.onload = function() {
+                        $(".addUserPic").css("background-image", 'url(' + reader.result + ')');
+                    }
+
+                    reader.readAsDataURL(myfile);
                 }
-
-                reader.readAsDataURL(file);
             }
         });
 
