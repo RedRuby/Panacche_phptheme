@@ -223,9 +223,8 @@
             if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "gif" || ext == "png") {
 
             } else {
-                alert(ext);
                 $('#display_picture').val("");
-                $("#display_picture").next('span.validation_error').text('Please select valid image extension');
+                $("#display_picture").closest('.col-12').find('.validation_error').text('Please select valid image extension');
             }
 
 
@@ -234,10 +233,10 @@
             if (fileSize >= 1025) {
                 //alert("size large");
                 $('#display_picture').val("");
-                $("#display_picture").next('span').text('File too Big, please select a file less than 1mb');
+                $("#display_picture").closest('.col-12').find('.validation_error').text('File too Big, please select a file less than 1mb');
 
             } else {
-                alert("size ok");
+
                 if (myfile) {
                     var reader = new FileReader();
 
