@@ -29,7 +29,7 @@
                 beforeSend: function() {
                     $("input[name='email']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
                     $('.ajax-loader').css("visibility", "hidden");
@@ -80,7 +80,7 @@
                 beforeSend: function() {
                     $("input[name='phone']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+
                 },
 
                 success: function(response) {
@@ -142,13 +142,14 @@
                     $(".spinner-border").removeClass('hide');
                     $('.alert-danger').addClass('hide');
                     $('.alert-success').addClass('hide');
-                    $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
                     console.log("response", response);
                     $(".container").removeClass('hide');
                     $(".spinner-border").addClass('hide');
                     $("#result").empty().append(response);
+                    $("#shopify-section-toast-message").removeClass('hide');
                     if (response.status == 201) {
                         console.log(response.message);
                         $('.alert-success').removeClass('hide');
@@ -177,7 +178,6 @@
                         var jsonResponseStatus = '';
                         var message = '';
 
-
                         $.each(jsonResponseText, function(name, val) {
                             if (name == "errors") {
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
@@ -193,6 +193,7 @@
                                     }
 
                                     if (flag == false) {
+                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({

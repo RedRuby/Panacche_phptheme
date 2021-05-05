@@ -30,7 +30,7 @@
                 beforeSend: function() {
                     $("input[name='email']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
                     console.log("response", response);
@@ -81,7 +81,7 @@
                 beforeSend: function() {
                     $("input[name='phone']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("#shopify-section-toast-message").removeClass('hide');
+
                 },
                 success: function(response) {
                     $('.ajax-loader').css("visibility", "hidden");
@@ -138,13 +138,13 @@
                     $(".validation_error").text('');
                     $("input.form-control").removeClass('error');
                     $('.alert-danger').addClass('hide');
-                    $("#shopify-section-toast-message").removeClass('hide');
                     $('.alert-success').addClass('hide');
                 },
                 success: function(response) {
                     console.log("response", response);
                     $(".spinner-border").addClass('hide');
                     $("#result").empty().append(response);
+                    $("#shopify-section-toast-message").removeClass('hide');
                     if (response.status == 201) {
                         console.log(response.message);
                         $('.alert-success').removeClass('hide');
@@ -185,12 +185,10 @@
                                             $("input[name=" + key + "]").next("span").text(item);
                                             $("input[name=" + key + "]").addClass('error');
                                         }
-
-
-
                                     }
 
                                     if (flag == false) {
+                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({
