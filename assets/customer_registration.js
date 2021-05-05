@@ -208,7 +208,7 @@
 
         $("input[name=display_picture]").on("change", function(e) {
             console.log("pic change");
-            $("#display_picture").next('span.validation_error').text('');
+            $("#display_picture").closest('.col-12').find('.validation_error').text('');
 
             var file = $('#display_picture')[0].files[0].name;
             var myfile = e.target.files[0];
