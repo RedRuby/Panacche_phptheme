@@ -24,5 +24,11 @@
                 console.log('error', JSON.stringify(xhr.responseJSON));
             }
         });
+
+        $(".landingPageWrap").on("click", "#view-under-review-design", function(e) {
+            e.preventDefault();
+            var id = $(this).attr('data');
+            window.location.href = "/pages/view-designs-under-review?id=" + id;
+        });
     });
 })(jQuery);

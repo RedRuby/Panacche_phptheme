@@ -6,7 +6,7 @@
 {% else if shop.permanent_domain == 'panacche.com' %}
 {% assign ngrok_url = 'https://panacchepartner.com' %}
 {% else %}
-{% assign ngrok_url = 'https://4532046023c1.ngrok.io' %}
+{% assign ngrok_url = 'https://5a01ab859e64.ngrok.io' %}
 {% endif %}
 
 {% include 'search-drawer' %}
@@ -68,11 +68,15 @@
                  <li class="nav-item dropdown userBoxWrap">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
                             <span class="smallUserPro mr-2 text-center float-left rounded-circle" >
-                                        {% if customer.metafields.global.profile_pic %}
-                                           {% if customer.metafields.global.tag == 'role:designer' %}
-                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic | replace: 'user', 'designer' }}" />
+                                        {% if customer.metafields.global.display_picture  %}
+                                          {% if customer.metafields.global.display_picture == 'uploads/user/display_picture/' or customer.metafields.global.display_picture == 'uploads/designer/display_picture/' %}
+                                             <img src="{{ ngrok_url }}/default/user.png"/>
                                                 {% else %}
-                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                           {% if customer.metafields.global.tag == 'role:designer' %}
+                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture | replace: 'user', 'designer' }}" />
+                                                {% else %}
+                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture}}" />
+                                                {% endif %}
                                                 {% endif %}
                                         {% else %}
                                             <img src="{{ ngrok_url }}/default/user.png"/>
@@ -84,11 +88,15 @@
                             <div class="w-100 mt-3">
                                 <p class="mx-auto userboxImgWrap rounded-circle">
                                     <span class="userboxImg text-center float-left rounded-circle">
-                                               {% if customer.metafields.global.profile_pic %}
-                                                {% if customer.metafields.global.tag == 'role:designer' %}
-                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic | replace: 'user', 'designer' }}" />
+                                               {% if customer.metafields.global.display_picture %}
+                                               {% if customer.metafields.global.display_picture == 'uploads/user/display_picture/' or customer.metafields.global.display_picture == 'uploads/designer/display_picture/' %}
+                                                <img src="{{ ngrok_url }}/default/user.png"/>
                                                 {% else %}
-                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.profile_pic}}" />
+                                                {% if customer.metafields.global.tag == 'role:designer' %}
+                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture | replace: 'user', 'designer' }}" />
+                                                {% else %}
+                                                <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture}}" />
+                                                {% endif %}
                                                 {% endif %}
 
                                         {% else %}
