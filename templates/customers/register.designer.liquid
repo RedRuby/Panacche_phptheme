@@ -12,21 +12,18 @@
                 </div>
                 <form>
                     <div class="row mb-4 w-100 mx-0">
-
                         <div class="registerForm col-lg-4 col-sm-12 float-left">
                             <div class="form-group landingHeading">
                                 <h4 for="">Create Designer Account</h4>
                                 <div class="col-12 float-left px-0">
                                     <p class="addUserPic mx-auto mt-1 mb-1">
                                         <span class="addPicIcon"><i class="fas fa-plus-circle"></i></span>
-                                        <input type="file" class="custom-file-input" id="display_picture" name="display_picture" accept="image/*">
-                                         
+                                        <input type="file" class="custom-file-input" id="customFile" name="display_picture" accept="image/x-png,image/gif,image/jpeg,webp">
                                         <label class="custom-file-label mb-0" for="customFile"></label>
                                     </p>
                                     <p class="text-center font14 mb-1">
                                         Add Display Picture
                                     </p>
-                                    <span class="validation_error"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -41,10 +38,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Bio (Short description about yourself)</label>
-                                <textarea class="form-control" id="bio" name="bio" rows="4"></textarea>
+                                <textarea class="form-control" id="bio" name="bio" rows="3"></textarea>
                                 <span class="validation_error"></span>
                             </div>
-                           
+                            <div class="form-group">
+                                <label for="">A quote/ message for your clients</label>
+                                <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
                         </div>
                         <div class="registerForm col-lg-4 col-sm-12 float-left">
                             <div class="form-group">
@@ -52,7 +53,7 @@
                                 <input type="text" name="email" id="email" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
                             </div>
-                            {% comment %} <div class="form-group">
+                            <div class="form-group">
                                 <label for=""><span class="mandetory">*</span> Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
@@ -61,10 +62,10 @@
                                 <label for=""><span class="mandetory">*</span> Confirm Password</label>
                                 <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
-                            </div> {% endcomment %}
+                            </div>
                             <div class="form-group">
-                                <label for=""><span class="mandetory">*</span> Contact No. <em>(Example: +911234567890)</em></label>
-                                <input type="number" class="form-control" name="phone" id="phone" placeholder="">
+                                <label for=""><span class="mandetory">*</span> Contact No. <em>(Example: 123-456-7890)</em></label>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="">
                                 <span class="validation_error"></span>
                             </div>
                             <div class="form-group">
@@ -75,11 +76,6 @@
                             <div class="form-group">
                                 <label for="">Business Address</label>
                                 <textarea class="form-control" id="business_address" name="business_address" rows="4"></textarea>
-                                <span class="validation_error"></span>
-                            </div>
-                             <div class="form-group">
-                                <label for="">A quote/ message for your clients</label>
-                                <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
                                 <span class="validation_error"></span>
                             </div>
                         </div>
@@ -94,36 +90,39 @@
                             </div>
                             <div class="form-group">
                                 <label for=""><span class="mandetory">*</span> Upload Resume</label>
-                                <div class="dragDropBox pb-2 text-center">
+                                <div class="dragDropBox pb-2">
                                     <div class="col-12 float-left p-2">
                                         <p class="custom-file p-2">
-                                            <input type="file" class="custom-file-input" id="resume" name="resume" accept="docx,pdf">
+                                            <input type="file" class="custom-file-input" id="resume" name="resume">
 
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
                                         </p>
                                     </div>
+                                    <button type="button" class="btn btn-primary float-right loginBtn mr-4 uploadFile" data-type="resume">Upload</button>
                                     <p class="text-center mb-2">Upload / drop files here <span class="resume-click">Browse Files</span></p>
-                                <span class="resume-file-name"></span>
+                                    <input type="hidden" name="resumeUrl" id="resumeUrl" value="">
                                 </div>
-                               
+                                <span class="resume-file-name"></span>
                                 <span class="validation_error"></span>
                             </div>
                             <div class="form-group">
                                 <label for=""><span class="mandetory">*</span> Upload Portfolio</label>
-                                <div class="dragDropBox pb-2 text-center">
+                                <div class="dragDropBox pb-2">
                                     <div class="col-12 float-left p-2">
                                         <p class="custom-file p-2">
-                                            <input type="file" class="custom-file-input" id="portfolio" name="portfolio" accept="docx,pdf">
+                                            <input type="file" class="custom-file-input" id="portfolio" name="portfolio">
 
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
                                         </p>
                                     </div>
+                                    <button type="button" class="btn btn-primary float-right loginBtn mr-4 uploadFile" data-type="portfolio">Upload</button>
                                     <p class="text-center mb-2">Upload / drop files here <span class="portfolio-click">Browse Files</span></p>
-                                <span class="portfolio-file-name"></span>
+                                    <input type="hidden" name="portfolioUrl" id="portfolioUrl" value="">
                                 </div>
-                                
+                                <span class="portfolio-file-name"></span>
                                 <span class="validation_error"></span>
                             </div>
+                            <br>
                             <div class="form-group">
                                 <button type="button" class="btn btn-light float-right cancleBtn"><a href="javascript&colon; history.go(-1)">Cancel</a></button>
                                 <button type="submit" class="btn btn-primary float-right loginBtn mr-4" id="registration"><a href="landing_page.html">Submit</a></button>

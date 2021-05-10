@@ -29,7 +29,7 @@
                 beforeSend: function() {
                     $("input[name='email']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
                 success: function(response) {
                     $('.ajax-loader').css("visibility", "hidden");
@@ -80,7 +80,7 @@
                 beforeSend: function() {
                     $("input[name='phone']").next('span').text('');
                     $('.ajax-loader').css("visibility", "visible");
-                    $("input[name='phone']").removeClass('error');
+                    $("#shopify-section-toast-message").removeClass('hide');
                 },
 
                 success: function(response) {
@@ -122,10 +122,8 @@
 
             var formData = new FormData($("#RegisterForm")[0]);
             var url = ngrokURL + "/api/designer";
-
-            var phone = $("#phone").val();
-            var phone = '+' + phone;
-            formData.append("phone", phone);
+            $('#resume').val(null);
+            $('#portfolio').val(null);
 
             $.ajax({
                 type: "POST",
@@ -142,14 +140,15 @@
                     $(".spinner-border").removeClass('hide');
                     $('.alert-danger').addClass('hide');
                     $('.alert-success').addClass('hide');
-
+                    $("#shopify-section-toast-message").removeClass('hide');
+                    $('#resume').val(null);
+                    $('#portfolio').val(null);
                 },
                 success: function(response) {
                     console.log("response", response);
                     $(".container").removeClass('hide');
                     $(".spinner-border").addClass('hide');
                     $("#result").empty().append(response);
-                    $("#shopify-section-toast-message").removeClass('hide');
                     if (response.status == 201) {
                         console.log(response.message);
                         $('.alert-success').removeClass('hide');
@@ -193,7 +192,6 @@
                                     }
 
                                     if (flag == false) {
-                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({
@@ -209,45 +207,46 @@
             });
         });
 
+        $(".uploadFile").on("click", function() {
+            var type = $(this).data('type');
+            var fd = new FormData();
+            var files = $('#' + type)[0].files[0];
+            fd.append(type, files);
+            fd.append('type', type);
+            var url = ngrokURL + "/api/uploadFile";
+
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log(response.data);
+                    if (response != 0) {
+                        alert('file uploaded');
+
+                        $("#" + type + "Url").val(response.data.url);
+
+                    } else {
+                        alert('file not uploaded');
+                        $("#" + type + "Url").val();
+                    }
+                },
+            });
+        })
+
         $("input[name=display_picture]").on("change", function(e) {
             console.log("pic change");
-            $("#display_picture").closest('.col-12').find('.validation_error').text('');
+            var file = e.target.files[0];
+            if (file) {
+                var reader = new FileReader();
 
-            var file = $('#display_picture')[0].files[0].name;
-            var myfile = e.target.files[0];
-            //  var file = e.target.files[0];
-
-            const size = $('#display_picture')[0].files[0].size;
-            // Check if any file is selected.
-
-            var ext = file.split('.').pop();
-            if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "gif" || ext == "png") {
-
-            } else {
-
-                $('#display_picture').val("");
-                $("#display_picture").closest('.col-12').find('.validation_error').text('Please select valid image extension');
-            }
-
-
-            const fileSize = Math.round((size / 1024));
-            // The size of the file.
-            if (fileSize >= 1025) {
-                //alert("size large");
-                $('#display_picture').val("");
-                $("#display_picture").closest('.col-12').find('.validation_error').text('File too Big, please select a file less than 1mb');
-
-            } else {
-
-                if (myfile) {
-                    var reader = new FileReader();
-
-                    reader.onload = function() {
-                        $(".addUserPic").css("background-image", 'url(' + reader.result + ')');
-                    }
-
-                    reader.readAsDataURL(myfile);
+                reader.onload = function() {
+                    $(".addUserPic").css("background-image", 'url(' + reader.result + ')');
                 }
+
+                reader.readAsDataURL(file);
             }
         });
 
@@ -289,14 +288,14 @@
             }
         });
 
-        // $(window).load(function() {
-        //     var phones = [{ "mask": "(###) ###-####" }, { "mask": "(###) ###-##############" }];
-        //     $("#phone").inputmask({
-        //         mask: phones,
-        //         greedy: false,
-        //         definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
-        //     });
-        // });
+        $(window).load(function() {
+            var phones = [{ "mask": "(###) ###-####" }, { "mask": "(###) ###-##############" }];
+            $("#phone").inputmask({
+                mask: phones,
+                greedy: false,
+                definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
+            });
+        });
 
         $('#phone').keypress(function() {
             var val = $(this).val();
@@ -304,24 +303,25 @@
                 $(this).addClass('error');
                 $(this).next('span').text('Contact number field is required.');
             } else {
-                // var phoneRegex = /^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+                var phoneRegex = /^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
 
-                // if (phoneRegex.test(val)) {
-                //     var formattedPhoneNumber =
-                //         val.replace(phoneRegex, "($1) $2-$3");
-                //     $(this).val(formattedPhoneNumber);
-                // } else {
-                //$(this).addClass('error');
-                //$(this).next('span').text('Contact number must be valid.');
-                // Invalid phone number
+                if (phoneRegex.test(val)) {
+                    var formattedPhoneNumber =
+                        val.replace(phoneRegex, "($1) $2-$3");
+                    $(this).val(formattedPhoneNumber);
+                } else {
+                    //$(this).addClass('error');
+                    //$(this).next('span').text('Contact number must be valid.');
+                    // Invalid phone number
+                }
+
+                $(this).removeClass('error');
+                $(this).next('span').text('');
             }
-
-            //$(this).removeClass('error');
-            //$(this).next('span').text('');
         });
 
         $('#phone').blur(function() {
-            // var phoneRegex = /^(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([0-9]{3})\s*\)|([0-9]{3}))\s*(?:[.-]\s*)?([0-9]{3})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+            var phoneRegex = /^(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([0-9]{3})\s*\)|([0-9]{3}))\s*(?:[.-]\s*)?([0-9]{3})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
 
             var val = $(this).val();
             if (val == "") {
@@ -329,13 +329,13 @@
                 $(this).next('span').text('password field is required.');
 
             } else {
-                // if (phoneRegex.test(val)) {
-                //     $(this).removeClass('error');
-                //     $(this).next('span').text('');
-                // } else {
-                //     $(this).addClass('error');
-                //     $(this).next('span').text('Contact number format is invalid');
-                // }
+                if (phoneRegex.test(val)) {
+                    $(this).removeClass('error');
+                    $(this).next('span').text('');
+                } else {
+                    $(this).addClass('error');
+                    $(this).next('span').text('Contact number format is invalid');
+                }
 
             }
         });
@@ -384,70 +384,14 @@
 
         $('#resume').change(function() {
             //var i = $(this).prev('label').clone();
-            $("#resume").closest('.form-group').find('.validation_error').text('');
-
             var file = $('#resume')[0].files[0].name;
-
-            const fi = document.getElementById('resume');
-            // Check if any file is selected.
-
-            var ext = file.split('.').pop();
-            if (ext == "pdf" || ext == "docx" || ext == "doc") {
-                // alert(ext);
-            } else {
-                $('#resume').val("");
-                $("#resume").closest('.form-group').find('.validation_error').text('Please select doc or pdf file');
-            }
-
-            if (fi.files.length > 0) {
-                for (const i = 0; i <= fi.files.length - 1; i++) {
-
-                    const fsize = fi.files.item(i).size;
-                    const fileSize = Math.round((fsize / 1024));
-                    // The size of the file.
-                    if (fileSize >= 1025) {
-                        $('#resume').val("");
-                        $("#resume").closest('.form-group').find('.validation_error').text('File too Big, please select a file less than 1mb');
-
-                    } else {
-                        $(".resume-file-name").text(file);
-                    }
-                }
-            }
-
+            $(".resume-file-name").text(file);
         });
 
         $('#portfolio').change(function() {
             //var i = $(this).prev('label').clone();
-            $("#portfolio").closest('.form-group').find('.validation_error').text('');
             var file = $('#portfolio')[0].files[0].name;
-            const fi = document.getElementById('portfolio');
-            // Check if any file is selected.
-
-            var ext = file.split('.').pop();
-            if (ext == "pdf" || ext == "docx" || ext == "doc") {
-                // alert(ext);
-            } else {
-                $('#portfolio').val("");
-                $("#portfolio").closest('.form-group').find('.validation_error').text('Please select doc or pdf file');
-            }
-
-            if (fi.files.length > 0) {
-                for (const i = 0; i <= fi.files.length - 1; i++) {
-
-                    const fsize = fi.files.item(i).size;
-                    const fileSize = Math.round((fsize / 1024));
-                    // The size of the file.
-                    if (fileSize >= 1025) {
-                        $('#portfolio').val("");
-                        $("#portfolio").closest('.form-group').find('.validation_error').text('File too Big, please select a file less than 1mb');
-
-                    } else {
-                        $(".portfolio-file-name").text(file);
-                    }
-                }
-            }
-
+            $(".portfolio-file-name").text(file);
         });
 
         $(".resume-click").on("click", function() {
