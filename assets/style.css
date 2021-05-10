@@ -2801,6 +2801,7 @@ Custer Buy Design Page CSS
     position: relative;
     border: 4px solid #ffffff;
     border-radius: 50%;
+    overflow: hidden;
 }
 
 .burgundy {
@@ -2968,6 +2969,12 @@ Custer Buy Design Page CSS
     box-shadow: none;
 }
 
+.deletLinks{
+    position:absolute;
+    right:15px;
+    top:15px;
+    cursor:pointer;
+}
 
 /*----------Tab 3 CSS----------*/
 
@@ -3445,4 +3452,27 @@ Footer CSS
 .galleryfooterWrap p:nth-child(4) {
     background: #3C3C3C;
     color: #B1B1B1;
+}
+/*quick fix for demo*/
+.shoppingListTable .custom-file.itenImage img{
+    max-width: none;
+    height: 100%;
+    width: auto;
+}
+/*quick fix for demo*/
+.customerBuytabs .showAllTabs li a.tabVisited1{
+    color: #ffffff;
+    background: #a6acd8;
+}
+.customerBuytabs .showAllTabs li a.tabVisited2{
+    color: #ffffff;
+    background: #818bcc;
+}
+.customerBuytabs .showAllTabs li a.tabVisited3{
+    color: #ffffff;
+    background: #737ec7;
+}
+.nav-tabs .tabVisited4{
+    color: #ffffff;
+    background: #5462BD;
 }
