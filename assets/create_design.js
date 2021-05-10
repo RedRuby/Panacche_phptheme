@@ -521,6 +521,7 @@
                     thiss.closest("#merchandise-section-form").find("input[type=text]), textarea , input[type=number]").val("");
                     $(".landingPageWrap #merchandise-section-form")[0].reset();
                     $("#merchandise-section-form")[0].reset();
+                    $(".landingPageWrap #merchandise-section-form .imageRefUpload .addImage").css('background-image', 'url("")');
                     $('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
                     //$(this).closest('.addRefWrap').append(response);
@@ -1020,7 +1021,12 @@
             console.log("remove add product section");
             $(".landingPageWrap #add-product-view").addClass('hide');
 
-        })
+        });
+
+        $(" .landingPageWrap").on("click", ".cancel-product-btn", function(e) {
+            $(this).closest('.update-product-section').addClass('hide');
+            $(this).closest('.product-preview-section').find(".addmerchBox").removeClass('hide');
+        });
 
 
     });
