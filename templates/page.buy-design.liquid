@@ -1,5 +1,15 @@
+<link href="https://cdn.shopify.com/s/files/1/0560/9304/8991/t/3/assets/chatbox.css?v=7903071315139148175" rel="stylesheet" type="text/css" media="all" />
+<link href="https://cdn.shopify.com/s/files/1/0560/9304/8991/t/3/assets/select-dropdown-with-image.css?v=7903071315139148175" rel="stylesheet" type="text/css" media="all" />
+<script src="https://cdn.shopify.com/s/files/1/0560/9304/8991/t/3/assets/select-dropdown-with-image.js?v=7903071315139148175" type="text/javascript"></script>
+<style>
+.page-container{
+  -webkit-transform: translate3d(0, 0, 0);
+    transform: none;
+}
+
+</style>
 {% if customer.id == blank %}
-    <div class="row searchBar fixed-top">
+    <div class="row searchBar fixed-top  mx-0">
      <div class="col-xl-5 col-lg-6 col-md-8 col-sm-12 text-center mx-auto py-2">
         <form class="my-1 text-center col-12 float-left">
            <div class="col-12 float-left">
@@ -10,20 +20,21 @@
      </div>
     </div>
 {% endif %}
+
 <div class="container-fluid">
     <div class="row align-items-center h-100">
-      <div class="col-md-12 col-sm-12 col-xs-12 pl-5 mx-auto mt-4 pt-2">
-          <div class="col-md-12 float-left backBtn mt-5">
-            <a href="#" class="float-left"><span><i class="fas fa-arrow-left"></i></span></a>
-            {% if customer.id %}
-                <div class="float-right lastLogin">
-                <p class="mb-0">Your Last Login was</p>
-                <p class="mb-0">01/01/2021. 12:00 PM</p>
-                </div>
-            {% endif %}
-         </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 mx-auto mt-5 pl-5 {% if customer.id == blank %} pt-5 designDetails {% else %} pt-2 {% endif %}">
+                <div class="col-md-12 float-left backBtn mt-5 {% if customer.id == blank %} px-0 {% endif %}">
+                    <a href="/pages/gallery" class="float-left"><span><i class="fas fa-arrow-left"></i></span></a>
+                    {% if customer.id %}
+                        <div class="float-right lastLogin">
+                        <p class="mb-0">Your Last Login was</p>
+                        <p class="mb-0">01/01/2021. 12:00 PM</p>
+                        </div>
+                    {% endif %}
+               </div>
+           </div>
        </div>
-    </div>
     <div class="landingPageWrapBuyDesigner">
     </div>
 </div>
@@ -65,7 +76,4 @@
         </div>
     </div>
 </div>
-
-
-
 {{ 'buy_design.js' | asset_url | script_tag }}
