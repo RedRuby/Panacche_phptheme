@@ -3,9 +3,9 @@ span.validation_error {
     font-size: 16px;
 }
 
-input.form-control.error {
+.form-control.error {
     border: 1px solid #d20000 !important;
-}
+} 
 
 .spinner-border {
     position: fixed;
@@ -90,8 +90,9 @@ p.custom-file.mb-0.addImage {
 div#shopify-section-toast-message {
     position: fixed;
     z-index: 2222;
-    top: 46%;
-    margin-top: -120px;
+    top: 17px;
+    /*top: 46%;
+    margin-top: -120px; */
     width: 100%;
     padding: 0 8rem;
 }

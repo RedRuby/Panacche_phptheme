@@ -19,12 +19,14 @@
                                 <div class="col-12 float-left px-0">
                                     <p class="addUserPic mx-auto mt-1 mb-1">
                                         <span class="addPicIcon"><i class="fas fa-plus-circle"></i></span>
-                                        <input type="file" class="custom-file-input" id="customFile" name="display_picture" accept="image/x-png,image/gif,image/jpeg,webp">
+                                        <input type="file" class="custom-file-input" id="display_picture" name="display_picture" accept="image/*">
+                                         
                                         <label class="custom-file-label mb-0" for="customFile"></label>
                                     </p>
                                     <p class="text-center font14 mb-1">
                                         Add Display Picture
                                     </p>
+                                    <span class="validation_error"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -39,14 +41,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Bio (Short description about yourself)</label>
-                                <textarea class="form-control" id="bio" name="bio" rows="3"></textarea>
+                                <textarea class="form-control" id="bio" name="bio" rows="4"></textarea>
                                 <span class="validation_error"></span>
                             </div>
-                            <div class="form-group">
-                                <label for="">A quote/ message for your clients</label>
-                                <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
-                                <span class="validation_error"></span>
-                            </div>
+                           
                         </div>
                         <div class="registerForm col-lg-4 col-sm-12 float-left">
                             <div class="form-group">
@@ -54,7 +52,7 @@
                                 <input type="text" name="email" id="email" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
                             </div>
-                            <div class="form-group">
+                            {% comment %} <div class="form-group">
                                 <label for=""><span class="mandetory">*</span> Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
@@ -63,7 +61,7 @@
                                 <label for=""><span class="mandetory">*</span> Confirm Password</label>
                                 <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="">
                                 <span class="validation_error"></span>
-                            </div>
+                            </div> {% endcomment %}
                             <div class="form-group">
                                 <label for=""><span class="mandetory">*</span> Contact No. <em>(Example: +911234567890)</em></label>
                                 <input type="number" class="form-control" name="phone" id="phone" placeholder="">
@@ -77,6 +75,11 @@
                             <div class="form-group">
                                 <label for="">Business Address</label>
                                 <textarea class="form-control" id="business_address" name="business_address" rows="4"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
+                             <div class="form-group">
+                                <label for="">A quote/ message for your clients</label>
+                                <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
                                 <span class="validation_error"></span>
                             </div>
                         </div>
@@ -94,7 +97,7 @@
                                 <div class="dragDropBox pb-2 text-center">
                                     <div class="col-12 float-left p-2">
                                         <p class="custom-file p-2">
-                                            <input type="file" class="custom-file-input" id="resume" name="resume">
+                                            <input type="file" class="custom-file-input" id="resume" name="resume" accept="docx,pdf">
 
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
                                         </p>
@@ -110,7 +113,7 @@
                                 <div class="dragDropBox pb-2 text-center">
                                     <div class="col-12 float-left p-2">
                                         <p class="custom-file p-2">
-                                            <input type="file" class="custom-file-input" id="portfolio" name="portfolio">
+                                            <input type="file" class="custom-file-input" id="portfolio" name="portfolio" accept="docx,pdf">
 
                                             <label class="custom-file-label2 mb-0" for="customFile"></label>
                                         </p>
