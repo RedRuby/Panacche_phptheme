@@ -3460,15 +3460,15 @@ Footer CSS
     width: auto;
 }
 /*quick fix for demo*/
-.tabVisited1{
+.customerBuytabs .showAllTabs li a.tabVisited1{
     color: #ffffff;
     background: #a6acd8;
 }
-.tabVisited2{
+.customerBuytabs .showAllTabs li a.tabVisited2{
     color: #ffffff;
     background: #818bcc;
 }
-.tabVisited3{
+.customerBuytabs .showAllTabs li a.tabVisited3{
     color: #ffffff;
     background: #737ec7;
 }
@@ -3476,5 +3476,3 @@ Footer CSS
     color: #ffffff;
     background: #5462BD;
 }
-
-
