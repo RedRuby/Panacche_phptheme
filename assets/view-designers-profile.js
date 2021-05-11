@@ -50,6 +50,7 @@
                     $('.alert-success').addClass('hide');
                 },
                 success: function(response) {
+                    $("#shopify-section-toast-message").removeClass('hide');
                     $(".container-fluid").removeClass('hide');
                     $(".spinner-border").addClass('hide');
                     $('.alert-success').removeClass('hide');
@@ -57,10 +58,15 @@
                     $('html, body').animate({
                         scrollTop: $(".alert-success").offset().top
                     }, 2000);
+                    setTimeout(
+                        function() {
+                            window.location.href = "/account";
+                        }, 5000);
 
                 },
                 error: function(xhr, status, error) {
                     console.log("error");
+                    $("#shopify-section-toast-message").removeClass('hide');
                     console.log('error', JSON.stringify(xhr.responseJSON));
                     $(".container-fluid").removeClass('hide');
                     $(".spinner-border").addClass('hide');
@@ -94,6 +100,7 @@
                     $('.alert-success').addClass('hide');
                 },
                 success: function(response) {
+                    $("#shopify-section-toast-message").removeClass('hide');
                     $(".container-fluid").removeClass('hide');
                     $(".spinner-border").addClass('hide');
                     $('.alert-success').removeClass('hide');
@@ -101,10 +108,15 @@
                     $('html, body').animate({
                         scrollTop: $(".alert-success").offset().top
                     }, 2000);
+                    setTimeout(
+                        function() {
+                            window.location.href = "/account";
+                        }, 5000);
 
                 },
                 error: function(xhr, status, error) {
                     console.log("error");
+                    $("#shopify-section-toast-message").removeClass('hide');
                     console.log('error', JSON.stringify(xhr.responseJSON));
                     $(".container-fluid").removeClass('hide');
                     $(".spinner-border").addClass('hide');

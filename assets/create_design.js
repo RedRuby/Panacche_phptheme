@@ -119,6 +119,7 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $("input").removeClass('error');
+                    $("textarea").removeClass('error');
 
                 },
                 success: function(response) {
@@ -172,43 +173,49 @@
 
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    if (key == 'design_name' || key == 'design_price' || key == 'room_budget' || key == 'pet_friendly_design' || key == 'width_in_feet' || key == 'width_in_inches' || key == 'height_in_feet' || key == 'height_in_inches' || key == 'implementation_guide_description') {
+                                    if (key == 'design_name' || key == 'design_price' || key == 'room_budget' || key == 'pet_friendly_design' || key == 'width_in_feet' || key == 'width_in_inches' || key == 'height_in_feet' || key == 'height_in_inches') {
                                         flag = true;
 
                                         $("input[name=" + key + "]").next("span").text(item);
                                         $("input[name=" + key + "]").addClass('error');
 
 
-                                    } else if (key == 'collection_images' || key == 'blue_print_images') {
+                                    } else if (key == 'implementation_guide_description') {
+                                        flag = true;
+                                        $("#" + key).next("span").text(item);
+                                        $("#" + key).addClass('error');
+
+                                    } else if (key == 'collection_images' || key == 'collection_blue_prints') {
                                         flag = true;
                                         $(".landingPageWrap .images_error .validation_error").append(item);
 
-                                    } else {
-                                        flag = true;
-                                        tempKey = String(key);
-                                        //  console.log("tempKey", tempKey);
-                                        var checkDot = "";
-                                        var checkDot = tempKey.includes(".");
-                                        console.log("checkDot", checkDot);
-                                        if (checkDot == true) {
-                                            var temp = key.split(".");
-                                            console.log("temp", temp);
-                                            tempItem = String(item);
-                                            tempItem = tempItem.replace('.0', '');
-                                            tempItem = tempItem.replace('.1', '');
-                                            tempItem = tempItem.replace('.2', '');
-                                            tempItem = tempItem.replace('.3', '');
-                                            tempItem = tempItem.replace('.4', '');
-                                            tempItem = tempItem.replace('.5', '');
-                                            tempItem = tempItem.replace('_', ' ');
-                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(tempItem);
-                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
-                                        } else {
-                                            $("input[name=" + key + "]").next("span").text(item);
-                                            $("input[name=" + key + "]").addClass('error');
-                                        }
-
                                     }
+                                    // else {
+                                    //     flag = true;
+                                    //     tempKey = String(key);
+                                    //     //  console.log("tempKey", tempKey);
+                                    //     var checkDot = "";
+                                    //     var checkDot = tempKey.includes(".");
+                                    //     console.log("checkDot", checkDot);
+                                    //     if (checkDot == true) {
+                                    //         var temp = key.split(".");
+                                    //         console.log("temp", temp);
+                                    //         tempItem = String(item);
+                                    //         tempItem = tempItem.replace('.0', '');
+                                    //         tempItem = tempItem.replace('.1', '');
+                                    //         tempItem = tempItem.replace('.2', '');
+                                    //         tempItem = tempItem.replace('.3', '');
+                                    //         tempItem = tempItem.replace('.4', '');
+                                    //         tempItem = tempItem.replace('.5', '');
+                                    //         tempItem = tempItem.replace('_', ' ');
+                                    //         $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(tempItem);
+                                    //         $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
+                                    //     } else {
+                                    //         $("input[name=" + key + "]").next("span").text(item);
+                                    //         $("input[name=" + key + "]").addClass('error');
+                                    //     }
+
+                                    // }
 
                                     if (flag == false) {
                                         $("#shopify-section-toast-message").removeClass('hide');
@@ -250,6 +257,8 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
+                    $("input").removeClass('error');
+                    $("textarea").removeClass('error');
 
                 },
                 success: function(response) {
@@ -298,24 +307,25 @@
                                         $("input[name=" + key + "]").addClass('error');
 
 
-                                    } else {
-                                        flag = true;
-                                        tempKey = String(key);
-                                        //  console.log("tempKey", tempKey);
-                                        var checkDot = "";
-                                        var checkDot = tempKey.includes(".");
-                                        console.log("checkDot", checkDot);
-                                        if (checkDot == true) {
-                                            var temp = key.split(".");
-                                            console.log("temp", temp);
-                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(item);
-                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
-                                        } else {
-                                            $("input[name=" + key + "]").next("span").text(item);
-                                            $("input[name=" + key + "]").addClass('error');
-                                        }
-
                                     }
+                                    // else {
+                                    //     flag = true;
+                                    //     tempKey = String(key);
+                                    //     //  console.log("tempKey", tempKey);
+                                    //     var checkDot = "";
+                                    //     var checkDot = tempKey.includes(".");
+                                    //     console.log("checkDot", checkDot);
+                                    //     if (checkDot == true) {
+                                    //         var temp = key.split(".");
+                                    //         console.log("temp", temp);
+                                    //         $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(item);
+                                    //         $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
+                                    //     } else {
+                                    //         $("input[name=" + key + "]").next("span").text(item);
+                                    //         $("input[name=" + key + "]").addClass('error');
+                                    //     }
+
+                                    // }
 
                                     if (flag == false) {
                                         $("#shopify-section-toast-message").removeClass('hide');
@@ -736,6 +746,10 @@
                         $('html, body').animate({
                             scrollTop: "0"
                         }, 2000);
+                        setTimeout(
+                            function() {
+                                window.location.href = "/account";
+                            }, 5000);
 
                         $(".landingPageWrap .submit-design-progress").addClass('greenActive');
                         $(".landingPageWrap .submit-design-progress").next('span').addClass('greenActiveText');
