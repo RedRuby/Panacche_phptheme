@@ -544,6 +544,7 @@
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         $(".spinner-border").addClass('hide');
                         $("#loadingDiv").addClass('hide');
+                        $(".landingPageWrap #bottom-add-buttons").removeClass('hide');
 
                         //$(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         // var html =

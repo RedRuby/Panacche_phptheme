@@ -124,7 +124,14 @@
             var url = ngrokURL + "/api/designer";
 
             var phone = $("#phone").val();
-            var phone = '+' + phone;
+            if (phone.includes('+')) {
+
+            } else {
+                var phone = '+' + phone;
+            }
+
+            console.log("phone", phone);
+
             formData.append("phone", phone);
 
             $('#resume').val(null);
