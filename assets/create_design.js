@@ -639,6 +639,7 @@
                     $(".spinner-border").removeClass('hide');
                 },
                 success: function(response) {
+                    $(".landingPageWrap #upload_product_csv").val("");
                     $(".spinner-border").addClass('hide');
                     $("#loadingDiv").addClass('hide');
                     console.log("response", response);
@@ -670,6 +671,7 @@
                     }
                 },
                 error: function(xhr, status, error) {
+                    $(".landingPageWrap #upload_product_csv").val("");
                     if (xhr.responseText != "") {
 
                         var jsonResponseText = $.parseJSON(xhr.responseText);
