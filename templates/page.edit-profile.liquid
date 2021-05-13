@@ -1,0 +1,21 @@
+
+{% if shop.customer_accounts_enabled %}
+    {% if customer %}
+    <input type="hidden" value="{{ customer.id }}" name="customer"/> 
+    
+        {% if customer.metafields.global.tag == 'role:designer' %}
+
+        {% section 'designer-edit-profile' %}
+
+        {% else %}
+
+        {% section 'customer-edit-profile' %}
+
+        {% endif %}
+
+    {% else %}
+    <script>
+        window.location = "/";
+    </script>
+    {% endif %}
+ {% endif %} 
