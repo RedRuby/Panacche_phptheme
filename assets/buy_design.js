@@ -115,10 +115,10 @@ var storeProjectProduct = null;
             $(document).on("click",'.deletLinks',function(){
                 var refrenceLink = $(this).siblings( ".referenceLinkInput" );
                 var referenceLinkId = $(this).siblings( ".referenceLinkId" );
-                refrenceLink.val('');
-                if(referenceLinkId){
+                if(referenceLinkId.val() != ''){
                     saveRefrenceLink(referenceLinkId,refrenceLink);
                 }
+                refrenceLink.val('');
                 $(this).closest('.position-relative').remove();
             });
             function saveRefrenceLink(referenceLinkId,refrenceLink){
