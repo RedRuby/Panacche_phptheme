@@ -357,12 +357,16 @@
                                     <label class="custom-file-label mb-0" for="customFile"></label>
                                 </div>
                             </form>
+                            <div class="col-md-10 float-left mx-0 typeUser font14">
+                            <a href="{{ asset('/uploads/product_bulk_upload.csv') }}" target="_blank">Download a Blank
+                                Sample Template CSV file for Bulk upload</a>
+                        </div>
                         </div>
                     </div>
-                    <div class="col-md-7 float-left mx-0 typeUser text-right pt-4 font14">
+                    {% comment %} <div class="col-md-7 float-left mx-0 typeUser text-right pt-4 font14">
 
                         <a href="{{ ngrok_url }}/uploads/product_bulk_upload.csv" target="_blank">Download a Blank Sample Template CSV file for Bulk upload</a>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
 
                 <div class="row px-3 mt-3 hide" id="add-product-view">
@@ -455,7 +459,7 @@
 
                 </div>
 
-                <div class="row px-3 pt-4">
+                <div class="row px-3 pt-4 bottom-add-buttons hide">
                     <button type="submit" class="btn btn-primary loginBtn mr-2 add-product-view-btn">Add</button>
                     <button type="submit" class="btn btn-primary loginBtn upload-bulk-btn">Upload Bulk</button>
                 </div>
