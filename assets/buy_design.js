@@ -84,7 +84,7 @@ var storeProjectProduct = null;
             function saveMyProjectProduct(qty_elm,checkbox_checked,losest_tr){
                 var product_id = losest_tr.find('.product_id').val();
                 var my_product_id = losest_tr.find('.my_product_id');
-                var id = url_str.searchParams.get("id");
+                var id = $("#myProjectId").val();
                 var dataval = {
                                 qty_elm : qty_elm, 
                                 checkbox_checked : checkbox_checked, 
@@ -122,7 +122,7 @@ var storeProjectProduct = null;
                 $(this).closest('.position-relative').remove();
             });
             function saveRefrenceLink(referenceLinkId,refrenceLink){
-                var id = url_str.searchParams.get("id");
+                var id = $("#myProjectId").val();
                 $.ajax({
                     url: ngrokURL + '/api/page/uploadReferenceLinks',
                     type: "POST",
@@ -186,8 +186,261 @@ var storeProjectProduct = null;
             });
         });
 
-
-
+        
+        $(document).on('click','.changereq6 i',function () {
+            let changeRequest = $(this).closest( ".changeRequestTRElm" );
+            let change_request_id = changeRequest.find('.change_request_id').val();
+            let data = {change_request_id:change_request_id, delete_change_request:1}
+            if(change_request_id) {
+                $.ajax({
+                    url: ngrokURL + '/api/page/saveChangeRequest',
+                    type: "POST",
+                    data: data,
+                    dataType: 'json',
+                    success: function(response) {
+                        changeRequest.remove();
+                        if($('.changeRequestTRElm').length >= 3){
+                            $('.addFreeChangebtn').hide();
+                            $('.addPaidChangebtn').removeClass('d-none').show();
+                        } else {
+                            $('.addFreeChangebtn').show();
+                            $('.addPaidChangebtn').addClass('d-none');
+                        }
+                        if($('.changeRequestTRElm').length > 3){
+                            $('.submit_design_changes_btn').hide();
+                            $('.pay_now_btn').show();
+                        } else {
+                            $('.pay_now_btn').hide();
+                            $('.submit_design_changes_btn').show();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("error");
+                        console.log('error', JSON.stringify(xhr.responseJSON));
+                    }
+                });
+            } else {
+                changeRequest.remove();
+                if($('.changeRequestTRElm').length >= 3){
+                    $('.addFreeChangebtn').hide();
+                    $('.addPaidChangebtn').removeClass('d-none').show();
+                } else {
+                    $('.addFreeChangebtn').show();
+                    $('.addPaidChangebtn').addClass('d-none');
+                }
+                if($('.changeRequestTRElm').length > 3){
+                    $('.submit_design_changes_btn').hide();
+                    $('.pay_now_btn').show();
+                } else {
+                    $('.pay_now_btn').hide();
+                    $('.submit_design_changes_btn').show();
+                }
+            }
+        });
+        $(document).on("change",'.changeRequestTRElm select, .changeRequestTRElm input',function(){
+            let changeRequest = $(this).closest( ".changeRequestTRElm" );
+            let change_type = changeRequest.find('.changereq1 select').val();
+            var change_item = changeRequest.find('.changereq2 select').val();
+            var id = $("#myProjectId").val();
+            let data = {change_type:change_type, change_item:change_item, myProjectId:id};
+            let submit = 1;
+            if(!change_item){
+                submit = 0;
+            }
+            var change_request_elm;
+            if(change_type == 0){
+                change_reason = changeRequest.find('.changereq3 .change_reason').val();
+                data.change_reason = change_reason;
+                change_request_elm = changeRequest.find('.changereq3 .change_request_id');
+                data.change_request_id = change_request_elm.val();
+                if(!change_reason){
+                    submit = 0;
+                }
+            } else {
+                brand = changeRequest.find('.changereq3 .brand').val();
+                application = changeRequest.find('.changereq4 .application').val();
+                change_reason = changeRequest.find('.changereq5 .change_reason').val();
+                change_request_elm = changeRequest.find('.changereq5 .change_request_id');
+                data.brand = brand;
+                data.application = application;
+                data.change_reason = change_reason;
+                data.change_request_id = change_request_elm.val();
+                if(!brand || !application || !change_reason){
+                    submit = 0;
+                }
+            }
+            if(submit == 1) {
+                $.ajax({
+                    url: ngrokURL + '/api/page/saveChangeRequest',
+                    type: "POST",
+                    data: data,
+                    dataType: 'json',
+                    success: function(response) {
+                        change_request_elm.val(response.id);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("error");
+                        console.log('error', JSON.stringify(xhr.responseJSON));
+                    }
+                });
+            }
+            //saveRefrenceLink(referenceLinkId,thiselm)
+        });
+        $(document).on("change",'.color_selc_cls',function(){
+            var brand_name = $("#colorPallette_"+this.value).find('.brand_name').html();
+            var application_name = $("#colorPallette_"+this.value).find('.application_name').html();
+            var changeRequestTRElm = $(this).closest('.changeRequestTRElm');
+            changeRequestTRElm.find('.changereq3').find('select .brand_name_option').remove();
+            changeRequestTRElm.find('.changereq4').find('select .application_name_option').remove();
+            if(brand_name){
+                changeRequestTRElm.find('.changereq3').find('select').append('<option selected class="brand_name_option" value="'+brand_name+'">'+brand_name+'</option>');
+            }
+            if(application_name){
+                changeRequestTRElm.find('.changereq4').find('select').append('<option selected class="application_name_option" value="'+application_name+'">'+application_name+'</option>');
+            }
+        });
+        $(document).on("change",'.selectDropdown',function(){
+            //selectDropdown
+            let changeRequestPElm = $(this).closest('.changeRequestTRElm');
+            if(this.value == 0){
+                let product_selc = '<select class="custom-select">';
+                product_selc += '<option value="">Select Change Item</option>';
+                $('.productSelectionCheckbox:checked').each(function() {
+                    productelm = $(this).closest('.productListMainElm');
+                    productName = productelm.find('.productName').html();
+                    product_id = productelm.find('.product_id').val();
+                    img = productelm.find('.itenImage img').attr('src');
+                    product_selc += '<option value="'+product_id+'" data-thumbnail="'+img+'">'+productName+'</option>';
+                });
+                product_selc += '</select>';
+                html = '<td class="changereq1">'+
+                             '<div class="form-group mb-0">'+
+                              '<select class="custom-select selectDropdown">'+
+                                '<option>Select Change Item</option>'+
+                                '<option selected value="0">Shopping List</option>'+
+                                '<option value="1">Pain Palette</option>'+
+                              '</select>'+
+                           '</div>'+
+                          '</td>'+
+                          '<td class="changereq2">'+product_selc+'</td>'+
+                          '<td class="changereq3" colspan="2">'+
+                            '<input type="text" class="form-control change_reason" placeholder="Change Reason">'+
+                            '<input type="hidden" name="change_request_id" class="change_request_id" value="">'+
+                          '</td>'+
+                          '<td class="changereq5">'+
+                            '<div class="custom-file">'+
+                                '<input type="file" class="custom-file-input" id="customFile" name="filename">'+
+                                '<i class="fas fa-paperclip"></i>'+
+                                '<label class="custom-file-label mb-0" for="customFile"></label>'+
+                            '</div>'+
+                          '</td>'+
+                          '<td class="changereq6 text-center">'+
+                              '<i class="fas fa-trash" aria-hidden="true"></i>'+
+                          '</td>';
+                changeRequestPElm.html(html);
+            } else if(this.value == 1) {
+                let color_selc = '<select class="custom-select color_selc_cls">';
+                color_selc += '<option value="">Select Color</option>';
+                $('#in_progress .colorPallette').each(function() {
+                    color_id = $(this).find('.color_name').attr('colorId');
+                    color_name = $(this).find('.color_name').html();
+                    color_selc += '<option value="'+color_id+'">'+color_name+'</option>';
+                });
+                color_selc += '</select>';
+                console.log(color_selc);
+                html = '<td class="changereq1">'+
+                             '<div class="form-group mb-0">'+
+                              '<select class="custom-select selectDropdown">'+
+                                '<option value="">Select Change Item</option>'+
+                                '<option value="0">Shopping List</option>'+
+                                '<option selected value="1">Pain Palette</option>'+
+                              '</select>'+
+                           '</div>'+
+                          '</td>'+
+                          '<td class="changereq2">'+color_selc+'</td>'+
+                          '<td class="changereq3">'+
+                            '<select class="custom-select brand">'+
+                                '<option value="">Brand</option>'+
+                            '</select>'+
+                          '</td>'+
+                          '<td class="changereq4">'+
+                            '<select class="custom-select application">'+
+                                '<option value="">Application</option>'+
+                            '</select>'+
+                          '</td>'+
+                          '<td class="changereq5">'+
+                            '<input type="text" class="form-control  change_reason" placeholder="Change Reason">'+
+                            '<input type="hidden" name="change_request_id" class="change_request_id" value="">'+
+                          '</td>'+
+                          '<td class="text-center changereq6">'+
+                              '<form class="changeRequestForm">'+
+                              '</form>'+
+                              '<i class="fas fa-trash" aria-hidden="true"></i>'+
+                          '</td>';
+                          console.log(changeRequestPElm);
+                changeRequestPElm.html(html);
+            } else {
+                changeRequestPElm.find('.changereq2, .changereq3, .changereq4, .changereq5').html('');
+            }
+        });
+        $(document).on("click",'.addFreeChangebtn',function(){
+            let totalReq = $('.changeRequestTRElm').length;
+            let html = '';
+            if($('.freeChangeHead').length == 0){
+                html += '<tr><td colspan="6" class="freeChangeHead">Free change request</td></tr>';
+            }
+            html += '<tr class="freeChange changeRequestTRElm">'+
+                          '<td class="changereq1">'+
+                             '<div class="form-group mb-0">'+
+                              '<select class="custom-select selectDropdown">'+
+                                '<option selected>Select Change Item</option>'+
+                                '<option value="0">Shopping List</option>'+
+                                '<option value="1">Pain Palette</option>'+
+                              '</select>'+
+                           '</div>'+
+                          '</td>'+
+                          '<td class="changereq2">&nbsp;</td>'+
+                          '<td class="changereq3">&nbsp;</td>'+
+                          '<td class="changereq4">&nbsp;</td>'+
+                          '<td class="changereq5">&nbsp;</td>'+
+                          '<td class="text-center changereq6">'+
+                              '<i class="fas fa-trash" aria-hidden="true"></i>'+
+                          '</td>'+
+                    '</tr>';
+            if($('.freeChangeHead').length == 0){
+                html += '<tr class="paidChangeHead">'+
+                          '<td colspan="6">'+
+                              '<span class="float-left">Paid change request - you paid $100 for this change</span>'+
+                              '<span class="float-right">Payment Done</span>'+
+                          '</td>'+
+                        '</tr>';
+            }
+            if(totalReq > 0){
+                if(totalReq >= 3){
+                    $('#changeRequest').append(html);
+                } else {
+                    $('.changeRequestTRElm').last().after(html);
+                }
+                totalReq = $('.changeRequestTRElm').length
+                if(totalReq >= 3){
+                    $('.addFreeChangebtn').hide();
+                    $('.addPaidChangebtn').removeClass('d-none').show();
+                } else {
+                    $('.addFreeChangebtn').show();
+                    $('.addPaidChangebtn').addClass('d-none');
+                }
+                if(totalReq > 3){
+                    $('.submit_design_changes_btn').hide();
+                    $('.pay_now_btn').show();
+                } else {
+                    $('.pay_now_btn').hide();
+                    $('.submit_design_changes_btn').show();
+                }
+            } else {
+                $('#changeRequest').html(html);
+            }
+            
+        });
 
         $(".landingPageWrap").on("click", ".view-image-popup", function(e) {
             e.preventDefault();
