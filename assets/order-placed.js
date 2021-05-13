@@ -37,7 +37,6 @@
 
     $(document).on("click", ".rateReviewStore", function() {
         var custId = ShopifyAnalytics.meta.page.customerId;
-        alert(custId);
         var rating = $("#starsInput").val();
         var review = $("#review_text").val();
         var designer_id = $("#designer_id").val();
