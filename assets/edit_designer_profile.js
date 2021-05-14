@@ -28,6 +28,7 @@
                             $("." + key + '-file-name').text(item);
                         } else if (key == 'display_picture') {
                             var display_picture = item;
+                            display_picture.replace(" ", "%");
                             if (display_picture != '') {
                                 display_picture = ngrokURL + '/uploads/designer/display_picture/' + display_picture;
                                 $(".addUserPic").css('background-image', 'url(' + display_picture + ')');
