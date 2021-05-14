@@ -510,7 +510,35 @@ var storeProjectProduct = null;
             // });
 
         });
+         $(document).on("input", ".file_documents", function(e) {
+                    /*var type = $(this).data('type');
+                    var fd = new FormData();
+                    var files = this.file;
+                    fd.append(type, files);
+                    fd.append('type', type);
+                    fd.append('myProjectId',$("#myProjectId").val());*/
+                    var url = ngrokURL + "/api/page/uploadDocuments";
 
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        data: new FormData($('#additional_furniture_file')[0]),
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            console.log(response.data);
+                            if (response != 0) {
+                                alert('file uploaded');
+
+                                $("#" + type + "Url").val(response.data.url);
+
+                            } else {
+                                alert('file not uploaded');
+                                $("#" + type + "Url").val();
+                            }
+                        },
+                    });
+                })
 
 
     });
