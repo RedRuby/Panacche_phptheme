@@ -242,7 +242,7 @@
 
             console.log("update btn clicked");
             var collection_id = $(this).attr('data');
-            var formData = new FormData($("#create-room-form")[0]);
+            var formData = new FormData($(".landingPageWrap #create-room-form")[0]);
             console.log('formData', formData);
             formData.append('collection_id', collection_id);
             //return false;
