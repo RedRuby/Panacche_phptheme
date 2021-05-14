@@ -371,7 +371,7 @@
                 '<td><input type="text" class="form-control brand_' + color_pallette_count + '" placeholder="" name="brand[' + color_pallette_count + ']" id="brand.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
                 '<td><input type="text" class="form-control finish_' + color_pallette_count + '" placeholder="" name="finish[' + color_pallette_count + ']" id="finish.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
                 '<td><input type="text" class="form-control application_' + color_pallette_count + '" placeholder="" name="application[' + color_pallette_count + ']" id="application.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
-                '<td><i class="fas fa-save hide mr-2"></i> <i class="fas fa-trash hide"></i><i class="fas fa-plus-circle addPlus"></i></td>' +
+                '<td><i class="fas fa-trash hide"></i><i class="fas fa-plus-circle addPlus"></i></td>' +
                 '</tr>';
 
             $(this).closest('td').find('.fa-save').removeClass('hide');
