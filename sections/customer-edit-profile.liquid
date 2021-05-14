@@ -1,0 +1,93 @@
+<form method="post" id="RegisterForm" accept-charset="UTF-8" enctype="multipart/form-data">
+    <input type="hidden" name="form_type" value="create_customer">
+    <input type="hidden" name="utf8" value="✓"> {% include 'form-status', form: form, form_id: formId %}
+    <input name="tag" type="hidden" value="role:customer" />
+    <input name="shop" type="hidden" value="{{ shop.permanent_domain }}" />
+
+    <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="loginWrapper col-md-12 col-sm-12 col-xs-12 mt-4 mx-auto">
+                <div class="logo col-12 float-left mb-4 px-0">
+                    <div class="galleryBack">
+                        <a href="javascript&colon; history.go(-1)"><span><i class="fas fa-arrow-left "></i></span></a></div>
+                    
+                </div>
+
+                <div class="row mb-4 w-100 mx-0">
+                    <div class="col-12 float-left">
+                        <div class="form-group landingHeading">
+                            <h4 for=" ">Create Customer Account</h4>
+                            <div class="col-12 float-left px-0 mb-3 text-center">
+                                <p class="addUserPic mx-auto mt-1 mb-1">
+
+                                    <span class="addPicIcon">
+                                        <i class="fas fa-plus-circle"></i></span>
+                                   <input type="file" class="custom-file-input" id="display_picture" name="display_picture" accept="image/*">
+                                        
+                                         <label class="custom-file-label mb-0" for="customFile"></label>
+                                </p>
+                                <p class="text-center font14 mb-1">
+                                    Add Display Picture
+                                </p>
+                                <span class="validation_error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="registerForm col-lg-6 col-sm-12 float-left">
+                        <div class="form-group">
+                            <label for=""><span class="mandetory">*</span> First Name</label>
+                            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="">
+                            <span class="validation_error "></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=""><span class="mandetory">*</span> Last Name</label>
+                            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=" "><span class="mandetory">*</span> Email- Id <em>(This will be your UserID)</em> </label>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=" "><span class="mandetory">*</span> Contact No. <em>(Example: +911234567890)</em></label>
+                            <input type="number" name="phone" id="phone" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                    </div>
+                    <div class="registerForm col-lg-6 col-sm-12 float-left ">
+                        <div class="form-group">
+                            <label for=" "><span class="mandetory">*</span> How did you hear about us? </label>
+                            <select name="how_did_you_hear_about_us" id="how_did_you_hear_about_us" class="form-control" placeholder="">
+                            <option value="">Select</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Twitter">Twitter</option>
+                            <option value="Goodle Search Engine">Goodle Search Engine</option>
+                            <option value="Word of Mouth">Word of Mouth</option>
+                            <option value="Other">Other</option>
+                            </select>
+                            <span class="validation_error"></span>
+                        </div>
+                        {% comment %} <div class="form-group">
+                            <label for=""><span class="mandetory">*</span> Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for=" "><span class="mandetory">*</span> Confirm Password</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="">
+                            <span class="validation_error"></span>
+                        </div> {% endcomment %}
+                        <div class="form-group mt-5">
+                            <button type="button" class="btn btn-light float-right cancleBtn"><a href="javascript&colon; history.go(-1)">Cancel</a></button>
+                            <button href="#" type="submit" class="btn btn-primary float-right loginBtn mr-4" id="registration"><a href="#">Submit</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{{ 'edit_customer_profile.js' | asset_url | script_tag }}
