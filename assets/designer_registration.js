@@ -122,18 +122,6 @@
 
             var formData = new FormData($("#RegisterForm")[0]);
             var url = ngrokURL + "/api/designer";
-
-            var phone = $("#phone").val();
-            if (phone.includes('+')) {
-
-            } else {
-                var phone = '+' + phone;
-            }
-
-            console.log("phone", phone);
-
-            formData.append("phone", phone);
-
             $('#resume').val(null);
             $('#portfolio').val(null);
 
@@ -154,11 +142,9 @@
                     $('.alert-success').addClass('hide');
                     $("#shopify-section-toast-message").removeClass('hide');
                     $('#resume').val(null);
-                    $("input").removeClass('error');
                     $('#portfolio').val(null);
                 },
                 success: function(response) {
-                    $("#shopify-section-toast-message").removeClass('hide');
                     console.log("response", response);
                     $(".container").removeClass('hide');
                     $(".spinner-border").addClass('hide');
@@ -175,7 +161,6 @@
                                 window.location.href = "/account";
                             }, 5000);
                     } else {
-                        $("#shopify-section-toast-message").removeClass('hide');
                         $('.alert-danger').removeClass('hide');
                         $('.alert-danger .text').text(response.message);
                         $('html, body').animate({
@@ -197,7 +182,7 @@
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 var flag = false;
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    if (key == 'resumeUrl' || key == 'portfolioUrl') {
+                                    if (key == 'resume' || key == 'portfolio') {
                                         $("input[name=" + key + "]").closest('.form-group').find('.validation_error').text(item);
                                         flag = true;
                                     } else if (key == 'first_name' || key == 'last_name' || key == 'email' || key == 'phone' || key == 'password' || key == 'confirm_password' || key == 'website_url') {
@@ -207,7 +192,6 @@
                                     }
 
                                     if (flag == false) {
-                                        $("#shopify-section-toast-message").removeClass('hide');
                                         $('.alert-danger').removeClass('hide');
                                         $('.alert-danger .text').text(JSON.stringify(jsonResponseText.errors));
                                         $('html, body').animate({
@@ -304,37 +288,36 @@
             }
         });
 
-        // $(window).load(function() {
-        //     var phones = [{ "mask": "(###) ###-####" }, { "mask": "(###) ###-##############" }];
-        //     $("#phone").inputmask({
-        //         mask: phones,
-        //         greedy: false,
-        //         definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
-        //     });
-        // });
+        $(window).load(function() {
+            var phones = [{ "mask": "(###) ###-####" }, { "mask": "(###) ###-##############" }];
+            $("#phone").inputmask({
+                mask: phones,
+                greedy: false,
+                definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
+            });
+        });
 
         $('#phone').keypress(function() {
             var val = $(this).val();
             if (val == "") {
                 $(this).addClass('error');
                 $(this).next('span').text('Contact number field is required.');
+            } else {
+                var phoneRegex = /^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+
+                if (phoneRegex.test(val)) {
+                    var formattedPhoneNumber =
+                        val.replace(phoneRegex, "($1) $2-$3");
+                    $(this).val(formattedPhoneNumber);
+                } else {
+                    //$(this).addClass('error');
+                    //$(this).next('span').text('Contact number must be valid.');
+                    // Invalid phone number
+                }
+
+                $(this).removeClass('error');
+                $(this).next('span').text('');
             }
-            // else {
-            //     var phoneRegex = /^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-
-            //     if (phoneRegex.test(val)) {
-            //         var formattedPhoneNumber =
-            //             val.replace(phoneRegex, "($1) $2-$3");
-            //         $(this).val(formattedPhoneNumber);
-            //     } else {
-            //         //$(this).addClass('error');
-            //         //$(this).next('span').text('Contact number must be valid.');
-            //         // Invalid phone number
-            //     }
-
-            //     $(this).removeClass('error');
-            //     $(this).next('span').text('');
-            // }
         });
 
         $('#phone').blur(function() {
@@ -345,17 +328,16 @@
                 $(this).addClass('error');
                 $(this).next('span').text('password field is required.');
 
-            }
-            //  else {
-            //     if (phoneRegex.test(val)) {
-            //         $(this).removeClass('error');
-            //         $(this).next('span').text('');
-            //     } else {
-            //         $(this).addClass('error');
-            //         $(this).next('span').text('Contact number format is invalid');
-            //     }
+            } else {
+                if (phoneRegex.test(val)) {
+                    $(this).removeClass('error');
+                    $(this).next('span').text('');
+                } else {
+                    $(this).addClass('error');
+                    $(this).next('span').text('Contact number format is invalid');
+                }
 
-            // }
+            }
         });
 
 

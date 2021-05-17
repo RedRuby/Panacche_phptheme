@@ -123,12 +123,7 @@
             var formData = new FormData($("#RegisterForm")[0]);
             var url = ngrokURL + "/api/customer";
             var phone = $("#phone").val();
-
-            if (phone.includes('+')) {
-
-            } else {
-                var phone = '+' + phone;
-            }
+            var phone = '+' + phone;
             formData.append("phone", phone);
 
             $.ajax({

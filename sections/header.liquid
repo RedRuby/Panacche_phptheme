@@ -86,7 +86,6 @@
                         <div aria-labelledby="navbarDropdown" class="dropdown-menu userBox pt-4 pb-0">
                             <p class="upArrow text-center mb-0"></p>
                             <div class="w-100 mt-3">
-                            <a href="{{ shop.url }}/pages/edit-profile">
                                 <p class="mx-auto userboxImgWrap rounded-circle">
                                     <span class="userboxImg text-center float-left rounded-circle">
                                                {% if customer.metafields.global.display_picture %}
@@ -108,13 +107,10 @@
                                                 <i class="fas fa-pencil-alt"></i>
                                             </span>
                                 </p>
-                                </a>
                             </div>
                             <p class="userName text-center mb-0" id="customer_id" data="{{ customer.id }}">{{ customer.first_name | truncate: 10, "..." }} {{ customer.last_name | truncate: 10, "..."  }}</p>
                             <p class="userType text-center">{% if customer.metafields.global.tag == 'role:designer' %} DESIGNER {% else if customer.metafields.global.tag == 'role:customer' %} CUSTOMER {% else if customer.metafields.global.tag == 'role:admin' %} ADMIN {% endif %}</p>
-                            <a href="{{ shop.url }}/pages/edit-profile">
                             <p class="editButton mx-auto w-25 text-center py-1 px-1 mb-2">Edit</p>
-                            </a>
                             <p class="account text-center">
                                 <a href="{{ routes.account_url }}">My Dashboard</a>
                             </p>
@@ -134,11 +130,119 @@
                         <a class="nav-link" href="/account">Sign Up</a>
                     </li>
                     {% endif %} {% endif %}
-                
+                 
+
+
+
                </ul>
             </div>
          </div>
       </nav>
+
+      
+    {% comment %} <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+        <a class="navbar-brand logo" href="{{ shop.url }}"><img src="{{ 'panacche_logo.png' | asset_url }}"></a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto navMenus">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ shop.url }}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/our-designers">Our Designers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/blogs/">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/our-mission">Our Mission</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/contact-us">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/faq">FAQ</a>
+                </li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+                <ul class="navbar-nav">
+                {% if shop.customer_accounts_enabled %} {% if customer %}
+                    <li class="nav-item dropdown notifications">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link pt-1" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                            <span class="bellIcon text-center float-left mr-2">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                        </a>
+                        <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    
+
+                    <li class="nav-item dropdown userBoxWrap">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                            <span class="smallUserPro mr-2 text-center float-left rounded-circle" >
+                                        {% if customer.metafields.global.display_picture %}
+                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture | replace: 'user', 'designer'}}" />
+                                        {% else %}
+                                            <img src="{{ ngrok_url }}/default/user.png"/>
+                                        {% endif %}
+                                    </span> {{ customer.first_name }} {{ customer.last_name }}
+                        </a>
+                        <div aria-labelledby="navbarDropdown" class="dropdown-menu userBox pt-4 pb-0">
+                            <p class="upArrow text-center mb-0"></p>
+                            <div class="w-100 mt-3">
+                                <p class="mx-auto userboxImgWrap rounded-circle">
+                                    <span class="userboxImg text-center float-left rounded-circle">
+                                               {% if customer.metafields.global.display_picture %}
+                                            <img src="{{ ngrok_url }}/{{customer.metafields.global.display_picture | replace: 'user', 'designer'}}" />
+                                        {% else %}
+                                            <img src="{{ ngrok_url }}/default/user.png"/>
+                                        {% endif %}
+                                            </span>
+                                    <span class="editUserImg text-center rounded-circle">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </span>
+                                </p>
+                            </div>
+                            <p class="userName text-center mb-0" id="customer_id" data="{{ customer.id }}">{{ customer.first_name }} {{ customer.last_name }}</p>
+                            <p class="userType text-center">{% if customer.metafields.global.tag == 'role:designer' %} DESIGNER {% else if customer.metafields.global.tag == 'role:customer' %} CUSTOMER {% else if customer.metafields.global.tag == 'role:admin' %} ADMIN {% endif %}</p>
+                            <p class="editButton mx-auto w-25 text-center py-1 px-1 mb-2">Edit</p>
+                            <p class="account text-center">
+                                <a href="{{ routes.account_url }}">My Dashboard</a>
+                            </p>
+                            
+                            <p class="userLogout px-4 py-2 mb-0">
+                                <a href="/account/logout">
+                                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                                </a>
+
+                            </p>
+                        </div>
+                    </li>
+                    {% else %}
+
+                    <li class="nav-item registerLink">
+                        <a class="nav-link" href="/account">Sign Up</a>
+                    </li>
+                    {% endif %} {% endif %}
+
+                    <!---->
+                </ul>
+            </div>
+        </div>
+    </nav> {% endcomment %}
 
     {% if section.settings.align_logo == 'center' %}
     <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
@@ -177,14 +281,3 @@
         <span class="sr-only">Loading...</span>
     </div>
 </div>
-
- {% if shop.customer_accounts_enabled %}
- {% if customer %}
- <input type="hidden" value="{{ customer.id }}" name="customer"/> 
-     {% if customer.metafields.global.tag == 'role:designer' %}
-        {{ 'header_designer_profile.js' | asset_url | script_tag }}
-     {% else %} 
-        {{ 'header_customer_profile.js' | asset_url | script_tag }}
-     {% endif %}
- {% endif %}
- {% endif %}

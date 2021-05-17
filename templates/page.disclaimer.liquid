@@ -23,15 +23,12 @@
                                 <div class="form-group">
                                     <div class="disclaimerBox col-12 float-left py-3">
                                         <div class="mb-0">
-                                        <form id="disclaimer-form">
-                                        <input type="hidden" name="shop" value="{{ shop.permanent_domain }}" />
-                                            <textarea class="form-control textarea" name="disclaimer" rows="4" placeholder="Type here"></textarea>
+                                            <textarea class="form-control textarea" rows="4" placeholder="Type here"></textarea>
                                             <p>
                                                 <button type="button" class="btn btn-primary cancelBtn float-right mt-2 p-1">Cancel</button>
-                                                <button type="button" id="submit-disclaimer-btn" class="btn btn-primary cancelBtn float-right mt-2 p-1 mr-2">Submit</button>
+                                                <button type="button" class="btn btn-primary cancelBtn float-right mt-2 p-1 mr-2">Submit</button>
                                                 <button type="button" class="btn btn-primary cancelBtn float-right mt-2 p-1 mr-2">Save</button>
                                             </p>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +52,6 @@
         <footer></footer>
     </div>
 </div>
-<input type="hidden" value="{{ customer.id }}" name="customer"/> 
 
 
 {{ 'admin_disclaimer.js' | asset_url | script_tag }}
