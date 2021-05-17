@@ -237,23 +237,34 @@ var storeProjectProduct = null;
                 }
             }
         });
+        $(document).on("input", ".product_change_req_file", function(e) {
+            changeRequestAction($(this))
+        });
         $(document).on("change",'.changeRequestTRElm select, .changeRequestTRElm input',function(){
-            let changeRequest = $(this).closest( ".changeRequestTRElm" );
+            changeRequestAction($(this))
+        });
+        function changeRequestAction(thisval){
+            let changeRequest = thisval.closest( ".changeRequestTRElm" );
             let change_type = changeRequest.find('.changereq1 select').val();
             var change_item = changeRequest.find('.changereq2 select').val();
             var id = $("#myProjectId").val();
-            let data = {change_type:change_type, change_item:change_item, myProjectId:id};
+            var data = new FormData();
+            data.append("change_type", change_type);
+            data.append("change_item", change_item);
+            data.append("myProjectId", id);
             let submit = 1;
             if(!change_item){
                 submit = 0;
             }
             var change_request_elm;
             if(change_type == 0){
+                img_file = changeRequest.find('.product_change_req_file');
+                data.append("product_file", img_file[0].files[0]);
                 change_reason = changeRequest.find('.changereq3 .change_reason').val();
-                data.change_reason = change_reason;
                 change_request_elm = changeRequest.find('.changereq3 .change_request_id');
-                data.change_request_id = change_request_elm.val();
-                if(!change_reason){
+                data.append("change_request_id", change_request_elm.val());
+                data.append("change_reason", change_reason);
+                if(!change_reason || !img_file.val()){
                     submit = 0;
                 }
             } else {
@@ -261,10 +272,10 @@ var storeProjectProduct = null;
                 application = changeRequest.find('.changereq4 .application').val();
                 change_reason = changeRequest.find('.changereq5 .change_reason').val();
                 change_request_elm = changeRequest.find('.changereq5 .change_request_id');
-                data.brand = brand;
-                data.application = application;
-                data.change_reason = change_reason;
-                data.change_request_id = change_request_elm.val();
+                data.append("brand", brand);
+                data.append("application", application);
+                data.append("change_reason", change_reason);
+                data.append("change_request_id", change_request_elm.val());
                 if(!brand || !application || !change_reason){
                     submit = 0;
                 }
@@ -274,7 +285,8 @@ var storeProjectProduct = null;
                     url: ngrokURL + '/api/page/saveChangeRequest',
                     type: "POST",
                     data: data,
-                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
                         change_request_elm.val(response.id);
                     },
@@ -284,8 +296,7 @@ var storeProjectProduct = null;
                     }
                 });
             }
-            //saveRefrenceLink(referenceLinkId,thiselm)
-        });
+        }
         $(document).on("change",'.color_selc_cls',function(){
             var brand_name = $("#colorPallette_"+this.value).find('.brand_name').html();
             var application_name = $("#colorPallette_"+this.value).find('.application_name').html();
@@ -510,8 +521,47 @@ var storeProjectProduct = null;
             // });
 
         });
-
-
-
+        $(document).on("click", ".uploadImageCarousel .imageClose", function(e) {
+            var url = ngrokURL + "/api/page/uploadDocuments";
+            var image_car = $(this).closest('.uploadImageCarousel');
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {id:$(this).attr('image_id')},
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response.data);
+                    if (response.success == true) {
+                        image_car.remove();
+                    } else {
+                        alert('file not uploaded');
+                        //$("#" + type + "Url").val();
+                    }
+                },
+            });
+        });
+        
+        $(document).on("input", ".file_documents", function(e) {
+                    var url = ngrokURL + "/api/page/uploadDocuments";
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        data: new FormData($('#additional_furniture_file')[0]),
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            console.log(response.data);
+                            if (response.success == true) {
+                                $("#floorPlanCarousel").append($("#upload_image_default_elm").html());
+                                var recentlyadded = $("#floorPlanCarousel .uploadImageCarousel").last();
+                                recentlyadded.find('.image_cls').attr('src',response.url)
+                                recentlyadded.find('.imageClose').attr('image_id',response.id);
+                            } else {
+                                alert('file not uploaded');
+                                //$("#" + type + "Url").val();
+                            }
+                        },
+                    });
+                });
     });
 })(jQuery);
