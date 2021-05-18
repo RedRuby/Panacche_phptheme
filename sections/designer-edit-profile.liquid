@@ -1,0 +1,131 @@
+<form method="post" action="/account" id="RegisterForm" accept-charset="UTF-8" enctype="multipart/form-data">
+    <input type="hidden" name="form_type" value="create_customer">
+    <input type="hidden" name="utf8" value="✓"> {% include 'form-status', form: form, form_id: formId %}
+    <input name="tag" type="hidden" value="role:designer" />
+    <input name="shop" type="hidden" value="{{ shop.permanent_domain}}" />
+    <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="loginWrapper col-md-12 col-sm-12 col-xs-12 mt-4 mx-auto">
+                <div class="logo col-12 float-left mb-4 px-0">
+                    <div class="galleryBack"><a href="javascript&colon; history.go(-1)"><span><i class="fas fa-arrow-left"></i></span></a></div>
+                   
+                </div>
+                <form>
+                    <div class="row mb-4 w-100 mx-0">
+                        <div class="registerForm col-lg-4 col-sm-12 float-left">
+                            <div class="form-group landingHeading">
+                                <h4 for="">Create Designer Account</h4>
+                                <div class="col-12 float-left px-0">
+                                    <p class="addUserPic mx-auto mt-1 mb-1">
+                                        <span class="addPicIcon"><i class="fas fa-plus-circle"></i></span>
+                                        <input type="file" class="custom-file-input" id="customFile" name="display_picture" accept="image/x-png,image/gif,image/jpeg,webp">
+                                        <label class="custom-file-label mb-0" for="customFile"></label>
+                                    </p>
+                                    <p class="text-center font14 mb-1">
+                                        Add Display Picture
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> First Name</label>
+                                <input type="text" name="first_name" id="first_name" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Last Name</label>
+                                <input type="text" name="last_name" id="last_name" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Bio (Short description about yourself)</label>
+                                <textarea class="form-control" id="bio" name="bio" rows="4"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
+                           
+                        </div>
+                        <div class="registerForm col-lg-4 col-sm-12 float-left">
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Email- Id <em>(This will be your UserID)</em> </label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Contact No. <em>(Example: 911234567890)</em></label>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Business Name</label>
+                                <input type="text" name="business_name" id="business_name" class="form-control" placeholder="">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Business Address</label>
+                                <textarea class="form-control" id="business_address" name="business_address" rows="4"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
+                             <div class="form-group">
+                                <label for="">A quote/ message for your clients</label>
+                                <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
+                                <span class="validation_error"></span>
+                            </div>
+                        </div>
+                        <div class="registerForm col-lg-4 col-sm-12 float-left">
+                            <div class="form-group">
+                                <label for="">Website URL <em>(Example: https://www.mywebsite.com)</em> </label>
+                                <input type="url" name="website_url" id="website_url" class="form-control" placeholder="Website URL">
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group landingHeading">
+                                <h4 class="defaultColor" for="">Designer Verification</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Upload Resume</label>
+                                <div class="dragDropBox pb-2">
+                                    <div class="col-12 float-left p-2">
+                                        <p class="custom-file p-2">
+                                            <input type="file" class="custom-file-input" id="resume" name="resume">
+
+                                            <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                        </p>
+                                    </div>
+                                    <button type="button" class="btn btn-primary float-right loginBtn mr-4 uploadFile" data-type="resume">Upload</button>
+                                    <p class="text-center mb-2">Upload / drop files here <span class="resume-click">Browse Files</span></p>
+                                    <input type="hidden" name="resumeUrl" id="resumeUrl" value="">
+                                </div>
+                                <span class="resume-file-name"></span>
+                                <span class="validation_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for=""><span class="mandetory">*</span> Upload Portfolio</label>
+                                <div class="dragDropBox pb-2">
+                                    <div class="col-12 float-left p-2">
+                                        <p class="custom-file p-2">
+                                            <input type="file" class="custom-file-input" id="portfolio" name="portfolio">
+
+                                            <label class="custom-file-label2 mb-0" for="customFile"></label>
+                                        </p>
+                                    </div>
+                                    <button type="button" class="btn btn-primary float-right loginBtn mr-4 uploadFile" data-type="portfolio">Upload</button>
+                                    <p class="text-center mb-2">Upload / drop files here <span class="portfolio-click">Browse Files</span></p>
+                                    <input type="hidden" name="portfolioUrl" id="portfolioUrl" value="">
+                                </div>
+                                <span class="portfolio-file-name"></span>
+                                <span class="validation_error"></span>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-light float-right cancleBtn"><a href="javascript&colon; history.go(-1)">Cancel</a></button>
+                                <button type="submit" class="btn btn-primary float-right loginBtn mr-4" id="registration"><a href="landing_page.html">Submit</a></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+{{ 'edit_designer_profile.js' | asset_url | script_tag }}
