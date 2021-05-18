@@ -27,7 +27,9 @@
                             $("#" + key + 'Url').val(item);
                             $("." + key + '-file-name').text(item);
                         } else if (key == 'display_picture') {
-                            var display_picture = item;
+                            var display_picture = item.toString();
+                            display_picture = display_picture.replace(/ /g, "%20");
+                            console.log("display_picture", display_picture);
                             if (display_picture != '') {
                                 display_picture = ngrokURL + '/uploads/designer/display_picture/' + display_picture;
                                 $(".addUserPic").css('background-image', 'url(' + display_picture + ')');
