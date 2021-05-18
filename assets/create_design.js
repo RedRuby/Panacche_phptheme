@@ -119,7 +119,6 @@
                 beforeSend: function() {
                     $(".validation_error").text('');
                     $("input").removeClass('error');
-                    $("textarea").removeClass('error');
 
                 },
                 success: function(response) {
@@ -173,49 +172,43 @@
 
                                 jsonResponseErrors = $.parseJSON(JSON.stringify(val));
                                 $.each(jsonResponseErrors, function(key, item) {
-                                    if (key == 'design_name' || key == 'design_price' || key == 'room_budget' || key == 'pet_friendly_design' || key == 'width_in_feet' || key == 'width_in_inches' || key == 'height_in_feet' || key == 'height_in_inches') {
+                                    if (key == 'design_name' || key == 'design_price' || key == 'room_budget' || key == 'pet_friendly_design' || key == 'width_in_feet' || key == 'width_in_inches' || key == 'height_in_feet' || key == 'height_in_inches' || key == 'implementation_guide_description') {
                                         flag = true;
 
                                         $("input[name=" + key + "]").next("span").text(item);
                                         $("input[name=" + key + "]").addClass('error');
 
 
-                                    } else if (key == 'implementation_guide_description') {
-                                        flag = true;
-                                        $("#" + key).next("span").text(item);
-                                        $("#" + key).addClass('error');
-
-                                    } else if (key == 'collection_images' || key == 'collection_blue_prints') {
+                                    } else if (key == 'collection_images' || key == 'blue_print_images') {
                                         flag = true;
                                         $(".landingPageWrap .images_error .validation_error").append(item);
 
-                                    }
-                                    // else {
-                                    //     flag = true;
-                                    //     tempKey = String(key);
-                                    //     //  console.log("tempKey", tempKey);
-                                    //     var checkDot = "";
-                                    //     var checkDot = tempKey.includes(".");
-                                    //     console.log("checkDot", checkDot);
-                                    //     if (checkDot == true) {
-                                    //         var temp = key.split(".");
-                                    //         console.log("temp", temp);
-                                    //         tempItem = String(item);
-                                    //         tempItem = tempItem.replace('.0', '');
-                                    //         tempItem = tempItem.replace('.1', '');
-                                    //         tempItem = tempItem.replace('.2', '');
-                                    //         tempItem = tempItem.replace('.3', '');
-                                    //         tempItem = tempItem.replace('.4', '');
-                                    //         tempItem = tempItem.replace('.5', '');
-                                    //         tempItem = tempItem.replace('_', ' ');
-                                    //         $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(tempItem);
-                                    //         $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
-                                    //     } else {
-                                    //         $("input[name=" + key + "]").next("span").text(item);
-                                    //         $("input[name=" + key + "]").addClass('error');
-                                    //     }
+                                    } else {
+                                        flag = true;
+                                        tempKey = String(key);
+                                        //  console.log("tempKey", tempKey);
+                                        var checkDot = "";
+                                        var checkDot = tempKey.includes(".");
+                                        console.log("checkDot", checkDot);
+                                        if (checkDot == true) {
+                                            var temp = key.split(".");
+                                            console.log("temp", temp);
+                                            tempItem = String(item);
+                                            tempItem = tempItem.replace('.0', '');
+                                            tempItem = tempItem.replace('.1', '');
+                                            tempItem = tempItem.replace('.2', '');
+                                            tempItem = tempItem.replace('.3', '');
+                                            tempItem = tempItem.replace('.4', '');
+                                            tempItem = tempItem.replace('.5', '');
+                                            tempItem = tempItem.replace('_', ' ');
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(tempItem);
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
+                                        } else {
+                                            $("input[name=" + key + "]").next("span").text(item);
+                                            $("input[name=" + key + "]").addClass('error');
+                                        }
 
-                                    // }
+                                    }
 
                                     if (flag == false) {
                                         $("#shopify-section-toast-message").removeClass('hide');
@@ -242,7 +235,7 @@
 
             console.log("update btn clicked");
             var collection_id = $(this).attr('data');
-            var formData = new FormData($(".landingPageWrap #create-room-form")[0]);
+            var formData = new FormData($("#create-room-form")[0]);
             console.log('formData', formData);
             formData.append('collection_id', collection_id);
             //return false;
@@ -257,8 +250,6 @@
                 contentType: false,
                 beforeSend: function() {
                     $(".validation_error").text('');
-                    $("input").removeClass('error');
-                    $("textarea").removeClass('error');
 
                 },
                 success: function(response) {
@@ -307,25 +298,24 @@
                                         $("input[name=" + key + "]").addClass('error');
 
 
-                                    }
-                                    // else {
-                                    //     flag = true;
-                                    //     tempKey = String(key);
-                                    //     //  console.log("tempKey", tempKey);
-                                    //     var checkDot = "";
-                                    //     var checkDot = tempKey.includes(".");
-                                    //     console.log("checkDot", checkDot);
-                                    //     if (checkDot == true) {
-                                    //         var temp = key.split(".");
-                                    //         console.log("temp", temp);
-                                    //         $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(item);
-                                    //         $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
-                                    //     } else {
-                                    //         $("input[name=" + key + "]").next("span").text(item);
-                                    //         $("input[name=" + key + "]").addClass('error');
-                                    //     }
+                                    } else {
+                                        flag = true;
+                                        tempKey = String(key);
+                                        //  console.log("tempKey", tempKey);
+                                        var checkDot = "";
+                                        var checkDot = tempKey.includes(".");
+                                        console.log("checkDot", checkDot);
+                                        if (checkDot == true) {
+                                            var temp = key.split(".");
+                                            console.log("temp", temp);
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).next("span").text(item);
+                                            $("#colorPaintTable ." + temp[0] + "_" + temp[1]).addClass('error');
+                                        } else {
+                                            $("input[name=" + key + "]").next("span").text(item);
+                                            $("input[name=" + key + "]").addClass('error');
+                                        }
 
-                                    // }
+                                    }
 
                                     if (flag == false) {
                                         $("#shopify-section-toast-message").removeClass('hide');
@@ -371,7 +361,7 @@
                 '<td><input type="text" class="form-control brand_' + color_pallette_count + '" placeholder="" name="brand[' + color_pallette_count + ']" id="brand.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
                 '<td><input type="text" class="form-control finish_' + color_pallette_count + '" placeholder="" name="finish[' + color_pallette_count + ']" id="finish.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
                 '<td><input type="text" class="form-control application_' + color_pallette_count + '" placeholder="" name="application[' + color_pallette_count + ']" id="application.' + color_pallette_count + '"><span class="validation_error label--error"></span></td>' +
-                '<td><i class="fas fa-trash hide"></i><i class="fas fa-plus-circle addPlus"></i></td>' +
+                '<td><i class="fas fa-save hide mr-2"></i> <i class="fas fa-trash hide"></i><i class="fas fa-plus-circle addPlus"></i></td>' +
                 '</tr>';
 
             $(this).closest('td').find('.fa-save').removeClass('hide');
@@ -531,7 +521,6 @@
                     thiss.closest("#merchandise-section-form").find("input[type=text]), textarea , input[type=number]").val("");
                     $(".landingPageWrap #merchandise-section-form")[0].reset();
                     $("#merchandise-section-form")[0].reset();
-                    $(".landingPageWrap #merchandise-section-form .imageRefUpload .addImage").css('background-image', 'url("")');
                     $('.ajax-loader').css("visibility", "hidden");
                     console.log("response", response);
                     //$(this).closest('.addRefWrap').append(response);
@@ -544,7 +533,6 @@
                         $(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         $(".spinner-border").addClass('hide');
                         $("#loadingDiv").addClass('hide');
-                        $(".landingPageWrap #bottom-add-buttons").removeClass('hide');
 
                         //$(".landingPageWrap #submit-new-design-cancel-btn").removeClass('hide');
                         // var html =
@@ -639,7 +627,6 @@
                     $(".spinner-border").removeClass('hide');
                 },
                 success: function(response) {
-                    $(".landingPageWrap #upload_product_csv").val("");
                     $(".spinner-border").addClass('hide');
                     $("#loadingDiv").addClass('hide');
                     console.log("response", response);
@@ -671,7 +658,6 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    $(".landingPageWrap #upload_product_csv").val("");
                     if (xhr.responseText != "") {
 
                         var jsonResponseText = $.parseJSON(xhr.responseText);
@@ -749,10 +735,6 @@
                         $('html, body').animate({
                             scrollTop: "0"
                         }, 2000);
-                        setTimeout(
-                            function() {
-                                window.location.href = "/account";
-                            }, 5000);
 
                         $(".landingPageWrap .submit-design-progress").addClass('greenActive');
                         $(".landingPageWrap .submit-design-progress").next('span').addClass('greenActiveText');
@@ -1038,12 +1020,7 @@
             console.log("remove add product section");
             $(".landingPageWrap #add-product-view").addClass('hide');
 
-        });
-
-        $(" .landingPageWrap").on("click", ".cancel-product-btn", function(e) {
-            $(this).closest('.update-product-section').addClass('hide');
-            $(this).closest('.product-preview-section').find(".addmerchBox").removeClass('hide');
-        });
+        })
 
 
     });
