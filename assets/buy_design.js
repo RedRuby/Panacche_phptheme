@@ -242,6 +242,7 @@ var storeProjectProduct = null;
         $(document).on("change",'.changeRequestTRElm select, .changeRequestTRElm input',function(){
             changeRequestAction($(this))
         });
+        
         function changeRequestAction(thisval){
             let changeRequest = thisval.closest( ".changeRequestTRElm" );
             let change_type = changeRequest.find('.changereq1 select').val();
@@ -258,12 +259,16 @@ var storeProjectProduct = null;
             var change_request_elm;
             if(change_type == 0){
                 img_file = changeRequest.find('.product_change_req_file');
-                data.append("product_file", img_file[0].files[0]);
-                change_reason = changeRequest.find('.changereq3 .change_reason').val();
-                change_request_elm = changeRequest.find('.changereq3 .change_request_id');
-                data.append("change_request_id", change_request_elm.val());
-                data.append("change_reason", change_reason);
-                if(!change_reason || !img_file.val()){
+                if(img_file.val()){
+                    data.append("product_file", img_file[0].files[0]);
+                    change_reason = changeRequest.find('.changereq3 .change_reason').val();
+                    change_request_elm = changeRequest.find('.changereq3 .change_request_id');
+                    data.append("change_request_id", change_request_elm.val());
+                    data.append("change_reason", change_reason);
+                    if(!change_reason){
+                        submit = 0;
+                    }
+                } else {
                     submit = 0;
                 }
             } else {
