@@ -3,7 +3,6 @@ var storeProjectProduct = null;
     $(function() {
         $(window).load(function() {
             //alert("window load occurred!");
-            
             function showHideNextPrevIcon(thisElm,setSrc){
                 let closestDiv = thisElm;
                 if(closestDiv.prev('.carousel-item').length == 0){
