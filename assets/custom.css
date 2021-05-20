@@ -202,10 +202,10 @@ body ul#SiteNav {
 .template-index .section-header h2,
 body.template-index .section-header .section-header__title {
     margin: 0;
-    font-size: 1.8em;
+    font-size: 1.5em !important;
     text-transform: inherit;
-    font-weight: 600;
     letter-spacing: inherit;
+    color:#2f5061;
 }
 
 .template-index .section-header,
@@ -328,8 +328,6 @@ span.svg-image {
     max-width: 500px !important;
     margin: auto 20px auto auto;
     padding: 30px 20px 30px;
-    background: rgba(97, 111, 197, 0.5) no-repeat padding-box;
-    border: 1px solid #707070;
     border-radius: 4px;
 }
 
@@ -369,12 +367,10 @@ body .h4.grid-view-item__title {
 }
 
 .featurd-image-with-text a.btn.hero__btn {
-    font: normal normal bold 29px/38px Segoe UI;
-    padding: 15px 30px;
-    font-size: 15px;
-    background: #94D2D1 0% 0% no-repeat padding-box;
+    background: #2F5061 0% 0% no-repeat padding-box;
     border-radius: 61px;
-    color: #000;
+    color:#ffffff;
+    font-weight: bold;
     -webkit-transition: background-color 0.4s ease-out;
     -moz-transition: background-color 0.4s ease-out;
     -ms-transition: background-color 0.4s ease-out;
@@ -382,6 +378,9 @@ body .h4.grid-view-item__title {
     transition: background-color 0.4s ease-out;
     text-transform: uppercase;
     margin-top: 20px;
+}
+.featurd-image-with-text a.btn.hero__btn:hover {
+    background: #CE7D67 0% 0% no-repeat padding-box;
 }
 
 body .main-grid-product__wrapper {
@@ -1575,3 +1574,47 @@ body.template-index .slideshow__controls .slideshow__arrows {
     clear: both;
 }
 /* gallery next prev utton css END */
+
+
+
+/* Website landing page new changes css*/
+.slideshow__subtitle, .slideshow__title {
+    color: #ffffff;
+}
+.slick-initialized+.slideshow__controls {
+    display: none;
+}
+.mega-subtitle, .mega-title {
+    text-shadow: 0 0 10px rgb(0 0 0 / 70%);
+}
+.slideshow__btn, .custom_btn .btn {
+    background-color: #2F5061;
+    border-radius: 61px;
+    -webkit-transition: background-color 0.4s ease-out;
+    -moz-transition: background-color 0.4s ease-out;
+    -ms-transition: background-color 0.4s ease-out;
+    -o-transition: background-color 0.4s ease-out;
+    transition: background-color 0.4s ease-out;
+}
+.slideshow__btn:hover, .custom_btn .btn:hover {
+    background-color: #CE7D67 !important;
+}
+.custom_btn {
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+}
+.how_it_work_box .grid__item:nth-child(1) h4{
+    font-size: 24px;
+}
+.how-it-works-head .h3, .feature-row__text .h3{
+    color:#2F5061;
+}
+.featured-row__subtext{
+    font-size: 18px;
+}
+.btn:focus {
+    color: #fff;
+    background-color: #CE7D67;
+}
+ 
