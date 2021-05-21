@@ -449,7 +449,7 @@ Side Nav
 }
 
 .leftSideNav .drawer-menu .drawer-menu-item a:hover {
-    color: #ffffff;
+    color: #F6F1E7;
 }
 
 .leftSideNav .drawer-menu .drawer-menu-item a svg {
@@ -730,7 +730,10 @@ Designer Dashboard Page CSS
 }
 
 .landingTable thead {
-    background: #F5F9FB;
+    background: #F6F1E7;
+}
+.landingTable thead tr th {
+    color: #CE7D67;
 }
 
 .landingTable tbody {
@@ -1839,15 +1842,16 @@ Gallery Page Css
     font-weight: 500;
     color: #ffffff;
     min-width: 150px;
-    background: #ffc107 !important;
-    border: #ffc107 !important;
+    background: #ce7d67 !important;
+    border: #ce7d67 !important;
     border-radius: .25rem !important;
     padding: .375rem .75rem !important;
     text-transform: none !important;
 }
 .galleryHead .btn-warning:hover {
-    background-color: #e0a800 !important;
-    border-color: #d39e00 !important;
+    background-color: #F6F1E7 !important;
+    border-color: #F6F1E7 !important;
+    color:#2F5061;
 }
 
 .galleryHead .form-group input {

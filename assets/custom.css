@@ -202,12 +202,13 @@ body ul#SiteNav {
 .template-index .section-header h2,
 body.template-index .section-header .section-header__title {
     margin: 0;
-    font-size: 1.5em !important;
     text-transform: inherit;
     letter-spacing: inherit;
     color:#2f5061;
 }
-
+.rich-text h2.h3{
+    letter-spacing: 0.08em;
+}
 .template-index .section-header,
 .rich-text__heading--medium.text-center {
     position: relative;
@@ -325,7 +326,6 @@ span.svg-image {
 }
 
 .featurd-image-with-text .hero__inner .page-width.text-center {
-    max-width: 500px !important;
     margin: auto 20px auto auto;
     padding: 30px 20px 30px;
     border-radius: 4px;
@@ -336,7 +336,7 @@ span.svg-image {
     text-shadow: none;
     text-transform: inherit;
     font-weight: bold;
-    letter-spacing: inherit;
+    letter-spacing: 0.08em;
     margin-bottom: 12px;
     color: #fff;
 }
@@ -368,8 +368,8 @@ body .h4.grid-view-item__title {
 
 .featurd-image-with-text a.btn.hero__btn {
     background: #2F5061 0% 0% no-repeat padding-box;
-    border-radius: 61px;
-    color:#ffffff;
+    border-radius: 6px;
+    color:#F6F1E7;
     font-weight: bold;
     -webkit-transition: background-color 0.4s ease-out;
     -moz-transition: background-color 0.4s ease-out;
@@ -1470,7 +1470,7 @@ div#shopify-section-hero-1 {
 }
 
 .template-index .slick-track .slick-slide img {
-    max-height: 50px;
+    max-height: 150px; 
 }
 
 .form-single-field {
@@ -1581,20 +1581,26 @@ body.template-index .slideshow__controls .slideshow__arrows {
 .slideshow__subtitle, .slideshow__title {
     color: #ffffff;
 }
-.slick-initialized+.slideshow__controls {
-    display: none;
+
+.slideshow__text-content-list .mega-title {
+    font-size: 3.5rem;
+    letter-spacing: 0.08em;
 }
 .mega-subtitle, .mega-title {
-    text-shadow: 0 0 10px rgb(0 0 0 / 70%);
+    text-shadow: 0 0 20px rgb(0 0 0 / 70%);
+}
+.slideshow__text-wrap--desktop .slideshow__text-content {
+    top: 55%;
 }
 .slideshow__btn, .custom_btn .btn {
     background-color: #2F5061;
-    border-radius: 61px;
+    border-radius: 6px;
     -webkit-transition: background-color 0.4s ease-out;
     -moz-transition: background-color 0.4s ease-out;
     -ms-transition: background-color 0.4s ease-out;
     -o-transition: background-color 0.4s ease-out;
     transition: background-color 0.4s ease-out;
+    color:#F6F1E7;
 }
 .slideshow__btn:hover, .custom_btn .btn:hover {
     background-color: #CE7D67 !important;
@@ -1609,6 +1615,10 @@ body.template-index .slideshow__controls .slideshow__arrows {
 }
 .how-it-works-head .h3, .feature-row__text .h3{
     color:#2F5061;
+    font-size: 40px;
+}
+.how-it-works-head .h3{
+    letter-spacing: 0.08em;
 }
 .featured-row__subtext{
     font-size: 18px;
@@ -1617,4 +1627,15 @@ body.template-index .slideshow__controls .slideshow__arrows {
     color: #fff;
     background-color: #CE7D67;
 }
- 
+.main-content div:nth-child(2)#shopify-section-1602561201341{
+    background: #F6F1E7;
+}
+.main-content div:nth-child(2)#shopify-section-1602561201341 .rich-text__heading--medium .h3,
+.clovecode_brand_images_section .section-header h2{
+    font-size:40px !important;
+    letter-spacing: 0.08em;
+}
+
+.main-content div:nth-child(1)#shopify-section-16074178438423a31c{
+    padding-bottom:0px;
+}
