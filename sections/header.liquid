@@ -16,26 +16,38 @@
          <a class="navbar-brand logo float-left" href="{{ shop.url }}"><img src="{{ 'panacche_logo.png' | asset_url }}"></a>
          <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto navMenus">
+              {% if shop.customer_accounts_enabled %} {% if customer %}
                <li class="nav-item active">
                     <a class="nav-link" href="{{ shop.url }}">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ shop.url }}/pages/gallery">Gallery</a>
+              {% endif %} {% endif %}
+              	<li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/how-it-works">How It Works?</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ shop.url }}/pages/our-designers">Our Designers</a>
+              	<li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/about">About</a>
+                </li>
+              	<li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/journal">Journal</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ shop.url }}/pages/blogs/">Blogs</a>
+                </li>
+               <li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/gallery">Gallery</a>
+                </li>
+              	{% comment %}
+              	<li class="nav-item">
+                    <a class="nav-link" href="{{ shop.url }}/pages/our-designers">Our Designers</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ shop.url }}/pages/our-mission">Our Mission</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ shop.url }}/pages/contact-us">Contact Us</a>
-                </li>
+                </li> {% endcomment %}
                 {% if shop.customer_accounts_enabled %} {% if customer %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ shop.url }}/pages/faq">FAQ</a>
