@@ -412,6 +412,7 @@
         $(".landingPageWrap").on("change", "#collection_images", function(e) {
             console.log('image changed');
             var total_file = document.getElementById("collection_images").files.length;
+            console.log("415 total_file :: " + total_file);
             for (var i = 0; i < total_file; i++) {
 
                 //$('#image_preview').append("<img src='" + URL.createObjectURL(e.target.files[i]) + "'><br>");
@@ -431,6 +432,35 @@
 
                 $('.carousel-inner.collection_images').append(html);
             }
+
+            var fd = new FormData();
+            for (var index = 0; index < total_file; index++) {
+                fd.append("collection_images[]", document.getElementById('collection_images').files[index]);
+            }
+
+            $custId = $("#loggedInDesigner").val();
+            fd.append("designer_id", $custId);
+
+            var url = ngrokURL + "/api/design/upload/collectionImage";
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log(response.data);
+
+                    if (response != 0) {
+                        alert('file uploaded');
+
+                        $("#hdn_collection_images").val(response.data);
+
+                    } else {
+                        alert('file not uploaded');
+                    }
+                },
+            });
 
         });
 
@@ -1026,7 +1056,7 @@
         });
 
         $(".landingPageWrap").on("click", ".collection_img_browse", function() {
-            $(".landingPageWrap #collection_images").trigger('click');
+            $(".landingPageWrap #collection_images").trigger('change');
         });
 
         $(".landingPageWrap").on("click", ".blueprint_img_browse", function() {
