@@ -61,7 +61,7 @@ div#shopify-section-product-template {
 
 a.btn.clovecode_add_to_cart {
     border: 1px solid #4452a6;
-    background: ##4452a6 !important;
+    background: #4452a6 !important;
 }
 
 div#shopify-section-product-template .product-single__meta span.price__badge.price__badge--sale {
@@ -202,12 +202,13 @@ body ul#SiteNav {
 .template-index .section-header h2,
 body.template-index .section-header .section-header__title {
     margin: 0;
-    font-size: 1.8em;
     text-transform: inherit;
-    font-weight: 600;
     letter-spacing: inherit;
+    color:#2f5061;
 }
-
+.rich-text h2.h3{
+    letter-spacing: 0.08em;
+}
 .template-index .section-header,
 .rich-text__heading--medium.text-center {
     position: relative;
@@ -325,11 +326,8 @@ span.svg-image {
 }
 
 .featurd-image-with-text .hero__inner .page-width.text-center {
-    max-width: 500px !important;
     margin: auto 20px auto auto;
     padding: 30px 20px 30px;
-    background: rgba(97, 111, 197, 0.5) no-repeat padding-box;
-    border: 1px solid #707070;
     border-radius: 4px;
 }
 
@@ -338,7 +336,7 @@ span.svg-image {
     text-shadow: none;
     text-transform: inherit;
     font-weight: bold;
-    letter-spacing: inherit;
+    letter-spacing: 0.08em;
     margin-bottom: 12px;
     color: #fff;
 }
@@ -369,12 +367,10 @@ body .h4.grid-view-item__title {
 }
 
 .featurd-image-with-text a.btn.hero__btn {
-    font: normal normal bold 29px/38px Segoe UI;
-    padding: 15px 30px;
-    font-size: 15px;
-    background: #94D2D1 0% 0% no-repeat padding-box;
-    border-radius: 61px;
-    color: #000;
+    background: #2F5061 0% 0% no-repeat padding-box;
+    border-radius: 6px;
+    color:#F6F1E7;
+    font-weight: bold;
     -webkit-transition: background-color 0.4s ease-out;
     -moz-transition: background-color 0.4s ease-out;
     -ms-transition: background-color 0.4s ease-out;
@@ -382,6 +378,9 @@ body .h4.grid-view-item__title {
     transition: background-color 0.4s ease-out;
     text-transform: uppercase;
     margin-top: 20px;
+}
+.featurd-image-with-text a.btn.hero__btn:hover {
+    background: #CE7D67 0% 0% no-repeat padding-box;
 }
 
 body .main-grid-product__wrapper {
@@ -1471,7 +1470,7 @@ div#shopify-section-hero-1 {
 }
 
 .template-index .slick-track .slick-slide img {
-    max-height: 50px;
+    max-height: 150px; 
 }
 
 .form-single-field {
@@ -1575,3 +1574,68 @@ body.template-index .slideshow__controls .slideshow__arrows {
     clear: both;
 }
 /* gallery next prev utton css END */
+
+
+
+/* Website landing page new changes css*/
+.slideshow__subtitle, .slideshow__title {
+    color: #ffffff;
+}
+
+.slideshow__text-content-list .mega-title {
+    font-size: 3.5rem;
+    letter-spacing: 0.08em;
+}
+.mega-subtitle, .mega-title {
+    text-shadow: 0 0 20px rgb(0 0 0 / 70%);
+}
+.slideshow__text-wrap--desktop .slideshow__text-content {
+    top: 55%;
+}
+.slideshow__btn, .custom_btn .btn {
+    background-color: #2F5061;
+    border-radius: 6px;
+    -webkit-transition: background-color 0.4s ease-out;
+    -moz-transition: background-color 0.4s ease-out;
+    -ms-transition: background-color 0.4s ease-out;
+    -o-transition: background-color 0.4s ease-out;
+    transition: background-color 0.4s ease-out;
+    color:#F6F1E7;
+}
+.slideshow__btn:hover, .custom_btn .btn:hover {
+    background-color: #CE7D67 !important;
+}
+.custom_btn {
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+}
+.how_it_work_box .grid__item:nth-child(1) h4{
+    font-size: 24px;
+}
+.how-it-works-head .h3, .feature-row__text .h3{
+    color:#2F5061;
+    font-size: 40px;
+}
+.how-it-works-head .h3{
+    letter-spacing: 0.08em;
+}
+.featured-row__subtext{
+    font-size: 18px;
+}
+.btn:focus {
+    color: #fff;
+    background-color: #CE7D67;
+}
+.main-content div:nth-child(2)#shopify-section-1602561201341{
+    background: #F6F1E7;
+}
+.main-content div:nth-child(2)#shopify-section-1602561201341 .rich-text__heading--medium .h3,
+.clovecode_brand_images_section .section-header h2{
+    font-size:40px !important;
+    letter-spacing: 0.08em;
+}
+
+.main-content div:nth-child(1)#shopify-section-16074178438423a31c{
+    padding-bottom:0px;
+}
