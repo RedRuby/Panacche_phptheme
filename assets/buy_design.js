@@ -208,8 +208,10 @@ var storeProjectProduct = null;
                         if($('.changeRequestTRElm').length > 3){
                             $('.submit_design_changes_btn').hide();
                             $('.pay_now_btn').show();
+                            $('.pay_now_fixed_amunt').show().html("$"+($("#fixed_value").val()*$('.paidChangeRequest').length));
                         } else {
                             $('.pay_now_btn').hide();
+                            $('.pay_now_fixed_amunt').hide();
                             $('.submit_design_changes_btn').show();
                         }
                     },
@@ -230,17 +232,67 @@ var storeProjectProduct = null;
                 if($('.changeRequestTRElm').length > 3){
                     $('.submit_design_changes_btn').hide();
                     $('.pay_now_btn').show();
+                    $('.pay_now_fixed_amunt').show().html("$"+($("#fixed_value").val()*$('.paidChangeRequest').length));
                 } else {
                     $('.pay_now_btn').hide();
+                    $('.pay_now_fixed_amunt').hide();
                     $('.submit_design_changes_btn').show();
                 }
             }
         });
+        $(document).on("click", ".pay_now_btn", function(e) {
+            var id = $("#myProjectId").val();
+            var change_request_fee_id = $("#change_request_fee_id").val();
+            var qty = $('.paidChangeRequest').length;
+            window.location = "/cart/"+change_request_fee_id+":"+qty+"?attributes[my_project_id]="+id;
+        });
+        $(document).on("submit", "#save_shipping_address_form", function(e) {
+            e.preventDefault();
+            var form = $('#save_shipping_address_form')[0];
+            var data = new FormData(form);
+            $.ajax({
+                url: ngrokURL + '/api/page/saveShippingAddress',
+                type: "POST",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if(response.success){
+                        $("#shipping_id").val(response.id);
+                        $("#editAddressBtn").html('Edit Shipping Address');
+                        $("#get_the_best_quote").removeClass('disabled');
+                        $('.close').click();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("error");
+                    console.log('error', JSON.stringify(xhr.responseJSON));
+                }
+            });
+
+        });
+        $(document).on("click", ".submit_design_changes_btn", function(e) {
+            var url_string = window.location.href;
+            var url_str = new URL(url_string);
+            var id = url_str.searchParams.get("id");
+            $.ajax({
+                url: ngrokURL + '/api/page/sendToDesignerReview',
+                type: "POST",
+                data: {id:id},
+                success: function(response) {
+                    window.location = '/pages/buy-design?id='+id;
+                },
+                error: function(xhr, status, error) {
+                    console.log("error");
+                    console.log('error', JSON.stringify(xhr.responseJSON));
+                }
+            });
+        });
         $(document).on("input", ".product_change_req_file", function(e) {
-            changeRequestAction($(this))
+            //changeRequestAction($(this))
         });
         $(document).on("change",'.changeRequestTRElm select, .changeRequestTRElm input',function(){
-            changeRequestAction($(this))
+            changeRequestAction($(this));
         });
         
         function changeRequestAction(thisval){
@@ -344,7 +396,7 @@ var storeProjectProduct = null;
                           '</td>'+
                           '<td class="changereq5">'+
                             '<div class="custom-file">'+
-                                '<input type="file" class="custom-file-input" id="customFile" name="filename">'+
+                                '<input type="file" class="custom-file-input product_change_req_file" id="customFile" name="filename">'+
                                 '<i class="fas fa-paperclip"></i>'+
                                 '<label class="custom-file-label mb-0" for="customFile"></label>'+
                             '</div>'+
@@ -404,7 +456,7 @@ var storeProjectProduct = null;
             if($('.freeChangeHead').length == 0){
                 html += '<tr><td colspan="6" class="freeChangeHead">Free change request</td></tr>';
             }
-            html += '<tr class="freeChange changeRequestTRElm">'+
+            html += '<tr class="freeChange changeRequestTRElm paidChangeRequest">'+
                           '<td class="changereq1">'+
                              '<div class="form-group mb-0">'+
                               '<select class="custom-select selectDropdown">'+
@@ -447,8 +499,10 @@ var storeProjectProduct = null;
                 if(totalReq > 3){
                     $('.submit_design_changes_btn').hide();
                     $('.pay_now_btn').show();
+                    $('.pay_now_fixed_amunt').show().html("$"+($("#fixed_value").val()*$('.paidChangeRequest').length));
                 } else {
                     $('.pay_now_btn').hide();
+                    $('.pay_now_fixed_amunt').hide();
                     $('.submit_design_changes_btn').show();
                 }
             } else {
