@@ -1,7 +1,7 @@
 body,
 html {
     height: 100%;
-    color: #6C757D;
+    color: #32373E;
 }
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
@@ -34,7 +34,7 @@ label em {
 }
 
 .defaultBlueColor {
-    background: #5462BD !important;
+    background: #2f5061 !important;
 }
 
 .mandetory {
@@ -59,18 +59,18 @@ textarea {
 /*--------- Tooltip Css ---------*/
 
 .tooltip-inner {
-    background-color: #2DBAB6;
+    background-color: #CE7D67;
 }
 
 .tooltip.bs-tooltip-right .arrow:before {
-    border-right-color: #2DBAB6;
+    border-right-color: #CE7D67;
 }
 
 
 /*--------- Sign Up Popup Css ---------*/
 
 .signUpPopWrap {
-    background: #2DBAB6;
+    background: #CE7D67;
     right: -65px;
     top: 50%;
     margin-top: -20px;
@@ -83,7 +83,7 @@ textarea {
 }
 
 .signUpPopWrap:hover {
-    background: #5462BD;
+    background: #2f5061;
 }
 
 .signUpPopWrap a {
@@ -126,7 +126,7 @@ input::placeholder {
 
 .loginBtn {
     min-width: 115px;
-    background: #5462BD;
+    background: #2F5061;
     border-radius: 6px !important;
     padding: 6px 12px !important;
     font-family: inherit !important;
@@ -136,8 +136,8 @@ input::placeholder {
 }
 
 .loginBtn:hover {
-    background: #2DBAB6 !important;
-    border: 1px solid #2DBAB6 !important;
+    background: #CE7D67 !important;
+    border: 1px solid #CE7D67 !important;
     color: #ffffff !important;
 }
 
@@ -155,7 +155,7 @@ input::placeholder {
     color: #ffffff;
     padding: 6px 20px 0px 20px;
     text-decoration: none;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .cancleBtn:hover a {
@@ -167,8 +167,8 @@ input::placeholder {
     min-width: 115px;
     background: #ffffff;
     border-radius: 6px !important;
-    border: 1px solid #5462BD !important;
-    color: #5462BD;
+    border: 1px solid #2f5061 !important;
+    color: #2f5061;
     padding: 6px 12px !important;
     font-family: inherit !important;
     text-transform: none !important;
@@ -178,8 +178,8 @@ input::placeholder {
 
 .cancleBtn:hover,
 .cancelBtn:hover {
-    background: #2DBAB6 !important;
-    border: 1px solid #2DBAB6 !important;
+    background: #CE7D67 !important;
+    border: 1px solid #CE7D67 !important;
     color: #ffffff !important;
 }
 
@@ -205,8 +205,8 @@ input::placeholder {
 }
 
 .warningBtn:hover {
-    background: #2DBAB6 !important;
-    border: 1px solid #2DBAB6 !important;
+    background: #CE7D67 !important;
+    border: 1px solid #CE7D67 !important;
     color: #ffffff !important;
 }
 
@@ -221,12 +221,12 @@ input::placeholder {
 }
 
 .grayBtn:hover {
-    background: #2DBAB6;
-    border: 1px solid #2DBAB6;
+    background: #CE7D67;
+    border: 1px solid #CE7D67;
 }
 
 .designOptions .card .card-title a {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .loginSignupSelect .custom-select {
@@ -310,7 +310,7 @@ Register Screen
     line-height: 1;
     padding: .375rem 1rem;
     color: #ffffff;
-    background-color: #5462BD;
+    background-color: #2f5061;
     border-radius: .25rem;
     font-size: 12px;
 }
@@ -340,7 +340,7 @@ Register Screen
     line-height: 2;
     padding: .375rem 1rem;
     color: #ffffff;
-    background-color: #5462BD;
+    background-color: #2f5061;
     border-radius: .25rem;
     font-size: 12px;
     width: 100%;
@@ -412,17 +412,23 @@ Register Screen
     position: absolute;
     right: 0px;
     bottom: 0;
-    color: #5462BD;
+    color: #2f5061;
     font-size: 25px;
 }
-
+.registerForm .dragDropBox p{
+    font-size:14px;
+}
+.registerForm .dragDropBox .resume-click, .registerForm .dragDropBox .portfolio-click{
+    color:#2f5061;
+    cursor: pointer;
+}
 
 /*------------------------
 Side Nav
 -------------------------*/
 
 .leftSideNav {
-    background: #5462BD;
+    background: #2f5061;
     z-index: 1;
     position: fixed;
     top: 0;
@@ -430,7 +436,7 @@ Side Nav
     z-index: 100;
 }
 .leftSideNav .drawer-menu {
-    background: #5462BD;
+    background: #2f5061;
     padding-top: 55px;
 }
 .leftSideNav .drawer-menu li {
@@ -443,7 +449,7 @@ Side Nav
 }
 
 .leftSideNav .drawer-menu .drawer-menu-item a:hover {
-    color: #ffffff;
+    color: #F6F1E7;
 }
 
 .leftSideNav .drawer-menu .drawer-menu-item a svg {
@@ -460,25 +466,28 @@ Top Navbar
 -------------------------*/
 
 .navbar {
-    border-top: 3px solid #616FC5;
+    border-top: 3px solid #2f5061;
 }
 
 .navbar-nav li .dropdown-menu {
     right: 0 !important;
     left: auto;
 }
-
+.navMenus {
+    font-size: 16px;
+}
 .navMenus li a {
     color: #CAC9C9 !important;
 }
 
 .navMenus li a:hover {
-    color: #5462BD !important;
+    color: #2f5061 !important;
 }
 
 .userBoxWrap .nav-link,
 .registerLink .nav-link {
-    color: #616FC5 !important;
+    color: #2f5061 !important;
+    font-size: 16px;
 }
 
 .userBox {
@@ -516,7 +525,7 @@ Top Navbar
 .userBox .editButton {
     color: #222222;
     text-transform: uppercase;
-    background: #2DBAB6;
+    background: #CE7D67;
     font-size: 12px;
     font-weight: bold;
     color: #ffffff;
@@ -528,12 +537,12 @@ Top Navbar
     width: 60px;
     height: 60px;
     background: #ffffff;
-    border: 1px solid #616FC5;
+    border: 1px solid #2f5061;
     position: relative;
 }
 
 .userLogout {
-    background: #616FC5;
+    background: #2f5061;
     color: #ffffff;
 }
 
@@ -545,7 +554,7 @@ Top Navbar
 .smallUserPro {
     width: 26px;
     height: 26px;
-    background: #616FC5;
+    background: #2f5061;
     color: #ffffff;
     overflow: hidden;
 }
@@ -553,7 +562,7 @@ Top Navbar
 .userboxImg {
     width: 51px;
     height: 50px;
-    background: #616FC5;
+    background: #2f5061;
     color: #ffffff;
     margin-left: 4px;
     margin-top: 4px;
@@ -571,7 +580,7 @@ Top Navbar
     left: 0px;
     width: 22px;
     height: 22px;
-    background: #2DBAB6;
+    background: #CE7D67;
     color: #ffffff;
     bottom: 0px;
     font-size: 10px;
@@ -582,7 +591,7 @@ Top Navbar
 .bellIcon {
     width: 26px;
     height: 26px;
-    color: #616FC5;
+    color: #2f5061;
     font-size: 22px;
 }
 
@@ -647,14 +656,14 @@ Designer Dashboard Page CSS
 }
 
 .designOptions .card .card-title {
-    color: #5462BD;
+    color: #2f5061;
     font-size: 20px;
     font-weight: 500;
 }
 
 .designOptions .cardActive {
-    background: #5462BD;
-    border: 1px solid #5462BD !important;
+    background: #2f5061;
+    border: 1px solid #2f5061 !important;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
@@ -664,15 +673,15 @@ Designer Dashboard Page CSS
 }
 
 .designOptions .cardActive:hover {
-    background: #2DBAB6;
-    border: 1px solid #2DBAB6 !important;
+    background: #CE7D67;
+    border: 1px solid #CE7D67 !important;
 }
 
 
 /*----------------- Data Cards Css ----------------*/
 
 .dataCards .card .card-title span {
-    color: #5462BD;
+    color: #2f5061;
     width: 100%;
     float: left;
 }
@@ -688,7 +697,7 @@ Designer Dashboard Page CSS
 
 .landingHeading h4 {
     font-weight: bold;
-    color: #5462BD;
+    color: #2f5061;
     font-size: 1.5rem !important;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
@@ -703,14 +712,14 @@ Designer Dashboard Page CSS
 
 .designerDashTable .nav-item .nav-link {
     color: #ffffff;
-    background: #5462BD !important;
+    background: #2f5061 !important;
     border-radius: 0px;
     font-weight: bold;
     padding: 0.7rem 1.2rem;
 }
 
 .designerDashTable .nav-item .active {
-    color: #5462BD;
+    color: #2f5061;
     border-color: transparent;
     text-decoration: none !important;
     background: #ffffff !important;
@@ -721,7 +730,10 @@ Designer Dashboard Page CSS
 }
 
 .landingTable thead {
-    background: #F5F9FB;
+    background: #F6F1E7;
+}
+.landingTable thead tr th {
+    color: #CE7D67;
 }
 
 .landingTable tbody {
@@ -743,7 +755,7 @@ Designer Dashboard Page CSS
 }
 
 .table td .fa-address-book {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .table th {
@@ -784,6 +796,9 @@ Designer Dashboard Page CSS
     border-radius: 0px;
     margin-bottom:20px;
 }
+.designCards .card a:hover{
+    text-decoration: none !important;
+}
 
 .designCards .card-body {
     position: relative;
@@ -794,10 +809,15 @@ Designer Dashboard Page CSS
 .card-img-top {
     border-radius: 0px;
 }
-
+.designCards .card-body .author-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+}
 .designCards .author-info {
     font-size: 19px;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .designCards .author-info p {
@@ -815,7 +835,7 @@ Designer Dashboard Page CSS
 }
 
 .designCards .card-footer a {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .newDesinIcon {
@@ -844,19 +864,19 @@ Designer Dashboard Page CSS
 /*----------------- chat box Css ----------------*/
 
 .chatBoxWrap .card-header .fa-sync {
-    color: #5462BD;
+    color: #2f5061;
     font-size: 20px;
 }
 
 .chatBoxWrap .card-title {
     font-weight: bold;
-    color: #5462BD;
+    color: #2f5061;
     font-size: 24px;
 }
 
 .chatBoxWrap .media-body a {
     font-weight: bold;
-    color: #5462BD;
+    color: #2f5061;
     font-size: 16px;
 }
 
@@ -890,7 +910,7 @@ Create New Design Page Screen
     top: 45px !important;
     left: 0px !important;
     width: 340px;
-    background: #5462BD;
+    background: #2f5061;
     color: #ffffff;
     font-size: 12px;
     font-weight: normal;
@@ -957,7 +977,7 @@ Create New Design Page Screen
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-    color: #5462BD;
+    color: #2f5061;
     border-color: transparent;
     text-decoration: underline;
 }
@@ -1313,7 +1333,7 @@ Create New Design Page Screen
 }
 
 .colorPaintTable tbody tr td .addPlus {
-    color: #5462BD;
+    color: #2f5061;
     font-size: 25px;
 }
 
@@ -1363,7 +1383,7 @@ Create New Design Page Screen
 .addmerchBoxWrap label {
     font-size: 12px;
     font-weight: bold;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .addmerchBox {
@@ -1377,7 +1397,7 @@ Create New Design Page Screen
 .addmerchBox div:nth-child(2) p:nth-child(5) {
     font-size: 12px;
     font-weight: bold;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .addmerchBox div:nth-child(1) p:nth-child(2),
@@ -1396,7 +1416,7 @@ Create New Design Page Screen
 
 .addmerchBox div:nth-child(2) p:nth-child(4) {
     font-size: 12px;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .addmerchBox div:nth-child(2) .colorVariants div p:nth-child(1) {
@@ -1560,7 +1580,7 @@ Create New Design Page Screen
 }
 
 .disclaimerBox {
-    background: #5462BD;
+    background: #2f5061;
     color: #ffffff;
     font-size: 12px;
     font-weight: normal;
@@ -1638,12 +1658,12 @@ Create New Design Page Screen
 
 .subDesignPop .modal-body p:nth-child(1) {
     font-size: 35px;
-    color: #2DBAB6;
+    color: #CE7D67;
 }
 
 .subDesignPop .modal-body p:nth-child(2) {
     font-size: 28px;
-    color: #5462BD;
+    color: #2f5061;
     font-weight: bold;
 }
 
@@ -1692,8 +1712,8 @@ Create New Design Page View Mode
 
 .approveBtn:hover,
 .rejectBtn:hover {
-    background: #2DBAB6;
-    border: 1px solid #2DBAB6;
+    background: #CE7D67;
+    border: 1px solid #CE7D67;
 }
 
 .yellowColor {
@@ -1763,7 +1783,7 @@ Gallery Page Css
 -------------------------*/
 
 .searchBar {
-    background: #2DBAB6;
+    background: #CE7D67;
     margin-top: 65px;
     z-index: 1000;
 }
@@ -1776,8 +1796,8 @@ Gallery Page Css
 }
 
 .searchBar button {
-    background: #5462BD;
-    border: 1px solid #5462BD;
+    background: #2f5061;
+    border: 1px solid #2f5061;
 }
 
 .searchBar .fa-search {
@@ -1796,9 +1816,9 @@ Gallery Page Css
 
 .searchTagBar .searchTag {
     background: #ffffff;
-    border: 1px solid #5462BD;
+    border: 1px solid #2f5061;
     border-radius: 6px;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .searchTagBar .searchTag .fa-times-circle {
@@ -1806,7 +1826,7 @@ Gallery Page Css
 }
 
 .galleryHead {
-    background: #5462BD;
+    background: #2f5061;
     color: #ffffff;
     font-size: 24px;
     font-weight: bold;
@@ -1822,15 +1842,16 @@ Gallery Page Css
     font-weight: 500;
     color: #ffffff;
     min-width: 150px;
-    background: #ffc107 !important;
-    border: #ffc107 !important;
+    background: #ce7d67 !important;
+    border: #ce7d67 !important;
     border-radius: .25rem !important;
     padding: .375rem .75rem !important;
     text-transform: none !important;
 }
 .galleryHead .btn-warning:hover {
-    background-color: #e0a800 !important;
-    border-color: #d39e00 !important;
+    background-color: #F6F1E7 !important;
+    border-color: #F6F1E7 !important;
+    color:#2F5061;
 }
 
 .galleryHead .form-group input {
@@ -1843,7 +1864,7 @@ Gallery Page Css
 }
 
 .meetDesigners {
-    background: #5462BD;
+    background: #2f5061;
     color: #ffffff;
     font-size: 24px;
     font-weight: bold;
@@ -1872,8 +1893,8 @@ Gallery Page Css
 }
 
 .viewMorebtn button:hover {
-    background: #5462BD;
-    border: 1px solid #5462BD;
+    background: #2f5061;
+    border: 1px solid #2f5061;
 }
 
 .galleryBack a {
@@ -1931,7 +1952,7 @@ Gallery Page Css
 }
 
 .ourDesignersCards .card .author-info p:nth-child(3) .fa-star {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .ourDesignersCards .card .author-info p:nth-child(4) {
@@ -1939,14 +1960,19 @@ Gallery Page Css
     font-size: 13px;
     text-align: left;
 }
+.ourDesignersCards .card .author-info p:nth-child(4) span{
+    min-height: 70px;
+    float:left;
+    width: 100%;
+}
 
 .ourDesignersCards .card .author-info p:nth-child(5) button {
-    background: #5462BD;
+    background: #2f5061;
 }
 
 .ourDesignersCards .card .author-info p:nth-child(5) button:hover {
-    background: #2DBAB6;
-    border-color: #2DBAB6;
+    background: #CE7D67;
+    border-color: #CE7D67;
 }
 
 .deleteUpload2 {
@@ -1983,7 +2009,7 @@ Our Designers Page Css
 -------------------------*/
 
 .ourDesigner .designerInfo p:nth-child(1) {
-    color: #2DBAB6;
+    color: #CE7D67;
     font-weight: normal;
     font-style: italic;
     font-size: 1rem;
@@ -1994,7 +2020,7 @@ Our Designers Page Css
 }
 
 .ourDesigner .designerInfo p:nth-child(4) span {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .ourDesigner .author-info p {
@@ -2026,19 +2052,19 @@ Admin Dashboard CSS
 .newArrivalCard .card a,
 .todaysSaleCard .card a {
     text-decoration: none;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .newArrivalCard .card .card-body {
     background: #ffffff;
-    border: 1px solid #5462BD;
+    border: 1px solid #2f5061;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .newArrivalCard .card .card-body:hover {
-    background: #2DBAB6;
+    background: #CE7D67;
     color: #ffffff;
-    border: 1px solid #2DBAB6;
+    border: 1px solid #CE7D67;
 }
 
 .newArrivalCard .card .card-title,
@@ -2061,16 +2087,16 @@ Admin Dashboard CSS
 
 .todaysSaleCard .card .card-body {
     text-decoration: none;
-    color: #5462BD;
+    color: #2f5061;
     background: #ffffff;
-    border: 1px solid #5462BD;
+    border: 1px solid #2f5061;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .todaysSaleCard .card .card-body:hover {
-    background: #2DBAB6;
+    background: #CE7D67;
     color: #ffffff;
-    border: 1px solid #2DBAB6;
+    border: 1px solid #CE7D67;
 }
 
 .totalFiguresCard .card {
@@ -2080,7 +2106,7 @@ Admin Dashboard CSS
 }
 
 .totalFiguresCard .card a {
-    color: #5462BD;
+    color: #2f5061;
 }
 .totalFiguresCard .card a:hover {
     text-decoration: none;
@@ -2088,14 +2114,14 @@ Admin Dashboard CSS
 
 .totalFiguresCard .card .card-body {
     background: #ffffff;
-    border: 1px solid #5462BD;
+    border: 1px solid #2f5061;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .totalFiguresCard .card .card-body:hover {
-    background: #2DBAB6;
+    background: #CE7D67;
     color: #ffffff;
-    border: 1px solid #2DBAB6;
+    border: 1px solid #CE7D67;
 }
 
 .totalFiguresCard .card .card-title span {
@@ -2119,7 +2145,7 @@ Admin Dashboard CSS
 }
 
 .todaysSaleHead p {
-    color: #5462BD;
+    color: #2f5061;
 }
 .todaysSaleHead p:hover, .todaysSaleCard .card .card-body:hover p {
     color: #ffffff;
@@ -2136,7 +2162,7 @@ Admin Dashboard CSS
 }
 
 .dashboardGraph .card {
-    background: #5462BD;
+    background: #2f5061;
     min-height: 300px;
     border-radius: 20px;
     box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
@@ -2148,11 +2174,11 @@ Admin Dashboard CSS
 .viewAllLink a {
     font-size: 14px;
     line-height: 40px;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .viewAllLink a:hover {
-    color: #2DBAB6;
+    color: #CE7D67;
 }
 
 .designersApproveCards .cardChekbox {
@@ -2206,7 +2232,7 @@ Admin Dashboard CSS
 }
 
 .designersApproveCards .card .author-info p:nth-child(3) .fa-star {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .designersApproveCards .card .author-info p:nth-child(4) {
@@ -2216,19 +2242,19 @@ Admin Dashboard CSS
 }
 
 .designersApproveCards .card .author-info p:nth-child(5) button {
-    background: #5462BD;
+    background: #2f5061;
 }
 
 .designersApproveCards .card .author-info p:nth-child(5) button:hover {
-    background: #2DBAB6;
-    border-color: #2DBAB6;
+    background: #CE7D67;
+    border-color: #CE7D67;
 }
 
 .discPercentage {
     position: absolute;
     right: 15px;
     top: 5px;
-    color: #5462BD;
+    color: #2f5061;
     font-size: 18px;
 }
 
@@ -2257,7 +2283,7 @@ Show All Designs
 }
 
 .showAllTabs .nav-item .active {
-    color: #5462BD;
+    color: #2f5061;
     border-color: transparent;
     text-decoration: none;
     background-color: transparent;
@@ -2277,7 +2303,7 @@ Show All Designs
     border:0px;
 }
 .showAllContent .showallTable .btn-success .fa-edit{
-    color:#5462BD !important;
+    color:#2f5061 !important;
 }
 .showAllContent .showallTable .btn-danger .fa-trash{
     color:#CB0000 !important;
@@ -2312,7 +2338,7 @@ Show All Designs
     top: 0;
     height: 20px;
     z-index: 11;
-    background: #5462BD;
+    background: #2f5061;
 }
 
 
@@ -2323,7 +2349,7 @@ New Designer Page CSS
 .newDesignerProfile p {
     width: 200px;
     height: 200px;
-    border: 3px solid #5462BD;
+    border: 3px solid #2f5061;
     border-radius: 50%;
     background: #ffffff;
     position: relative;
@@ -2480,17 +2506,17 @@ Custer Buy Design Page CSS
 .panaccheSaving p:nth-child(1) {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .panaccheSaving p:nth-child(2) {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .panaccheSaving .ibtn {
-    background: #2DBAB6;
+    background: #CE7D67;
     color: #ffffff;
     width: 20px;
     height: 20px;
@@ -2519,7 +2545,7 @@ Custer Buy Design Page CSS
 
 .designDisc p:nth-child(1) {
     font-weight: 500;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .designDisc p:nth-child(2) {
@@ -2527,9 +2553,9 @@ Custer Buy Design Page CSS
 }
 
 .designDisc p:nth-child(3) span {
-    border: 1px solid #5462BD;
+    border: 1px solid #2f5061;
     border-radius: 6px;
-    color: #5462BD;
+    color: #2f5061;
     min-width: 50px;
     background: #ffffff;
     float: left;
@@ -2546,7 +2572,7 @@ Custer Buy Design Page CSS
 }
 
 .buyDesign .card-body {
-    background: #5462BD;
+    background: #2f5061;
     min-height: 150px;
 }
 
@@ -2568,7 +2594,7 @@ Custer Buy Design Page CSS
 
 .gallery p {
     font-style: italic;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .gallery .img-thumbnail {
@@ -2601,13 +2627,13 @@ Custer Buy Design Page CSS
 }
 
 .customerBuytabs .showAllTabs .nav-item .active {
-    color: #5462BD;
+    color: #2f5061;
     background: #ffffff;
 }
 
 .customerBuytabs .showAllTabs .nav-item .showActive {
     color: #ffffff;
-    background: #5462BD;
+    background: #2f5061;
 }
 
 .customerBuytabs .showAllTabs .nav-item .disabled {
@@ -2623,16 +2649,16 @@ Custer Buy Design Page CSS
 
 .customersBuyContant .tab1 h1 {
     font-weight: bold;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .customersBuyContant .tab1 p,
 .customersBuyContant .tab1 ul li {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .customersBuyContant .tab1Right .buyPriceBox p:nth-child(1) {
-    color: #2DBAB6;
+    color: #CE7D67;
     font-size: 5rem;
     box-shadow: 0px 1px 5px rgb(0 0 0 / 7%);
     border-radius: 6px 6px 0px 0px;
@@ -2666,7 +2692,7 @@ Custer Buy Design Page CSS
 }
 
 .customersBuyContant .tab1Right .downloadZipBox p:nth-child(1) {
-    color: #2DBAB6;
+    color: #CE7D67;
     font-size: 1.2rem;
     font-weight: bold;
 }
@@ -2690,7 +2716,7 @@ Custer Buy Design Page CSS
 }
 
 .tab2dragDropBox p {
-    color: #5462BD;
+    color: #2f5061;
     font-style: italic;
     font-size: 1.1rem;
 }
@@ -2725,7 +2751,7 @@ Custer Buy Design Page CSS
 }
 
 .tab2UploadLinks p:nth-child(1) {
-    color: #5462BD;
+    color: #2f5061;
     font-style: italic;
     font-size: 1.1rem;
 }
@@ -2742,7 +2768,7 @@ Custer Buy Design Page CSS
 
 .shoppingListTable thead tr th {
     font-size: 1rem;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .shoppingListTable tr td,
@@ -2762,7 +2788,7 @@ Custer Buy Design Page CSS
 }
 
 .shoppingListTable tbody tr td:nth-child(2) p:nth-child(1) {
-    color: #5462BD;
+    color: #2f5061;
     font-size: 1.5rem;
     font-style: normal;
     font-weight: bold;
@@ -2777,14 +2803,14 @@ Custer Buy Design Page CSS
 
 .shoppingListTable tbody tr td:nth-child(4),
 .shoppingListTable tbody tr td:nth-child(5) {
-    color: #5462BD;
+    color: #2f5061;
     font-size: 2.5rem;
     font-weight: bold;
 }
 
 .shoppingListTable tbody tr td:nth-child(6) input {
     width: 100px;
-    border: 1px solid #5462BD !important;
+    border: 1px solid #2f5061 !important;
     border-radius: 0;
 }
 
@@ -2817,7 +2843,7 @@ Custer Buy Design Page CSS
 }
 
 .buyColorPaintTable tbody tr td p:nth-child(1) {
-    color: #5462BD;
+    color: #2f5061;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: bold;
@@ -2840,9 +2866,9 @@ Custer Buy Design Page CSS
 
 .addFreeChangebtn {
     min-width: 115px;
-    background: #2DBAB6;
+    background: #CE7D67;
     border-radius: 6px !important;
-    border: 1px solid #2DBAB6;
+    border: 1px solid #CE7D67;
     color: #ffffff;
     position: relative;
     font-weight: bold;
@@ -2855,12 +2881,12 @@ Custer Buy Design Page CSS
 
 .addFreeChangebtn:hover,
 .addPaidChangebtn:hover {
-    background: #5462BD !important;
-    border: 1px solid #5462BD !important;
+    background: #2f5061 !important;
+    border: 1px solid #2f5061 !important;
 }
 
 .changeAddCount {
-    color: #2DBAB6;
+    color: #CE7D67;
     font-size: 0.8rem;
     font-weight: bold;
 }
@@ -2894,7 +2920,7 @@ Custer Buy Design Page CSS
 }
 
 .freeChangeHead {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .paidChangeHead {
@@ -2925,18 +2951,18 @@ Custer Buy Design Page CSS
 }
 
 .tabAccordian .card-header.active {
-    color: #5462BD;
+    color: #2f5061;
     background: #ffffff !important;
-    border-bottom: 1px solid #5462BD !important;
+    border-bottom: 1px solid #2f5061 !important;
 }
 
 .tabAccordian .card-header.active h2 .btn {
-    color: #5462BD !important;
+    color: #2f5061 !important;
 }
 
 .tabAccordian .card-header.showActive {
     color: #ffffff;
-    background: #5462BD !important;
+    background: #2f5061 !important;
     border-bottom: 1px solid #ffffff !important;
 }
 
@@ -2986,7 +3012,7 @@ Custer Buy Design Page CSS
     height: 120px;
     width: 120px;
     overflow: hidden;
-    border: 1px solid #5462BD;
+    border: 1px solid #2f5061;
     border-radius: 10px;
     margin: auto;
     cursor: pointer;
@@ -3002,7 +3028,7 @@ Custer Buy Design Page CSS
 .quantityView {
     height: 38px;
     width: 100px;
-    border: 1px solid #5462BD !important;
+    border: 1px solid #2f5061 !important;
     font-size: 1.3rem !important;
     line-height: 20px;
     color: #575757 !important;
@@ -3014,20 +3040,20 @@ Custer Buy Design Page CSS
 
 .orderSummaryTable {
     background: rgba(87, 87, 87, 0.13);
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .orderSummaryTable table td,
 .orderSummaryTable table th {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .orderSummaryTable .table thead th {
-    border-bottom: 2px solid #5462BD;
+    border-bottom: 2px solid #2f5061;
 }
 
 .orderSummaryTable .table .totalPrice {
-    border-top: 2px solid #5462BD;
+    border-top: 2px solid #2f5061;
     font-size: 1.6rem;
     font-weight: bold;
 }
@@ -3044,7 +3070,7 @@ Custer Buy Design Page CSS
 
 .orderSummaryChecklist p {
     font-size: 1.2rem;
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .orderSummaryChecklist p .fa-check-square {
@@ -3077,7 +3103,7 @@ Customer Landing Page CSS
 
 .projectImg {
     overflow: hidden;
-    max-height: 230px;
+    height: 230px;
 }
 
 .card .author-info .fa-exclamation-circle {
@@ -3143,15 +3169,15 @@ Customer Landing Page CSS
 
 .addCancelDesignBox .packageSelect .loyalPkg,
 .addCancelDesignBox .packageSelect .lavishPkg {
-    background: #5462BD;
+    background: #2f5061;
     color: #ffffff;
     cursor: pointer;
 }
 
 .addCancelDesignBox .packageSelect .loyalPkg:hover,
 .addCancelDesignBox .packageSelect .lavishPkg:hover {
-    background: #2DBAB6;
-    border-color: #2DBAB6;
+    background: #CE7D67;
+    border-color: #CE7D67;
 }
 
 .addCancelDesignBox .packageSelect p {
@@ -3181,15 +3207,15 @@ Customer Designer Rating Page CSS
 }
 
 .goBack {
-    background: #5462BD;
+    background: #2f5061;
     color: #ffffff;
     cursor: pointer;
-    border-color: #5462BD;
+    border-color: #2f5061;
 }
 
 .goBack:hover {
-    background: #2DBAB6;
-    border-color: #2DBAB6;
+    background: #CE7D67;
+    border-color: #CE7D67;
 }
 
 .orderPlacedWrap .shoppingListTable {
@@ -3202,7 +3228,7 @@ Customer Designer Rating Page CSS
 }
 
 .orderPlacedWrap .shoppingList {
-    background: #2DBAB6;
+    background: #CE7D67;
 }
 
 .orderPlacedWrap .ratingBox {
@@ -3222,7 +3248,7 @@ Customer Designer Rating Page CSS
 }
 
 .ratingBox .designerStars {
-    color: #5462BD;
+    color: #2f5061;
     font-size: 1.8rem;
 }
 
@@ -3254,17 +3280,19 @@ Design Details Page CSS
 }
 
 .getaGuideWrap {
-    background: #2DBAB6;
+    background: #CE7D67;
     border-radius: 6px;
     color: #ffffff;
+    margin-top: 1rem;
 }
 
 .getaGuideWrap .getGuideHead {
     font-size: 1.5rem;
+    color:#ffffff;
 }
 
 .getGuideBox p:nth-child(1) {
-    color: #2DBAB6;
+    color: #CE7D67;
     font-size: 5rem;
     box-shadow: 0px 1px 5px rgb(0 0 0 / 7%);
     border-radius: 6px 6px 0px 0px;
@@ -3290,6 +3318,7 @@ Design Details Page CSS
 
 .designGalleryWrap {
     background: rgba(45, 186, 182, 0.13);
+    width:100%;
 }
 
 .galleryModel .modal-header .close {
@@ -3305,7 +3334,7 @@ Design Details Page CSS
 
 .getGuidePop .modal-body p:nth-child(1) {
     font-size: 18px;
-    color: #5462BD;
+    color: #2f5061;
     font-weight: bold;
 }
 
@@ -3361,7 +3390,7 @@ Admin Invoice Page CSS
 }
 
 .custonerInvoiceWrap .orderSummaryTable .table .totalPricesTr {
-    border-top: 2px solid #5462BD;
+    border-top: 2px solid #2f5061;
 }
 
 .custonerInvoiceWrap .orderSummaryTable .table .totalPrice {
@@ -3370,11 +3399,11 @@ Admin Invoice Page CSS
 }
 
 .custonerInvoiceWrap .orderSummaryTable .table .finalPrice {
-    color: #5462BD;
+    color: #2f5061;
 }
 
 .custonerInvoiceWrap .orderSummaryTable .table .shoppingItnHead {
-    color: #5462BD;
+    color: #2f5061;
     font-size: 1.2rem;
 }
 
@@ -3406,7 +3435,7 @@ Customer Designer Intaraction Page CSS
 
 .clientDocBox .fa-file {
     font-size: 8rem;
-    color: #2DBAB6;
+    color: #CE7D67;
 }
 
 .clientlinks p:nth-child(1) {
@@ -3416,7 +3445,7 @@ Customer Designer Intaraction Page CSS
 }
 
 .clientlinks .clientlinksBox {
-    border: 1px solid #5462BD;
+    border: 1px solid #2f5061;
     color: #2097FE;
     word-wrap: break-word;
 }
@@ -3474,7 +3503,7 @@ Footer CSS
 }
 .nav-tabs .tabVisited4{
     color: #ffffff;
-    background: #5462BD;
+    background: #2f5061;
 }
 .changeRequestTRElm select.custom-select.selectDropdown {
     max-width: 185px;
