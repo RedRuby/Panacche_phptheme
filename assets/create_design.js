@@ -353,7 +353,7 @@
 
 
 
-        $(".main-content   #colorPaintTable").on("click", ".addPlus", function(e) {
+        $(document).on("click", ".addPlus", function(e) {
             e.preventDefault();
             color_pallette_count = color_pallette_count + 1;
             console.log("you clicked me");
@@ -506,15 +506,108 @@
 
         });
 
-
-        //
-
-
-
-        $(".landingPageWrap .carousel-inner").on("click", ".imageClose", function(e) {
+        $(document).on("click", ".collectionImageClose", function(e) {
             e.preventDefault();
             console.log('image close');
-            $(this).closest('.carousel-item').remove();
+
+            var html = $(this).closest('.carousel-item');
+
+            var designId = $(this).data('design-id');
+            var imgSrc = $(this).data('img-src');
+
+            var fd = new FormData();
+            fd.append('design_id', designId);
+            fd.append('img_src', imgSrc);
+            var url = ngrokURL + "/api/design/delete/collectionImage";
+
+            if (confirm("Are you sure you want to remove this file?")) {
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.data);
+                        if (response.status == true) {
+                            alert(response.message);
+                            html.remove();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                });
+            } else {
+                return false;
+            }
+        });
+
+        $(document).on("click", ".deleteMerchandise", function(e) {
+            e.preventDefault();
+            console.log('merchandise delete');
+
+            var designId = $(this).data('design-id');
+
+            var fd = new FormData();
+            fd.append('design_id', designId);
+            var url = ngrokURL + "/api/design/delete/deleteMerchandise";
+
+            if (confirm("Are you sure you want to remove this item?")) {
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.data);
+                        if (response.status == true) {
+                            alert(response.message);
+                            window.location.reload();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                });
+            } else {
+                return false;
+            }
+        });
+
+        $(document).on("click", "#ConceptBoard", function(e) {
+            e.preventDefault();
+            console.log('image close');
+            var html = $(this).closest('.carousel-item');
+
+            var designId = $(this).data('design-id');
+            var imgSrc = $(this).data('img-src');
+
+            var fd = new FormData();
+            fd.append('design_id', designId);
+            fd.append('img_src', imgSrc);
+            var url = ngrokURL + "/api/design/delete/collectionBluePrintImage";
+
+            if (confirm("Are you sure you want to remove this file?")) {
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response.data);
+                        if (response.status == true) {
+                            alert(response.message);
+                            html.remove();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                });
+            } else {
+                return false;
+            }
+
         });
 
         $('.landingPageWrap').on("change", "#design_implementation_guide", function() {
