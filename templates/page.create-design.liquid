@@ -316,6 +316,8 @@
                                 <label class="custom-file-label mb-0" for="customFile"></label>
                             </div>
                         </div>
+                        <input type="hidden" name="hdn_collection_images[]" id="hdn_collection_images" >
+                        <input type="hidden" name="hdn_delete_collection_images[]" id="hdn_delete_collection_images" >
                     </div>
 
                 </div>
@@ -347,7 +349,7 @@
                     <div class="col-md-5 float-left mx-0 typeUser px-0">
                         <div class="row mx-0 px-0 pt-2">
                             <form id="csv-bulk-upload-form" accept="multipart/formdata">
-                                <input type="hidden" name="customer_id" value="{{ customer.id }}" />
+                                <input type="hidden" name="customer_id" id="loggedInDesigner" value="{{ customer.id }}" />
                                 <input type="hidden" name="shop" value="{{ shop.permanent_domain}}" />
                                 <input type="hidden" name="collection_id" value="" id="collection_id_bulk_upload" />
 
