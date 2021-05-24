@@ -3508,3 +3508,13 @@ Footer CSS
 .changeRequestTRElm select.custom-select.selectDropdown {
     max-width: 185px;
 }
+.disabledChangeRequest,.disabled_in_progress {
+    pointer-events: none;
+    opacity: 0.4;
+}
+.disabled_in_progress .disabledChangeRequest{
+    opacity: 1;
+}
+.loginBtn.disabled{
+    pointer-events: none;
+}

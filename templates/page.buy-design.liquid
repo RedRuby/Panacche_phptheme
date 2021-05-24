@@ -20,7 +20,7 @@
      </div>
     </div>
 {% endif %}
-
+<input type="hidden" name="change_request_fee_id" id="change_request_fee_id" value='{{ all_products["change-request-fee"].variants.first.id }}'>
 <div class="container-fluid">
     <div class="row align-items-center h-100">
             <div class="col-md-12 col-sm-12 col-xs-12 mx-auto mt-5 pl-5 {% if customer.id == blank %} pt-5 designDetails {% else %} pt-2 {% endif %}">
